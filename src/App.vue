@@ -39,7 +39,7 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      background: url("./assets/backgrounds/home.jpg") no-repeat;
+      background: url("assets/backgrounds/home.jpg") no-repeat;
       background-size: cover;
     }
     
