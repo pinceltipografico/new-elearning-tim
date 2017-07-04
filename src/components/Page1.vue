@@ -205,6 +205,7 @@
     right: 10%;
     transform: translate(100%,-50%);
     background: rgba(#000,0.5);
+    border:2px solid $brand-details;
     padding: 15px;
     opacity: 0;
     h1{
