@@ -17,7 +17,7 @@
     <div class="image-full"></div>
     <div class="script3">
       <h1>
-        Conexão e interação, a tecnologia nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
+        <span>Conexão</span> e <span>interação,</span> a <span>tecnologia</span> nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
     </div>
   </section>
 </template>
@@ -212,6 +212,9 @@
       @include font-size(2.5);
       color:#fff;
       text-transform: uppercase;
+      span{
+        color:$brand-details;
+      }
     }
     &.show{
       transform: translate(0,-50%);
