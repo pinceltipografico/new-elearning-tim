@@ -12,10 +12,10 @@
         Soluções específicas para as nossas necessidades e para o nosso jeito de ser, tanto no trabalho, nas nossas relações e na nossa forma de consumir.
       </h1>
     </div>
-    <div class="script3">
+    <!--<div class="script3">
       <h1>
         Conexão e interação, a tecnologia nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
-    </div>
+    </div>-->
     <div class="image-left"></div>
     <div class="image-right"></div>
   </section>
