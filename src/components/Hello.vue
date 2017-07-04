@@ -26,13 +26,17 @@
     mounted () {
       setTimeout(function () {
         this.animation = true
-      }.bind(this), 2000)
+      }.bind(this), 1000)
     },
     methods: {
       gotoExplain: function () {
         this.animation = false
         setTimeout(function () {
-          this.$router.replace('explain')
+          if (this.$cookie.get('explain_viewed')) {
+            this.$router.replace('page1')
+          } else {
+            this.$router.replace('explain')
+          }
         }.bind(this), 1000)
       }
     }

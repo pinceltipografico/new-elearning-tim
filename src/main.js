@@ -4,18 +4,30 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuex from 'vuex'
+import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(VueCookie)
 
 const store = new Vuex.Store({
   state: {
-    showUserInterface: false
+    showUserInterface: false,
+    pageProgress: 30,
+    actualBackground: 'backgrounds/home.jpg'
   },
   mutations: {
     toggleIterface (state, isActive) {
       'use strict'
       state.showUserInterface = isActive
+    },
+    setPageProgress (state, progress) {
+      'use strict'
+      state.pageProgress = progress
+    },
+    setBackground (state, bg) {
+      'use strict'
+      state.actualBackground = bg
     }
   }
 })

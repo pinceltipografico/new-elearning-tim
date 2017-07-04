@@ -15,7 +15,6 @@ var AnimationUtils;
   function runAnimation (i, timeline) {
     var animation = setTimeout(function () {
       var element = document.querySelector(animations[i].selector)
-      console.log(element)
       if (element) {
         if (!reverse) {
           element.classList.add(animations[i].step)

@@ -1,6 +1,6 @@
 <template>
   <main id="app">
-    <div class="image-background"></div>
+    <div class="image-background" :style="'background: url('+getBackground+') no-repeat; background-size:cover;'"></div>
     <div class="logo">
       <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
     </div>
@@ -16,7 +16,7 @@
     </transition>
     <transition name="fade">
       <div class="progress-audio" v-if="showInterfaceItems">
-        <div></div>
+        <div :style="'width:'+pageProgress+'%'"></div>
       </div>
     </transition>
     <transition name="fade">
@@ -36,10 +36,17 @@
   export default {
     name: 'app',
     mounted () {
+      this.$store.commit('toggleIterface', false)
     },
     computed: {
       showInterfaceItems: function () {
         return this.$store.state.showUserInterface
+      },
+      pageProgress: function () {
+        return this.$store.state.pageProgress
+      },
+      getBackground: function () {
+        return require('./assets/' + this.$store.state.actualBackground)
       }
     }
   }
@@ -71,7 +78,6 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      background: url("assets/backgrounds/home.jpg") no-repeat;
       background-size: cover;
     }
     
