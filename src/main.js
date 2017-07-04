@@ -13,8 +13,7 @@ Vue.use(VueCookie)
 const store = new Vuex.Store({
   state: {
     showUserInterface: false,
-    pageProgress: 30,
-    actualBackground: 'backgrounds/home.jpg'
+    pageProgress: 30
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -24,10 +23,6 @@ const store = new Vuex.Store({
     setPageProgress (state, progress) {
       'use strict'
       state.pageProgress = progress
-    },
-    setBackground (state, bg) {
-      'use strict'
-      state.actualBackground = bg
     }
   }
 })

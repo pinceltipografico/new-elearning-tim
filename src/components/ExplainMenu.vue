@@ -98,7 +98,11 @@
 <style lang="scss" scoped>
   @import "../scss/variables";
   @import "../scss/mixins";
-  
+
+  section.page{
+    background: url("../assets/backgrounds/home.jpg") no-repeat;
+    background-size: cover;
+  }
   .explain-item {
     position: absolute;
     display: block;

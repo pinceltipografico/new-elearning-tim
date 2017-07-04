@@ -1,6 +1,5 @@
 <template>
   <main id="app">
-    <div class="image-background" :style="'background: url('+getBackground+') no-repeat; background-size:cover;'"></div>
     <div class="logo">
       <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
     </div>
@@ -37,6 +36,9 @@
     name: 'app',
     mounted () {
       this.$store.commit('toggleIterface', false)
+      if (this.$cookie.get('explain_viewed')) {
+        this.$store.commit('toggleIterface', true)
+      }
     },
     computed: {
       showInterfaceItems: function () {
@@ -44,9 +46,6 @@
       },
       pageProgress: function () {
         return this.$store.state.pageProgress
-      },
-      getBackground: function () {
-        return require('./assets/' + this.$store.state.actualBackground)
       }
     }
   }
@@ -173,6 +172,11 @@
     color: #fff;
     top: 50%;
     margin-top: -25px;
+    cursor: pointer;
+    transition: background $animationTime;
+    &:hover {
+      background: $brand-details;
+    }
     i {
       width: 60px;
       height: 50px;
