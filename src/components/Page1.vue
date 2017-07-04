@@ -208,6 +208,17 @@
     border:2px solid $brand-details;
     padding: 15px;
     opacity: 0;
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      border-top:20px solid transparent;
+      border-bottom:20px solid transparent;
+      border-right: 20px solid $brand-details;
+      right: 100%;
+      top:50%;
+      margin-top: -20px;
+    }
     h1{
       @include font-size(2.5);
       color:#fff;
