@@ -12,12 +12,13 @@
         Soluções específicas para as nossas necessidades e para o nosso jeito de ser, tanto no trabalho, nas nossas relações e na nossa forma de consumir.
       </h1>
     </div>
-    <!--<div class="script3">
-      <h1>
-        Conexão e interação, a tecnologia nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
-    </div>-->
     <div class="image-left"></div>
     <div class="image-right"></div>
+    <div class="image-full"></div>
+    <div class="script3">
+      <h1>
+        Conexão e interação, a tecnologia nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
+    </div>
   </section>
 </template>
 <script type="text/javascript">
@@ -66,8 +67,15 @@
         }, {
           time: 400,
           step: 'white',
-          selector: '.blue-left',
-          reverse: true
+          selector: '.blue-left'
+        }, {
+          time: 400,
+          step: 'show',
+          selector: '.image-full'
+        }, {
+          time: 400,
+          step: 'show',
+          selector: '.script3'
         }
       ]
       Animations.setAnimations(animations)
@@ -95,9 +103,21 @@
   .blue-left,
   .image-right,
   .script2,
-  .script3 {
+  .script3,
+  .image-full {
     z-index: 4;
     position: absolute;
+  }
+  
+  .image-full {
+    width: 100%;
+    height: 100%;
+    background: url("../assets/backgrounds/page-1-4.jpg") no-repeat;
+    background-size: cover;
+    opacity: 0;
+    &.show{
+      opacity: 1;
+    }
   }
   
   .image-right {
@@ -131,7 +151,7 @@
     &.large {
       width: 100%;
     }
-    &.white{
+    &.white {
       background: #fff;
     }
   }
@@ -176,6 +196,25 @@
     }
     &.hide {
       top: 100%;
+    }
+  }
+  
+  .script3{
+    max-width: 400px;
+    top:50%;
+    right: 10%;
+    transform: translate(100%,-50%);
+    background: rgba(#000,0.5);
+    padding: 15px;
+    opacity: 0;
+    h1{
+      @include font-size(2.5);
+      color:#fff;
+      text-transform: uppercase;
+    }
+    &.show{
+      transform: translate(0,-50%);
+      opacity: 1;
     }
   }
   
