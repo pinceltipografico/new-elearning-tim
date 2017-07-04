@@ -1,0 +1,30 @@
+.buttons{
+  background: #fff;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 70%;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span,i{
+    color:#666 !important;
+    @include font-size(2);
+  }
+  i{
+    border-left: 1px solid lighten(#000, 60%);
+    padding: 0 10px;
+    margin-left: 10px;
+  }
+
+  &:hover{
+    background: $brand-details;
+    span,
+    i{
+      color:#fff;
+    }
+  }
+}
