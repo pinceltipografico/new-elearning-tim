@@ -7,7 +7,7 @@
       <h1>Customer</h1>
       <h1>experience</h1>
       <hr>
-      <div class="buttons">
+      <div class="buttons" @click="gotoExplain">
         <span>iniciar</span>
         <i class="fa fa-play-circle"></i>
       </div>
@@ -27,6 +27,14 @@
       setTimeout(function () {
         this.animation = true
       }.bind(this), 2000)
+    },
+    methods: {
+      gotoExplain: function () {
+        this.animation = false
+        setTimeout(function () {
+          this.$router.replace('explain')
+        }.bind(this), 1000)
+      }
     }
   }
 </script>
@@ -44,16 +52,16 @@
     transform: translateX(-50%);
     z-index: 3;
     
-    *{
+    * {
       transition: all $animationTime;
     }
     
-    hr{
+    hr {
       opacity: 0;
-      &:nth-of-type(1){
+      &:nth-of-type(1) {
         transform: translateX(-100%);
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) {
         transform: translateX(100%);
       }
     }
@@ -84,7 +92,7 @@
       margin-top: -15px;
     }
     
-    .buttons{
+    .buttons {
       transition-delay: 1s;
       transform: translateY(100%);
       opacity: 0;
@@ -94,31 +102,32 @@
       > span {
         transform: scaleY(1);
       }
-      hr{
+      hr {
         opacity: 1;
         transform: translateX(0);
       }
-      h1{
+      h1 {
         opacity: 1;
       }
-      .buttons{
+      .buttons {
         transform: translateY(0);
         opacity: 1;
         animation-delay: 1s;
-        border:2px solid #fff;
+        border: 2px solid #fff;
         animation: blinkButton 1s infinite;
       }
     }
   }
+  
   @keyframes blinkButton {
-    0%{
-      border:2px solid #fff;
+    0% {
+      border: 2px solid #fff;
     }
-    50%{
-      border:2px solid $brand-details;
+    50% {
+      border: 2px solid $brand-details;
     }
-    100%{
-      border:2px solid #fff;
+    100% {
+      border: 2px solid #fff;
     }
   }
 </style>
