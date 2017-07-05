@@ -19,12 +19,12 @@
       </div>
     </transition>
     <transition name="fade">
-      <a class="nav-button next-page" v-if="showInterfaceItems">
+      <a class="nav-button next-page" v-if="showInterfaceItems" @click="nextPage">
         <i class="fa fa-chevron-right"></i>
       </a>
     </transition>
     <transition name="fade">
-      <a class="nav-button prev-page" v-if="showInterfaceItems">
+      <a class="nav-button prev-page" v-if="showInterfaceItems" @click="prevPage">
         <i class="fa fa-chevron-left"></i>
       </a>
     </transition>
@@ -32,10 +32,13 @@
   </main>
 </template>
 <script>
+  import { EventBus } from './events/index'
   export default {
     data () {
       return {
-        counter: null
+        counter: null,
+        pageIndex: 1,
+        pages: [1, 2]
       }
     },
     name: 'app',
@@ -44,6 +47,10 @@
       if (this.$cookie.get('explain_viewed')) {
         this.$store.commit('toggleIterface', true)
       }
+      EventBus.$on('start-progress', this.startProgress.bind(this))
+    },
+    created () {
+      this.pageIndex = Number(this.$route.path.split('page')[1])
     },
     methods: {
       startProgress: function () {
@@ -60,12 +67,25 @@
             clearInterval(vm.couter)
           }
         }, 100)
+      },
+      nextPage: function () {
+        if (this.pageIndex < this.pages.length) {
+          this.pageIndex++
+          this.$router.replace('page' + this.pageIndex)
+        }
+      },
+      prevPage: function () {
+        if (this.pageIndex > 1) {
+          this.pageIndex--
+          this.$router.replace('page' + this.pageIndex)
+        }
       }
     },
     destroyed () {
       if (this.counter) {
         clearInterval(this.couter)
       }
+      EventBus.$off('start-progress', this.startProgress.bind(this))
     },
     computed: {
       showInterfaceItems: function () {

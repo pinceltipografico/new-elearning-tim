@@ -28,10 +28,12 @@
 </template>
 <script type="text/javascript">
   var Animations = require('../lib/ChainAnimation')
+  import { EventBus } from '../events/index'
   export default {
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
+      this.$store.commit('setTotalProgress', 15000)
       var animations = [
         {
           time: 500,
@@ -100,9 +102,8 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
-        console.log('hey')
-      })
+      Animations.animationTimeline(function () {})
+      EventBus.$emit('start-progress')
     }
   }
 </script>
