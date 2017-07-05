@@ -157,6 +157,27 @@
       border: 0 solid #fff;
       z-index: 2;
       animation: enterBorder $animationTime forwards;
+      overflow: hidden;
+  
+      > * {
+        position: absolute;
+        z-index: 3;
+        transition: all $animationTime;
+      }
+      
+      .image-background{
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        top:0;
+        left: 0;
+      }
+      
+      h1{
+        span{
+          color:$brand-details;
+        }
+      }
     }
     .user-interface {
       position: absolute;
