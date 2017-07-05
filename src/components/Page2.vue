@@ -23,6 +23,9 @@
     <div class="script4">
       <h1>Compartilhando experiências <span>construtivas</span> e <span>únicas.</span> Envolvendo a todos na evolução contínua. </h1>
     </div>
+    <div class="script5">
+      <h1>Esse é o nosso propósito. Somos a <span>Geração CX TIM.</span></h1>
+    </div>
   </section>
 </template>
 <script type="text/javascript">
@@ -105,6 +108,38 @@
           time: 300,
           step: 'step9',
           selector: '.effects'
+        }, {
+          time: 300,
+          step: 'step3',
+          selector: '.image-background'
+        }, {
+          time: 300,
+          step: 'step10',
+          selector: '.effects'
+        }, {
+          time: 300,
+          step: 'step1',
+          selector: '.script4'
+        }, {
+          time: 2500,
+          step: 'step2',
+          selector: '.script4'
+        }, {
+          time: 300,
+          step: 'step11',
+          selector: '.effects'
+        }, {
+          time: 300,
+          step: 'step4',
+          selector: '.image-background'
+        }, {
+          time: 300,
+          step: 'step12',
+          selector: '.effects'
+        }, {
+          time: 600,
+          step: 'show',
+          selector: '.script5'
         }
       ]
       Animations.setAnimations(animations)
@@ -128,6 +163,15 @@
     }
     &.step2 {
       background: url("../assets/backgrounds/page2-4.png") no-repeat;
+      background-size: cover;
+    }
+    &.step3{
+      background: $brand-primary url("../assets/backgrounds/page2-5.jpg") no-repeat bottom center;
+      background-size: 100% auto;
+      background-blend-mode: multiply;
+    }
+    &.step4{
+      background: url("../assets/backgrounds/page2-6.jpg") no-repeat;
       background-size: cover;
     }
   }
@@ -169,6 +213,16 @@
     }
     &.step9{
       width: 100%;
+    }
+    &.step10{
+      opacity: 0;
+    }
+    &.step11{
+      background: #fff;
+      opacity: 1;
+    }
+    &.step12{
+      opacity: 0;
     }
   }
   
@@ -321,6 +375,55 @@
     &.step3{
       transform: translate(140%, -50%);
       opacity: 0;
+    }
+  }
+
+  .script4{
+    top: 100px;
+    left: 100px;
+    @include font-size(2);
+    text-transform: uppercase;
+    max-width: 500px;
+    color:#fff;
+    h1{
+      transition: all $animationTime;
+      border-top: 1px solid #fff;
+      padding: 20px 0;
+      opacity: 0;
+    }
+    &.step1{
+      h1{
+        opacity: 1;
+      }
+    }
+    &.step2{
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  .script5 {
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff;
+    top: 50%;
+    background: rgba(#000, 0.5);
+    text-align: center;
+    padding: 30px;
+    transform: translateY(100%);
+    opacity: 0;
+    h1 {
+      @include font-size(3);
+      border-top: 2px dotted $brand-details;
+      border-bottom: 2px dotted $brand-details;
+      padding: 10px 0;
+      max-width: 80%;
+      display: inline-block;
+    }
+  
+    &.show {
+      transform: translateY(-50%);
+      opacity: 1;
     }
   }
   

@@ -50,7 +50,7 @@
       EventBus.$on('start-progress', this.startProgress.bind(this))
     },
     created () {
-      this.pageIndex = Number(this.$route.path.split('page')[1])
+      this.pageIndex = Number(this.$route.path.split('page')[1]) || 1
     },
     methods: {
       startProgress: function () {
@@ -158,24 +158,24 @@
       z-index: 2;
       animation: enterBorder $animationTime forwards;
       overflow: hidden;
-  
+      
       > * {
         position: absolute;
         z-index: 3;
         transition: all $animationTime;
       }
       
-      .image-background{
+      .image-background {
         width: 100%;
         height: 100%;
         z-index: 1;
-        top:0;
+        top: 0;
         left: 0;
       }
       
-      h1{
-        span{
-          color:$brand-details;
+      h1 {
+        span {
+          color: $brand-details;
         }
       }
     }
