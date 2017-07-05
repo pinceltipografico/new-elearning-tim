@@ -33,11 +33,38 @@
 </template>
 <script>
   export default {
+    data () {
+      return {
+        counter: null
+      }
+    },
     name: 'app',
     mounted () {
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed')) {
         this.$store.commit('toggleIterface', true)
+      }
+    },
+    methods: {
+      startProgress: function () {
+        var total = this.totalProgress
+        var pct = 100 / total
+        var vm = this
+        var lastTime = 0
+        this.couter = setInterval(function () {
+          var _pct = pct * lastTime
+          if (_pct <= 100) {
+            lastTime += 100
+            vm.$store.commit('setPageProgress', _pct)
+          } else {
+            clearInterval(vm.couter)
+          }
+        }, 100)
+      }
+    },
+    destroyed () {
+      if (this.counter) {
+        clearInterval(this.couter)
       }
     },
     computed: {
@@ -46,6 +73,9 @@
       },
       pageProgress: function () {
         return this.$store.state.pageProgress
+      },
+      totalProgress: function () {
+        return this.$store.state.totalProgress
       }
     }
   }
@@ -162,6 +192,7 @@
       width: 50%;
       height: 7px;
       background: $brand-details;
+      transition: width $animationTime;
     }
   }
   

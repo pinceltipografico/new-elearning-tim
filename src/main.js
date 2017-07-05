@@ -13,7 +13,8 @@ Vue.use(VueCookie)
 const store = new Vuex.Store({
   state: {
     showUserInterface: false,
-    pageProgress: 30
+    pageProgress: 30,
+    totalProgress: 20000
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -23,6 +24,10 @@ const store = new Vuex.Store({
     setPageProgress (state, progress) {
       'use strict'
       state.pageProgress = progress
+    },
+    setTotalProgress (state, progress) {
+      'use strict'
+      state.totalProgress = progress
     }
   }
 })

@@ -17,7 +17,12 @@
     <div class="image-full"></div>
     <div class="script3">
       <h1>
-        <span>Conexão</span> e <span>interação,</span> a <span>tecnologia</span> nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
+        <span>Conexão</span> e <span>interação,</span> a <span>tecnologia</span>
+        nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
+    </div>
+    <div class="script4">
+      <h1>
+        Somos todos de uma só geração, a geração que quer ser ouvida e atendida a partir de necessidades específicas, sem rótulos.</h1>
     </div>
   </section>
 </template>
@@ -76,6 +81,22 @@
           time: 400,
           step: 'show',
           selector: '.script3'
+        }, {
+          time: 3000,
+          step: 'hide',
+          selector: '.script3'
+        }, {
+          time: 400,
+          step: 'texture',
+          selector: '.blue-left'
+        }, {
+          time: 400,
+          step: 'hide',
+          selector: '.image-full'
+        }, {
+          time: 400,
+          step: 'show',
+          selector: '.script4'
         }
       ]
       Animations.setAnimations(animations)
@@ -104,7 +125,8 @@
   .image-right,
   .script2,
   .script3,
-  .image-full {
+  .image-full,
+  .script4 {
     z-index: 4;
     position: absolute;
   }
@@ -115,8 +137,11 @@
     background: url("../assets/backgrounds/page-1-4.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
-    &.show{
+    &.show {
       opacity: 1;
+    }
+    &.hide {
+      opacity: 0;
     }
   }
   
@@ -153,6 +178,10 @@
     }
     &.white {
       background: #fff;
+    }
+    &.texture {
+      background: url("../assets/backgrounds/page-1-5.jpg") no-repeat;
+      background-size: cover;
     }
   }
   
@@ -199,36 +228,65 @@
     }
   }
   
-  .script3{
+  .script3 {
     max-width: 400px;
-    top:50%;
+    top: 50%;
     right: 10%;
-    transform: translate(100%,-50%);
-    background: rgba(#000,0.5);
-    border:2px solid $brand-details;
+    transform: translate(100%, -50%);
+    background: rgba(#000, 0.5);
+    border: 2px solid $brand-details;
     padding: 15px;
     opacity: 0;
-    &:before{
+    &:before {
       content: '';
       display: block;
       position: absolute;
-      border-top:20px solid transparent;
-      border-bottom:20px solid transparent;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
       border-right: 20px solid $brand-details;
       right: 100%;
-      top:50%;
+      top: 50%;
       margin-top: -20px;
     }
-    h1{
+    h1 {
       @include font-size(2.5);
-      color:#fff;
+      color: #fff;
       text-transform: uppercase;
-      span{
-        color:$brand-details;
+      span {
+        color: $brand-details;
       }
     }
-    &.show{
-      transform: translate(0,-50%);
+    &.show {
+      transform: translate(0, -50%);
+      opacity: 1;
+    }
+    &.hide {
+      transform: translate(100%, -50%);
+      opacity: 0;
+    }
+  }
+  
+  .script4 {
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff;
+    top: 50%;
+    background: rgba(#000, 0.5);
+    text-align: center;
+    padding: 30px;
+    transform: translateY(100%);
+    opacity: 0;
+    h1 {
+      @include font-size(3);
+      border-top: 2px dotted $brand-details;
+      border-bottom: 2px dotted $brand-details;
+      padding: 10px 0;
+      max-width: 80%;
+      display: inline-block;
+    }
+    
+    &.show {
+      transform: translateY(-50%);
       opacity: 1;
     }
   }
