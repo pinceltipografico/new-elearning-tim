@@ -33,7 +33,7 @@
 </template>
 <script>
   import { EventBus } from './events/index'
-  import AssetsLoader from './lib/AssetsLoader'
+//  import AssetsLoader from './lib/AssetsLoader'
   export default {
     data () {
       return {
@@ -50,8 +50,9 @@
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
-      var preloader = document.getElementById('preloader')
-      AssetsLoader.loade((event) => {
+      vm.$router.replace('Hello')
+//      var preloader = document.getElementById('preloader')
+      /* AssetsLoader.loade((event) => {
         console.log(event)
       }).then(function () {
         if (preloader) {
@@ -60,7 +61,7 @@
         if (vm.$route.name === null) {
           vm.$router.replace('Hello')
         }
-      })
+      }) */
     },
     created () {
       this.pageIndex = Number(this.$route.path.split('page')[1]) || 1

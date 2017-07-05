@@ -1,7 +1,7 @@
 /**
  * Created by renatoalmeida on 05/07/17.
  */
-const json = require('../../dist/manifest.json')
+// import json from 'json-loader!../../static/manifest.json'
 const Preloader = require('preloader')
 /* eslint-disable no-trailing-spaces */
 export default class AssetsLoader {
@@ -14,13 +14,6 @@ export default class AssetsLoader {
         progress({progress: p * 100})
       })
       loader.on('complete', resolve)
-      for (var i in json) {
-        var canLoad = json[i].indexOf('.css') === -1 && json[i].indexOf('.js') === -1
-        if (canLoad) {
-          loader.add(json[i])
-        }
-      }
-      loader.load()
     })
   }
 }
