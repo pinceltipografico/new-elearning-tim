@@ -33,6 +33,7 @@
 </template>
 <script>
   import { EventBus } from './events/index'
+  import AssetsLoader from './lib/AssetsLoader'
   export default {
     data () {
       return {
@@ -43,11 +44,23 @@
     },
     name: 'app',
     mounted () {
+      var vm = this
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello') {
+      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello' && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
+      var preloader = document.getElementById('preloader')
+      AssetsLoader.loade((event) => {
+        console.log(event)
+      }).then(function () {
+        if (preloader) {
+          document.body.removeChild(preloader)
+        }
+        if (vm.$route.name === null) {
+          vm.$router.replace('Hello')
+        }
+      })
     },
     created () {
       this.pageIndex = Number(this.$route.path.split('page')[1]) || 1

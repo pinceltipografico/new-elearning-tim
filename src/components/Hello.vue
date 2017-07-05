@@ -47,7 +47,7 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  section.page{
+  section.page {
     background: url("../assets/backgrounds/home.jpg") no-repeat;
     background-size: cover;
   }
