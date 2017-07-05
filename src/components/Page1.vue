@@ -105,7 +105,7 @@
       Animations.animationTimeline(function () {})
       setTimeout(function () {
         EventBus.$emit('start-progress')
-      }, 1000)
+      }, 500)
     }
   }
 </script>
