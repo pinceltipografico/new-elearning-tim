@@ -30,7 +30,7 @@
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
-    mounted () {
+    created () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
