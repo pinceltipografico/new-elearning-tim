@@ -21,7 +21,8 @@
       <div class="effect"></div>
     </div>
     <div class="script4">
-      <h1>Compartilhando experiências <span>construtivas</span> e <span>únicas.</span> Envolvendo a todos na evolução contínua. </h1>
+      <h1>Compartilhando experiências <span>construtivas</span> e <span>únicas.</span>
+        Envolvendo a todos na evolução contínua. </h1>
     </div>
     <div class="script5">
       <h1>Esse é o nosso propósito. Somos a <span>Geração CX TIM.</span></h1>
@@ -37,7 +38,7 @@
     created () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 20000)
       var animations = [
         {
           time: 500,
@@ -145,7 +146,7 @@
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {})
       setTimeout(function () {
-        //        EventBus.$emit('start-progress')
+        EventBus.$emit('start-progress')
       }, 500)
     }
   }
@@ -165,12 +166,12 @@
       background: url("../assets/backgrounds/page2-4.png") no-repeat;
       background-size: cover;
     }
-    &.step3{
+    &.step3 {
       background: $brand-primary url("../assets/backgrounds/page2-5.jpg") no-repeat bottom center;
       background-size: 100% auto;
       background-blend-mode: multiply;
     }
-    &.step4{
+    &.step4 {
       background: url("../assets/backgrounds/page2-6.jpg") no-repeat;
       background-size: cover;
     }
@@ -202,26 +203,26 @@
     &.step6 {
       opacity: 0;
     }
-    &.step7{
-      top:0;
+    &.step7 {
+      top: 0;
       left: 0;
       width: 0;
       background: $brand-primary;
     }
-    &.step8{
+    &.step8 {
       opacity: 1;
     }
-    &.step9{
+    &.step9 {
       width: 100%;
     }
-    &.step10{
+    &.step10 {
       opacity: 0;
     }
-    &.step11{
+    &.step11 {
       background: #fff;
       opacity: 1;
     }
-    &.step12{
+    &.step12 {
       opacity: 0;
     }
   }
@@ -372,36 +373,36 @@
         }
       }
     }
-    &.step3{
+    &.step3 {
       transform: translate(140%, -50%);
       opacity: 0;
     }
   }
-
-  .script4{
+  
+  .script4 {
     top: 100px;
     left: 100px;
     @include font-size(2);
     text-transform: uppercase;
     max-width: 500px;
-    color:#fff;
-    h1{
+    color: #fff;
+    h1 {
       transition: all $animationTime;
       border-top: 1px solid #fff;
       padding: 20px 0;
       opacity: 0;
     }
-    &.step1{
-      h1{
+    &.step1 {
+      h1 {
         opacity: 1;
       }
     }
-    &.step2{
+    &.step2 {
       transform: translateX(-100%);
       opacity: 0;
     }
   }
-
+  
   .script5 {
     width: 100%;
     text-transform: uppercase;
@@ -420,7 +421,7 @@
       max-width: 80%;
       display: inline-block;
     }
-  
+    
     &.show {
       transform: translateY(-50%);
       opacity: 1;
