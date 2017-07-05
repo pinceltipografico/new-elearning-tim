@@ -44,7 +44,7 @@
     name: 'app',
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed')) {
+      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello') {
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
