@@ -103,7 +103,9 @@
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {})
-      EventBus.$emit('start-progress')
+      setTimeout(function () {
+        EventBus.$emit('start-progress')
+      }, 1000)
     }
   }
 </script>
