@@ -6,7 +6,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-// var WebpackAssetsManifest = require('webpack-assets-manifest')
+var WebpackAssetsManifest = require('webpack-assets-manifest')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -32,10 +32,10 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new FriendlyErrorsPlugin()
-    /* new WebpackAssetsManifest({
-      output: path.resolve('./static/manifest.json'),
+    new FriendlyErrorsPlugin(),
+    new WebpackAssetsManifest({
+      output: '/Volumes/Dados/Projetos Frame3/Nexialistas/TIM/Elearning/app/static/manifest.json',
       writeToDisk: true
-    }) */
+    })
   ]
 })

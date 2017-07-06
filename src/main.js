@@ -1,5 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-new */
+/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -14,7 +17,8 @@ const store = new Vuex.Store({
   state: {
     showUserInterface: false,
     pageProgress: 30,
-    totalProgress: 20000
+    totalProgress: 20000,
+    modulesAllowed: [0]
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -28,11 +32,44 @@ const store = new Vuex.Store({
     setTotalProgress (state, progress) {
       'use strict'
       state.totalProgress = progress
+    },
+    setModuleAllowed (state, module) {
+      'use strict'
+      state.modulesAllowed.push(module)
     }
   }
 })
 
-/* eslint-disable no-new */
+/*
+ var preloader = document.getElementById('preloader')
+ if (!preloader) {
+ preloader.classList.remove('hidePreloader')
+ }
+ var pct = preloader.querySelector('.pct')
+ var mask = preloader.querySelector('#SVGID_2_')
+ AssetsLoader.loade((event) => {
+ if (pct) {
+ pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
+ }
+ if (mask) {
+ var value = ((-100) + Math.ceil(event.progress))
+ mask.style['webkitTransform'] = 'translateX(' + value + '%)'
+ mask.style['mozTransform'] = 'translateX(' + value + '%)'
+ mask.style['msTransform'] = 'translateX(' + value + '%)'
+ mask.style['oTransform'] = 'translateX(' + value + '%)'
+ }
+ }).then(function () {
+ if (preloader) {
+ setTimeout(function () {
+ preloader.classList.add('hidePreloader')
+ }, 1000)
+ }
+ })
+ */
+
+//
+// CREATE VUE APP
+//
 new Vue({
   el: '#app',
   router,
