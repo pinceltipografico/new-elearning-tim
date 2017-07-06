@@ -56,8 +56,8 @@
       /* eslint-disable no-unused-vars */
       var lastPage = Number(this.$route.path.split('page')[1]) || 0
       var hasPage = this.pages.indexOf(lastPage)
-//      this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
-      this.pageIndex = 7
+      this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
+//      this.pageIndex = 7
       this.$router.replace('page' + this.pageIndex)
     },
     methods: {
