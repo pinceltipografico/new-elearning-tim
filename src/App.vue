@@ -51,7 +51,7 @@
 //      if (this.$route.name === null) {
 //        this.$router.replace('Page4')
 //      }
-      this.$router.replace('page5')
+      this.$router.replace('page9')
     },
     created () {
       this.pageIndex = Number(this.$route.path.split('page')[1]) || 1
