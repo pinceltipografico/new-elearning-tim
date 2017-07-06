@@ -33,7 +33,6 @@
 </template>
 <script>
   import { EventBus } from './events/index'
-//  import AssetsLoader from './lib/AssetsLoader'
   export default {
     data () {
       return {
@@ -44,24 +43,15 @@
     },
     name: 'app',
     mounted () {
-      var vm = this
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello' && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
-      vm.$router.replace('Hello')
-//      var preloader = document.getElementById('preloader')
-      /* AssetsLoader.loade((event) => {
-        console.log(event)
-      }).then(function () {
-        if (preloader) {
-          document.body.removeChild(preloader)
-        }
-        if (vm.$route.name === null) {
-          vm.$router.replace('Hello')
-        }
-      }) */
+//      if (this.$route.name === null) {
+//        this.$router.replace('Page4')
+//      }
+      this.$router.replace('page5')
     },
     created () {
       this.pageIndex = Number(this.$route.path.split('page')[1]) || 1
@@ -122,18 +112,15 @@
   @import "scss/commons";
   @import "../node_modules/font-awesome/scss/font-awesome";
   
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-  }
-  
   main {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    position: fixed;
+    display: table;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
     background: #fff;
+    max-height: 800px;
+    width: 100%;
     
     .image-background {
       display: block;
@@ -278,11 +265,26 @@
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * ANIMATIONS FOR V-IF OR V-FOR
+  * ----------------------------------------------
+  **/
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s
+    transition: opacity $animationTime;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+  {
+    opacity: 0
   }
   
-  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+  //
+  // ENTER
+  .enter-enter-active, .enter-leave-active {
+    transition: opacity $animationTime;
+  }
+
+  .enter-enter, .enter-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0
   }

@@ -1,10 +1,11 @@
-/* eslint-disable no-tabs,no-mixed-spaces-and-tabs */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import ExplainMenu from '@/components/ExplainMenu'
 import Page1 from '@/components/Page1'
 import Page2 from '@/components/Page2'
+import Page4 from '@/components/Page4'
+import Page5 from '@/components/Page5'
 import Page7 from '@/components/Page7'
 
 Vue.use(Router)
@@ -28,9 +29,17 @@ export default new Router({
       name: 'page2',
       component: Page2
     }, {
-	  path: '/page7',
-	  name: 'page7',
-	  component: Page7
-  	}
+      path: '/page4',
+      name: 'Menu',
+      component: Page4
+    }, {
+      path: '/page5',
+      name: 'Page5',
+      component: Page5
+    }, {
+      path: '/page7',
+      name: 'page7',
+      component: Page7
+    }
   ]
 })
