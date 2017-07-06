@@ -29,10 +29,10 @@
 
     <div class="script6" >
       <div class="drag">
-        <draggable :list="list.upvotes">
+        <draggable :list="list.upvotes" style="width: 50%">
           <transition-group>
-            <div v-for="element in list" :key="element.name">
-              <div>{{element.name}}</div>
+            <div class="elements" v-for="element in list" :key="element.name">
+              <span>{{element.name}}</span>
             </div>
           </transition-group>
         </draggable>
@@ -191,30 +191,14 @@
     max-width:100%;
   }
 
-  .script6  div{
+  .script6 .elements{
     width: 250px;
     height: 50px;
-    padding: 5px;
-    margin: 5px;
+    margin-top: 5px;
+    padding-top: 5%;
     display: inline-block;
     text-align: center;
     cursor: pointer;
-  }
-
-  .script7 {
-    &.show {
-      width: 80%;
-      height: 80px;
-      left: 10%;
-      background-color: lightblue;
-      transform: translate(0%, -50%) scale(1) rotate(0deg);
-      opacity: 1;
-    }
-  }
-
-  @keyframes scaleUp {
-    to {
-      padding: 100px 40px;
-    }
+    background-color: lightgray;
   }
 </style>
