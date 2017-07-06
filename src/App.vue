@@ -38,8 +38,8 @@
     data () {
       return {
         counter: null,
-        pageIndex: 1,
-        pages: [1, 2]
+        pageIndex: 7,
+        pages: [1, 2, 7]
       }
     },
     name: 'app',
