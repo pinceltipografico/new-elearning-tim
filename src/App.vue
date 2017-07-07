@@ -283,7 +283,7 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animationTime;
   }
-  
+
   .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0
@@ -294,7 +294,7 @@
   .enter-enter-active, .enter-leave-active {
     transition: opacity $animationTime;
   }
-  
+
   .enter-enter, .enter-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0
