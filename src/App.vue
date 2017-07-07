@@ -52,7 +52,7 @@
       // GET THE LAST PAGE
       /* eslint-disable no-unused-vars */
       if (this.$route.name === null) {
-        this.$router.replace('Page4')
+        this.$router.replace('Hello')
       } else {
         var lastPage = Number(this.$route.path.split('page')[1]) || 0
         var hasPage = this.pages.indexOf(lastPage)
