@@ -2,28 +2,44 @@
  * Created by renatoalmeida on 05/07/17.
  */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-trailing-spaces */
 var json = require('../manifest.json')
 const Preloader = require('preloader')
-/* eslint-disable no-trailing-spaces */
 export default class AssetsLoader {
   static loade (progress) {
     return new Promise((resolve, reject) => {
-      var loader = new Preloader({
-        xhrImages: false
-      })
-      loader.on('progress', function (p) {
-        progress({progress: p * 100})
-      })
-      loader.on('error', reject)
+      var assets = []
       for (var i in json) {
         var item = json[i]
-        var canAdd = item.indexOf('.css') === -1 && item.indexOf('.js') === -1
+        var ext = item.slice(item.lastIndexOf('.') + 1) + '|'
+        var canAdd = '|jpg|jpeg|png|gif'.indexOf(ext) !== -1
         if (canAdd) {
-          loader.add(item)
+          assets.push(item)
         }
       }
-      loader.on('complete', resolve)
-      loader.load()
+      var total = assets.length
+      var pct = 100 / total
+      var counter = 0
+      assets.forEach(function (item, index) {
+        var img = new Image()
+        img.onload = onImageLoad
+        img.onerror = onImageError
+        img.src = item
+      })
+      
+      function onImageLoad () {
+        counter++
+        progress({progress: pct * counter})
+        if (counter === total) {
+          resolve()
+        }
+      }
+      
+      function onImageError () {
+        counter++
+        progress({progress: pct * counter})
+        reject()
+      }
     })
   }
 }
