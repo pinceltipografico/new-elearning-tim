@@ -9,11 +9,17 @@ import router from './router'
 import Vuex from 'vuex'
 import VueCookie from 'vue-cookie'
 import AssetsLoader from './lib/AssetsLoader'
+import AddClass from './plugins/addClass'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(VueCookie)
+Vue.use(AddClass)
 
+/**
+ * GUAR VARIAVEIS GLOBAIS
+ * @type {Store}
+ */
 const store = new Vuex.Store({
   state: {
     showUserInterface: false,
@@ -41,6 +47,10 @@ const store = new Vuex.Store({
   }
 })
 
+/**
+ * VERIFICA SE O PRELOADER EXISTE E CARREGA OS ASSETS
+ * @type {Element}
+ */
 var preloader = document.getElementById('preloader')
 if (preloader) {
   preloader.classList.remove('hidePreloader')
@@ -59,7 +69,6 @@ AssetsLoader.loade((event) => {
     mask.style['oTransform'] = 'translateX(' + value + '%)'
   }
 }).then(function () {
-  console.log('hey')
   if (preloader) {
     setTimeout(function () {
       preloader.classList.add('hidePreloader')
@@ -76,7 +85,6 @@ AssetsLoader.loade((event) => {
     }, 1000)
   }
 })
-
 //
 // CREATE VUE APP
 /*

@@ -38,7 +38,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7]
+        pages: [1, 2, 4, 5, 6, 7, 9, 10]
       }
     },
     name: 'app',
@@ -283,7 +283,7 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animationTime;
   }
-
+  
   .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0
@@ -294,7 +294,7 @@
   .enter-enter-active, .enter-leave-active {
     transition: opacity $animationTime;
   }
-
+  
   .enter-enter, .enter-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0

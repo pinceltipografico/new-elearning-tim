@@ -1,20 +1,36 @@
 <template>
   <section class="page">
     <div class="overlay"></div>
+    <div class="wish">
+      <h1>O que desejamos?</h1>
+    </div>
     <div class="script1">
-      <h1 v-on:click="newHtml('1')">- Nova abordagem de relacionamento,</h1>
-      <h1 v-on:click="newHtml('2')">- ser surpreendido onde estiver,</h1>
-      <h1 v-on:click="newHtml('3')">- previsão de seus comportamentos</h1>
-      <h1 v-on:click="newHtml('4')">- fluxo contínuo, sem quebra na jornada de relacionamento</h1>
-      <h1 v-on:click="newHtml('5')">- garantia de seu valor.</h1>
+      <h1 v-on:click="newHtml($event,'1')" data-index="1">
+        <div>Nova abordagem de relacionamento</div>
+      </h1>
+      <h1 v-on:click="newHtml($event,'2')" data-index="2">
+        <div>ser surpreendido onde estiver,</div>
+      </h1>
+      <h1 v-on:click="newHtml($event,'3')" data-index="3">
+        <div>previsão de seus comportamentos</div>
+      </h1>
+      <h1 v-on:click="newHtml($event,'4')" data-index="4">
+        <div>fluxo contínuo, sem quebra na jornada de relacionamento</div>
+      </h1>
+      <h1 v-on:click="newHtml($event,'5')" data-index="5">
+        <div>garantia de seu valor.</div>
+      </h1>
     </div>
     <div class="script2">
+      <div class="close" @click="closeItem"><i class="fa fa-times-circle"></i></div>
+      <p></p>
     </div>
   </section>
 </template>
 <script type="text/javascript">
   /* eslint-disable semi */
-
+  /* eslint-disable no-trailing-spaces */
+  
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
@@ -24,6 +40,10 @@
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
         {
+          time: 500,
+          step: 'show',
+          selector: '.wish'
+        }, {
           time: 500,
           step: 'show',
           selector: '.script1 h1:first-of-type'
@@ -52,16 +72,30 @@
       }, 500)
     },
     methods: {
-      newHtml (value) {
-        function hasClass (ele, cls) {
-          return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-        }
-
-        function addClass (ele, cls) {
-          if (!hasClass(ele, cls)) ele.className = ele.className.trim() + ' ' + cls;
-        }
-        addClass(this.$el.querySelector('.script2'), 'show');
-        this.$el.querySelector('.script2').innerHTML = this.$data.texts[value];
+      newHtml ($event, value) {
+        var vm = this
+        var parent = $event.target.parentNode
+        parent.querySelectorAll('h1').forEach(function (h1) {
+          vm.removeClass(h1, 'active')
+          vm.removeClass(h1, 'to-left')
+          if (h1 !== $event.target) {
+            vm.addClass(h1, 'to-left')
+          } else {
+            vm.addClass(h1, 'active')
+          }
+        })
+        this.addClass(this.$el.querySelector('.script2'), 'show')
+        this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
+      },
+      closeItem: function () {
+        var vm = this
+        this.removeClass(this.$el.querySelector('.script2'), 'show')
+        setTimeout(function () {
+          vm.$el.querySelectorAll('.script1 h1').forEach(function (h1) {
+            vm.removeClass(h1, 'active')
+            vm.removeClass(h1, 'to-left')
+          })
+        }, 500)
       }
     },
     data: function () {
@@ -80,62 +114,124 @@
 <style scoped lang="scss">
   @import "../scss/variables";
   @import "../scss/mixins";
+  @import "~susy/sass/susy";
   
   section.page {
-    background: url("../assets/backgrounds/page-1.jpg") no-repeat;
+    background: url('../assets/backgrounds/page9-1.jpg') no-repeat;
     background-size: cover;
-    overflow: hidden;
-    
-    * {
-      transition: all $animationTime;
+    text-transform: uppercase;
+  }
+  
+  .wish {
+    top: 50%;
+    left: 50%;
+    @include font-size(3);
+    color: #fff;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    h1 {
+      padding: 20px 40px;
+      border-top: 2px dotted $brand-details;
+      border-bottom: 2px dotted $brand-details;
+    }
+    &.show {
+      animation: slideInLeft 0.350s forwards;
     }
   }
   
-  .script1{
-    z-index: 4;
-    position: absolute;
-    top: 20%;
-    left: 100px;
+  .script1 {
+    width: 100%;
+    height: 100%;
   }
-
+  
   .script1 h1 {
-    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    transform: translateY(-110%);
+    opacity: 0.9;
+    transition: all $animationTime;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
     cursor: pointer;
-    max-width: 700px;
-    @include font-size(2.5);
-    color: #fff;
-    text-transform: uppercase;
-    transform: translate(100%, -50%) scale(1) rotate(0deg);
-    opacity: 0;
-
-    &.show {
-      transform: translate(0%, -50%) scale(1) rotate(0deg);
+    padding: 20px;
+    
+    div {
+      width: 100%;
+      display: block;
+      color: #fff;
+      @include font-size(1.5);
+      &:after {
+        content: 'clique aqui';
+        display: block;
+        text-transform: lowercase;
+        border: 1px solid #fff;
+        margin-top: 10px;
+      }
+    }
+    
+    @for $i from 1 through 5 {
+      &:nth-of-type(#{$i}) {
+        $pct: ($i * 10) * 1%;
+        background: darken($brand-details, $pct);
+        left: (($i - 1) * 20) * 1%;
+      }
+    }
+    
+    &:hover {
+      background: $brand-details;
       opacity: 1;
     }
-    &.hide {
-      transform: translate(0, -50%) scale(0) rotate(180deg);
+    &.show {
+      transform: translateY(0);
+    }
+    &.active {
+      left: 0;
+      z-index: 4;
+      background: $brand-details;
+      opacity: 1;
+    }
+    &.to-left {
+      z-index: 2;
+      left: 0;
     }
   }
-
-  .script2{
+  
+  .script2 {
+    width: 80%;
+    height: 100%;
     z-index: 4;
+    right: 0;
     position: absolute;
-    top: 40%;
-    left: 60%;
-    width: 30%;
     color: #fff;
     text-transform: uppercase;
     font-size: 20px;
     padding: 20px;
-    background-color: #2eb1e8;
-    text-align: justify;
-    transform: translate(100%, -50%) scale(1) rotate(0deg);
-    opacity: 0;
-
+    background: $brand-primary;
+    transform: translateX(100%);
+    
+    i {
+      margin-top: 100px;
+      @include font-size(4);
+      color: #fff;
+    }
     &.show {
-      transform: translate(0%, -50%) scale(1) rotate(0deg);
-      opacity: 1;
+      transform: translateX(0%);
     }
   }
-
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translate3d(-100%, -50%, 0);
+      visibility: visible;
+    }
+    
+    to {
+      transform: translate3d(-50%, -50%, 0);
+      visibility: visible;
+    }
+  }
 </style>
