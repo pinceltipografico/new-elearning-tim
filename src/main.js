@@ -8,6 +8,7 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import VueCookie from 'vue-cookie'
+import AssetsLoader from './lib/AssetsLoader'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -40,40 +41,50 @@ const store = new Vuex.Store({
   }
 })
 
-/*
- var preloader = document.getElementById('preloader')
- if (!preloader) {
- preloader.classList.remove('hidePreloader')
- }
- var pct = preloader.querySelector('.pct')
- var mask = preloader.querySelector('#SVGID_2_')
- AssetsLoader.loade((event) => {
- if (pct) {
- pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
- }
- if (mask) {
- var value = ((-100) + Math.ceil(event.progress))
- mask.style['webkitTransform'] = 'translateX(' + value + '%)'
- mask.style['mozTransform'] = 'translateX(' + value + '%)'
- mask.style['msTransform'] = 'translateX(' + value + '%)'
- mask.style['oTransform'] = 'translateX(' + value + '%)'
- }
- }).then(function () {
- if (preloader) {
- setTimeout(function () {
- preloader.classList.add('hidePreloader')
- }, 1000)
- }
- })
- */
+var preloader = document.getElementById('preloader')
+if (preloader) {
+  preloader.classList.remove('hidePreloader')
+}
+var pct = preloader.querySelector('.pct')
+var mask = preloader.querySelector('#SVGID_2_')
+AssetsLoader.loade((event) => {
+  if (pct) {
+    pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
+  }
+  if (mask) {
+    var value = ((-100) + Math.ceil(event.progress))
+    mask.style['webkitTransform'] = 'translateX(' + value + '%)'
+    mask.style['mozTransform'] = 'translateX(' + value + '%)'
+    mask.style['msTransform'] = 'translateX(' + value + '%)'
+    mask.style['oTransform'] = 'translateX(' + value + '%)'
+  }
+}).then(function () {
+  console.log('hey')
+  if (preloader) {
+    setTimeout(function () {
+      preloader.classList.add('hidePreloader')
+      //
+      // CREATE VUE APP
+      //
+      new Vue({
+        el: '#app',
+        router,
+        store,
+        template: '<App/>',
+        components: {App}
+      })
+    }, 1000)
+  }
+})
 
 //
 // CREATE VUE APP
-//
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: {App}
-})
+/*
+ new Vue({
+ el: '#app',
+ router,
+ store,
+ template: '<App/>',
+ components: {App}
+ })
+ */

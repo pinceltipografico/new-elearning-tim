@@ -37,8 +37,8 @@
     data () {
       return {
         counter: null,
-        pageIndex: 7,
-        pages: [1, 2, 7]
+        pageIndex: 0,
+        pages: [1, 2, 4, 5, 6, 7]
       }
     },
     name: 'app',
@@ -48,13 +48,17 @@
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
-//      if (this.$route.name === null) {
-//        this.$router.replace('Page4')
-//      }
-      this.$router.replace('page10')
-    },
-    created () {
-      this.pageIndex = Number(this.$route.path.split('page')[1]) || 1
+      //
+      // GET THE LAST PAGE
+      /* eslint-disable no-unused-vars */
+      if (this.$route.name === null) {
+        this.$router.replace('Page4')
+      } else {
+        var lastPage = Number(this.$route.path.split('page')[1]) || 0
+        var hasPage = this.pages.indexOf(lastPage)
+        this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
+        this.$router.replace('page' + this.pageIndex)
+      }
     },
     methods: {
       startProgress: function () {
@@ -73,15 +77,21 @@
         }, 100)
       },
       nextPage: function () {
-        if (this.pageIndex < this.pages.length) {
+        if (this.pageIndex <= this.pages.length) {
           this.pageIndex++
-          this.$router.replace('page' + this.pageIndex)
+          var page = this.pages.indexOf(this.pageIndex)
+          if (page !== -1) {
+            this.$router.replace('page' + this.pages[page])
+          }
         }
       },
       prevPage: function () {
         if (this.pageIndex > 1) {
           this.pageIndex--
-          this.$router.replace('page' + this.pageIndex)
+          var page = this.pages.indexOf(this.pageIndex)
+          if (page !== -1) {
+            this.$router.replace('page' + this.pages[page])
+          }
         }
       }
     },
@@ -273,6 +283,7 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animationTime;
   }
+
   .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0

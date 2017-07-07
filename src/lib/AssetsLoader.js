@@ -14,6 +14,7 @@ export default class AssetsLoader {
       loader.on('progress', function (p) {
         progress({progress: p * 100})
       })
+      loader.on('error', reject)
       for (var i in json) {
         var item = json[i]
         var canAdd = item.indexOf('.css') === -1 && item.indexOf('.js') === -1
