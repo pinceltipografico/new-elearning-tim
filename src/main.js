@@ -42,7 +42,7 @@ const store = new Vuex.Store({
 })
 
 var preloader = document.getElementById('preloader')
-if (!preloader) {
+if (preloader) {
   preloader.classList.remove('hidePreloader')
 }
 var pct = preloader.querySelector('.pct')
@@ -59,21 +59,22 @@ AssetsLoader.loade((event) => {
     mask.style['oTransform'] = 'translateX(' + value + '%)'
   }
 }).then(function () {
+  console.log('hey')
   if (preloader) {
     setTimeout(function () {
       preloader.classList.add('hidePreloader')
+      //
+      // CREATE VUE APP
+      //
+      new Vue({
+        el: '#app',
+        router,
+        store,
+        template: '<App/>',
+        components: {App}
+      })
     }, 1000)
   }
-  //
-  // CREATE VUE APP
-  //
-  new Vue({
-    el: '#app',
-    router,
-    store,
-    template: '<App/>',
-    components: {App}
-  })
 })
 
 //

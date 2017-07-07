@@ -48,17 +48,17 @@
         this.$store.commit('toggleIterface', true)
       }
       EventBus.$on('start-progress', this.startProgress.bind(this))
-//      if (this.$route.name === null) {
-//        this.$router.replace('Page4')
-//      }
       //
       // GET THE LAST PAGE
       /* eslint-disable no-unused-vars */
-      var lastPage = Number(this.$route.path.split('page')[1]) || 0
-      var hasPage = this.pages.indexOf(lastPage)
-      this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
-//      this.pageIndex = 7
-      this.$router.replace('page' + this.pageIndex)
+      if (this.$route.name === null) {
+        this.$router.replace('Page4')
+      } else {
+        var lastPage = Number(this.$route.path.split('page')[1]) || 0
+        var hasPage = this.pages.indexOf(lastPage)
+        this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
+        this.$router.replace('page' + this.pageIndex)
+      }
     },
     methods: {
       startProgress: function () {
