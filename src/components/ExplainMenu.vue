@@ -28,11 +28,21 @@
 <script type="text/javascript">
   var Animation = require('../lib/ChainAnimation')
   export default {
+    /**
+    | ----------------------------------------------
+    * RETURN THE DATA OF COMPOENET
+    | ----------------------------------------------
+    **/
     data () {
       return {
         preventView: false
       }
     },
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       this.$store.commit('toggleIterface', true)
       let animationsScene = [
@@ -87,6 +97,11 @@
         console.log('done')
       })
     },
+    /**
+    | ----------------------------------------------
+    * RETURN THE METHODS OF COMPONENT
+    | ----------------------------------------------
+    **/
     methods: {
       onAccept: function () {
         this.$cookie.set('explain_viewed', this.preventView)

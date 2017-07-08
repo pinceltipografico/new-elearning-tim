@@ -102,6 +102,11 @@
       setTimeout(function () {
         this.scroller = skrollr.init()
       }.bind(this), 1000)
+    },
+    destroyed () {
+      if (this.scroller) {
+        this.scroller.destroy()
+      }
     }
   }
 </script>

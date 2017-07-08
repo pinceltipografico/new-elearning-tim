@@ -4,25 +4,23 @@
     <div class="blue-left"></div>
     <div class="script1">
       <h1>
-        Estamos todos muito mais exigentes, queremos mais <span>velocidade</span> e <span>autonomia.</span>
+        Queremos mais <span>velocidade</span> e <span>autonomia.</span>
       </h1>
     </div>
     <div class="script2">
       <h1>
-        Soluções específicas para as nossas necessidades e para o nosso jeito de ser, tanto no trabalho, nas nossas relações e na nossa forma de consumir.
+        Soluções específicas.
       </h1>
     </div>
     <div class="image-left"></div>
     <div class="image-right"></div>
     <div class="image-full"></div>
     <div class="script3">
-      <h1>
-        <span>Conexão</span> e <span>interação,</span> a <span>tecnologia</span>
-        nos trouxe esta possibilidade. Rupturas de padrões, um movimento que não para de crescer</h1>
+      <h1>Um movimento que não para de crescer</h1>
     </div>
     <div class="script4">
       <h1>
-        Somos todos de uma só geração, a geração que quer ser ouvida e atendida a partir de necessidades específicas, sem rótulos.</h1>
+        <span>Somos todos de uma só geração</span> | sem rótulos.</h1>
     </div>
   </section>
 </template>
@@ -84,7 +82,7 @@
           step: 'show',
           selector: '.script3'
         }, {
-          time: 3000,
+          time: 4000,
           step: 'hide',
           selector: '.script3'
         }, {
@@ -117,10 +115,6 @@
     background: url("../assets/backgrounds/page-1.jpg") no-repeat;
     background-size: cover;
     overflow: hidden;
-    
-    * {
-      transition: all $animationTime;
-    }
   }
   
   .script1,
@@ -220,7 +214,7 @@
     transform: scaleX(0);
     h1 {
       max-width: 45%;
-      @include font-size(2.5);
+      @include font-size(3);
     }
     &.show {
       transform: scaleX(1);

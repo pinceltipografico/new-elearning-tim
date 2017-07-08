@@ -28,7 +28,8 @@
     "vuedraggable": "^2.14.1",
     "vuex": "^2.3.1",
     "webpack-assets-manifest": "^0.7.0",
-    "webpack-manifest-plugin": "^1.1.0"
+    "webpack-manifest-plugin": "^1.1.0",
+    "wordcloud": "^1.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -86,6 +87,7 @@
     "shelljs": "^0.7.6",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0",
+    "svg-inline-loader": "^0.7.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",

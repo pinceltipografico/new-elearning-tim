@@ -54,7 +54,6 @@
   import draggable from 'vuedraggable'
   export default {
     created () {
-      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [

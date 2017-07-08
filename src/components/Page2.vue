@@ -3,11 +3,10 @@
     <div class="image-background"></div>
     <div class="effects"></div>
     <div class="script1">
-      <h1>E as empresas precisam se adaptar a este novo contexto, que não tem <span>rota definida</span>. O segredo então é tornar-se <span>atento e flexível</span>
-      </h1>
+      <h1>Adapte-se a esse <span>contexto!</span></h1>
     </div>
     <div class="script2">
-      <h1>A TIM está se movimentando e criando condições para esta <span>mudança!</span></h1>
+      <h1>A TIM está criando estas <span>mudança!</span></h1>
       <div class="shadow"></div>
     </div>
     <div class="script3">
@@ -21,11 +20,10 @@
       <div class="effect"></div>
     </div>
     <div class="script4">
-      <h1>Compartilhando experiências <span>construtivas</span> e <span>únicas.</span>
-        Envolvendo a todos na evolução contínua. </h1>
+      <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo.</h1>
     </div>
     <div class="script5">
-      <h1>Esse é o nosso propósito. Somos a <span>Geração CX TIM.</span></h1>
+      <h1>Somos a <span>Geração CX TIM.</span></h1>
     </div>
   </section>
 </template>
@@ -36,7 +34,6 @@
   import { EventBus } from '../events/index'
   export default {
     created () {
-      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 20000)
       var animations = [

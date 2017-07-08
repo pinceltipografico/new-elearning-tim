@@ -22,7 +22,7 @@
       </h1>
     </div>
     <div class="script2">
-      <div class="close" @click="closeItem"><i class="fa fa-times-circle"></i></div>
+      <div class="close" @click="closeItem"><i class="fa fa-times-circle"></i>fechar</div>
       <p></p>
     </div>
   </section>
@@ -35,7 +35,6 @@
   import { EventBus } from '../events/index'
   export default {
     created () {
-      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
@@ -44,7 +43,7 @@
           step: 'show',
           selector: '.wish'
         }, {
-          time: 500,
+          time: 1500,
           step: 'show',
           selector: '.script1 h1:first-of-type'
         }, {
@@ -74,11 +73,11 @@
     methods: {
       newHtml ($event, value) {
         var vm = this
-        var parent = $event.target.parentNode
+        var parent = this.$el.querySelector('.script1');
         parent.querySelectorAll('h1').forEach(function (h1) {
           vm.removeClass(h1, 'active')
           vm.removeClass(h1, 'to-left')
-          if (h1 !== $event.target) {
+          if (h1.getAttribute('data-index') !== value) {
             vm.addClass(h1, 'to-left')
           } else {
             vm.addClass(h1, 'active')
@@ -101,11 +100,11 @@
     data: function () {
       return {
         texts: {
-          '1': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis ligula vel urna finibus, at ullamcorper ipsum viverra. Vivamus vel est dui. Nulla porta condimentum efficitur. Duis imperdiet massa sapien, et molestie ligula ultrices a. Donec vitae pretium lectus. Donec euismod porta leo, luctus porta nunc tempus eget. Phasellus blandit nunc et congue dictum. Praesent erat libero, rutrum a facilisis viverra, vehicula sed mauris.',
-          '2': 'Ut nec mi vel magna sagittis efficitur. Maecenas turpis arcu, ornare eu varius facilisis, laoreet non sem. Fusce sed ante consectetur, porttitor orci posuere, vehicula nisi. Nam vel cursus nunc. Quisque tempor tortor metus, vel elementum nisl blandit sed. Aliquam eget dapibus libero. Etiam feugiat lobortis condimentum.',
-          '3': 'Duis non volutpat felis. Duis eu interdum neque. Aenean dapibus libero quis lectus aliquet, quis sollicitudin ex ultricies. Integer tincidunt tristique ex, non cursus urna. Nulla id metus ac lectus bibendum viverra nec sit amet arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam pharetra neque eget ligula ultricies, et dignissim tortor semper. Aliquam convallis libero vitae diam tincidunt, quis lobortis ex elementum. Proin a ipsum ipsum. Duis cursus, nisi eu ornare suscipit, sem enim rutrum velit, nec lacinia lacus sem quis velit.',
-          '4': 'Aenean suscipit est sollicitudin, commodo nulla sed, dapibus risus. Cras vel enim aliquet diam iaculis lacinia ut ut purus. Suspendisse potenti. Vestibulum convallis vestibulum nibh. Fusce blandit sed nulla vitae pharetra. Vivamus nec erat enim. Vestibulum ut sagittis libero. Pellentesque in ex eget justo imperdiet fringilla. Duis aliquam commodo metus imperdiet vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-          '5': 'Sed eu rutrum purus, ac rutrum quam. Sed posuere neque ut elementum efficitur. Aliquam mollis et nibh vel pretium. Ut in nunc ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ornare interdum sapien et euismod. Duis lobortis turpis lorem, quis lacinia nisl tincidunt ornare. Nulla aliquet magna odio, eu tristique urna consequat sit amet.'
+          '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico.',
+          '2': 'Cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar.',
+          '3': 'Facilitando a vida do consumidor',
+          '4': 'Ser sempre bem atendido e compreendido',
+          '5': 'Ir muito além do serviço tradicional, pensar novos modelos, formatos e surpreender. '
         }
       }
     }
@@ -167,9 +166,13 @@
       &:after {
         content: 'clique aqui';
         display: block;
-        text-transform: lowercase;
-        border: 1px solid #fff;
-        margin-top: 10px;
+        border: 1px solid $brand-primary;
+        background: #fff;
+        margin: 10px auto;
+        color:#666;
+        max-width: 50%;
+        border-radius: 5px;
+        padding: 5px;
       }
     }
     
@@ -188,15 +191,21 @@
     &.show {
       transform: translateY(0);
     }
-    &.active {
+    
+    &.active,
+    &.to-left {
       left: 0;
+      div:after{
+        display: none !important;
+      }
+    }
+    &.active {
       z-index: 4;
       background: $brand-details;
       opacity: 1;
     }
     &.to-left {
       z-index: 2;
-      left: 0;
     }
   }
   
@@ -212,11 +221,20 @@
     padding: 20px;
     background: $brand-primary;
     transform: translateX(100%);
-    
-    i {
+    div{
+      display: flex;
+      align-items: center;
       margin-top: 100px;
+      cursor: pointer;
+    }
+    i {
       @include font-size(4);
       color: #fff;
+      margin-right: 10px;
+    }
+    p{
+      padding: 50px;
+      @include font-size(3);
     }
     &.show {
       transform: translateX(0%);

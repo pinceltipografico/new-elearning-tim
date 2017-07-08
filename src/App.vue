@@ -32,22 +32,38 @@
   </main>
 </template>
 <script>
+  /* eslint-disable no-trailing-spaces */
   import { EventBus } from './events/index'
   export default {
+    /**
+     | ----------------------------------------------
+     * RETURN DATA OF COMPOENTN
+     | ----------------------------------------------
+     **/
     data () {
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 9, 10]
+        pages: [1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13]
       }
     },
+    //
+    // name of the component
     name: 'app',
+    /**
+     | ----------------------------------------------
+     * WHEN THE COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello' && this.$route.name !== null) {
+      if (this.$cookie.get('explain_viewed') || this.$route.name !== 'Hello' && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
       }
+      
+      // start the progress bar
       EventBus.$on('start-progress', this.startProgress.bind(this))
+      
       //
       // GET THE LAST PAGE
       /* eslint-disable no-unused-vars */
@@ -56,10 +72,15 @@
       } else {
         var lastPage = Number(this.$route.path.split('page')[1]) || 0
         var hasPage = this.pages.indexOf(lastPage)
-        this.pageIndex = (hasPage !== -1) ? this.pages[hasPage] : 1
-        this.$router.replace('page' + this.pageIndex)
+        this.pageIndex = (hasPage !== -1) ? hasPage : 1
+        this.$router.replace('page' + this.pages[this.pageIndex])
       }
     },
+    /**
+     | ----------------------------------------------
+     * RETURN THE METHODS OF COMPONENT
+     | ----------------------------------------------
+     **/
     methods: {
       startProgress: function () {
         var total = this.totalProgress
@@ -79,28 +100,35 @@
       nextPage: function () {
         if (this.pageIndex <= this.pages.length) {
           this.pageIndex++
-          var page = this.pages.indexOf(this.pageIndex)
-          if (page !== -1) {
-            this.$router.replace('page' + this.pages[page])
-          }
+          var page = this.pages[this.pageIndex]
+          this.$router.replace('page' + page)
         }
       },
       prevPage: function () {
         if (this.pageIndex > 1) {
           this.pageIndex--
-          var page = this.pages.indexOf(this.pageIndex)
-          if (page !== -1) {
-            this.$router.replace('page' + this.pages[page])
-          }
+          var page = this.pages[this.pageIndex]
+          this.$router.replace('page' + page)
         }
       }
     },
+    
+    /**
+     | ----------------------------------------------
+     * WHEN COMPONENT WAS DESTROYED
+     | ----------------------------------------------
+     **/
     destroyed () {
       if (this.counter) {
         clearInterval(this.couter)
       }
       EventBus.$off('start-progress', this.startProgress.bind(this))
     },
+    
+    /**
+     | ----------------------------------------------
+     | ----------------------------------------------
+     **/
     computed: {
       showInterfaceItems: function () {
         return this.$store.state.showUserInterface
