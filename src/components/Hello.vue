@@ -15,18 +15,35 @@
 </template>
 <script>
   export default {
+    //
+    // APP NAME
     name: 'hello',
+    /**
+    | ----------------------------------------------
+    * RETURN THE DATA OF COMPONENT
+    | ----------------------------------------------
+    **/
     data () {
       return {
         animation: false,
         blinkButton: false
       }
     },
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       setTimeout(function () {
         this.animation = true
       }.bind(this), 1000)
     },
+    /**
+    | ----------------------------------------------
+    * RETURN THE COMPONENT METHODS
+    | ----------------------------------------------
+    **/
     methods: {
       gotoExplain: function () {
         this.animation = false

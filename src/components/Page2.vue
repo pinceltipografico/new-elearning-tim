@@ -22,7 +22,7 @@
     <div class="script4">
       <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo.</h1>
     </div>
-    <div class="script5">
+    <div class="script5 end-tag">
       <h1>Somos a <span>Geração CX TIM.</span></h1>
     </div>
   </section>
@@ -33,7 +33,7 @@
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
   export default {
-    created () {
+    mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 20000)
       var animations = [
@@ -401,24 +401,6 @@
   }
   
   .script5 {
-    width: 100%;
-    text-transform: uppercase;
-    color: #fff;
-    top: 50%;
-    background: rgba(#000, 0.5);
-    text-align: center;
-    padding: 30px;
-    transform: translateY(100%);
-    opacity: 0;
-    h1 {
-      @include font-size(3);
-      border-top: 2px dotted $brand-details;
-      border-bottom: 2px dotted $brand-details;
-      padding: 10px 0;
-      max-width: 80%;
-      display: inline-block;
-    }
-    
     &.show {
       transform: translateY(-50%);
       opacity: 1;

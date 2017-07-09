@@ -44,7 +44,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4]
       }
     },
     //
@@ -82,6 +82,12 @@
      | ----------------------------------------------
      **/
     methods: {
+      /**
+       | ----------------------------------------------
+       * START TH PROGRESS COUNTER OF PAGE
+       * need to change when audio was delivered
+       | ----------------------------------------------
+       **/
       startProgress: function () {
         var total = this.totalProgress
         var pct = 100 / total
@@ -97,13 +103,24 @@
           }
         }, 100)
       },
+      /**
+       | ----------------------------------------------
+       * GO TO NEXT PAGE OF ELEARNING
+       * need to lock when apply scorm
+       | ----------------------------------------------
+       **/
       nextPage: function () {
-        if (this.pageIndex <= this.pages.length) {
+        if (this.pageIndex < this.pages.length - 1) {
           this.pageIndex++
           var page = this.pages[this.pageIndex]
           this.$router.replace('page' + page)
         }
       },
+      /**
+       | ----------------------------------------------
+       * GO TO PREVIOUS PAGE OF ELEARNING
+       | ----------------------------------------------
+       **/
       prevPage: function () {
         if (this.pageIndex > 1) {
           this.pageIndex--
@@ -161,7 +178,7 @@
     width: 100%;
     
     .image-background,
-    .outer-page{
+    .outer-page {
       display: block;
       position: absolute;
       z-index: 1;
@@ -169,7 +186,7 @@
       height: 100%;
       background-size: cover;
     }
-    .outer-page{
+    .outer-page {
       z-index: 2;
     }
     
@@ -219,6 +236,9 @@
       h1 {
         span {
           color: $brand-details;
+          &.red {
+            color: $brand-secondary;
+          }
         }
       }
     }
@@ -307,6 +327,31 @@
     }
   }
   
+  .end-tag {
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff;
+    top: 50%;
+    background: rgba(#000, 0.5);
+    text-align: center;
+    padding: 30px;
+    transform: translateY(100%);
+    opacity: 0;
+    h1 {
+      @include font-size(3);
+      border-top: 2px dotted $brand-details;
+      border-bottom: 2px dotted $brand-details;
+      padding: 10px 0;
+      max-width: 80%;
+      display: inline-block;
+    }
+    
+    &.show {
+      transform: translateY(-50%);
+      opacity: 1;
+    }
+  }
+  
   /**
   * ----------------------------------------------
   * ANIMATIONS FOR V-IF OR V-FOR
@@ -330,17 +375,20 @@
   .enter-enter, .enter-leave-to {
     opacity: 0
   }
-
+  
   //
   // LIST ANIMATIONS
   .list-item {
     display: inline-block;
     margin-right: 10px;
   }
+  
   .list-enter-active, .list-leave-active {
     transition: all $animationTime;
   }
-  .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+  
+  .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */
+  {
     opacity: 0;
     transform: translateX(100%);
   }

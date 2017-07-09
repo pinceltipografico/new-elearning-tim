@@ -35,6 +35,11 @@
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')
   export default {
+    /**
+    | ----------------------------------------------
+    * RETURN DATA OF THE COMPONENT
+    | ----------------------------------------------
+    **/
     data () {
       return {
         dates: [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
@@ -51,25 +56,39 @@
         activeTotoList: []
       }
     },
+    /**
+    | ----------------------------------------------
+    * WHEN COMPOENENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 3000)
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
-//      this.startSceneOne()
-      this.showTodo = true
-      this.startTodo()
+      this.startSceneOne()
     },
+    /**
+    | ----------------------------------------------
+    * RETURN METHODS OF THE COMPOENNT
+    | ----------------------------------------------
+    **/
     methods: {
+      /**
+      | ----------------------------------------------
+      * START THE TODO LIST
+      | ----------------------------------------------
+      **/
       startTodo () {
         this.showTodo = true
         var vm = this
         var count = 0
-        var timer = 2000
+        var timer = 500
         
         function addItemToCheck () {
           if (vm.todoList.length) {
+            timer = 2000
             vm.activeTotoList.push(vm.todoList.shift())
             setTimeout(function () {
               var c = document.querySelector('li[data-index="' + count + '"]')
@@ -82,6 +101,11 @@
         
         setTimeout(addItemToCheck, timer)
       },
+      /**
+      | ----------------------------------------------
+      * START THE FIRST SCENE ANIMATION
+      | ----------------------------------------------
+      **/
       startSceneOne () {
         var vm = this
         var animations = [

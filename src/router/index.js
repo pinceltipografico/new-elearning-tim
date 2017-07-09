@@ -8,15 +8,21 @@ import Page4 from '@/components/Page4'
 import Page5 from '@/components/Page5'
 import Page6 from '@/components/Page6'
 import Page7 from '@/components/Page7'
+import Page8 from '@/components/Page8'
 import Page9 from '@/components/Page9'
 import Page10 from '@/components/Page10'
 import Page11 from '@/components/Page11'
 import Page12 from '@/components/Page12'
 import Page13 from '@/components/Page13'
+import Page15 from '@/components/Page15'
+import Page16 from '@/components/Page16'
+import Page17 from '@/components/Page17'
+import Page18 from '@/components/Page18'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/hello',
@@ -51,6 +57,10 @@ export default new Router({
       name: 'page7',
       component: Page7
     }, {
+      path: '/page8',
+      name: 'page8',
+      component: Page8
+    }, {
       path: '/page9',
       name: 'page9',
       component: Page9
@@ -70,6 +80,22 @@ export default new Router({
       path: '/page13',
       name: 'page13',
       component: Page13
+    }, {
+      path: '/page15',
+      name: 'page15',
+      component: Page15
+    }, {
+      path: '/page16',
+      name: 'page16',
+      component: Page16
+    }, {
+      path: '/page17',
+      name: 'page17',
+      component: Page17
+    }, {
+      path: '/page18',
+      name: 'page18',
+      component: Page18
     }
   ]
 })
