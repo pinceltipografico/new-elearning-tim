@@ -25,10 +25,17 @@
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
-    created () {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT WAS READY
+    | ----------------------------------------------
+    **/
+    mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)

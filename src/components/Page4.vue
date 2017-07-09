@@ -40,8 +40,17 @@
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   export default {
+    //
+    // APP NAME
     name: 'Menu',
+    /**
+    | ----------------------------------------------
+    * RETURN DATA OF THE COMPONENT
+    | ----------------------------------------------
+    **/
     data () {
       return {
         text: '',
@@ -56,6 +65,11 @@
         allowToSee: false
       }
     },
+    /**
+    | ----------------------------------------------
+    * RETURN THE METHODS OF COMPONENT
+    | ----------------------------------------------
+    **/
     methods: {
       onItemClick: function (index) {
         this.allowToSee = this.$store.state.modulesAllowed.indexOf(index) !== -1

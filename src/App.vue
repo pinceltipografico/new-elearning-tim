@@ -2,6 +2,9 @@
   <main id="app">
     <div class="logo">
       <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
+      <div class="title">
+        <h2>Somos a geração <span>CX</span><small id="pageTitle">Modulo:<span>Introdução</span></small></h2>
+      </div>
     </div>
     <transition name="fade">
       <nav class="user-interface" v-if="showInterfaceItems">
@@ -122,7 +125,7 @@
        | ----------------------------------------------
        **/
       prevPage: function () {
-        if (this.pageIndex > 1) {
+        if (this.pageIndex > 0) {
           this.pageIndex--
           var page = this.pages[this.pageIndex]
           this.$router.replace('page' + page)
@@ -205,9 +208,37 @@
     .logo {
       position: absolute;
       z-index: 3;
-      width: 120px;
-      top: 40px;
+      display: flex;
+      width: auto;
+      top: 30px;
       left: 40px;
+      align-items: center;
+      img,
+      div{
+        float: left;
+      }
+      img{
+        width: 100px;
+      }
+      div{
+        margin-left: 10px;
+        color:#fff;
+        border-left: 4px double $brand-secondary;
+        padding-left: 6px;
+        height: 30px;
+        h2{
+          margin: 0;
+        }
+        span{
+          color:$brand-secondary;
+        }
+        small{
+          display: block;
+          span{
+            margin-left: 5px;
+          }
+        }
+      }
     }
     
     section.page {

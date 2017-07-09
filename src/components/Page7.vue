@@ -48,12 +48,18 @@
 </template>
 <script type="text/javascript">
   /* eslint-disable semi */
-  
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   import draggable from 'vuedraggable'
   export default {
-    created () {
+    /**
+    | ----------------------------------------------
+    * WHEN component was ready
+    | ----------------------------------------------
+    **/
+    mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
@@ -117,6 +123,11 @@
         EventBus.$emit('start-progress')
       }, 500)
     },
+    /**
+    | ----------------------------------------------
+    * RETURN DATA OF THE COMPONENT
+    | ----------------------------------------------
+    **/
     data () {
       return {
         list: [
@@ -129,6 +140,11 @@
         ]
       }
     },
+    /**
+    | ----------------------------------------------
+    * COMPONENTS USE IN THIS COMPONENT
+    | ----------------------------------------------
+    **/
     components: {
       draggable
     }

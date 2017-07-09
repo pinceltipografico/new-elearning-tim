@@ -21,81 +21,110 @@ import Page18 from '@/components/Page18'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/hello',
       name: 'Hello',
+      meta: {pageTitle: '<span>Olá</span>'},
       component: Hello
     }, {
       path: '/explain',
       name: 'explain',
+      meta: {pageTitle: 'Veja<span>como navegar</span>'},
       component: ExplainMenu
     }, {
       path: '/page1',
       name: 'page1',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page1
     }, {
       path: '/page2',
       name: 'page2',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page2
     }, {
       path: '/page4',
       name: 'Menu',
+      meta: {pageTitle: '<span>Menu</span>'},
       component: Page4
     }, {
       path: '/page5',
       name: 'Page5',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page5
     }, {
       path: '/page6',
       name: 'Page6',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page6
     }, {
       path: '/page7',
       name: 'page7',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page7
     }, {
       path: '/page8',
       name: 'page8',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page8
     }, {
       path: '/page9',
       name: 'page9',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page9
     }, {
       path: '/page10',
       name: 'page10',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page10
     }, {
       path: '/page11',
       name: 'page11',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page11
     }, {
       path: '/page12',
       name: 'page12',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page12
     }, {
       path: '/page13',
       name: 'page13',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page13
     }, {
       path: '/page15',
       name: 'page15',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page15
     }, {
       path: '/page16',
       name: 'page16',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page16
     }, {
       path: '/page17',
       name: 'page17',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page17
     }, {
       path: '/page18',
       name: 'page18',
+      meta: {pageTitle: 'Modulo:<span>Introdução</span>'},
       component: Page18
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  'use strict'
+  if (to.meta && to.meta.pageTitle) {
+    var title = document.querySelector('#pageTitle')
+    if (title) {
+      title.innerHTML = to.meta.pageTitle
+    }
+  }
+  next()
+})
+export default router

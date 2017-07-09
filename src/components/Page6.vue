@@ -3,16 +3,25 @@
     <div class="middle-image"></div>
     <div class="script1">
       <h1>
-        <span>A CHAVE É:</span><br /> <small>Antecipar -se as tendências, adaptar -se com velocide e criar verdadeiros seguidores</small>
+        <span>A CHAVE É:</span><br/>
+        <small>Antecipar -se as tendências, adaptar -se com velocide e criar verdadeiros seguidores</small>
       </h1>
     </div>
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
-    created () {
+    name: 'page6',
+    /**
+     | ----------------------------------------------
+     * WHEN COMPONENT WAS READY
+     | ----------------------------------------------
+     **/
+    mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
@@ -59,7 +68,7 @@
       transition: all $animationTime;
     }
   }
-
+  
   .middle-image {
     background: url("../assets/backgrounds/page-6-2.png") no-repeat bottom;
     width: 35%;
@@ -69,21 +78,21 @@
     bottom: 0px;
     transform: translateX(-50%);
     opacity: 0;
-    &.show{
+    &.show {
       transform: translateX(-10%);
       opacity: 1;
     }
-    &.animate{
+    &.animate {
       animation: imageAnimation 5s infinite ease-in-out alternate;
     }
   }
-
+  
   .script1,
-  .middle-image{
+  .middle-image {
     z-index: 4;
     position: absolute;
   }
-
+  
   .script1 {
     width: 45%;
     color: #fff;
@@ -100,17 +109,17 @@
     &.show {
       transform: scaleX(1) translateX(-10%);
     }
-    &.animate{
+    &.animate {
       animation: imageAnimation 10s infinite ease-in-out alternate;
     }
   }
+  
   @keyframes imageAnimation {
-    0%{
+    0% {
       transform: translateX(-10%);
     }
-    100%{
+    100% {
       transform: translateX(-20%);
     }
   }
-
 </style>

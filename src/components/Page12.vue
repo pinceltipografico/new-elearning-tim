@@ -24,11 +24,18 @@
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')
   export default {
+    // component name
     name: 'Page12',
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       // set progress of current page
       this.$store.commit('setPageProgress', 0)

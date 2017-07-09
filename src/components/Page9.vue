@@ -30,11 +30,15 @@
 <script type="text/javascript">
   /* eslint-disable semi */
   /* eslint-disable no-trailing-spaces */
-  
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
-    created () {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT WAS READY
+    | ----------------------------------------------
+    **/
+    mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
@@ -70,6 +74,11 @@
         EventBus.$emit('start-progress')
       }, 500)
     },
+    /**
+    | ----------------------------------------------
+    * RETURN THE COMPONENT METHODS
+    | ----------------------------------------------
+    **/
     methods: {
       newHtml ($event, value) {
         var vm = this
@@ -97,6 +106,11 @@
         }, 500)
       }
     },
+    /**
+    | ----------------------------------------------
+    * RETURN COMPONENT DATA
+    | ----------------------------------------------
+    **/
     data: function () {
       return {
         texts: {

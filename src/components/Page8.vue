@@ -16,6 +16,11 @@
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')
   export default {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPOENNT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 20000)

@@ -31,6 +31,7 @@
   </div>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')

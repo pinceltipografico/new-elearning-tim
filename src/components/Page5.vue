@@ -90,19 +90,37 @@
 </template>
 <script type="text/javascript">
   /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   var skrollr = require('skrollr')
   export default {
+    //
+    // component nam
     name: 'Page5',
+    /**
+    | ----------------------------------------------
+    * return data of the component
+    | ----------------------------------------------
+    **/
     data () {
       return {
         scroller: null
       }
     },
+    /**
+    | ----------------------------------------------
+    * WHEN THE COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       setTimeout(function () {
         this.scroller = skrollr.init()
       }.bind(this), 1000)
     },
+    /**
+    | ----------------------------------------------
+    * WHEN COMPOONENT WAS DESTROYED
+    | ----------------------------------------------
+    **/
     destroyed () {
       if (this.scroller) {
         this.scroller.destroy()

@@ -10,11 +10,17 @@
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   var WorldCluod = require('wordcloud')
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 3000)

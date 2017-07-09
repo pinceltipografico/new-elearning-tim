@@ -16,6 +16,11 @@
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')
   export default {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
     mounted () {
       //
       // set global vars

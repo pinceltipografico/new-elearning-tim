@@ -16,11 +16,17 @@
 </template>
 <script type="text/javascript">
   /* eslint-disable semi */
-  
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   export default {
-    created () {
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENT IS READY
+    | ----------------------------------------------
+    **/
+    mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       var animations = [
