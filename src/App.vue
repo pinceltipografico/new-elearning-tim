@@ -160,13 +160,17 @@
     max-height: 800px;
     width: 100%;
     
-    .image-background {
+    .image-background,
+    .outer-page{
       display: block;
       position: absolute;
       z-index: 1;
       width: 100%;
       height: 100%;
       background-size: cover;
+    }
+    .outer-page{
+      z-index: 2;
     }
     
     .overlay {
@@ -323,9 +327,22 @@
     transition: opacity $animationTime;
   }
   
-  .enter-enter, .enter-leave-to /* .fade-leave-active in <2.1.8 */
-  {
+  .enter-enter, .enter-leave-to {
     opacity: 0
+  }
+
+  //
+  // LIST ANIMATIONS
+  .list-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .list-enter-active, .list-leave-active {
+    transition: all $animationTime;
+  }
+  .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+    opacity: 0;
+    transform: translateX(100%);
   }
   
   @keyframes enterBorder {

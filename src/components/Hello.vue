@@ -2,7 +2,6 @@
   <section class="page">
     <div class="overlay"></div>
     <div class="intro-title" v-bind:class="{'animation':animation}">
-      <span>Bem-vindo ao e-learning</span>
       <hr>
       <h1>Customer</h1>
       <h1>experience</h1>
