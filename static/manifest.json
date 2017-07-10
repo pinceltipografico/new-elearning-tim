@@ -1,5 +1,10 @@
 {
-  "app.js": "app.js",
+  "app.css": "static/css/app.c456c780b2cdc31326c12a9a85dfac99.css",
+  "app.css.map": "static/css/app.c456c780b2cdc31326c12a9a85dfac99.css.map",
+  "app.js": "static/js/app.a573a8ce6a90c678a85e.js",
+  "app.js.map": "static/js/app.a573a8ce6a90c678a85e.js.map",
+  "manifest.js": "static/js/manifest.f4f6df99da9c47af7cd9.js",
+  "manifest.js.map": "static/js/manifest.f4f6df99da9c47af7cd9.js.map",
   "static/fonts/fontawesome-webfont.eot": "static/fonts/fontawesome-webfont.674f50d.eot",
   "static/fonts/fontawesome-webfont.eot?v=4.7.0": "static/fonts/fontawesome-webfont.674f50d.eot",
   "static/fonts/fontawesome-webfont.ttf?v=4.7.0": "static/fonts/fontawesome-webfont.b06871f.ttf",
@@ -20,10 +25,8 @@
   "static/img/page-6-2.png": "static/img/page-6-2.68ba9d1.png",
   "static/img/page11-1.png": "static/img/page11-1.8e3a9fc.png",
   "static/img/page12-2.png": "static/img/page12-2.29df77a.png",
-  "static/img/page12-3.png": "static/img/page12-3.44c3218.png",
   "static/img/page13-1.jpg": "static/img/page13-1.3891d53.jpg",
   "static/img/page15-1.jpg": "static/img/page15-1.c3dd135.jpg",
-  "static/img/page15-2.jpg": "static/img/page15-2.2e97ed6.jpg",
   "static/img/page16-1.png": "static/img/page16-1.666ee22.png",
   "static/img/page17-1.jpg": "static/img/page17-1.ba81083.jpg",
   "static/img/page17-2.jpg": "static/img/page17-2.28e09bc.jpg",
@@ -36,7 +39,7 @@
   "static/img/page2-5.jpg": "static/img/page2-5.c92d9ec.jpg",
   "static/img/page2-6.jpg": "static/img/page2-6.d4abe83.jpg",
   "static/img/page4-1.png": "static/img/page4-1.70d3d89.png",
-  "static/img/page5-1.jpg": "static/img/page5-1.0318405.jpg",
+  "static/img/page5-1.jpg": "static/img/page5-1.4ba57af.jpg",
   "static/img/page5-3.jpg": "static/img/page5-3.540fd72.jpg",
   "static/img/page5-4.jpg": "static/img/page5-4.6e7efbf.jpg",
   "static/img/page5-5.jpg": "static/img/page5-5.abf39ed.jpg",
@@ -46,5 +49,7 @@
   "static/img/page8-2.jpg": "static/img/page8-2.1574085.jpg",
   "static/img/page9-1.jpg": "static/img/page9-1.f18a5f2.jpg",
   "static/img/wireless-page12.jpg": "static/img/wireless-page12.2f8c09b.jpg",
-  "static/img/world.png": "static/img/world.20a0437.png"
+  "static/img/world.png": "static/img/world.20a0437.png",
+  "vendor.js": "static/js/vendor.f8da7ec2657bd4501c4d.js",
+  "vendor.js.map": "static/js/vendor.f8da7ec2657bd4501c4d.js.map"
 }

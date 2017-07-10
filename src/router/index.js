@@ -22,6 +22,7 @@ import Page18 from '@/components/Page18'
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/hello',
