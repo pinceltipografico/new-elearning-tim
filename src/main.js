@@ -51,25 +51,16 @@ const store = new Vuex.Store({
  * VERIFICA SE O PRELOADER EXISTE E CARREGA OS ASSETS
  * @type {Element}
  */
+
 var preloader = document.getElementById('preloader')
 if (preloader) {
   preloader.classList.remove('hidePreloader')
 }
 var pct = preloader.querySelector('.pct')
 var mask = preloader.querySelector('#SVGID_2_')
-AssetsLoader.loade((event) => {
-  if (pct) {
-    pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
-  }
-  if (mask) {
-    var value = ((-100) + Math.ceil(event.progress))
-    mask.style['webkitTransform'] = 'translateX(' + value + '%)'
-    mask.style['mozTransform'] = 'translateX(' + value + '%)'
-    mask.style['msTransform'] = 'translateX(' + value + '%)'
-    mask.style['oTransform'] = 'translateX(' + value + '%)'
-  }
-}).then(function () {
-  console.log('complete');
+
+function removePReloader () {
+  'use strict'
   if (preloader) {
     setTimeout(function () {
       preloader.classList.add('hidePreloader')
@@ -85,9 +76,25 @@ AssetsLoader.loade((event) => {
       })
     }, 1000)
   }
+}
+AssetsLoader.loade((event) => {
+  if (pct) {
+    pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
+  }
+  if (mask) {
+    var value = ((-100) + Math.ceil(event.progress))
+    mask.style['webkitTransform'] = 'translateX(' + value + '%)'
+    mask.style['mozTransform'] = 'translateX(' + value + '%)'
+    mask.style['msTransform'] = 'translateX(' + value + '%)'
+    mask.style['oTransform'] = 'translateX(' + value + '%)'
+  }
+}).then(function () {
+  console.log('complete')
+  removePReloader()
 }).catch(function (err) {
   'use strict'
   console.log(err)
+  removePReloader()
 })
 //
 // CREATE VUE APP
