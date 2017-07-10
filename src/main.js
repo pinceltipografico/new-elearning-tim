@@ -69,6 +69,7 @@ AssetsLoader.loade((event) => {
     mask.style['oTransform'] = 'translateX(' + value + '%)'
   }
 }).then(function () {
+  console.log('complete');
   if (preloader) {
     setTimeout(function () {
       preloader.classList.add('hidePreloader')
