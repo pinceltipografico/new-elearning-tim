@@ -210,7 +210,7 @@
       z-index: 3;
       display: flex;
       width: auto;
-      top: 30px;
+      top: 35px;
       left: 40px;
       align-items: center;
       img,

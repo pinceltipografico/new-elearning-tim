@@ -6,7 +6,7 @@
       <h1>Adapte-se a esse <span>contexto!</span></h1>
     </div>
     <div class="script2">
-      <h1>A TIM está criando estas <span>mudança!</span></h1>
+      <h1>A TIM está criando estas <span>mudanças!</span></h1>
       <div class="shadow"></div>
     </div>
     <div class="script3">

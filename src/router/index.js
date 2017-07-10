@@ -27,7 +27,7 @@ const router = new Router({
     {
       path: '/hello',
       name: 'Hello',
-      meta: {pageTitle: '<span>Olá</span>'},
+      meta: {pageTitle: 'Olá'},
       component: Hello
     }, {
       path: '/explain',
@@ -47,7 +47,7 @@ const router = new Router({
     }, {
       path: '/page4',
       name: 'Menu',
-      meta: {pageTitle: '<span>Menu</span>'},
+      meta: {pageTitle: 'Menu'},
       component: Page4
     }, {
       path: '/page5',
@@ -119,12 +119,17 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   'use strict'
-  if (to.meta && to.meta.pageTitle) {
-    var title = document.querySelector('#pageTitle')
-    if (title) {
-      title.innerHTML = to.meta.pageTitle
+  function changeName () {
+    if (to.meta && to.meta.pageTitle) {
+      var title = document.querySelector('#pageTitle')
+      if (title) {
+        title.innerHTML = to.meta.pageTitle
+      } else {
+        setTimeout(changeName, 500)
+      }
     }
   }
+  changeName()
   next()
 })
 export default router

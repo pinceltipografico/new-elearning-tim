@@ -14,7 +14,7 @@
       <!-- --> Clique aqui para avançar uma página <!-- -->
     </div>
     <div class="explain-item prev-button">
-      <!-- --> Clique aqui para avançar uma página <!-- -->
+      <!-- --> Clique aqui para voltar uma página <!-- -->
     </div>
     <div class="accpet">
       <span>Ok. Entendi</span>
