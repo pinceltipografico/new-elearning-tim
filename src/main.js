@@ -84,6 +84,9 @@ AssetsLoader.loade((event) => {
       })
     }, 1000)
   }
+}).catch(function (err) {
+  'use strict'
+  console.log(err)
 })
 //
 // CREATE VUE APP
