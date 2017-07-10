@@ -258,6 +258,7 @@
     h1,
     .shadow {
       transition: all $animationTime;
+      opacity: 0;
     }
     h1 {
       width: 100%;
@@ -265,16 +266,6 @@
       transform: translateY(-59%);
       opacity: 0;
       text-transform: uppercase;
-    }
-    .shadow {
-      width: 80%;
-      margin: 0 auto;
-      height: 15px;
-      background: rgba(#000, 0.3);
-      border-radius: 50%;
-      filter: blur(4px);
-      transform: translateY(50%);
-      opacity: 0;
     }
     &.step1 {
       h1,

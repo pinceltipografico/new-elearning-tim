@@ -3,7 +3,9 @@
     <div class="logo">
       <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
       <div class="title">
-        <h2>Somos a geração <span>CX</span><small id="pageTitle">Modulo:<span>Introdução</span></small></h2>
+        <h2>Somos a geração <span>CX</span>
+          <small id="pageTitle">Modulo:<span>Introdução</span></small>
+        </h2>
       </div>
     </div>
     <transition name="fade">
@@ -47,7 +49,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 4]
       }
     },
     //
@@ -214,27 +216,27 @@
       left: 40px;
       align-items: center;
       img,
-      div{
+      div {
         float: left;
       }
-      img{
+      img {
         width: 100px;
       }
-      div{
+      div {
         margin-left: 10px;
-        color:#fff;
+        color: #fff;
         border-left: 4px double $brand-secondary;
         padding-left: 6px;
         height: 30px;
-        h2{
+        h2 {
           margin: 0;
         }
-        span{
-          color:$brand-secondary;
+        span {
+          color: $brand-secondary;
         }
-        small{
+        small {
           display: block;
-          span{
+          span {
             margin-left: 5px;
           }
         }
@@ -381,6 +383,17 @@
       transform: translateY(-50%);
       opacity: 1;
     }
+  }
+
+  .shadow {
+    width: 80%;
+    margin: 0 auto;
+    height: 15px;
+    background: rgba(#000, 0.3);
+    border-radius: 50%;
+    filter: blur(4px);
+    transform: translateY(50%);
+    opacity: 1;
   }
   
   /**

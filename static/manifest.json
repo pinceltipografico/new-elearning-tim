@@ -1,10 +1,5 @@
 {
-  "app.css": "static/css/app.8a336f1750c12136c650c40407accc0b.css",
-  "app.css.map": "static/css/app.8a336f1750c12136c650c40407accc0b.css.map",
-  "app.js": "static/js/app.857427212fb6e0614a1e.js",
-  "app.js.map": "static/js/app.857427212fb6e0614a1e.js.map",
-  "manifest.js": "static/js/manifest.1888a026577e103e43b2.js",
-  "manifest.js.map": "static/js/manifest.1888a026577e103e43b2.js.map",
+  "app.js": "app.js",
   "static/fonts/fontawesome-webfont.eot": "static/fonts/fontawesome-webfont.674f50d.eot",
   "static/fonts/fontawesome-webfont.eot?v=4.7.0": "static/fonts/fontawesome-webfont.674f50d.eot",
   "static/fonts/fontawesome-webfont.ttf?v=4.7.0": "static/fonts/fontawesome-webfont.b06871f.ttf",
@@ -17,6 +12,7 @@
   "static/img/page17-1.jpg": "static/img/page17-1.ba81083.jpg",
   "static/img/page18-1.jpg": "static/img/page18-1.a5634a3.jpg",
   "static/img/page18-3.jpg": "static/img/page18-3.b9aebd6.jpg",
+  "static/img/page19-1.png": "static/img/page19-1.2e89323.png",
   "static/img/page2-1.jpg": "static/img/page2-1.086cc33.jpg",
   "static/img/page2-6.jpg": "static/img/page2-6.d4abe83.jpg",
   "static/img/page4-1.png": "static/img/page4-1.70d3d89.png",
@@ -24,7 +20,5 @@
   "static/img/page5-5.jpg": "static/img/page5-5.abf39ed.jpg",
   "static/img/page7-1.jpg": "static/img/page7-1.734237c.jpg",
   "static/img/page8-1.jpg": "static/img/page8-1.2bb9860.jpg",
-  "static/img/world.png": "static/img/world.20a0437.png",
-  "vendor.js": "static/js/vendor.f8da7ec2657bd4501c4d.js",
-  "vendor.js.map": "static/js/vendor.f8da7ec2657bd4501c4d.js.map"
+  "static/img/world.png": "static/img/world.20a0437.png"
 }
