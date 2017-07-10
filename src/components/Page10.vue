@@ -2,7 +2,7 @@
   <section class="page">
     <div class="overlay"></div>
     <div class="infographic">
-      <img src="../assets/svgs/infographic_page10.svg" alt="Infographic">
+      <img src="~@/assets/svgs/infographic_page10.svg" alt="Infographic">
     </div>
     <div class="script1">
       <h1>
