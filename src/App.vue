@@ -252,6 +252,10 @@
       animation: enterBorder $animationTime forwards;
       overflow: hidden;
       
+      @include responsive('tablet', true){
+        zoom: 0.8;
+      }
+      
       > * {
         position: absolute;
         z-index: 3;
