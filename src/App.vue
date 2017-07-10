@@ -1,7 +1,7 @@
 <template>
   <main id="app">
     <div class="logo">
-      <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
+      <img src="static/svgs/logo-01.svg" alt="Tim"/>
       <div class="title">
         <h2>Somos a geração <span>CX</span><small id="pageTitle">Modulo:<span>Introdução</span></small></h2>
       </div>
