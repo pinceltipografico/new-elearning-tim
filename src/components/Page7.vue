@@ -27,7 +27,7 @@
     </div>
     <div class="script5">
       <h1>
-        Arraste as palavras<br/>até o <span>cesto</span>
+        Arraste as palavras<br/>até a <span>sacola de compras</span>
       </h1>
     </div>
     <div class="script6">
