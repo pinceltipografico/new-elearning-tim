@@ -6,7 +6,7 @@
       <h1>Adapte-se a esse <span>contexto!</span></h1>
     </div>
     <div class="script2">
-      <h1>A TIM está criando estas <span>mudanças!</span></h1>
+      <h1>A TIM está se movimentando para esta <span>mudança!</span></h1>
       <div class="shadow"></div>
     </div>
     <div class="script3">
@@ -237,7 +237,6 @@
     color: #666;
     transform-origin: 50% 50%;
     transform: scale(0) translateY(-50%);
-    text-transform: uppercase;
     
     &.step1 {
       transform: scale(1) translateY(-50%);
@@ -265,7 +264,6 @@
       color: #fff;
       transform: translateY(-59%);
       opacity: 0;
-      text-transform: uppercase;
     }
     &.step1 {
       h1,
@@ -296,7 +294,6 @@
     padding: 10px 25px;
     border-top: 1px solid transparent;
     h1 {
-      text-transform: uppercase;
       text-align: left;
       span {
         display: inline-block;
@@ -376,7 +373,6 @@
     top: 100px;
     left: 100px;
     @include font-size(2);
-    text-transform: uppercase;
     max-width: 500px;
     color: #fff;
     h1 {

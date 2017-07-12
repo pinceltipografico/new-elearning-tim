@@ -9,18 +9,21 @@
     </div>
     <div class="script2">
       <h1>
-        Soluções específicas.
+        <span class="red">Soluções específicas para as nossas necessidades</span>
       </h1>
     </div>
     <div class="image-left"></div>
     <div class="image-right"></div>
     <div class="image-full"></div>
+    <div class="tags tag1">conectividade</div>
+    <div class="tags tag2">interação</div>
+    <div class="tags tag3">tecnologia</div>
     <div class="script3">
-      <h1>Um movimento que não para de crescer</h1>
+      <h1>Um movimento que <span>não para de crescer</span></h1>
     </div>
-    <div class="script4">
+    <div class="script4 end-tag">
       <h1>
-        <span>Somos todos de uma só geração</span> | sem rótulos.</h1>
+        <span>Uma geração que quer ser </span>ouvida e atendida.</h1>
     </div>
   </section>
 </template>
@@ -87,6 +90,26 @@
         }, {
           time: 400,
           step: 'show',
+          selector: '.tag1'
+        }, {
+          time: 400,
+          step: 'show',
+          selector: '.tag2'
+        }, {
+          time: 400,
+          step: 'show',
+          selector: '.tag3'
+        }, {
+          time: 0,
+          step: 'step4',
+          selector: '.blue-left'
+        }, {
+          time: 2550,
+          step: 'step5',
+          selector: '.blue-left'
+        }, {
+          time: 400,
+          step: 'show',
           selector: '.script3'
         }, {
           time: 4000,
@@ -94,12 +117,16 @@
           selector: '.script3'
         }, {
           time: 400,
-          step: 'texture',
+          step: 'step6',
           selector: '.blue-left'
         }, {
           time: 400,
-          step: 'hide',
+          step: 'step3',
           selector: '.image-full'
+        }, {
+          time: 1000,
+          step: 'hide',
+          selector: '.blue-left'
         }, {
           time: 400,
           step: 'show',
@@ -121,18 +148,6 @@
   section.page {
     background: url("../assets/backgrounds/page-1.jpg") no-repeat;
     background-size: cover;
-    overflow: hidden;
-  }
-  
-  .script1,
-  .blue-left,
-  .image-right,
-  .script2,
-  .script3,
-  .image-full,
-  .script4 {
-    z-index: 4;
-    position: absolute;
   }
   
   .image-full {
@@ -146,6 +161,11 @@
     }
     &.hide {
       opacity: 0;
+    }
+    &.step3{
+      background: url("../assets/backgrounds/page-1-5.jpg") no-repeat;
+      background-size: cover;
+      z-index: 5;
     }
   }
   
@@ -183,9 +203,24 @@
     &.white {
       background: #fff;
     }
-    &.texture {
-      background: url("../assets/backgrounds/page-1-5.jpg") no-repeat;
-      background-size: cover;
+    &.step4{
+      width: 40%;
+      height: 0;
+      background: rgba(#fff,0.8);
+      right: 6%;
+    }
+    &.step5{
+      z-index: 5;
+      height: 100%;
+    }
+    &.step6{
+      background: #fff;
+      width: 100%;
+      right: 0;
+      z-index: 6;
+    }
+    &.hide{
+      opacity: 0;
     }
   }
   
@@ -195,7 +230,6 @@
     max-width: 400px;
     @include font-size(2.5);
     color: #fff;
-    text-transform: uppercase;
     transform: translate(100%, -50%) scale(1) rotate(0deg);
     opacity: 0;
     span {
@@ -232,30 +266,65 @@
     }
   }
   
+  .tags{
+    @include font-size(2);
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 7px;
+    top:40%;
+    opacity: 0;
+    &.show{
+      opacity: 1;
+    }
+    &:before{
+      display: block;
+      content: '';
+      position: absolute;
+      border-top:8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid $brand-details;
+      right: 100%;
+      top:50%;
+      margin-top: -8px;
+    }
+    &.tag1,
+    &.tag3{
+      background: $brand-details;//rgba($brand-details,0.8);
+      left: 100px;
+      color:#fff;
+    }
+    &.tag1{
+    }
+    &.tag2{
+      background: #fff;
+      color:#666;
+      left:180px;
+      transition-delay: 0.5s;
+      &:before{
+        border-right-color: #fff;
+      }
+      &.show{
+        transform: translateY(-120%);
+      }
+    }
+    &.tag3{
+      transition-delay: 1s;
+      &.show{
+        transform: translateY(-240%);
+      }
+    }
+  }
   .script3 {
     max-width: 400px;
     top: 50%;
     right: 10%;
     transform: translate(100%, -50%);
-    background: rgba(#000, 0.5);
-    border: 2px solid $brand-details;
     padding: 15px;
     opacity: 0;
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-right: 20px solid $brand-details;
-      right: 100%;
-      top: 50%;
-      margin-top: -20px;
-    }
+    z-index: 6;
     h1 {
-      @include font-size(2.5);
-      color: #fff;
-      text-transform: uppercase;
+      @include font-size(3);
+      color: #666;
       span {
         color: $brand-details;
       }
@@ -271,28 +340,7 @@
   }
   
   .script4 {
-    width: 100%;
-    text-transform: uppercase;
-    color: #fff;
-    top: 50%;
-    background: rgba(#000, 0.5);
-    text-align: center;
-    padding: 30px;
-    transform: translateY(100%);
-    opacity: 0;
-    h1 {
-      @include font-size(3);
-      border-top: 2px dotted $brand-details;
-      border-bottom: 2px dotted $brand-details;
-      padding: 10px 0;
-      max-width: 80%;
-      display: inline-block;
-    }
-    
-    &.show {
-      transform: translateY(-50%);
-      opacity: 1;
-    }
+    z-index: 5;
   }
   
   @keyframes scaleUp {

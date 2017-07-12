@@ -129,7 +129,6 @@
     border-top: 1px solid $brand-details;
     transition: opacity $animationTime, transform $animationTime;
     transform: translateX(-100%);
-    text-transform: uppercase;
     opacity: 0;
     
     &.progress-bar {

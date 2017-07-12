@@ -66,7 +66,6 @@
   .script1 {
     color: #666;
     @include font-size(2);
-    text-transform: uppercase;
     top: 40%;
     left: 0;
     width: 100%;

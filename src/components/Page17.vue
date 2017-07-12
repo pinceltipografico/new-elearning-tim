@@ -105,7 +105,6 @@
     max-width: 38%;
     color:#fff;
     @include font-size(2);
-    text-transform: uppercase;
     top:50%;
     left: 10%;
     transform: translateY(-50%);

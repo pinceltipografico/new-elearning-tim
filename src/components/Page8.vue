@@ -104,7 +104,6 @@
       max-width: 37%;
       opacity: 0;
       h1{
-        text-transform: uppercase;
         color:#666;
       }
       &.show{

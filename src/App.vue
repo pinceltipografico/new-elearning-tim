@@ -62,7 +62,7 @@
      **/
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') || this.$route.name !== 'Hello' && this.$route.name !== null) {
+      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello' && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
       }
       
@@ -74,7 +74,7 @@
       /* eslint-disable no-unused-vars */
       if (this.$route.name === null) {
         this.$router.replace('Hello')
-      } else {
+      } else if (this.$route.name !== 'Hello') {
         var lastPage = Number(this.$route.path.split('page')[1]) || 0
         var hasPage = this.pages.indexOf(lastPage)
         this.pageIndex = (hasPage !== -1) ? hasPage : 1
@@ -251,8 +251,9 @@
       z-index: 2;
       animation: enterBorder $animationTime forwards;
       overflow: hidden;
+      text-transform: uppercase;
       
-      @include responsive('tablet', true){
+      @include responsive('tablet', true) {
         zoom: 0.8;
       }
       
@@ -388,7 +389,7 @@
       opacity: 1;
     }
   }
-
+  
   .shadow {
     width: 80%;
     margin: 0 auto;

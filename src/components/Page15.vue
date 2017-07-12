@@ -23,7 +23,7 @@
       <!-- -->PARA<!-- -->
     </div>
     <div class="script3">
-      <h1>Uma Nova Visão<small>Onde o <span class="red">cliente</span> está sempre no centro</small></h1>
+      <h1>Uma Nova Visão<small>Onde o <span class="red">cliente</span> está sempre no centro<div>Podendo utilizar todos os nossos canais: email, apps, Web, Phone, IVR (interative voice response) o atendimento automático, POS – point of sale, CC </div><div>Onde nossas soluções devem ser inovadoras, Rentáveis, Multichannel, Processo Cross</div></small></h1>
     </div>
     <div class="customer_centric">
       <img src="../assets/svgs/customer_centric.svg" alt="Customer Centric">
@@ -144,9 +144,6 @@
   
   section.page {
     @extend %gradient;
-    * {
-      text-transform: uppercase;
-    }
   }
   
   .image-background {
@@ -230,6 +227,15 @@
       margin-top: 5px;
       padding-top: 5px;
       font-size: 50%;
+      
+      div{
+        display: block;
+        padding: 10px;
+        @include font-size(1.2);
+        text-transform: none;
+        border-left: 2px dotted $brand-details;
+        margin: 10px 0 0 10px;
+      }
     }
     &.show {
       opacity: 1;

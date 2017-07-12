@@ -144,7 +144,6 @@
   }
   
   .script1 {
-    text-transform: uppercase;
     @include font-size(2);
     max-width: 400px;
     color: #666;
@@ -162,7 +161,6 @@
   }
   
   .script2 {
-    text-transform: uppercase;
     @include font-size(2.5);
     max-width: 60%;
     text-align: center;
@@ -182,7 +180,6 @@
   .script4{
     top:50%;
     left: 100px;
-    text-transform: uppercase;
     color:$brand-details;
     background: #fff;
     @include font-size(2);

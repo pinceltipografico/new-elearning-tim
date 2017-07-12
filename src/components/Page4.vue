@@ -9,7 +9,7 @@
           <!-- dna -->
         </div>
         <div class="item" @click="onItemClick(2)">
-          <i class="fa fa-map-marker"></i>
+          <!-- infinite -->
         </div>
         <div class="item" @click="onItemClick(3)">
           <i class="fa fa-sitemap"></i>
@@ -142,7 +142,8 @@
           height: 94%;
           transform: translatex(-50%);
           line-height: 340px;
-          background: darken($brand-details, 40%);
+          background: darken($brand-details, 40%) url("../assets/sprites/infinite.png") no-repeat center;
+          background-size: 85% auto;
         }
         &:nth-of-type(4),
         &:nth-of-type(5) {
@@ -160,6 +161,10 @@
           &:nth-of-type(2) {
             background: $brand-primary url("../assets/sprites/dna.png") no-repeat center;
           }
+          &:nth-of-type(3){
+            background: $brand-primary url("../assets/sprites/infinite.png") no-repeat center;
+            background-size: 85% auto;
+          }
         }
       }
     }
@@ -172,7 +177,6 @@
     max-width: 300px;
     @include font-size(1.8);
     color: #fff;
-    text-transform: uppercase;
     animation: slideText 10s ease-in-out alternate infinite;
   }
   .popup {
@@ -182,7 +186,6 @@
     .inner {
       position: absolute;
       text-align: center;
-      text-transform: uppercase;
       padding: 20px;
       width: 450px;
       height: auto;

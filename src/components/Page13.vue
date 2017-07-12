@@ -242,7 +242,6 @@
       color: #fff;
       width: 100%;
       @include font-size(2);
-      text-transform: uppercase;
       top: 50%;
       left: 0;
       transform: translate(-100%, -50%);
@@ -278,7 +277,6 @@
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
       header,
       footer {
-        text-transform: uppercase;
         text-align: center;
         padding: 10px;
         color: $brand-details;

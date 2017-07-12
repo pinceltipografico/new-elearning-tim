@@ -134,7 +134,6 @@
   
   section.page {
     @extend %gradient;
-    text-transform: uppercase;
   }
   
   .world {

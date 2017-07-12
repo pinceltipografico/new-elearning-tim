@@ -137,7 +137,6 @@
       @include font-size(1.8);
       background: #fff;
       padding: 0 20px 0 100px;
-      text-transform: uppercase;
       transform-origin: 0 0;
       transform: rotate(0deg);
       opacity: 0;

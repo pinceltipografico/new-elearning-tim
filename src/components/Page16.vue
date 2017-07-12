@@ -53,7 +53,6 @@
       background-color: #1E3144;
       color:#fff;
       padding: 20px;
-      text-transform: uppercase;
       width: 100%;
       top:50%;
       @include font-size(2);

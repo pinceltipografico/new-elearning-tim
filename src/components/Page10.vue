@@ -85,7 +85,6 @@
   .script2 {
     @include font-size(2.5);
     color: #fff;
-    text-transform: uppercase;
   }
   
   .script1 {
@@ -98,7 +97,6 @@
     padding: 10px;
     @include font-size(2.5);
     color: #fff;
-    text-transform: uppercase;
     transform: translate(100%, -50%) scale(1) rotate(0deg);
     opacity: 0;
     

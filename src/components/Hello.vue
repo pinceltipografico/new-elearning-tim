@@ -72,7 +72,6 @@
     position: absolute;
     left: 50%;
     bottom: 70px;
-    text-transform: uppercase;
     text-align: center;
     transform: translateX(-50%);
     z-index: 3;

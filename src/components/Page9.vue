@@ -1,10 +1,10 @@
 <template>
   <section class="page">
-    <div class="overlay"></div>
+    <div class="overlay" :class="{'step2':showEnd}"></div>
     <div class="wish">
-      <h1>O que desejamos?</h1>
+      <h1 v-if="!showEnd">O que desejamos?</h1>
     </div>
-    <div class="script1">
+    <div class="script1" v-if="!showEnd">
       <h1 v-on:click="newHtml($event,'1')" data-index="1">
         <div>Nova abordagem de relacionamento</div>
       </h1>
@@ -14,16 +14,14 @@
       <h1 v-on:click="newHtml($event,'3')" data-index="3">
         <div>previsão de seus comportamentos</div>
       </h1>
-      <h1 v-on:click="newHtml($event,'4')" data-index="4">
-        <div>fluxo contínuo, sem quebra na jornada de relacionamento</div>
-      </h1>
-      <h1 v-on:click="newHtml($event,'5')" data-index="5">
-        <div>garantia de seu valor.</div>
-      </h1>
     </div>
-    <div class="script2">
+    <div class="script2" v-if="!showEnd">
+      <div class="image"></div>
       <div class="close" @click="closeItem"><i class="fa fa-times-circle"></i>fechar</div>
       <p></p>
+    </div>
+    <div class="script3 end-tag" :class="{'show':showEnd}">
+      <h1>Estes são apenas alguns exemplos que já incorporamos na <span>nossa maneira de pensar a compra.</span></h1>
     </div>
   </section>
 </template>
@@ -34,10 +32,10 @@
   import { EventBus } from '../events/index'
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT WAS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT WAS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
@@ -58,31 +56,23 @@
           time: 500,
           step: 'show',
           selector: '.script1 h1:nth-child(3)'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1 h1:nth-child(4)'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1 h1:nth-child(5)'
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(null)
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
     },
     /**
-    | ----------------------------------------------
-    * RETURN THE COMPONENT METHODS
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE COMPONENT METHODS
+     | ----------------------------------------------
+     **/
     methods: {
       newHtml ($event, value) {
         var vm = this
-        var parent = this.$el.querySelector('.script1');
+        var parent = this.$el.querySelector('.script1')
         parent.querySelectorAll('h1').forEach(function (h1) {
           vm.removeClass(h1, 'active')
           vm.removeClass(h1, 'to-left')
@@ -94,6 +84,11 @@
         })
         this.addClass(this.$el.querySelector('.script2'), 'show')
         this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
+        this.addClass(this.$el.querySelector('.script2 div.image'), 'style' + value)
+        
+        if (this.viewed.indexOf(value) === -1) {
+          this.viewed.push(value)
+        }
       },
       closeItem: function () {
         var vm = this
@@ -102,24 +97,29 @@
           vm.$el.querySelectorAll('.script1 h1').forEach(function (h1) {
             vm.removeClass(h1, 'active')
             vm.removeClass(h1, 'to-left')
+            setTimeout(function () {
+              if (vm.viewed.length === 3) {
+                vm.showEnd = true
+              }
+            }, 1000)
           })
         }, 500)
       }
     },
     /**
-    | ----------------------------------------------
-    * RETURN COMPONENT DATA
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN COMPONENT DATA
+     | ----------------------------------------------
+     **/
     data: function () {
       return {
         texts: {
           '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico.',
-          '2': 'Cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar.',
-          '3': 'Facilitando a vida do consumidor',
-          '4': 'Ser sempre bem atendido e compreendido',
-          '5': 'Ir muito além do serviço tradicional, pensar novos modelos, formatos e surpreender. '
-        }
+          '2': 'Hoje temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar.',
+          '3': 'Serviços de comércio eletrônico, por exemplo, que extrapolam a simples entrega, em que desde a navegação de pesquisa além do serviço tradicional, pensar novos modelos, formatos e surpreender'
+        },
+        viewed: [],
+        showEnd: false
       }
     }
   }
@@ -132,7 +132,10 @@
   section.page {
     background: url('../assets/backgrounds/page9-1.jpg') no-repeat;
     background-size: cover;
-    text-transform: uppercase;
+  }
+  
+  .overlay.step2{
+    animation: overlay 1.5s forwards;
   }
   
   .wish {
@@ -160,7 +163,7 @@
   .script1 h1 {
     position: absolute;
     top: 0;
-    width: 20%;
+    width: calc(100% / 3);
     height: 100%;
     transform: translateY(-110%);
     opacity: 0.9;
@@ -183,18 +186,19 @@
         border: 1px solid $brand-primary;
         background: #fff;
         margin: 10px auto;
-        color:#666;
+        color: #666;
         max-width: 50%;
         border-radius: 5px;
         padding: 5px;
       }
     }
     
-    @for $i from 1 through 5 {
-      &:nth-of-type(#{$i}) {
+    @for $i from 0 through 2 {
+      &:nth-of-type(#{($i + 1)}) {
         $pct: ($i * 10) * 1%;
         background: darken($brand-details, $pct);
-        left: (($i - 1) * 20) * 1%;
+        $left: percentage(1/3);
+        left: $left * $i;
       }
     }
     
@@ -209,7 +213,9 @@
     &.active,
     &.to-left {
       left: 0;
-      div:after{
+      width: 20%;
+      @include font-size(1);
+      div:after {
         display: none !important;
       }
     }
@@ -230,29 +236,63 @@
     right: 0;
     position: absolute;
     color: #fff;
-    text-transform: uppercase;
     font-size: 20px;
     padding: 20px;
     background: $brand-primary;
     transform: translateX(100%);
-    div{
+    div.close,
+    p {
+      position: relative;
+      z-index: 2;
+      background: $brand-details;
+      padding: 5px 20px;
+      font-weight: bold;
+    }
+    div.close {
       display: flex;
       align-items: center;
       margin-top: 100px;
       cursor: pointer;
+      i {
+        @include font-size(4);
+        color: #fff;
+        margin-right: 10px;
+      }
     }
-    i {
-      @include font-size(4);
-      color: #fff;
-      margin-right: 10px;
-    }
-    p{
+    p {
+      margin: 5px 0;
       padding: 50px;
       @include font-size(3);
+    }
+    div.image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0.6;
+      &.style1 {
+        background: url("../assets/backgrounds/page9-4.jpg") no-repeat;
+        background-size: cover;
+      }
+      &.style2 {
+        background: url("../assets/backgrounds/page9-3.jpg") no-repeat;
+        background-size: cover;
+      }
+      &.style3 {
+        background: url("../assets/backgrounds/page9-2.jpg") no-repeat;
+        background-size: cover;
+      }
     }
     &.show {
       transform: translateX(0%);
     }
+  }
+  
+  .script3{
+    transition-delay: 1s;
   }
   
   @keyframes slideInLeft {
@@ -264,6 +304,23 @@
     to {
       transform: translate3d(-50%, -50%, 0);
       visibility: visible;
+    }
+  }
+  @keyframes overlay {
+    0%{
+      z-index: 4;
+      background: #fff;
+      opacity: 0;
+    }
+    50%{
+      z-index: 4;
+      background: #fff;
+      opacity: 1;
+    }
+    100%{
+      z-index: 4;
+      background: #fff;
+      opacity: 0;
     }
   }
 </style>
