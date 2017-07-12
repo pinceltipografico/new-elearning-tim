@@ -3,8 +3,8 @@
     <div class="script1"
          data-0="opacity:1;"
          data-50="opacity:0;">
-      <h1>Use o scroll do seu mouse para visualizar o conteúdo<span>
-        <i class="fa fa-chevron-right fa-rotate-90"></i></span>
+      <h1>Role as telas para visualizar o conteúdo<span>
+        <img src="~@/assets/sprites/mouse-icon.png" alt="Mouse Icon"></span>
       </h1>
     </div>
     <div class="script2"
@@ -86,6 +86,12 @@
         <h1>E neste desafio, <span>todas as pessoas da organização</span> se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mante-lo.</span>
         </h1></div>
     </div>
+    <ul class="scroll-indicator">
+      <li data-start="opacity:1;" data-420="opacity:0.5;"></li>
+      <li data-start="opacity:0.2;" data-400="opacity:0.5;" data-420="opacity:1;"></li>
+      <li></li>
+      <li></li>
+    </ul>
   </section>
 </template>
 <script type="text/javascript">
@@ -97,30 +103,30 @@
     // component nam
     name: 'Page5',
     /**
-    | ----------------------------------------------
-    * return data of the component
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * return data of the component
+     | ----------------------------------------------
+     **/
     data () {
       return {
         scroller: null
       }
     },
     /**
-    | ----------------------------------------------
-    * WHEN THE COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN THE COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       setTimeout(function () {
         this.scroller = skrollr.init()
       }.bind(this), 1000)
     },
     /**
-    | ----------------------------------------------
-    * WHEN COMPOONENT WAS DESTROYED
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPOONENT WAS DESTROYED
+     | ----------------------------------------------
+     **/
     destroyed () {
       if (this.scroller) {
         this.scroller.destroy()
@@ -134,6 +140,25 @@
   
   section.page {
     @extend %gradient;
+  }
+  
+  .scroll-indicator {
+    position: fixed;
+    z-index: 8;
+    bottom: 10%;
+    right: 2%;
+    width: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      width: 10px;
+      height: 10px;
+      background: $brand-details;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      opacity: 0.2;
+    }
   }
   
   .world {

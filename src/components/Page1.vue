@@ -9,7 +9,7 @@
     </div>
     <div class="script2">
       <h1>
-        <span class="red">Soluções específicas para as nossas necessidades</span>
+        Soluções específicas para as nossas necessidades.
       </h1>
     </div>
     <div class="image-left"></div>
