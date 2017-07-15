@@ -1,7 +1,7 @@
 <template>
   <main id="app">
     <div class="logo">
-      <img src="~@/assets/svgs/logo-01.svg" alt="Tim"/>
+      <span style="width: 80px;"><logo></logo></span>
       <div class="title">
         <h2>Somos a geração <span>CX</span>
           <small id="pageTitle">Modulo:<span>Introdução</span></small>
@@ -39,7 +39,11 @@
 <script>
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from './events/index'
+  const Logo = require('./assets/svgs/logo-01.svg')
   export default {
+    components: {
+      Logo
+    },
     /**
      | ----------------------------------------------
      * RETURN DATA OF COMPOENTN
@@ -49,7 +53,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 4]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 4, 20]
       }
     },
     //
@@ -79,6 +83,7 @@
         var hasPage = this.pages.indexOf(lastPage)
         this.pageIndex = (hasPage !== -1) ? hasPage : 1
         this.$router.replace('page' + this.pages[this.pageIndex])
+        this.$store.commit('toggleIterface', true)
       }
     },
     /**
@@ -399,6 +404,13 @@
     filter: blur(4px);
     transform: translateY(50%);
     opacity: 1;
+  }
+  
+  .has-animation{
+    transition: all $animationTime;
+    &.hide{
+      opacity: 0;
+    }
   }
   
   /**

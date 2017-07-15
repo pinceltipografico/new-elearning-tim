@@ -27,6 +27,11 @@
       color: #fff;
     }
   }
+  &.large{
+    span,i{
+      @include font-size(3);
+    }
+  }
 }
 
 .hidePreloader{

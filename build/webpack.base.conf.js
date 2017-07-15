@@ -48,7 +48,7 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 100000,
@@ -70,6 +70,9 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: 'style!css!sass'
+      }, {
+        test: /\.svg$/,
+        loader: 'vue-svg-loader'
       }
     ]
   }

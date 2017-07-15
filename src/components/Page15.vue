@@ -10,7 +10,8 @@
     </div>
     <div class="script2">
       <h1>abordagem tradicional de mercado
-        <!-- --><small>Não integrada, a oferta é o centro, sem context, reativa</small><!-- -->
+        <!-- -->
+        <small>Não integrada, a oferta é o centro, sem context, reativa</small><!-- -->
       </h1>
     </div>
     <div class="abordages-tradicionais">
@@ -23,10 +24,20 @@
       <!-- -->PARA<!-- -->
     </div>
     <div class="script3">
-      <h1>Uma Nova Visão<small>Onde o <span class="red">cliente</span> está sempre no centro<div>Podendo utilizar todos os nossos canais: email, apps, Web, Phone, IVR (interative voice response) o atendimento automático, POS – point of sale, CC </div><div>Onde nossas soluções devem ser inovadoras, Rentáveis, Multichannel, Processo Cross</div></small></h1>
+      <h1>Uma Nova Visão
+        
+        <small>Onde o <span class="red">cliente</span> está sempre no centro
+          
+          <div>
+            Podendo utilizar todos os nossos canais: email, apps, Web, Phone, IVR (interative voice response) o atendimento automático, POS – point of sale, CC
+          
+          </div>
+          <div>Onde nossas soluções devem ser inovadoras, Rentáveis, Multichannel, Processo Cross</div>
+        </small>
+      </h1>
     </div>
     <div class="customer_centric">
-      <img src="../assets/svgs/customer_centric.svg" alt="Customer Centric">
+      <infographic></infographic>
     </div>
   </section>
 </template>
@@ -35,7 +46,11 @@
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
   var Animations = require('../lib/ChainAnimation')
+  var infographic = require('../assets/svgs/customer_centric.svg')
   export default {
+    components: {
+      infographic
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT WAS READY
@@ -151,7 +166,7 @@
       background: url("../assets/backgrounds/page15-1.jpg") no-repeat;
       background-size: cover;
     }
-    &.step2{
+    &.step2 {
       background: transparent;
     }
   }
@@ -169,14 +184,14 @@
       width: 50%;
       left: 50%;
     }
-    &.step3{
+    &.step3 {
       width: 10%;
-      background: darken($brand-details,30%);
+      background: darken($brand-details, 30%);
     }
   }
   
   .de,
-  .para{
+  .para {
     width: 100px;
     height: 100px;
     background: $brand-secondary;
@@ -189,15 +204,17 @@
     transform: translate(-50%, -50%);
     font-weight: bold;
   }
-  .de{
+  
+  .de {
     left: -50%;
     &.step1 {
       left: 50%;
     }
   }
-  .para{
+  
+  .para {
     left: 125%;
-    &.step1{
+    &.step1 {
       left: 10%;
     }
   }
@@ -214,7 +231,7 @@
   }
   
   .script2,
-  .script3{
+  .script3 {
     max-width: 400px;
     top: 50%;
     transform: translateY(-50%);
@@ -228,7 +245,7 @@
       padding-top: 5px;
       font-size: 50%;
       
-      div{
+      div {
         display: block;
         padding: 10px;
         @include font-size(1.2);
@@ -241,12 +258,14 @@
       opacity: 1;
     }
   }
-  .script2{
+  
+  .script2 {
     right: 10%;
   }
-  .script3{
+  
+  .script3 {
     left: 15%;
-    color:#fff;
+    color: #fff;
     max-width: 250px;
     @include font-size(1.7);
   }
@@ -281,13 +300,14 @@
       }
     }
   }
-  .customer_centric{
+  
+  .customer_centric {
     width: 50%;
-    top:50%;
+    top: 50%;
     right: 5%;
     transform: translateY(-50%);
     opacity: 0;
-    &.show{
+    &.show {
       opacity: 1;
     }
   }
