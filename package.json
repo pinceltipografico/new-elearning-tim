@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "interact.js": "^1.2.8",
     "manifest-revision-webpack-plugin": "^0.4.0",
     "node-sass": "^4.5.3",
     "preloader": "^4.0.2",
