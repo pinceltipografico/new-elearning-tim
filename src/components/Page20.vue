@@ -17,6 +17,9 @@
       <div class="script2">
         <h1>Esse é a <span>jornada</span> que o cliente percorre</h1>
       </div>
+      <div class="buttons" v-if="!started" @click="start">
+        <span>iniciar</span>
+      </div>
     </section>
     <!-- INTRO -->
     <!-- ANIMAÇÕES DE PRECISAR -->
@@ -190,6 +193,7 @@
       return {
         scene: -1,
         smallMenu: false,
+        started: false,
         titles: ['precisar', 'pesquisar', 'escolher', 'comprar', 'receber', 'usar', 'manter', 'recomendar']
       }
     },
@@ -209,9 +213,10 @@
      | ----------------------------------------------
      **/
     mounted () {
-      setTimeout(function () {
-        this.showSvgEls(0, this.startSceneOne)
-      }.bind(this), 2000)
+      var gs = document.querySelectorAll('#graph > g')
+      gs.forEach(function (item) {
+        item.style.opacity = 0
+      })
     },
     /**
      | ----------------------------------------------
@@ -219,8 +224,13 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      Animation.destroyAnimations()
     },
     methods: {
+      start () {
+        this.started = true
+        this.showSvgEls(0, this.startSceneOne)
+      },
       /**
        | ----------------------------------------------
        * SHOW THE SVG ITEN LIST
@@ -809,8 +819,7 @@
         opacity: 1;
       }
     }
-    .start {
-      display: none;
+    .buttons {
       left: 50%;
       bottom: 50px;
       transform: translateX(-50%);
