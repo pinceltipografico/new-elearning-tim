@@ -6,17 +6,21 @@
       </div>
       <h1>Precisar</h1>
       <svg-item id="graph"></svg-item>
+      <span v-if="!smallMenu"></span>
+      <div class="shadow"></div>
     </div>
+    <!-- INTRO -->
     <section class="page intro">
       <div class="script1">
-        <h1>Vamos começar pelo <span>ciclo de vida</span> de um cliente.</h1>
+        <h1>Vamos observar 0 <span>ciclo de vida</span> de um cliente.</h1>
       </div>
-      <div class="buttons start" @click="startSceneOne">
-        <span>Iniciar</span>
-        <i class="fa fa-play"></i>
+      <div class="script2">
+        <h1>Esse é a <span>jornada</span> que o cliente percorre</h1>
       </div>
     </section>
-    <section class="page precisar">
+    <!-- INTRO -->
+    <!-- ANIMAÇÕES DE PRECISAR -->
+    <section class="page precisar" v-if="scene === 0">
       <div class="image-background"></div>
       <div class="white"></div>
       <div class="script1">
@@ -24,13 +28,151 @@
       </div>
       <div class="script2">
         <h1>Quais as reais necessidades de compra dos nossos clientes?</h1>
-        <div class="buttons" style="text-align: center;" @click="startSceneTow"><span> clique e veja um exemplo de precisar</span>
+        <div class="buttons" style="text-align: center;" @click="startSceneTwo"><span> clique e veja um exemplo</span>
         </div>
       </div>
       <div class="script3">
-        <h1>Um guia completo para as novas mães em um app, serviço que vai muito além de um plano.</h1>
+        <h1>Um guia completo para as novas mães em um app, <span>serviço que vai muito além de um plano.</span></h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(1,startSceneThree)">
+        <div>
+          <span class="click">clique aqui</span>
+          <span>Vamos pesquisar?</span>
+          <i class="fa fa-search"></i>
+        </div>
       </div>
     </section>
+    <!-- ANIMAÇÕES DE PRECISAR -->
+    <!-- ANIMAÇÕES DE PESQUISAR -->
+    <section class="page pesquisar" v-if="scene === 1">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>é o momento em que o cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
+        </h1>
+      </div>
+      <div class="script2">
+        <h1>Como promover uma experiencia de pesquisa que seduza o cliente para <span>escolher o nosso produto?</span>
+        </h1>
+        <div class="buttons" @click="startSceneFour">
+          <span>Clique e veja um exemplo</span>
+        </div>
+      </div>
+      <div class="script3">
+        <h1>Imagine um aplicativo de festas. Poder criar um ambiente de interação com seus <span>convidados tão especiais</span>
+        </h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(2,startSceneFive)">
+        <div>
+          <span class="click">clique aqui</span>
+          <span>Vamos escolher?</span>
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE PESQUISAR -->
+    <!-- ANIMAÇÕES DE ESCOLHER -->
+    <section class="page escolher" v-if="scene === 2">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele? </span>
+        </h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(3,startSceneSix)">
+        <div>
+          <span class="click">clique e</span>
+          <span>Me ajude-o a comprar</span>
+          <i class="fa fa-money"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE ESCOLHER -->
+    <!-- ANIMAÇÕES DE COMPRAR -->
+    <section class="page comprar" v-if="scene === 3">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>Fazer com que o cliente sinta que acertou na escolha em adquirir a marca é o <span>passo importante!</span>
+        </h1>
+        <div @click="startSceneSeven">Clique e veja um exemplo</div>
+      </div>
+      <div class="script2">
+        <h1>cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática.</span>
+        </h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(4,startSceneEight)">
+        <div>
+          <span class="click">clique aqui</span>
+          <span>e veja receber</span>
+          <i class="fa fa-paper-plane"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE COMPRAR -->
+    <!-- ANIMAÇÕES DE RECEBER -->
+    <section class="page receber" v-if="scene === 4">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>Como tornar a entrega do produto ou serviço vendido uma <span>experiência única?</span></h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(5, startSceneNine)">
+        <div>
+          <span class="click">clique para</span>
+          <span>ver usar</span>
+          <i class="fa fa-mobile"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE RECEBER -->
+    <!-- ANIMAÇÕES DE USAR -->
+    <section class="page usar" v-if="scene === 5">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a <span>experiencia do usuário?</span></h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(6,startSceneTen)">
+        <div>
+          <span class="click">clique para</span>
+          <span>ver manter</span>
+          <i class="fa fa-thumbs-up"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE USAR -->
+    <!-- ANIMAÇÕES DE MANTER -->
+    <section class="page manter" v-if="scene === 6">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1>Manter o cliente encantado com a marca, mesmo quando ele encontra contratempos ou quando <span>ele precisa de algum suporte</span>
+        </h1>
+      </div>
+      <div class="script2">
+        <h1><span>Agilidade e Eficiência</span> são as palavras importantes para esse momento</h1>
+      </div>
+      <div class="iconButton" @click="showSvgEls(7,startSceneEleven)">
+        <div>
+          <span class="click">clique para</span>
+          <span>recomendar</span>
+          <i class="fa fa-share-alt"></i>
+        </div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE MANTER -->
+    <!-- ANIMAÇÕES DE RECOMENDAR -->
+    <section class="page recomendar" v-if="scene === 7">
+      <div class="image-background"></div>
+      <div class="effects"></div>
+      <div class="script1">
+        <h1> Recomendar é o resultado de toda experiência que o cliente teve ao <span>longo da jornada de contato com o produto ou serviço.</span>
+        </h1>
+        <div @click="startLastScene">Ok. Acho que entendi</div>
+      </div>
+    </section>
+    <!-- ANIMAÇÕES DE RECOMENDAR -->
   </div>
 </template>
 <script type="text/javascript">
@@ -39,70 +181,124 @@
   var svgItem = require('../assets/svgs/infinity.svg')
   var Animation = require('../lib/ChainAnimation')
   export default {
+    /**
+     | ----------------------------------------------
+     * DADOS
+     | ----------------------------------------------
+     **/
     data () {
       return {
+        scene: -1,
         smallMenu: false,
-        titles: ['precisar', 'pesquisar', 'escolher', 'comprar', 'receber', 'usar', 'mater', 'recomendar']
+        titles: ['precisar', 'pesquisar', 'escolher', 'comprar', 'receber', 'usar', 'manter', 'recomendar']
       }
     },
+    
+    /**
+     | ----------------------------------------------
+     * components
+     | ----------------------------------------------
+     **/
     components: {
       svgItem
     },
+    
+    /**
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
-      this.showSvgEls()
-//      this.startSceneOne()
+      setTimeout(function () {
+        this.showSvgEls(0, this.startSceneOne)
+      }.bind(this), 2000)
     },
+    /**
+     | ----------------------------------------------
+     * WHEN COMPONENTS IS DESTROYED
+     | ----------------------------------------------
+     **/
     destroyed () {
     },
     methods: {
-      showSvgEls () {
+      /**
+       | ----------------------------------------------
+       * SHOW THE SVG ITEN LIST
+       | ----------------------------------------------
+       **/
+      showSvgEls (index, callback) {
+        this.smallMenu = false
+        this.scene = -1
         var els = document.querySelectorAll('#graph > g')
         if (!els) {
           return
         }
         els.forEach(function (el, index) {
-          el.setAttribute('class', 'has-animation')
+          el.setAttribute('class', 'svg-group-element')
           el.style.opacity = 0
         })
+        
         var counter = 0
+        var vm = this
         
         function enter () {
           let el = els[counter]
           el.style.opacity = 1
           if (++counter < els.length) {
-            setTimeout(enter, 1000)
+            setTimeout(enter, 75)
           } else {
-            setTimeout(() => {
-              document.querySelector('.start').style.display = 'block'
+            setTimeout(function () {
+              vm.hideEles(index, callback)
             }, 2000)
           }
         }
         
         enter()
       },
-      hideEles (keepIndex) {
-        var h1 = document.querySelector('#graph h1')
+      
+      /**
+       | ----------------------------------------------
+       * HIDE SVG ELEMENTS
+       | ----------------------------------------------
+       **/
+      hideEles (keepIndex, callback) {
+        var vm = this
+        if (callback === void 0) { callback = null }
+        var root = document.querySelector('.svg-container')
+        var h1 = root.querySelector('h1')
+        var span = root.querySelector('span')
+        var g = document.querySelectorAll('#graph > g')
         if (h1) {
           h1.innerText = this.titles[keepIndex]
         }
-        this.smallMenu = true
+        if (span) {
+          span.innerText = 'Por favor clique em ' + this.titles[keepIndex]
+        }
+        g.forEach(function (item, index) {
+          if (index !== keepIndex) {
+            item.style.opacity = 0.2
+            item.onclick = null
+          } else {
+            item.onclick = function () {
+              vm.scene = keepIndex
+              callback()
+            }
+          }
+        })
       },
+      
+      /**
+       | ----------------------------------------------
+       * START SCENE ONE
+       | ----------------------------------------------
+       **/
       startSceneOne (event) {
-        document.querySelector('.start').style.display = 'none'
-        this.hideEles(0)
+        this.smallMenu = true
         var animations = [
           {
-            time: 0,
+            time: 50,
             step: 'show',
             selector: '.precisar'
-          }, {
-            time: 500,
-            step: 'hide',
-            selector: '.script1'
-          }, {
-            time: 500,
-            step: 'hide',
-            selector: '.start'
           }, {
             time: 500,
             step: 'step1',
@@ -148,7 +344,7 @@
         Animation.setAnimations(animations)
         Animation.animationTimeline(null)
       },
-      startSceneTow () {
+      startSceneTwo () {
         var anim = [
           {
             time: 0,
@@ -172,13 +368,330 @@
             step: 'step7',
             selector: '.precisar > .white'
           }, {
-            time: 1000,
+            time: 500,
             step: 'show',
             selector: '.precisar > .script3'
+          }, {
+            time: 3000,
+            step: 'show',
+            selector: '.precisar > .iconButton'
           }
         ]
         Animation.setAnimations(anim)
         Animation.animationTimeline(null)
+      },
+      
+      /**
+       | ----------------------------------------------
+       * SCENE 2
+       | ----------------------------------------------
+       **/
+      startSceneThree () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.pesquisar'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.pesquisar > .effects'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.pesquisar > .script1'
+          }, {
+            time: 3000,
+            step: 'step2',
+            selector: '.pesquisar > .script1'
+          }, {
+            time: 500,
+            step: 'step2',
+            selector: '.pesquisar > .effects'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.pesquisar > .script2'
+          }, {
+            time: 0,
+            step: 'step2',
+            selector: '.pesquisar > .script2'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline(null)
+      },
+      startSceneFour () {
+        var animations = [
+          {
+            time: 50,
+            step: 'step3',
+            selector: '.pesquisar > .script2'
+          }, {
+            time: 250,
+            step: 'step4',
+            selector: '.pesquisar > .script2'
+          }, {
+            time: 250,
+            step: 'step2',
+            selector: '.pesquisar > .image-background'
+          }, {
+            time: 1000,
+            step: 'step3',
+            selector: '.pesquisar > .effects'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.pesquisar > .script3'
+          }, {
+            time: 3000,
+            step: 'show',
+            selector: '.pesquisar > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline(null)
+      },
+      
+      /**
+       | ----------------------------------------------
+       * SCENE 3
+       | ----------------------------------------------
+       **/
+      startSceneFive () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.escolher'
+          }, {
+            time: 250,
+            step: 'show',
+            selector: '.escolher > .script1'
+          }, {
+            time: 3050,
+            step: 'show',
+            selector: '.escolher > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * START SCENE 6
+       | ----------------------------------------------
+       **/
+      startSceneSix () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.comprar'
+          }, {
+            time: 400,
+            step: 'step1',
+            selector: '.comprar > .effects'
+          }, {
+            time: 400,
+            step: 'step1',
+            selector: '.comprar > .script1'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      startSceneSeven () {
+        var animations = [
+          {
+            time: 400,
+            step: 'step1',
+            selector: '.comprar > .script1',
+            reverse: true
+          }, {
+            time: 400,
+            step: 'step2',
+            selector: '.comprar > .effects'
+          }, {
+            time: 40,
+            step: 'step2',
+            selector: '.comprar > .image-background'
+          }, {
+            time: 1000,
+            step: 'step3',
+            selector: '.comprar > .effects'
+          }, {
+            time: 400,
+            step: 'show',
+            selector: '.comprar > .script2'
+          }, {
+            time: 3000,
+            step: 'show',
+            selector: '.comprar > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * SCENE 7
+       | ----------------------------------------------
+       **/
+      startSceneEight () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.receber'
+          }, {
+            time: 400,
+            step: 'show',
+            selector: '.receber > .script1'
+          }, {
+            time: 4000,
+            step: 'show',
+            selector: '.receber > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * scene 8
+       | ----------------------------------------------
+       **/
+      startSceneNine () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.usar'
+          }, {
+            time: 300,
+            step: 'step1',
+            selector: '.usar > .effects'
+          }, {
+            time: 300,
+            step: 'show',
+            selector: '.usar > .script1'
+          }, {
+            time: 3000,
+            step: 'show',
+            selector: '.usar > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * SCENE 9
+       | ----------------------------------------------
+       **/
+      startSceneTen () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.manter'
+          }, {
+            time: 400,
+            step: 'step1',
+            selector: '.manter > .effects'
+          }, {
+            time: 400,
+            step: 'step1',
+            selector: '.manter > .script1'
+          }, {
+            time: 4000,
+            step: 'step1',
+            selector: '.manter > .script1',
+            reverse: true
+          }, {
+            time: 500,
+            step: 'step2',
+            selector: '.manter > .effects'
+          }, {
+            time: 100,
+            step: 'step2',
+            selector: '.manter > .image-background'
+          }, {
+            time: 1000,
+            step: 'step3',
+            selector: '.manter > .effects'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.manter > .script2'
+          }, {
+            time: 2500,
+            step: 'show',
+            selector: '.manter > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * SCENE 10
+       | ----------------------------------------------
+       **/
+      startSceneEleven () {
+        this.smallMenu = true
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.recomendar'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.recomendar > .effects'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.recomendar > .script1'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      /**
+       | ----------------------------------------------
+       * LAST SCENE
+       | ----------------------------------------------
+       **/
+      startLastScene () {
+        this.scene = -1
+        this.smallMenu = false
+        var animations = [
+          {
+            time: 50,
+            step: 'hide',
+            selector: '.intro > .script1'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.intro > .script2'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
       }
     }
   }
@@ -194,6 +707,8 @@
     left: 0;
   }
   
+  //
+  // GRAPH CONTAINER
   .svg-container {
     position: absolute;
     z-index: 3;
@@ -201,6 +716,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-20%, -50%);
+    transition: all $animationTime;
+    
+    .shadow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     
     h1 {
       display: none;
@@ -209,24 +732,38 @@
       left: 50%;
       text-transform: uppercase;
       transform: translate(-50%, -100%);
-      background: $brand-details;
+      background: darken($brand-details, 20%);
       color: #fff;
-      @include font-size(2);
+      @include font-size(1.5);
+      border: 1px solid #fff;
       padding: 0 5px;
       border-radius: 7px;
+    }
+    span {
+      display: block;
+      width: 100%;
+      color: #fff;
+      @include font-size(2);
+      position: absolute;
+      bottom: -80px;
+      padding: 0 15px;
+      text-align: center;
+      text-transform: uppercase;
     }
     
     &.small {
       width: 200px;
-      left: auto;
-      right: 2%;
-      top: auto;
-      bottom: 0;
+      left: 80%;
+      top: 85%;
       .client-image {
         display: none;
       }
       h1 {
         display: block;
+      }
+      .shadow {
+        bottom: 0;
+        max-width: 50%;
       }
     }
     .client-image {
@@ -245,9 +782,12 @@
     }
   }
   
+  //
+  // entrar
   .intro {
     z-index: 2;
-    .script1 {
+    .script1,
+    .script2 {
       max-width: 300px;
       color: #ffffff;
       top: 50%;
@@ -261,6 +801,14 @@
         opacity: 0;
       }
     }
+    .script2 {
+      transform: translateY(-100%);
+      opacity: 0;
+      &.show {
+        transform: translateY(-50%);
+        opacity: 1;
+      }
+    }
     .start {
       display: none;
       left: 50%;
@@ -272,13 +820,64 @@
     }
   }
   
-  .precisar {
+  .iconButton {
+    width: 170px;
+    height: 170px;
+    text-align: center;
+    background: $brand-details;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 2px 4px 4px rgba(#666, 0.4);
+    opacity: 0;
+    cursor: pointer;
+    border: 4px solid #fff;
+    animation: buttonAnimation 1s infinite ease-in-out alternate;
+    &.show {
+      transform: translateY(-50%);
+      opacity: 1;
+    }
+    > div {
+      width: 170px;
+      height: 170px;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 20px;
+    }
+    span {
+      display: block;
+      @include font-size(1.8);
+      border-bottom: 1px solid rgba(#fff, 0.3);
+      padding: 5px 0;
+      &.click {
+        @include font-size(1.2);
+      }
+    }
+    i {
+      @include font-size(4);
+    }
+  }
+  
+  //
+  // scenes defaults
+  .precisar,
+  .pesquisar,
+  .escolher,
+  .comprar,
+  .receber,
+  .usar,
+  .manter,
+  .recomendar {
     opacity: 0;
     z-index: -1;
-    &.show{
+    &.show {
       z-index: 2;
       opacity: 1;
     }
+  }
+  
+  //
+  //scene precisar
+  .precisar {
     .image-background {
       &.step1 {
         background: url("../assets/backgrounds/page20/02.jpg") no-repeat;
@@ -370,21 +969,364 @@
       }
     }
     .script3 {
-      top: 50%;
-      right: 10%;
-      width: 350px;
-      background: $brand-details;
-      color: #fff;
+      top: 30%;
+      left: 0;
+      width: 500px;
+      background: #fff;
+      color: #666;
       transform: translateY(-50%);
-      border-radius: 10px;
       opacity: 0;
+      padding-left: 50px;
       &.show {
         opacity: 1;
       }
       h1 {
         padding: 10px 30px;
-        @include font-size(1.8);
+        @include font-size(2.5);
       }
+    }
+    .iconButton {
+      top: 50%;
+      right: 20%;
+      transform: translateY(-100%);
+    }
+  }
+  
+  //
+  // pesquisar
+  .pesquisar {
+    .image-background {
+      background: url("../assets/backgrounds/page20/03.jpg") no-repeat;
+      background-size: cover;
+      &.step2 {
+        background: url("../assets/backgrounds/page20/04.jpg") no-repeat;
+        background-size: cover;
+      }
+    }
+    .effects {
+      background: rgba(#fff, 0.8);
+      width: 40%;
+      height: 0;
+      top: 0;
+      right: 10%;
+      &.step1 {
+        height: 100%;
+      }
+      &.step2 {
+        width: 100%;
+        right: 0;
+        background: darken($brand-details, 30%);
+      }
+      &.step3 {
+        opacity: 0;
+      }
+    }
+    .script1 {
+      max-width: 400px;
+      top: 50%;
+      right: 15%;
+      color: #666;
+      @include font-size(2);
+      opacity: 0;
+      &.step1 {
+        opacity: 1;
+      }
+      &.step2 {
+        opacity: 0;
+      }
+    }
+    .script2 {
+      max-width: 60%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include font-size(2);
+      color: #fff;
+      border-right: 1px solid #fff;
+      border-left: 1px solid #fff;
+      opacity: 0;
+      visibility: hidden;
+      h1 {
+        padding: 0 40px;
+      }
+      &.step1 {
+        visibility: visible;
+      }
+      &.step2 {
+        opacity: 1;
+      }
+      &.step3 {
+        opacity: 0;
+      }
+      &.step4 {
+        visibility: hidden;
+      }
+    }
+    .script3 {
+      max-width: 550px;
+      top: 35%;
+      left: -100%;
+      background: #fff;
+      transform: translateY(-50%);
+      @include font-size(2);
+      padding: 0 10px 0 70px;
+      color: #666;
+      &.step1 {
+        left: 0;
+      }
+    }
+    .iconButton {
+      top: 65%;
+      left: 15%;
+    }
+  }
+  
+  //
+  // ESCOHER
+  .escolher {
+    .image-background {
+      background: url("../assets/backgrounds/page20/05.jpg") no-repeat;
+      background-size: cover;
+    }
+    .script1 {
+      top: 50%;
+      left: -100%;
+      background: #fff;
+      max-width: 500px;
+      padding: 0 20px 0 50px;
+      @include font-size(1.6);
+      transform: translateY(-50%);
+      color: #666;
+      &.show {
+        left: 0;
+      }
+    }
+    .iconButton {
+      top: 50%;
+      right: 20%;
+    }
+  }
+  
+  //
+  // COMPRAR
+  .comprar {
+    .image-background {
+      background: url("../assets/backgrounds/page20/06.jpg") no-repeat;
+      background-size: cover;
+      &.step2 {
+        background: url('../assets/backgrounds/page20/07.jpg') no-repeat;
+        background-size: cover;
+      }
+    }
+    .effects {
+      width: 35%;
+      height: 0;
+      background: rgba(#fff, 0.9);
+      left: 10%;
+      &.step1 {
+        height: 100%;
+      }
+      &.step2 {
+        width: 100%;
+        left: 0;
+        background: #fff;
+      }
+      &.step3 {
+        opacity: 0;
+      }
+    }
+    .script1 {
+      max-width: 30%;
+      @include font-size(2);
+      color: #666;
+      left: 12%;
+      top: 50%;
+      opacity: 0;
+      > div {
+        border: 1px solid $brand-details;
+        padding: 5px;
+        animation: buttonAnimation 2s infinite ease-in-out alternate;
+        cursor: pointer;
+      }
+      &.step1 {
+        opacity: 1;
+      }
+    }
+    .script2 {
+      background: #fff;
+      max-width: 500px;
+      @include font-size(2);
+      color: #666;
+      padding: 0 50px 0 20px;
+      top: 50%;
+      right: -100%;
+      transform: translateY(-50%);
+      &.show {
+        right: 0;
+      }
+    }
+    .iconButton {
+      top: 50%;
+      left: 10%;
+    }
+  }
+  
+  //
+  // RECEBER
+  .receber {
+    .image-background {
+      background: url("../assets/backgrounds/page20/08.jpg") no-repeat;
+      background-size: cover;
+    }
+    .script1 {
+      top: 50%;
+      max-width: 600px;
+      background: #fff;
+      color: #666;
+      @include font-size(2);
+      padding: 0 20px 0 50px;
+      transform: translate(-100%, -50%);
+      &.show {
+        transform: translate(0%, -50%);
+      }
+    }
+    .iconButton {
+      top: 50%;
+      right: 15%;
+    }
+  }
+  
+  //
+  // USAR
+  .usar {
+    .image-background {
+      background: url("../assets/backgrounds/page20/09.jpg") no-repeat;
+      background-size: cover;
+    }
+    .effects {
+      width: 35%;
+      background: rgba(#fff, 0.8);
+      height: 0;
+      left: 5%;
+      &.step1 {
+        height: 100%;
+      }
+    }
+    .script1 {
+      color: #666;
+      @include font-size(2);
+      max-width: 30%;
+      top: 50%;
+      left: 8%;
+      opacity: 0;
+      &.show {
+        opacity: 1;
+      }
+    }
+    .iconButton {
+      top: 50%;
+      left: 60%;
+    }
+  }
+  
+  //
+  // MANTER
+  .manter {
+    .image-background {
+      background: url("../assets/backgrounds/page20/10.jpg") no-repeat;
+      background-size: cover;
+      &.step2 {
+        background: url("../assets/backgrounds/page20/11.jpg") no-repeat;
+        background-size: cover;
+      }
+    }
+    .effects {
+      width: 0;
+      height: 30%;
+      top: 50%;
+      background: #fff;
+      &.step1 {
+        width: 100%;
+      }
+      &.step2 {
+        height: 100%;
+        top: 0;
+      }
+      &.step3 {
+        opacity: 0;
+      }
+    }
+    .script1 {
+      max-width: 500px;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      @include font-size(1.5);
+      color: #666;
+      opacity: 0;
+      &.step1 {
+        opacity: 1;
+      }
+    }
+    .script2 {
+      max-width: 500px;
+      @include font-size(1.8);
+      top: 30%;
+      transform: translateY(-150%);
+      left: 20%;
+      color: #666;
+      opacity: 0;
+      &.show {
+        transform: translateY(-50%);
+        opacity: 1;
+      }
+    }
+    .iconButton {
+      top: 50%;
+      left: 20%;
+    }
+  }
+  
+  //
+  // RECOMENDAR
+  .recomendar {
+    .image-background {
+      background: url("../assets/backgrounds/page20/12.jpg") no-repeat;
+      background-size: cover;
+    }
+    .script1 {
+      max-width: 35%;
+      @include font-size(2);
+      top: 50%;
+      left: 7%;
+      transform: translateY(-50%);
+      color: #666;
+      opacity: 0;
+      &.step1 {
+        opacity: 1;
+      }
+      > div {
+        border: 1px solid $brand-details;
+        padding: 5px;
+        animation: buttonAnimation 2s infinite ease-in-out alternate;
+        cursor: pointer;
+      }
+    }
+    .effects {
+      width: 40%;
+      height: 0;
+      left: 5%;
+      background: rgba(#fff, 0.8);
+      &.step1 {
+        height: 100%;
+      }
+    }
+  }
+  
+  @keyframes buttonAnimation {
+    to {
+      background: darken($brand-details, 15%);
+      color: #fff;
     }
   }
 </style>

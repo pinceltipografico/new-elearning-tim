@@ -406,8 +406,9 @@
     opacity: 1;
   }
   
-  .has-animation{
+  .svg-group-element{
     transition: all $animationTime;
+    cursor: pointer;
     &.hide{
       opacity: 0;
     }
