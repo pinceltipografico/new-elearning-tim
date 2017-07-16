@@ -211,7 +211,7 @@
   }
   
   .image-market {
-    background: url("../assets/backgrounds/page5-1.jpg") no-repeat;
+    background: url("../assets/backgrounds/page5/01.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
   }
@@ -230,7 +230,7 @@
   }
   
   .image-tec {
-    background: #fff url("../assets/backgrounds/page5-3.jpg") no-repeat center left;
+    background: #fff url("../assets/backgrounds/page5/03.jpg") no-repeat center left;
     background-size: 60% auto;
     background-blend-mode: multiply;
     opacity: 0;
@@ -261,7 +261,7 @@
   }
   
   .impactos {
-    background: url("../assets/backgrounds/page5-4.jpg") no-repeat;
+    background: url("../assets/backgrounds/page5/05.jpg") no-repeat;
     background-size: cover;
     transform: translateX(100%);
     
@@ -281,7 +281,7 @@
   }
   
   .adaptar {
-    background: url("../assets/backgrounds/page5-5.jpg") no-repeat;
+    background: url("../assets/backgrounds/page5/06.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
     .script7 {
@@ -304,7 +304,7 @@
   }
   
   .organization {
-    background: url("../assets/backgrounds/page5-6.jpg") no-repeat;
+    background: url("../assets/backgrounds/page5/07.jpg") no-repeat;
     opacity: 0;
     div {
       position: absolute;

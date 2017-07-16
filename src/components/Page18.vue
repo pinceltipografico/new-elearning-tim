@@ -108,14 +108,14 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page18-2.jpg") no-repeat;
+    background: url("../assets/backgrounds/page18/02.jpg") no-repeat;
     background-size: cover;
     &.step2 {
-      background: url("../assets/backgrounds/page18-1.jpg") no-repeat;
+      background: url("../assets/backgrounds/page18/01.jpg") no-repeat;
       background-size: cover;
     }
     &.step3 {
-      background: url("../assets/backgrounds/page18-3.jpg") no-repeat;
+      background: url("../assets/backgrounds/page18/03.jpg") no-repeat;
       background-size: cover;
     }
   }

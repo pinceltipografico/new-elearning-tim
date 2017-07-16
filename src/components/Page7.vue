@@ -165,7 +165,7 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page7-1.jpg") no-repeat;
+    background: url("../assets/backgrounds/page7/01.jpg") no-repeat;
     background-size: cover;
   }
   

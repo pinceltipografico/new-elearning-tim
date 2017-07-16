@@ -146,14 +146,14 @@
   @import "../scss/mixins";
   
   section.page {
-    background: url("../assets/backgrounds/page-1.jpg") no-repeat;
+    background: url("../assets/backgrounds/page1/01.jpg") no-repeat;
     background-size: cover;
   }
   
   .image-full {
     width: 100%;
     height: 100%;
-    background: url("../assets/backgrounds/page-1-4.jpg") no-repeat;
+    background: url("../assets/backgrounds/page1/04.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
     &.show {
@@ -163,7 +163,7 @@
       opacity: 0;
     }
     &.step3{
-      background: url("../assets/backgrounds/page-1-5.jpg") no-repeat;
+      background: url("../assets/backgrounds/page1/06.jpg") no-repeat;
       background-size: cover;
       z-index: 5;
     }
@@ -172,7 +172,7 @@
   .image-right {
     width: 50%;
     height: 100%;
-    background: url("../assets/backgrounds/page-1-2.png") no-repeat;
+    background: url("../assets/backgrounds/page1/03.png") no-repeat;
     background-size: cover;
     right: 0;
     transform: translateX(100%);

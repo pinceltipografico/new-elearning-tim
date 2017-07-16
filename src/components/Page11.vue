@@ -5,7 +5,7 @@
       <h1>Mas o que é?</h1>
     </div>
     <div class="image">
-      <img src="../assets/backgrounds/page11-1.png" alt="O que é Customer Experiencie">
+      <img src="../assets/backgrounds/page11/01.png" alt="O que é Customer Experiencie">
     </div>
   </section>
 </template>

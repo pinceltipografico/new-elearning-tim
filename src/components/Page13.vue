@@ -184,7 +184,7 @@
   
   section.page {
     &.step1 {
-      background: url("../assets/backgrounds/page13-1.jpg") no-repeat;
+      background: url("../assets/backgrounds/page13/01.jpg") no-repeat;
       background-size: cover;
     }
     &.todo {

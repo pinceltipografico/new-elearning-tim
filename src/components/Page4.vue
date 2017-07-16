@@ -94,7 +94,7 @@
   .menu {
     width: 845px;
     height: 800px;
-    background: url("../assets/backgrounds/page4-1.png") no-repeat;
+    background: url("../assets/backgrounds/page4/01.png") no-repeat;
     right: 0;
     bottom: 0;
     animation: slideImage 10s infinite ease-in-out;

@@ -158,23 +158,23 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page2-1.jpg") no-repeat;
+    background: url("../assets/backgrounds/page2/01.jpg") no-repeat;
     background-size: cover;
     &.step1 {
-      background: url("../assets/backgrounds/page2-2.jpg") no-repeat;
+      background: url("../assets/backgrounds/page2/02.jpg") no-repeat;
       background-size: cover;
     }
     &.step2 {
-      background: url("../assets/backgrounds/page2-4.png") no-repeat;
+      background: url("../assets/backgrounds/page2/03.png") no-repeat;
       background-size: cover;
     }
     &.step3 {
-      background: $brand-primary url("../assets/backgrounds/page2-5.jpg") no-repeat bottom center;
+      background: $brand-primary url("../assets/backgrounds/page2/04.jpg") no-repeat bottom center;
       background-size: 100% auto;
       background-blend-mode: multiply;
     }
     &.step4 {
-      background: url("../assets/backgrounds/page2-6.jpg") no-repeat;
+      background: url("../assets/backgrounds/page2/06.jpg") no-repeat;
       background-size: cover;
     }
   }

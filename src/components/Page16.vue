@@ -4,7 +4,7 @@
       <h1>você também faz parte desta <span>mudança!</span></h1>
     </div>
     <div class="image">
-      <img src="../assets/backgrounds/page16-1.png" alt="Person">
+      <img src="../assets/backgrounds/page16/01.png" alt="Person">
     </div>
   </section>
 </template>
@@ -36,7 +36,7 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   section.page {
-    background: url("../assets/backgrounds/page-6-1.png") no-repeat;
+    background: url("../assets/backgrounds/page1/07.png") no-repeat;
     background-size: cover;
     
     .image {

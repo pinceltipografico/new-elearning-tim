@@ -3,8 +3,8 @@
     <div class="image-background"></div>
     <div class="white"></div>
     <div class="image">
-      <img src="../assets/backgrounds/page12-3.png" alt="">
-      <img src="../assets/backgrounds/page12-2.png"/>
+      <img src="../assets/backgrounds/page12/04.png" alt="">
+      <img src="../assets/backgrounds/page12/03.png"/>
     </div>
     <div class="icon-1"><img src="../assets/sprites/celphone-page12.jpg" alt=""></div>
     <div class="icon-2"><img src="../assets/sprites/note-page12.png" alt=""></div>

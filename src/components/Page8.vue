@@ -66,11 +66,11 @@
   
   section.page {
     div.image-background {
-      background: url("../assets/backgrounds/page8-1.jpg") no-repeat;
+      background: url("../assets/backgrounds/page8/01.jpg") no-repeat;
       background-size: cover;
       
       &.step2{
-        background: url('../assets/backgrounds/page8-2.jpg') no-repeat;
+        background: url('../assets/backgrounds/page8/02.jpg') no-repeat;
         background-size: cover;
       }
     }

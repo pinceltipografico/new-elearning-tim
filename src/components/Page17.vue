@@ -74,11 +74,11 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   .image-background{
-    background: url("../assets/backgrounds/page17-1.jpg") no-repeat;
+    background: url("../assets/backgrounds/page17/01.jpg") no-repeat;
     background-size: cover;
     
     &.step1{
-      background: url("../assets/backgrounds/page17-2.jpg") no-repeat;
+      background: url("../assets/backgrounds/page17/02.jpg") no-repeat;
       background-size: cover;
     }
   }

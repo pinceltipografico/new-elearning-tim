@@ -22,7 +22,7 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   section.page{
-    background: url("../assets/backgrounds/page-6-1.png") no-repeat;
+    background: url("../assets/backgrounds/page1/07.png") no-repeat;
     background-size: cover;
   }
   .image{

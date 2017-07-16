@@ -163,7 +163,7 @@
   
   .image-background {
     &.step1 {
-      background: url("../assets/backgrounds/page15-1.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/01.jpg") no-repeat;
       background-size: cover;
     }
     &.step2 {

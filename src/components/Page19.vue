@@ -52,7 +52,7 @@
     position: relative;
     width: 426px;
     height: 650px;
-    background: url("../assets/backgrounds/page19-1.png") no-repeat;
+    background: url("../assets/backgrounds/page19/01.png") no-repeat;
     top: 50%;
     left: 10%;
     transform: translateY(-55%);

@@ -130,7 +130,7 @@
   @import "~susy/sass/susy";
   
   section.page {
-    background: url('../assets/backgrounds/page9-1.jpg') no-repeat;
+    background: url('../assets/backgrounds/page9/01.jpg') no-repeat;
     background-size: cover;
   }
   
@@ -274,15 +274,15 @@
       z-index: 1;
       opacity: 0.6;
       &.style1 {
-        background: url("../assets/backgrounds/page9-4.jpg") no-repeat;
+        background: url("../assets/backgrounds/page9/04.jpg") no-repeat;
         background-size: cover;
       }
       &.style2 {
-        background: url("../assets/backgrounds/page9-3.jpg") no-repeat;
+        background: url("../assets/backgrounds/page9/03.jpg") no-repeat;
         background-size: cover;
       }
       &.style3 {
-        background: url("../assets/backgrounds/page9-2.jpg") no-repeat;
+        background: url("../assets/backgrounds/page9/02.jpg") no-repeat;
         background-size: cover;
       }
     }
