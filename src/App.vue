@@ -53,7 +53,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 4, 20, 30]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 4, 20, 30, 4, 31]
       }
     },
     //
@@ -406,42 +406,43 @@
     opacity: 1;
   }
   
-  .svg-group-element{
+  .svg-group-element {
     transition: all $animationTime;
     cursor: pointer;
-    &.hide{
+    &.hide {
       opacity: 0;
     }
   }
-
-  .message{
+  
+  .message {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(#000,0.5);
-    .inner{
+    background: rgba(#000, 0.5);
+    .inner {
       background: $brand-details;
       border: 4px solid #fff;
       border-radius: 50%;
       position: absolute;
-      top:50%;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
-      span{
+      transform: translate(-50%, -50%);
+      span {
         display: table-cell;
         width: 200px;
         height: 200px;
         padding: 20px;
         vertical-align: middle;
         @include font-size(1.7);
-        color:#fff;
+        color: #fff;
         text-transform: uppercase;
         text-align: center;
       }
     }
   }
+  
   /**
   * ----------------------------------------------
   * ANIMATIONS FOR V-IF OR V-FOR
