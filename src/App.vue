@@ -457,6 +457,27 @@
     opacity: 0
   }
   
+  .exit-scene-enter-active,
+  .exit-scene-leave-active{
+    transition: all $animationTime;
+  }
+  .exit-scene-enter,
+  .exit-scene-leave-to{
+    transform: translateX(-100%);
+  }
+  .enter-scene-enter-active,
+  .enter-scene-leave-active{
+    transition: all $animationTime;
+  }
+  .enter-scene-enter{
+    transform: translateX(100%);
+    top:0;
+  }
+  .enter-scene-leave-to{
+    transform: translateX(0%);
+    top:0;
+  }
+  
   //
   // ENTER
   .enter-enter-active, .enter-leave-active {

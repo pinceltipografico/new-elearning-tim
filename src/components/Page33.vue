@@ -1,42 +1,97 @@
 <template>
   <div class="outer-page">
-    <section class="page gradient page-menu" v-if="scene === -1">
-      <h1>Clique em cada uma das diretrizes pra visualizá-las</h1>
-      <div class="menu">
-        <div class="tim-icon">
-          <div></div>
-          <div></div>
-          <div></div>
+    <transition name="exit-scene">
+      <section class="page gradient page-menu" v-if="scene === -1">
+        <h1>Clique em cada uma das diretrizes pra visualizá-las</h1>
+        <div class="menu">
+          <div class="tim-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="items">
+            <div @click="startSceneOne">
+              <span>COMUNICAÇÃO</span>
+              <i class="fa fa-wechat"></i>
+            </div>
+            <div>
+              <span>INTERAÇÃO</span>
+              <i class="fa fa-navicon"></i>
+            </div>
+            <div>
+              <span>MONITORAMENTO</span>
+              <i class="fa fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="shadow"></div>
         </div>
-        <div class="items">
-          <div>
-            <span>COMUNICAÇÃO</span>
-            <i class="fa fa-wechat"></i>
-          </div>
-          <div>
-            <span>INTERAÇÃO</span>
-            <i class="fa fa-navicon"></i>
-          </div>
-          <div>
-            <span>MONITORAMENTO</span>
-            <i class="fa fa-search-plus"></i>
-          </div>
+      </section>
+    </transition>
+    <transition name="enter-scene">
+      <section class="page comunicacao" v-if="scene === 0">
+        <div class="image-background"></div>
+        <div class="effects"></div>
+        <div class="script1">
+          <h1>Comportamentos que devemos incorporar, estimular e mobilizar.</h1>
+          <ul>
+            <li v-for="item in itemsComunicacao">{{item}}</li>
+          </ul>
         </div>
-        <div class="shadow"></div>
-      </div>
-    </section>
+      </section>
+    </transition>
   </div>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-trailing-spaces */
+  /* eslint-disable no-unused-vars */
+  var Animations = require('../lib/ChainAnimation')
   export default {
     data () {
       return {
-        scene: -1
+        scene: -1,
+        itemsComunicacao: ['Usar a persona TIM', 'Comunicar de forma clara e transparente', 'Falar a língua do cliente', 'Se mudar, tem que comunicar', 'Encantar o cliente.']
       }
     },
-    mounted () {
-    },
+    mounted () {},
     destroyed () {
+    },
+    methods: {
+      startSceneOne () {
+        this.scene = 0
+        var animations = [
+          {
+            time: 1000,
+            step: 'step1',
+            selector: '.comunicacao > .effects'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.comunicacao > .script1'
+          }, {
+            time: 1500,
+            step: 'enter',
+            selector: '.comunicacao > .script1 > ul li:nth-of-type(1)'
+          }, {
+            time: 400,
+            step: 'enter',
+            selector: '.comunicacao > .script1 > ul li:nth-of-type(2)'
+          }, {
+            time: 400,
+            step: 'enter',
+            selector: '.comunicacao > .script1 > ul li:nth-of-type(3)'
+          }, {
+            time: 400,
+            step: 'enter',
+            selector: '.comunicacao > .script1 > ul li:nth-of-type(4)'
+          }, {
+            time: 400,
+            step: 'enter',
+            selector: '.comunicacao > .script1 > ul li:nth-of-type(5)'
+          }
+        ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline()
+      }
     }
   }
 </script>
@@ -141,6 +196,54 @@
         &:hover {
           background: darken($brand-secondary, 30%);
         }
+      }
+    }
+  }
+  
+  section.comunicacao {
+    .image-background {
+      background: url("../assets/backgrounds/page33/01.jpg") no-repeat;
+      background-size: cover;
+    }
+    .effects {
+      width: 40%;
+      height: 0;
+      background: #fff;
+      left: 10%;
+      &.step1 {
+        height: 100%;
+      }
+    }
+    .script1 {
+      top: 50%;
+      max-width: 35%;
+      left: 15%;
+      transform: translateY(-50%);
+      opacity: 0;
+      h1 {
+        color: #666;
+        @include font-size(2);
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 20px;
+        li {
+          @include font-size(1.5);
+          margin-bottom: 10px;
+          color: $brand-details;
+          font-weight: bold;
+          transform: translateX(100%);
+          opacity: 0;
+          transition: all $animationTime;
+          &.enter {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      }
+      &.step1 {
+        opacity: 1;
       }
     }
   }
