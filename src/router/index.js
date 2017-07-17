@@ -22,6 +22,7 @@ import Page19 from '@/components/Page19'
 import Page20 from '@/components/Page20'
 import Page30 from '@/components/Page30'
 import Page31 from '@/components/Page31'
+import Page33 from '@/components/Page33'
 
 Vue.use(Router)
 
@@ -138,6 +139,11 @@ const router = new Router({
       name: 'page31',
       meta: {pageTitle: 'Módulo:<span>Jornanda do Cliente</span>'},
       component: Page31
+    }, {
+      path: '/page33',
+      name: 'page33',
+      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      component: Page33
     }
   ]
 })
