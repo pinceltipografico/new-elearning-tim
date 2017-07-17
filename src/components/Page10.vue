@@ -2,7 +2,7 @@
   <section class="page">
     <div class="overlay"></div>
     <div class="infographic">
-      <img src="~@/assets/svgs/infographic_page10.svg" alt="Infographic">
+      <info-graphic></info-graphic>
     </div>
     <div class="script1">
       <h1>
@@ -19,13 +19,17 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
+  var infoGraphic = require('../assets/svgs/infographic_page10.svg')
   import { EventBus } from '../events/index'
   export default {
+    components: {
+      infoGraphic
+    },
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
