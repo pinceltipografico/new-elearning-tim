@@ -27,7 +27,7 @@ export default class AssetsLoader {
         img.src = item
       })
       
-      function onImageLoad () {
+      function onImageLoad (e) {
         counter++
         progress({progress: pct * counter})
         if (counter === total) {

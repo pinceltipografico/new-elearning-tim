@@ -66,7 +66,7 @@
      **/
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') && this.$route.name !== 'Hello' && this.$route.name !== null) {
+      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
       }
       
@@ -120,6 +120,9 @@
        | ----------------------------------------------
        **/
       nextPage: function () {
+        if (this.$route.name === 'explain') {
+          return
+        }
         if (this.pageIndex < this.pages.length - 1) {
           this.pageIndex++
           var page = this.pages[this.pageIndex]
@@ -132,6 +135,9 @@
        | ----------------------------------------------
        **/
       prevPage: function () {
+        if (this.$route.name === 'explain') {
+          return
+        }
         if (this.pageIndex > 0) {
           this.pageIndex--
           var page = this.pages[this.pageIndex]
@@ -176,6 +182,11 @@
   @import "scss/mixins";
   @import "scss/commons";
   @import "../node_modules/font-awesome/scss/font-awesome";
+  
+  body:after {
+    display: none;
+    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png");
+  }
   
   main {
     position: fixed;
@@ -458,24 +469,28 @@
   }
   
   .exit-scene-enter-active,
-  .exit-scene-leave-active{
+  .exit-scene-leave-active {
     transition: all $animationTime;
   }
+  
   .exit-scene-enter,
-  .exit-scene-leave-to{
+  .exit-scene-leave-to {
     transform: translateX(-100%);
   }
+  
   .enter-scene-enter-active,
-  .enter-scene-leave-active{
+  .enter-scene-leave-active {
     transition: all $animationTime;
   }
-  .enter-scene-enter{
+  
+  .enter-scene-enter {
     transform: translateX(100%);
-    top:0;
+    top: 0;
   }
-  .enter-scene-leave-to{
+  
+  .enter-scene-leave-to {
     transform: translateX(0%);
-    top:0;
+    top: 0;
   }
   
   //
