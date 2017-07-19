@@ -30,7 +30,6 @@ exports.cssLoaders = function (options) {
           sourceMap: options.sourceMap
         })
       })
-      console.log(loaders)
     }
     
     // Extract CSS when that option is specified
