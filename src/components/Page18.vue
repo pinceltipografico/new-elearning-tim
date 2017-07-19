@@ -3,7 +3,7 @@
     <div class="image-background"></div>
     <div class="effects"></div>
     <div class="script1">
-      <h1>Proporcionar boas <span>experiências</span></h1>
+      <h1>proporcionando boas <span>experiências</span></h1>
     </div>
     <div class="script2">
       <h1>simplificando e potencializando esta experiência</h1>
@@ -12,7 +12,7 @@
       <h1>todos os colaboradores da <span class="red">TIM</span> <br/>vivendo a <span>experiência CX</span></h1>
     </div>
     <div class="script4">
-      <h1>É o que chamaremos de CreW Experience</h1>
+      <h1>é o que chamamos de Crew Experience</h1>
     </div>
   </section>
 </template>
@@ -36,11 +36,11 @@
           step: 'show',
           selector: '.script1'
         }, {
-          time: 2500,
+          time: 4000,
           step: 'step1',
           selector: '.effects'
         }, {
-          time: 500,
+          time: 400,
           step: 'hide',
           selector: '.script1'
         }, {
@@ -56,7 +56,7 @@
           step: 'step2',
           selector: '.image-background'
         }, {
-          time: 3000,
+          time: 4500,
           step: 'hide',
           selector: '.script2'
         }, {
@@ -68,7 +68,7 @@
           step: 'show',
           selector: '.script3'
         }, {
-          time: 3000,
+          time: 4500,
           step: 'step3',
           selector: '.effects',
           reverse: true

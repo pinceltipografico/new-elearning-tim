@@ -26,7 +26,7 @@
     background-size: cover;
   }
   .image{
-    width: 687px;
+    width: 100%;
     height: 600px;
     background: url("../assets/backgrounds/page31/02.png") no-repeat;
     bottom:0;

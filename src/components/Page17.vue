@@ -6,7 +6,7 @@
       <h1>valorizamos aspectos diferentes</h1>
     </div>
     <div class="script2 end-tag">
-      <h1>surpreenda! provocando uma <br/><span>satisfação inesquecível.</span></h1>
+      <h1><span>Surpreender</span></h1>
     </div>
   </section>
 </template>
@@ -40,7 +40,7 @@
           step: 'show',
           selector: '.script1'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'step2',
           selector: '.effects'
         }, {

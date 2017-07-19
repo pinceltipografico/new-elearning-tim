@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="script1">
-      <h1>clique nos icones e Veja o que <span>apresentaremos</span> para você:</h1>
+      <h1>clique no <span>menu:</span></h1>
     </div>
     <transition name="enter">
       <div class="popup" v-if="showPopup">
@@ -55,9 +55,9 @@
       return {
         text: '',
         texts: [
-          'Porquês das Mudanças e Conceito de CX (Customer Experience)',
+          'O Porquê das mudanças e conceito de CX (Customer Experience)',
           'DNA CX TIM',
-          'Jornada do Cliente',
+          'Ciclo de Vida do Cliente',
           'Diretrizes de Customer Experience',
           'Benefícios da nossa mudança'
         ],

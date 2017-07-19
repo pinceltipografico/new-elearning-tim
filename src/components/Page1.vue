@@ -4,12 +4,12 @@
     <div class="blue-left"></div>
     <div class="script1">
       <h1>
-        Queremos mais <span>velocidade</span> e <span>autonomia.</span>
+        Queremos mais <span>velocidade</span> e <span>autonomia</span>
       </h1>
     </div>
     <div class="script2">
       <h1>
-        Soluções específicas para as nossas necessidades.
+        Soluções específicas para as nossas necessidades
       </h1>
     </div>
     <div class="image-left"></div>
@@ -23,7 +23,7 @@
     </div>
     <div class="script4 end-tag">
       <h1>
-        <span>Uma geração que quer ser </span>ouvida e atendida.</h1>
+        <span>Uma geração que quer ser </span>ouvida e atendida</h1>
     </div>
   </section>
 </template>
@@ -52,7 +52,7 @@
           step: 'show',
           selector: '.blue-left'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'large',
           selector: '.blue-left'
         }, {

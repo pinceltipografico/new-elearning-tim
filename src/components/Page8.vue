@@ -33,7 +33,7 @@
           step: 'show',
           selector: '.script1'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'step1',
           selector: '.effect'
         }, {

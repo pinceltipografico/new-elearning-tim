@@ -6,24 +6,24 @@
       <h1>Adapte-se a esse <span>contexto!</span></h1>
     </div>
     <div class="script2">
-      <h1>A TIM está se movimentando para esta <span>mudança!</span></h1>
+      <h1>A TIM está se movimentando para esta <span>mudança</span></h1>
       <div class="shadow"></div>
     </div>
     <div class="script3">
       <h1>
         <strong>Empresa</strong><br/><strong>Colaboradores</strong><br/><strong>Clientes</strong>
         <br/>
-        <span>Uma única perspectiva.</span></h1>
+        <span>Uma única perspectiva</span></h1>
       <div class="effect"></div>
       <div class="effect"></div>
       <div class="effect"></div>
       <div class="effect"></div>
     </div>
     <div class="script4">
-      <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo.</h1>
+      <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo</h1>
     </div>
     <div class="script5 end-tag">
-      <h1>Somos a <span>Geração CX TIM.</span></h1>
+      <h1>Somos a <span>Geração CX TIM</span></h1>
     </div>
   </section>
 </template>
@@ -40,7 +40,7 @@
     **/
     mounted () {
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setTotalProgress', 25000)
       var animations = [
         {
           time: 500,
@@ -51,7 +51,7 @@
           step: 'step1',
           selector: '.script1'
         }, {
-          time: 2500,
+          time: 4500,
           step: 'step2',
           selector: '.script1'
         }, {
@@ -91,7 +91,7 @@
           step: 'step2',
           selector: '.script3'
         }, {
-          time: 2500,
+          time: 4500,
           step: 'step2',
           selector: '.script3',
           reverse: true
@@ -124,7 +124,7 @@
           step: 'step1',
           selector: '.script4'
         }, {
-          time: 2500,
+          time: 4500,
           step: 'step2',
           selector: '.script4'
         }, {

@@ -2,7 +2,6 @@
   <section class="page">
     <div class="overlay"></div>
     <div class="infographic">
-      <info-graphic></info-graphic>
     </div>
     <div class="script1">
       <h1>
@@ -19,12 +18,8 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
-  var infoGraphic = require('../assets/svgs/infographic_page10.svg')
   import { EventBus } from '../events/index'
   export default {
-    components: {
-      infoGraphic
-    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT IS READY
@@ -75,10 +70,13 @@
   }
   
   .infographic {
-    width: 550px;
+    width: 450px;
+    height: 500px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
+    background: url("../assets/backgrounds/page10/01.png") no-repeat;
+    background-size: 100% auto;
     
     &.show {
       transform: translate(-50%, -50%) scale(1);

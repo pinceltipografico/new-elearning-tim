@@ -27,7 +27,7 @@
     </div>
     <div class="script5">
       <h1>
-        Arraste as palavras<br/>até a <span>sacola de compras</span>
+        Arraste três palavras até a <span>sacola de compras</span>
       </h1>
     </div>
     <div class="script6">
@@ -48,9 +48,6 @@
             </div>
           </transition-group>
         </draggable>
-      </div>
-      <div class="buttons">
-        <span>Ok. Terminei!</span>
       </div>
     </div>
   </section>
@@ -338,7 +335,7 @@
       left: 10%;
       top: 50%;
       transform: translateY(-50%);
-      max-width: 400px;
+      max-width: 550px;
       .elements {
         display: inline-block;
         width: auto;

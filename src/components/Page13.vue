@@ -2,7 +2,7 @@
   <div class="outer-page">
     <section class="page step1" v-if="!showTodo">
       <div class="script2">
-        <h1>criamos uma estrutura o <span>Customer Experience</span></h1>
+        <h1>Já em 2016 criamos a estrutura de Customer Experience que vem trabalhando para introduzir e desdobrar as diretrizes de <span>Customer Experience no dia a dia do colaborador</span></h1>
       </div>
       <div class="blue"></div>
       <div class="text-animation">
@@ -139,7 +139,7 @@
             ]
             Animations.setAnimations(animations)
             Animations.animationTimeline(() => {
-              setTimeout(() => { showEnd() }, 2000)
+              setTimeout(() => { showEnd() }, 6000)
             })
           }
         }
@@ -262,6 +262,7 @@
       left: 50%;
       transform: translateX(-50%);
       opacity: 0;
+      animation: buttonAnimation 2s infinite ease-in-out alternate;
       &.show {
         opacity: 1;
       }
@@ -338,6 +339,13 @@
         overflow: hidden;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
       }
+    }
+  }
+  
+  @keyframes buttonAnimation {
+    to{
+      background: $brand-details;
+      color:#fff;
     }
   }
 </style>

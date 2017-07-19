@@ -40,7 +40,7 @@
     background-size: cover;
     
     .image {
-      bottom: 0;
+      bottom: -70px;
       left: 50%;
       transform: translateX(-50%);
       animation: imageAnimation 5s infinite ease-in-out alternate;

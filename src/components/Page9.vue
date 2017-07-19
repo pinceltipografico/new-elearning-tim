@@ -9,7 +9,7 @@
         <div>Nova abordagem de relacionamento</div>
       </h1>
       <h1 v-on:click="newHtml($event,'2')" data-index="2">
-        <div>ser surpreendido onde estiver,</div>
+        <div>Sermos surpreendidos onde estivermos</div>
       </h1>
       <h1 v-on:click="newHtml($event,'3')" data-index="3">
         <div>previsão de seus comportamentos</div>
@@ -21,7 +21,7 @@
       <p></p>
     </div>
     <div class="script3 end-tag" :class="{'show':showEnd}">
-      <h1>Estes são apenas alguns exemplos que já incorporamos na <span>nossa maneira de pensar a compra.</span></h1>
+      <h1>Estes são apenas alguns exemplos que já incorporamos na <span>nossa maneira de pensar a compra</span></h1>
     </div>
   </section>
 </template>
@@ -45,7 +45,7 @@
           step: 'show',
           selector: '.wish'
         }, {
-          time: 1500,
+          time: 3500,
           step: 'show',
           selector: '.script1 h1:first-of-type'
         }, {
@@ -253,6 +253,7 @@
       align-items: center;
       margin-top: 100px;
       cursor: pointer;
+      animation: closeButton 2s infinite ease-in-out alternate;
       i {
         @include font-size(4);
         color: #fff;
@@ -321,6 +322,11 @@
       z-index: 4;
       background: #fff;
       opacity: 0;
+    }
+  }
+  @keyframes closeButton {
+    to{
+      background: darken($brand-details,30%);
     }
   }
 </style>

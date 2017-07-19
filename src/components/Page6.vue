@@ -4,7 +4,7 @@
     <div class="script1">
       <h1>
         <span>A CHAVE É:</span><br/>
-        <small>Antecipar -se as tendências, adaptar -se com velocide e criar verdadeiros seguidores</small>
+        <small>Antecipar -se as tendências, <br/>adaptar-se com velocide e criar verdadeiros seguidores</small>
       </h1>
     </div>
   </section>
@@ -74,7 +74,7 @@
     width: 35%;
     height: 100%;
     position: absolute;
-    left: 30%;
+    left: 27%;
     bottom: 0px;
     transform: translateX(-50%);
     opacity: 0;
