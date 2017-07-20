@@ -217,7 +217,7 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
     this.setStyles()
     this.addScrollListeners()
     this.setScrollIndicators()
-    this.gotoSection(6)
+    this.gotoSection(0)
   }
   
   return this

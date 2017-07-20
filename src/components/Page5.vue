@@ -59,7 +59,7 @@
       <!-- SCENE 6 -->
       <section class="page-item">
         <div class="scene6">
-          <video src="/static/video/583335745.m4v" autoplay loop></video>
+          <video src="/tim/static/video/583335745.m4v" autoplay loop></video>
           <div class="script7"><h1>É necessário se adaptar</h1></div>
         </div>
       </section>
