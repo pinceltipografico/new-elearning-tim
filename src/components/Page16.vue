@@ -40,9 +40,9 @@
     background-size: cover;
     
     .image {
-      bottom: -70px;
+      top:60%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -100%);
       animation: imageAnimation 5s infinite ease-in-out alternate;
       opacity: 0;
       &.show {
@@ -65,10 +65,10 @@
   
   @keyframes imageAnimation {
     0% {
-      transform: translateX(-10%);
+      transform: translate(-10%, -50%);
     }
     100% {
-      transform: translateX(-20%);
+      transform: translate(-20%,- 50%);
     }
   }
 </style>

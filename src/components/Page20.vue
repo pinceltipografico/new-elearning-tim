@@ -12,7 +12,7 @@
     <!-- INTRO -->
     <section class="page intro">
       <div class="script1">
-        <h1>Vamos observar 0 <span>ciclo de vida</span> de um cliente.</h1>
+        <h1>Vamos observar 0 <span>ciclo de vida</span> de um cliente</h1>
       </div>
       <div class="script2">
         <h1>Esse é a <span>jornada</span> que o cliente percorre</h1>
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="script3">
-        <h1>Um guia completo para as novas mães em um app, <span>serviço que vai muito além de um plano.</span></h1>
+        <h1>Um guia completo para as novas mães em um app, <span>serviço que vai muito além de um plano</span></h1>
       </div>
       <div class="iconButton" @click="showSvgEls(1,startSceneThree)">
         <div>
@@ -79,7 +79,7 @@
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele? </span>
+        <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele?</span>
         </h1>
       </div>
       <div class="iconButton" @click="showSvgEls(3,startSceneSix)">
@@ -101,7 +101,7 @@
         <div @click="startSceneSeven">Clique e veja um exemplo</div>
       </div>
       <div class="script2">
-        <h1>cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática.</span>
+        <h1>cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática</span>
         </h1>
       </div>
       <div class="iconButton" @click="showSvgEls(4,startSceneEight)">
@@ -170,7 +170,7 @@
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1> Recomendar é o resultado de toda experiência que o cliente teve ao <span>longo da jornada de contato com o produto ou serviço.</span>
+        <h1> Recomendar é o resultado de toda experiência que o cliente teve ao <span>longo da jornada de contato com o produto ou serviço</span>
         </h1>
         <div @click="startLastScene">Ok. Acho que entendi</div>
       </div>
@@ -338,7 +338,7 @@
             step: 'show',
             selector: '.precisar > .script1'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'step5',
             selector: '.precisar > .white'
           }, {
@@ -382,7 +382,7 @@
             step: 'show',
             selector: '.precisar > .script3'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'show',
             selector: '.precisar > .iconButton'
           }
@@ -412,7 +412,7 @@
             step: 'step1',
             selector: '.pesquisar > .script1'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'step2',
             selector: '.pesquisar > .script1'
           }, {
@@ -455,7 +455,7 @@
             step: 'step1',
             selector: '.pesquisar > .script3'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'show',
             selector: '.pesquisar > .iconButton'
           }
@@ -481,7 +481,7 @@
             step: 'show',
             selector: '.escolher > .script1'
           }, {
-            time: 3050,
+            time: 4050,
             step: 'show',
             selector: '.escolher > .iconButton'
           }
@@ -539,7 +539,7 @@
             step: 'show',
             selector: '.comprar > .script2'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'show',
             selector: '.comprar > .iconButton'
           }
@@ -595,7 +595,7 @@
             step: 'show',
             selector: '.usar > .script1'
           }, {
-            time: 3000,
+            time: 4000,
             step: 'show',
             selector: '.usar > .iconButton'
           }
@@ -646,7 +646,7 @@
             step: 'show',
             selector: '.manter > .script2'
           }, {
-            time: 2500,
+            time: 4500,
             step: 'show',
             selector: '.manter > .iconButton'
           }

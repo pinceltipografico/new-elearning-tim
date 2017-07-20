@@ -58,7 +58,7 @@
           step: 'show',
           selector: '.script2'
         }, {
-          time: 3500,
+          time: 5000,
           step: 'show',
           selector: '.script2',
           reverse: true

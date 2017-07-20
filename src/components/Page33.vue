@@ -12,15 +12,15 @@
           <div class="items">
             <div @click="startSceneOne">
               <span>COMUNICAÇÃO</span>
-              <i class="fa fa-wechat"></i>
+              <i class="material-icons">&#xE0BF;</i>
             </div>
             <div>
               <span>INTERAÇÃO</span>
-              <i class="fa fa-navicon"></i>
+              <i class="material-icons">&#xE5D2;</i>
             </div>
             <div>
               <span>MONITORAMENTO</span>
-              <i class="fa fa-search-plus"></i>
+              <i class="material-icons">&#xE8B6;</i>
             </div>
           </div>
           <div class="shadow"></div>
@@ -32,7 +32,7 @@
         <div class="image-background"></div>
         <div class="effects"></div>
         <div class="script1">
-          <h1>Comportamentos que devemos incorporar, estimular e mobilizar.</h1>
+          <h1>Comportamentos que devemos incorporar, estimular e mobilizar</h1>
           <ul>
             <li v-for="item in itemsComunicacao">{{item}}</li>
           </ul>

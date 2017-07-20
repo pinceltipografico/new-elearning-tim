@@ -51,7 +51,7 @@
           step: 'show',
           selector: '.explain-item.volume'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'hide',
           selector: '.explain-item.volume'
         }, {
@@ -59,7 +59,7 @@
           step: 'show',
           selector: '.explain-item.close'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'hide',
           selector: '.explain-item.close'
         }, {
@@ -67,7 +67,7 @@
           step: 'show',
           selector: '.explain-item.progress-bar'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'hide',
           selector: '.explain-item.progress-bar'
         }, {
@@ -75,7 +75,7 @@
           step: 'show',
           selector: '.explain-item.next-button'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'hide',
           selector: '.explain-item.next-button'
         }, {
@@ -83,7 +83,7 @@
           step: 'show',
           selector: '.explain-item.prev-button'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'hide',
           selector: '.explain-item.prev-button'
         }, {

@@ -48,7 +48,7 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|mp4)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 50,
@@ -56,7 +56,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff2?|woff|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 50,

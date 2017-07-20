@@ -3,7 +3,7 @@
     <div class="menu">
       <div class="item-container">
         <div class="item" @click="onItemClick(0)">
-          <i class="fa fa-info-circle"></i>
+          <i class="material-icons">&#xE88E;</i>
         </div>
         <div class="item" @click="onItemClick(1)">
           <!-- dna -->
@@ -12,10 +12,10 @@
           <!-- infinite -->
         </div>
         <div class="item" @click="onItemClick(3)">
-          <i class="fa fa-sitemap"></i>
+          <i class="material-icons">&#xE871;</i>
         </div>
         <div class="item" @click="onItemClick(4)">
-          <i class="fa fa-thumbs-up"></i>
+          <i class="material-icons">&#xE8DC;</i>
         </div>
       </div>
     </div>

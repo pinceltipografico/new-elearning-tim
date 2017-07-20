@@ -3,7 +3,7 @@
     <div class="image-background"></div>
     <div class="white"></div>
     <div class="icon">
-      <i class="fa fa-user"></i>
+      <i class="material-icons">&#xE55A;</i>
     </div>
     <div class="script1">
       <h1>
@@ -97,7 +97,7 @@
           time: 2000,
           step: 'show',
           selector: '.script4'
-        }, {
+        }/*, {
           time: 500,
           step: 'step3',
           selector: '.white'
@@ -122,6 +122,7 @@
           step: 'show',
           selector: '.script6'
         }
+        */
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {})
@@ -206,11 +207,13 @@
   
   .icon {
     left: 50%;
-    bottom: 150px;
-    @include font-size(10);
+    bottom: 100px;
     transform: translateX(-50%);
     color: #666;
     opacity: 0;
+    i{
+      @include font-size(12);
+    }
     &.step1 {
       opacity: 1;
     }

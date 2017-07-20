@@ -48,7 +48,7 @@
           step: 'hide',
           selector: '.script1'
         }, {
-          time: 500,
+          time: 1000,
           step: 'step3',
           selector: '.effects'
         }, {

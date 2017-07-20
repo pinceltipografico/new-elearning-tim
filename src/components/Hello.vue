@@ -8,7 +8,7 @@
       <hr>
       <div class="buttons" @click="gotoExplain">
         <span>iniciar</span>
-        <i class="fa fa-play-circle"></i>
+        <i class="material-icons">&#xE038;</i>
       </div>
     </div>
   </section>

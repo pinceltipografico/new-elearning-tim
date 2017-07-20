@@ -139,7 +139,7 @@
             ]
             Animations.setAnimations(animations)
             Animations.animationTimeline(() => {
-              setTimeout(() => { showEnd() }, 6000)
+              setTimeout(() => { showEnd() }, 8000)
             })
           }
         }
