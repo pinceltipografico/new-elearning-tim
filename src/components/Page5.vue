@@ -111,8 +111,15 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
+      this.$store.commit('setPageProgress', 0)
+      this.$store.commit('setCanAdvance', false)
       this.scroller = new ScrollOnePage('.page', '.scroll-indicator')
       this.scroller.start()
+      
+      setTimeout(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this), 500)
     },
     /**
      | ----------------------------------------------
@@ -120,6 +127,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      if (this.scroller) {
+        this.scroller.removeScrollListeners()
+      }
     }
   }
 </script>
@@ -337,7 +347,7 @@
         
         //
         // scene 7
-        .scene7{
+        .scene7 {
           width: 100%;
           height: 100%;
           background: url("../assets/backgrounds/page5/07.jpg") no-repeat;
@@ -349,7 +359,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #fff;
-            background: rgba(#000,0.5);
+            background: rgba(#000, 0.5);
             padding: 0 40px;
             h1 {
               @include font-size(3);

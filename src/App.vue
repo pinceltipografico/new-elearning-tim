@@ -26,12 +26,13 @@
       </div>
     </transition>
     <transition name="fade">
-      <a class="nav-button next-page" v-if="showInterfaceItems" @click="nextPage">
+      <a class="nav-button next-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="nextPage"
+         :class="{'can-advance':canAdvance}">
         <i class="material-icons">&#xE5CC;</i>
       </a>
     </transition>
     <transition name="fade">
-      <a class="nav-button prev-page" v-if="showInterfaceItems" @click="prevPage">
+      <a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">
         <i class="material-icons">&#xE5CB;</i>
       </a>
     </transition>
@@ -101,6 +102,7 @@
        | ----------------------------------------------
        **/
       startProgress: function () {
+        this.$store.commit('setCanAdvance', false)
         var total = this.totalProgress
         var pct = 100 / total
         var vm = this
@@ -173,6 +175,12 @@
       },
       totalProgress: function () {
         return this.$store.state.totalProgress
+      },
+      canAdvance () {
+        return this.$store.state.canAdvance
+      },
+      isExplainScreen () {
+        return this.$route.name === 'explain'
       }
     }
   }
@@ -387,6 +395,9 @@
     &.prev-page {
       left: 0;
     }
+    &.can-advance {
+      animation: nextAnimation 0.250s infinite ease-in-out alternate;
+    }
   }
   
   .end-tag {
@@ -539,16 +550,25 @@
   .mouseScroll {
     animation: scrollIndicator 0.5s infinite ease-in-out alternate;
   }
+  
   .arrowDown,
-  .arrowUp{
+  .arrowUp {
     animation: scrollIndicator 1s infinite 0.5s ease-in-out alternate;
   }
-  .arrowDown{
+  
+  .arrowDown {
     animation-delay: 1.5s;
   }
+  
   @keyframes scrollIndicator {
     to {
       opacity: 0;
+    }
+  }
+  
+  @keyframes nextAnimation {
+    to {
+      background: $brand-details;
     }
   }
 </style>

@@ -17,13 +17,15 @@
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPOENNT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPOENNT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setTotalProgress', 10000)
+      this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
@@ -55,7 +57,18 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
+    },
+    
+    /**
+     | ----------------------------------------------
+     * DESTROYED
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
@@ -69,44 +82,44 @@
       background: url("../assets/backgrounds/page8/01.jpg") no-repeat;
       background-size: cover;
       
-      &.step2{
+      &.step2 {
         background: url('../assets/backgrounds/page8/02.jpg') no-repeat;
         background-size: cover;
       }
     }
     
-    .script1{
-      &.hide{
+    .script1 {
+      &.hide {
         display: none;
       }
     }
-  
-    .effect{
+    
+    .effect {
       width: 0;
       height: 100%;
       background: #fff;
       left: 0;
-      top:0;
+      top: 0;
       
-      &.step1{
+      &.step1 {
         width: 100%;
       }
-      &.step2{
+      &.step2 {
         width: 40%;
         left: 50%;
       }
     }
-    .script2{
+    .script2 {
       right: 10%;
-      top:50%;
+      top: 50%;
       transform: translateY(-50%);
       @include font-size(2);
       max-width: 37%;
       opacity: 0;
-      h1{
-        color:#666;
+      h1 {
+        color: #666;
       }
-      &.show{
+      &.show {
         opacity: 1;
       }
     }

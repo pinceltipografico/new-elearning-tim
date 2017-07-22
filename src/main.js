@@ -26,7 +26,8 @@ const store = new Vuex.Store({
     showUserInterface: false,
     pageProgress: 30,
     totalProgress: 20000,
-    modulesAllowed: [0]
+    modulesAllowed: [0],
+    canAdvance: false
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -44,6 +45,10 @@ const store = new Vuex.Store({
     setModuleAllowed (state, module) {
       'use strict'
       state.modulesAllowed.push(module)
+    },
+    setCanAdvance (state, value) {
+      'use strict'
+      state.canAdvance = value
     }
   }
 })

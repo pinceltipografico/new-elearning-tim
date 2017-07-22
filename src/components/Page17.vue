@@ -17,15 +17,17 @@
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       //
       // set global vars
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
@@ -66,56 +68,69 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(null)
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
+    },
+    /**
+     | ----------------------------------------------
+     * DESTROYED
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
 <style lang="scss" scoped>
   @import "../scss/variables";
   @import "../scss/mixins";
-  .image-background{
+  
+  .image-background {
     background: url("../assets/backgrounds/page17/01.jpg") no-repeat;
     background-size: cover;
     
-    &.step1{
+    &.step1 {
       background: url("../assets/backgrounds/page17/02.jpg") no-repeat;
       background-size: cover;
     }
   }
-  .effects{
+  
+  .effects {
     width: 38%;
     height: 0;
-    background: darken($brand-details,20%);
-    left:10%;
-    &.step1{
+    background: darken($brand-details, 20%);
+    left: 10%;
+    &.step1 {
       height: 100%;
     }
-    &.step2{
-      left:0;
+    &.step2 {
+      left: 0;
     }
-    &.step3{
+    &.step3 {
       width: 100%;
       background: #fff;
     }
-    &.hide{
+    &.hide {
       opacity: 0;
     }
   }
-  .script1{
+  
+  .script1 {
     max-width: 38%;
-    color:#fff;
+    color: #fff;
     @include font-size(2);
-    top:50%;
+    top: 50%;
     left: 10%;
     transform: translateY(-50%);
     opacity: 0;
-    &.show{
+    &.show {
       opacity: 1;
     }
-    &.hide{
+    &.hide {
       opacity: 0;
     }
-    h1{
+    h1 {
       padding: 20px;
     }
   }

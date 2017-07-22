@@ -34,13 +34,15 @@
   import { EventBus } from '../events/index'
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 25000)
+      this.$store.commit('setTotalProgress', 30000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -146,10 +148,15 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
+    },
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>

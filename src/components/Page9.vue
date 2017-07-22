@@ -37,8 +37,10 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 10000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -100,6 +102,9 @@
             setTimeout(function () {
               if (vm.viewed.length === 3) {
                 vm.showEnd = true
+                setTimeout(function () {
+                  vm.$store.commit('setCanAdvance', true)
+                }, 3000)
               }
             }, 1000)
           })
@@ -121,6 +126,15 @@
         viewed: [],
         showEnd: false
       }
+    },
+    
+    /**
+     | ----------------------------------------------
+     * DESTROYED
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
@@ -134,7 +148,7 @@
     background-size: cover;
   }
   
-  .overlay.step2{
+  .overlay.step2 {
     animation: overlay 1.5s forwards;
   }
   
@@ -292,7 +306,7 @@
     }
   }
   
-  .script3{
+  .script3 {
     transition-delay: 1s;
   }
   
@@ -307,26 +321,28 @@
       visibility: visible;
     }
   }
+  
   @keyframes overlay {
-    0%{
+    0% {
       z-index: 4;
       background: #fff;
       opacity: 0;
     }
-    50%{
+    50% {
       z-index: 4;
       background: #fff;
       opacity: 1;
     }
-    100%{
+    100% {
       z-index: 4;
       background: #fff;
       opacity: 0;
     }
   }
+  
   @keyframes closeButton {
-    to{
-      background: darken($brand-details,30%);
+    to {
+      background: darken($brand-details, 30%);
     }
   }
 </style>

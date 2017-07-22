@@ -32,14 +32,16 @@
     // component name
     name: 'Page12',
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       // set progress of current page
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 3000)
+      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
@@ -111,7 +113,16 @@
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {
-      })
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
+    },
+    /**
+    | ----------------------------------------------
+    * DESTROYED
+    | ----------------------------------------------
+    **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
@@ -122,7 +133,7 @@
   section.page {
     background: #1883b0;
     transition: background $animationTime;
-    &.step2{
+    &.step2 {
       /*background: darken(#1883b0,20%);*/
     }
     .white {
@@ -237,7 +248,7 @@
       padding: 0 40px;
       transform: translate(-50%, 100%);
       opacity: 0;
-      h1{
+      h1 {
         max-width: 600px;
       }
       &.show {

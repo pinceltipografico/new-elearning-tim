@@ -41,7 +41,7 @@
         <div>
           <span class="click">clique aqui</span>
           <span>Vamos pesquisar?</span>
-          <i class="fa fa-search"></i>
+          <i class="material-icons">&#xE8B6;</i>
         </div>
       </div>
     </section>
@@ -69,7 +69,7 @@
         <div>
           <span class="click">clique aqui</span>
           <span>Vamos escolher?</span>
-          <i class="fa fa-check"></i>
+          <i class="material-icons">&#xE86C;</i>
         </div>
       </div>
     </section>
@@ -86,7 +86,7 @@
         <div>
           <span class="click">clique e</span>
           <span>Me ajude-o a comprar</span>
-          <i class="fa fa-money"></i>
+          <i class="material-icons">&#xE263;</i>
         </div>
       </div>
     </section>
@@ -108,7 +108,7 @@
         <div>
           <span class="click">clique aqui</span>
           <span>e veja receber</span>
-          <i class="fa fa-paper-plane"></i>
+          <i class="material-icons">&#xE905;</i>
         </div>
       </div>
     </section>
@@ -124,7 +124,7 @@
         <div>
           <span class="click">clique para</span>
           <span>ver usar</span>
-          <i class="fa fa-mobile"></i>
+          <i class="material-icons">&#xE912;</i>
         </div>
       </div>
     </section>
@@ -140,7 +140,7 @@
         <div>
           <span class="click">clique para</span>
           <span>ver manter</span>
-          <i class="fa fa-thumbs-up"></i>
+          <i class="material-icons">&#xE8DC;</i>
         </div>
       </div>
     </section>
@@ -160,7 +160,7 @@
         <div>
           <span class="click">clique para</span>
           <span>recomendar</span>
-          <i class="fa fa-share-alt"></i>
+          <i class="material-icons">&#xE80D;</i>
         </div>
       </div>
     </section>
@@ -213,6 +213,10 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
+      this.$store.commit('setPageProgress', 0)
+      this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setCanAdvance', false)
       var gs = document.querySelectorAll('#graph > g')
       gs.forEach(function (item) {
         item.style.opacity = 0
@@ -701,7 +705,9 @@
           }
         ]
         Animation.setAnimations(animations)
-        Animation.animationTimeline()
+        Animation.animationTimeline(function () {
+          this.$store.commit('setCanAdvance', true)
+        }.bind(this))
       }
     }
   }

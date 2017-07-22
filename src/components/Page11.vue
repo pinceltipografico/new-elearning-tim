@@ -17,13 +17,15 @@
   import { EventBus } from '../events/index'
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 3000)
+      this.$store.commit('setTotalProgress', 5000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -35,6 +37,7 @@
           selector: '.script1'
         }
       ]
+      var self = this
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {
         WorldCluod(document.querySelector('#customer_experience'), {
@@ -97,10 +100,22 @@
           },
           drawOutOfBound: true
         })
+        setTimeout(function () {
+          self.$store.commit('setCanAdvance', true)
+        }, 3000)
       })
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
+    },
+    
+    /**
+     | ----------------------------------------------
+     * destroyed
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>

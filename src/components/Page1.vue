@@ -34,14 +34,15 @@
   import { EventBus } from '../events/index'
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT WAS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT WAS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -134,7 +135,9 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
@@ -162,7 +165,7 @@
     &.hide {
       opacity: 0;
     }
-    &.step3{
+    &.step3 {
       background: url("../assets/backgrounds/page1/06.jpg") no-repeat;
       background-size: cover;
       z-index: 5;
@@ -203,23 +206,23 @@
     &.white {
       background: #fff;
     }
-    &.step4{
+    &.step4 {
       width: 40%;
       height: 0;
-      background: rgba(#fff,0.8);
+      background: rgba(#fff, 0.8);
       right: 6%;
     }
-    &.step5{
+    &.step5 {
       z-index: 5;
       height: 100%;
     }
-    &.step6{
+    &.step6 {
       background: #fff;
       width: 100%;
       right: 0;
       z-index: 6;
     }
-    &.hide{
+    &.hide {
       opacity: 0;
     }
   }
@@ -266,54 +269,55 @@
     }
   }
   
-  .tags{
+  .tags {
     @include font-size(2);
     padding: 10px;
     font-weight: bold;
     border-radius: 7px;
-    top:40%;
+    top: 40%;
     opacity: 0;
-    &.show{
+    &.show {
       opacity: 1;
     }
-    &:before{
+    &:before {
       display: block;
       content: '';
       position: absolute;
-      border-top:8px solid transparent;
+      border-top: 8px solid transparent;
       border-bottom: 8px solid transparent;
       border-right: 8px solid $brand-details;
       right: 100%;
-      top:50%;
+      top: 50%;
       margin-top: -8px;
     }
     &.tag1,
-    &.tag3{
-      background: $brand-details;//rgba($brand-details,0.8);
+    &.tag3 {
+      background: $brand-details; //rgba($brand-details,0.8);
       left: 100px;
-      color:#fff;
+      color: #fff;
     }
-    &.tag1{
+    &.tag1 {
     }
-    &.tag2{
+    &.tag2 {
       background: #fff;
-      color:#666;
-      left:180px;
+      color: #666;
+      left: 180px;
       transition-delay: 0.5s;
-      &:before{
+      &:before {
         border-right-color: #fff;
       }
-      &.show{
+      &.show {
         transform: translateY(-120%);
       }
     }
-    &.tag3{
+    &.tag3 {
       transition-delay: 1s;
-      &.show{
+      &.show {
         transform: translateY(-240%);
       }
     }
   }
+  
   .script3 {
     max-width: 400px;
     top: 50%;

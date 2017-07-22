@@ -23,13 +23,15 @@
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 20000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -96,10 +98,21 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(null)
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
+    },
+    
+    /**
+     | ----------------------------------------------
+     * DESTROY
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
@@ -123,7 +136,7 @@
   .effects {
     width: 40%;
     height: 0;
-    background: rgba(#000,0.3);
+    background: rgba(#000, 0.3);
     transform: translate(0, 0);
     right: 7%;
     &.step1 {
@@ -138,7 +151,7 @@
     &.step3 {
       opacity: 0.2;
     }
-    &.step4{
+    &.step4 {
       opacity: 0;
     }
   }
@@ -177,15 +190,15 @@
     }
   }
   
-  .script4{
-    top:50%;
+  .script4 {
+    top: 50%;
     left: 100px;
-    color:$brand-details;
+    color: $brand-details;
     background: #fff;
     @include font-size(2);
-    transform: translate(-50%,-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
     opacity: 0;
-    &:after{
+    &:after {
       content: '';
       position: absolute;
       right: 0;
@@ -195,10 +208,10 @@
       overflow: hidden;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2);
     }
-    h1{
+    h1 {
       padding: 20px;
       max-width: 400px;
-      &:after{
+      &:after {
         content: '';
         width: 80%;
         display: inline-block;
@@ -206,12 +219,12 @@
         height: 4px;
       }
     }
-    &.show{
+    &.show {
       opacity: 1;
-      transform: translate(0,-50%) rotate(0deg);
+      transform: translate(0, -50%) rotate(0deg);
     }
-    &.step2{
-      transform: translate(0,-50%) rotate(-2deg);
+    &.step2 {
+      transform: translate(0, -50%) rotate(-2deg);
     }
   }
 </style>

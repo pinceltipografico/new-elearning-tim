@@ -46,15 +46,36 @@
   /* eslint-disable no-unused-vars */
   var Animations = require('../lib/ChainAnimation')
   export default {
+    /**
+    | ----------------------------------------------
+    * RETURN DATA
+    | ----------------------------------------------
+    **/
     data () {
       return {
         scene: -1,
         itemsComunicacao: ['Usar a persona TIM', 'Comunicar de forma clara e transparente', 'Falar a língua do cliente', 'Se mudar, tem que comunicar', 'Encantar o cliente.']
       }
     },
+    /**
+    | ----------------------------------------------
+    * WHEN COMPONENTS IS READY
+    | ----------------------------------------------
+    **/
     mounted () {},
+    /**
+    | ----------------------------------------------
+    * DESTROYED
+    | ----------------------------------------------
+    **/
     destroyed () {
+      Animations.destroyAnimations()
     },
+    /**
+    | ----------------------------------------------
+    * METHODOS
+    | ----------------------------------------------
+    **/
     methods: {
       startSceneOne () {
         this.scene = 0

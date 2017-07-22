@@ -32,7 +32,7 @@
     </div>
     <div class="script6">
       <div class="drag" style="margin-bottom: 50px;">
-        <draggable :list="list.upvotes" :options="{group:'people'}">
+        <draggable v-model="list" :options="{group:'people'}">
           <transition-group>
             <div class="elements" v-for="(element, index) in list" :key="element.name">
               <span>{{element.name}}</span>
@@ -41,7 +41,7 @@
         </draggable>
       </div>
       <div class="bag">
-        <draggable :list="list2.upvotes" :options="{group:'people'}">
+        <draggable v-model="list2" :options="{group:'people'}" @add="onAdded()">
           <transition-group>
             <div class="elements" v-for="(element, index) in list2" :key="element.name">
               <span>{{element.name}}</span>
@@ -66,8 +66,10 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 10000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -97,7 +99,7 @@
           time: 2000,
           step: 'show',
           selector: '.script4'
-        }/*, {
+        }, {
           time: 500,
           step: 'step3',
           selector: '.white'
@@ -122,7 +124,6 @@
           step: 'show',
           selector: '.script6'
         }
-        */
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {})
@@ -155,6 +156,22 @@
      **/
     components: {
       draggable
+    },
+    methods: {
+      onAdded () {
+        if (this.list2.length === 3) {
+          this.$store.commit('setCanAdvance', true)
+        }
+      }
+    },
+    
+    /**
+     | ----------------------------------------------
+     * WHEN DESTROYED
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
@@ -211,7 +228,7 @@
     transform: translateX(-50%);
     color: #666;
     opacity: 0;
-    i{
+    i {
       @include font-size(12);
     }
     &.step1 {
@@ -299,15 +316,15 @@
       transform-origin: 50% 0;
       animation: rotate 5s infinite ease-in-out alternate;
       
-      > div{
+      > div {
         position: absolute;
         height: 270px;
-        top:40%;
-        bottom:0;
+        top: 40%;
+        bottom: 0;
         left: 20px;
         right: 40px;
         
-        > span{
+        > span {
           display: block;
           width: 100%;
           height: 100%;
@@ -355,18 +372,19 @@
         }
       }
     }
-    .buttons{
+    .buttons {
       position: absolute;
-      bottom:50px;
+      bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
     }
   }
+  
   @keyframes rotate {
-    0%{
+    0% {
       transform: translateY(-50%) rotate(-2deg);
     }
-    100%{
+    100% {
       transform: translateY(-50%) rotate(2deg);
     }
   }

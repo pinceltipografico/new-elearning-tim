@@ -46,6 +46,11 @@
     //
     // APP NAME
     name: 'Menu',
+    mounted () {
+      this.$store.commit('toggleIterface', true)
+      this.$store.commit('setPageProgress', 0)
+      this.$store.commit('setCanAdvance', true)
+    },
     /**
     | ----------------------------------------------
     * RETURN DATA OF THE COMPONENT

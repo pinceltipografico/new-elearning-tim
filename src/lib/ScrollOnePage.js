@@ -33,22 +33,28 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
     this.setActiveStatus()
   }
   
+  /**
+   | ----------------------------------------------
+   * SET ACTIVE CLASS
+   | ----------------------------------------------
+   **/
   this.setActiveStatus = function () {
     var pages = this.pagesContainer.querySelectorAll('.page-item')
     pages.forEach(function (item, index) {
-      console.log(index, this.currentSection)
       item.className = 'page-item'
       if (index === this.currentSection) {
         item.className = 'page-item active'
       }
     }.bind(this))
-    var lis = this.scrollIndicatorContainer.querySelectorAll('li')
-    lis.forEach(function (item, index) {
-      item.className = ''
-      if (index === this.currentSection) {
-        item.className = 'active'
-      }
-    }.bind(this))
+    if (this.scrollIndicatorContainer) {
+      var lis = this.scrollIndicatorContainer.querySelectorAll('li')
+      lis.forEach(function (item, index) {
+        item.className = ''
+        if (index === this.currentSection) {
+          item.className = 'active'
+        }
+      }.bind(this))
+    }
   }
   
   /**
@@ -128,19 +134,26 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
   
   /**
    | ----------------------------------------------
+   * WHEN KEY PRESSED
+   | ----------------------------------------------
+   **/
+  this.onKeyDown = function (event) {
+    if (event.keyCode === this.keyCodes.up) {
+      this.moveup()
+    } else if (event.keyCode === this.keyCodes.down) {
+      this.movedown()
+    }
+  }
+  
+  /**
+   | ----------------------------------------------
    * ADD LISTNERS OF SCROLL
    | ----------------------------------------------
    **/
   this.addScrollListeners = function () {
     window.addEventListener('DOMMouseScroll', this.onMouseWhell.bind(this), false)
     window.onmousewheel = document.onmousewheel = this.onMouseWhell.bind(this)
-    window.addEventListener('keydown', function (event) {
-      if (event.keyCode === this.keyCodes.up) {
-        this.moveup()
-      } else if (event.keyCode === this.keyCodes.down) {
-        this.movedown()
-      }
-    }.bind(this))
+    window.addEventListener('keydown', this.onKeyDown.bind(this))
   }
   
   /**
@@ -149,6 +162,9 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
    | ----------------------------------------------
    **/
   this.removeScrollListeners = function () {
+    window.removeEventListener('DOMMouseScroll', this.onMouseWhell.bind(this))
+    window.onmousewheel = document.onmousewheel = null
+    window.removeEventListener('keydown', this.onKeyDown.bind(this))
   }
   
   /**

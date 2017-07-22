@@ -26,8 +26,10 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
+      this.$store.commit('setTotalProgress', 5000)
+      this.$store.commit('setCanAdvance', false)
       var animations = [
         {
           time: 500,
@@ -44,10 +46,21 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
+    },
+    
+    /**
+     | ----------------------------------------------
+     * WHEN DESTROYED
+     | ----------------------------------------------
+     **/
+    destroyed () {
+      Animations.destroyAnimations()
     }
   }
 </script>
