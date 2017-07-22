@@ -36,7 +36,9 @@
         <i class="material-icons">&#xE5CB;</i>
       </a>
     </transition>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </main>
 </template>
 <script>
@@ -56,7 +58,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 34]
       }
     },
     //
@@ -195,7 +197,7 @@
   
   body:after {
     display: none;
-    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/06.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png");
+    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/06.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg");
   }
   
   main {
@@ -475,11 +477,114 @@
   
   /**
   * ----------------------------------------------
+  * POPUPS
+  * ----------------------------------------------
+  **/
+  .popups {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: rgba(#000, 0.3);
+    top: 0;
+    left: 0;
+    .inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scaleX(0);
+      width: 70%;
+      min-height: 300px;
+      height: auto;
+      padding: 20px;
+      background: darken($brand-details, 20%);
+      border: 10px solid #fff;
+      transition: transform $animationTime;
+      .close {
+        position: absolute;
+        background: $brand-secondary;
+        color: #fff;
+        border-radius: 50%;
+        padding: 5px;
+        transition: background $animationTime;
+        top: -25px;
+        right: 0;
+        cursor: pointer;
+        &:hover {
+          background: darken($brand-secondary, 20%);
+        }
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        left: 0;
+        height: 50px;
+        overflow: hidden;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+      }
+      .image,
+      .text {
+        float: left;
+      }
+      .image {
+        width: 30%;
+        overflow: hidden;
+        img {
+          width: auto;
+          max-height: 300px;
+        }
+      }
+      .text {
+        width: 70%;
+        > div {
+          padding: 0 20px;
+          color: #fff;
+          h1,
+          h4 {
+            text-transform: uppercase;
+          }
+          h1 {
+            margin-bottom: 0;
+            @include font-size(2.5);
+            small {
+              display: block;
+              font-size: 50%;
+            }
+          }
+          h4 {
+            @include font-size(1.8);
+            margin-bottom: 5px;
+          }
+          span {
+            display: inline-block;
+            background: $brand-secondary;
+            color: #fff;
+            margin: 0 5px 5px 0;
+            @include font-size(1.5);
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 5px;
+          }
+        }
+      }
+      &.active {
+        transform: translate(-50%, -50%) scaleX(1);
+      }
+    }
+  }
+  
+  /**
+  * ----------------------------------------------
   * ANIMATIONS FOR V-IF OR V-FOR
   * ----------------------------------------------
   **/
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animationTime;
+    position: absolute !important;
+    top: 0;
+    left: 0;
   }
   
   .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
@@ -487,9 +592,15 @@
     opacity: 0
   }
   
+  /**
+  * ----------------------------------------------
+  * EXIT SCENE
+  * ----------------------------------------------
+  **/
   .exit-scene-enter-active,
   .exit-scene-leave-active {
     transition: all $animationTime;
+    position: absolute !important;
   }
   
   .exit-scene-enter,
@@ -497,9 +608,15 @@
     transform: translateX(-100%);
   }
   
+  /**
+  * ----------------------------------------------
+  * ENTER SCENE
+  * ----------------------------------------------
+  **/
   .enter-scene-enter-active,
   .enter-scene-leave-active {
     transition: all $animationTime;
+    position: absolute !important;
   }
   
   .enter-scene-enter {

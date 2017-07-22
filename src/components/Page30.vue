@@ -1,5 +1,6 @@
 <template>
   <section class="page gradient">
+    <h1 class="title">Arraste os textos para sua fase apropriada</h1>
     <div class="script1">
       <div class="svg-container">
         <div class="client-image">
@@ -54,13 +55,6 @@
         <span v-for="item in result.items">{{item}}</span>
       </div>
     </div>
-    <transition name="fade">
-      <div class="message" v-if="showMessage">
-        <div class="inner">
-          <span>Parabéns você completou o exercício!</span>
-        </div>
-      </div>
-    </transition>
   </section>
 </template>
 <script type="text/javascript">
@@ -75,7 +69,6 @@
     data () {
       return {
         count: 13,
-        showMessage: false,
         results: [
           {
             name: 'Precisar',
@@ -216,7 +209,6 @@
               
               if (!--self.count) {
                 setTimeout(function () {
-                  self.showMessage = true
                   self.$store.commit('setCanAdvance', true)
                 }, 1500)
               }
@@ -269,7 +261,11 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  section.page {
+  .title{
+    color:#fff;
+    top:50px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .script1,

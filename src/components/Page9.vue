@@ -342,7 +342,7 @@
   
   @keyframes closeButton {
     to {
-      background: darken($brand-details, 30%);
+      background: $brand-secondary;
     }
   }
 </style>
