@@ -22,10 +22,12 @@
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </router-link>
-          <div>
-            <span>MONITORAMENTO</span>
-            <i class="material-icons">&#xE8B6;</i>
-          </div>
+          <router-link to="/page36">
+            <div>
+              <span>MONITORAMENTO</span>
+              <i class="material-icons">&#xE8B6;</i>
+            </div>
+          </router-link>
         </div>
         <div class="shadow"></div>
       </div>
@@ -51,6 +53,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('setCanAdvance', true)
     },
     /**
      | ----------------------------------------------
@@ -227,7 +230,7 @@
             padding: 4px;
             text-align: center;
             border-radius: 7px;
-            top:100%;
+            top: 100%;
             left: 50%;
             font-weight: bold;
             transform: translateX(-50%);
