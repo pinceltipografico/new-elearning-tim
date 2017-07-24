@@ -1,5 +1,6 @@
 <template>
   <section class="page gradient">
+    <h1>O quarteto fantástico de <span>customer experience</span> monitoring & analytics</h1>
     <div class="items">
       <div class="item">
         <h1>Satisfação</h1>
@@ -42,6 +43,9 @@
       return {}
     },
     mounted () {
+      setTimeout(function () {
+        this.addClass(this.$el.querySelector('.items'), 'active')
+      }.bind(this), 1500)
     },
     destroyed () {
     }
@@ -51,9 +55,85 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  .items{
-    top:50%;
+  section.page > h1 {
+    max-width: 600px;
+    @include font-size(2);
+    color: #fff;
+    text-align: center;
     left: 50%;
-    transform: translate(-50%,-50%);
+    top: 100px;
+    transform: translateX(-50%);
+  }
+  
+  .items {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    display: flex;
+    align-items: flex-start;
+    background: $brand-details;
+    padding: 20px;
+    border-radius: 7px;
+    border: 5px solid #fff;
+    .item {
+      position: relative;
+      padding: 20px;
+      min-width: 200px;
+      background: darken($brand-details, 20%);
+      margin-right: 5px;
+      transition: transform $animationTime, opacity $animationTime;
+      transform: translateY(-100%);
+      opacity: 0;
+      
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          transition-delay: #{(0.5 * $i)+'s'};
+        }
+      }
+      h1 {
+        color: #fff;
+        @include font-size(1.8);
+        border-bottom: 1px solid #fff;
+        padding-bottom: 10px;
+        margin-bottom: 0;
+      }
+      .icone,
+      span {
+        display: block;
+        text-align: center;
+        background: #fff;
+      }
+      span {
+        @include font-size(3);
+        color: #666;
+      }
+      .icone {
+        i {
+          @include font-size(5);
+        }
+        color: $brand-details;
+        padding: 10px 0;
+      }
+      p {
+        color: #fff;
+        @include font-size(1.4);
+        strong {
+          margin-right: 5px;
+          &:after {
+            content: ':';
+          }
+        }
+      }
+      &:after {
+        height: 100px;
+        width: 1px;
+      }
+    }
+    &.active {
+      .item {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   }
 </style>
