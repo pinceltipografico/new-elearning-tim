@@ -22,7 +22,7 @@
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </router-link>
-          <router-link to="/page37">
+          <router-link to="/page36">
             <div>
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>

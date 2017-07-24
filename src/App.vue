@@ -197,7 +197,7 @@
   
   body:after {
     display: none;
-    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/06.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg") url("assets/backgrounds/page33/ref-354939284.jpg") url("assets/backgrounds/page33/ref-428959477.jpg") url("assets/backgrounds/page33/ref-399241594.jpg") url("assets/backgrounds/page33/ref-572233399.jpg") url("assets/backgrounds/page33/ref-577848541.jpg");
+    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/06.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg") url("assets/backgrounds/page33/ref-354939284.jpg") url("assets/backgrounds/page33/ref-428959477.jpg") url("assets/backgrounds/page33/ref-399241594.jpg") url("assets/backgrounds/page33/ref-572233399.jpg") url("assets/backgrounds/page33/ref-577848541.jpg") url("assets/backgrounds/page33/circlel.png");
   }
   
   main {
@@ -678,6 +678,15 @@
     animation-delay: 1.5s;
   }
   
+  .clock_minutes{
+    transform-origin: 50% 100%;
+    animation: clockRotation 2s infinite linear;
+  }
+  .clock_hours{
+    transform-origin: 50% 100%;
+    animation: clockRotation 4s infinite linear;
+  }
+  
   @keyframes scrollIndicator {
     to {
       opacity: 0;
@@ -687,6 +696,12 @@
   @keyframes nextAnimation {
     to {
       background: $brand-details;
+    }
+  }
+  
+  @keyframes clockRotation {
+    to {
+      transform: rotate(360deg);
     }
   }
 </style>
