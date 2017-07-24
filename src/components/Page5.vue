@@ -114,8 +114,11 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      
       this.scroller = new ScrollOnePage('.page', '.scroll-indicator')
-      this.scroller.start()
+      setTimeout(function () {
+        this.scroller.start()
+      }.bind(this), 1000)
       
       setTimeout(function () {
         this.$store.commit('setCanAdvance', true)
