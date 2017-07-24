@@ -114,6 +114,7 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
    | ----------------------------------------------
    **/
   this.setStyles = function () {
+    console.log(this.pagesContainer)
     this.pagesContainer.style.height = (this.maxHeight * this.sectionCount) + 'px'
     var pages = this.pagesContainer.querySelectorAll('.page-item')
     pages.forEach(function (item) {
@@ -203,6 +204,9 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
     }
   }
   
+  /**
+   * SCROLL INDICATORS
+   */
   this.setScrollIndicators = function () {
     if (!this.scrollIndicatorContainer) {
       return
