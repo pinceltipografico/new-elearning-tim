@@ -118,7 +118,7 @@
       this.scroller = new ScrollOnePage('.page', '.scroll-indicator')
       setTimeout(function () {
         this.scroller.start()
-      }.bind(this), 1000)
+      }.bind(this), 200)
       
       setTimeout(function () {
         this.$store.commit('setCanAdvance', true)
