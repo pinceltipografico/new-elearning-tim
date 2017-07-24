@@ -25,13 +25,13 @@
         <div :style="'width:'+pageProgress+'%'"></div>
       </div>
     </transition>
-    <transition name="fade">
+    <transition name="enter-nav">
       <a class="nav-button next-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="nextPage"
          :class="{'can-advance':canAdvance}">
         <i class="material-icons">&#xE5CC;</i>
       </a>
     </transition>
-    <transition name="fade">
+    <transition name="enter-nav">
       <a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">
         <i class="material-icons">&#xE5CB;</i>
       </a>
@@ -58,7 +58,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 34, 35, 36, 37]
+        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 38]
       }
     },
     //
@@ -591,6 +591,20 @@
   .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
   {
     opacity: 0
+  }
+
+  /**
+  * ----------------------------------------------
+  * ANIMATIONS FOR V-IF OR V-FOR
+  * ----------------------------------------------
+  **/
+  .enter-nav-enter-active, .enter-nav-leave-active {
+    transition: opacity $animationTime;
+  }
+
+  .enter-nav-enter, .enter-nav-leave-to /* .fade-leave-active in <2.1.8 */
+  {
+    opacity: 0;
   }
   
   /**

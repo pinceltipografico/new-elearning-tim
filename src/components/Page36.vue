@@ -1,5 +1,10 @@
 <template>
   <div class="outer-page gradient">
+    <transition name="enter-nav">
+      <router-link to="/page37" class="nav-button next-page can-advance" v-if="showNext">
+        <i class="material-icons">&#xE5CC;</i>
+      </router-link>
+    </transition>
     <section class="page" v-if="scene === 0">
       <div class="start">
         <h1>
@@ -101,7 +106,8 @@
     },
     data () {
       return {
-        scene: 0
+        scene: 0,
+        showNext: false
       }
     },
     mounted () {
@@ -200,7 +206,7 @@
         ]
         Animations.setAnimations(animations)
         Animations.animationTimeline(function () {
-          this.$store.commit('setCanAdvance', true)
+          this.showNext = true
         }.bind(this))
       }
     }
