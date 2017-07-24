@@ -118,7 +118,7 @@
       this.scroller = new ScrollOnePage('.page', '.scroll-indicator')
       setTimeout(function () {
         this.scroller.start()
-      }.bind(this), 200)
+      }.bind(this), 500)
       
       setTimeout(function () {
         this.$store.commit('setCanAdvance', true)
@@ -142,6 +142,7 @@
   
   section.page {
     @extend %gradient;
+    display: none;
     
     .sections {
       width: 100%;
