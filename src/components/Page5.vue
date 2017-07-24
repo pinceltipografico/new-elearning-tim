@@ -142,7 +142,6 @@
   
   section.page {
     @extend %gradient;
-    display: none;
     
     .sections {
       width: 100%;
