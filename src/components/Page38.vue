@@ -38,14 +38,23 @@
   </section>
 </template>
 <script type="text/javascript">
+  import { EventBus } from '../events/index'
   export default {
     data () {
       return {}
     },
     mounted () {
+      this.$store.commit('toggleIterface', true)
+      this.$store.commit('setPageProgress', 0)
+      this.$store.commit('setTotalProgress', 3000)
+      this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         this.addClass(this.$el.querySelector('.items'), 'active')
-      }.bind(this), 1500)
+        EventBus.$emit('start-progress')
+      }.bind(this), 500)
+      setTimeout(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this), 3000)
     },
     destroyed () {
     }
