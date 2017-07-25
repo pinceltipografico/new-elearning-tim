@@ -297,7 +297,6 @@
     top: 45%;
     left: 70%;
     z-index: 3;
-    position: relative;
     transform: translate(-50%, -50%) scale(0.8);
     h1 {
       @include font-size(2.5);
