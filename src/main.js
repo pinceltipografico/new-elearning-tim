@@ -120,3 +120,5 @@ if (window.addEventListener) {
  components: {App}
  })
  */
+
+console.log('main js')
