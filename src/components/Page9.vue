@@ -99,8 +99,9 @@
         var vm = this
         this.removeClass(this.$el.querySelector('.script2'), 'show')
         setTimeout(function () {
-          NodeList.prototype.forEach = Array.prototype.forEach
-          vm.$el.querySelectorAll('.script1 h1').forEach(function (h1) {
+          var h1s = vm.$el.querySelectorAll('.script1 h1')
+          for (var i = 0; i < h1s.length; i++) {
+            var h1 = h1s[i]
             vm.removeClass(h1, 'active')
             vm.removeClass(h1, 'to-left')
             setTimeout(function () {
@@ -111,7 +112,7 @@
                 }, 3000)
               }
             }, 1000)
-          })
+          }
         }, 500)
       }
     },
