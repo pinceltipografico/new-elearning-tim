@@ -70,6 +70,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      console.log('app mounted')
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
