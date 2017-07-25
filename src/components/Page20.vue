@@ -218,7 +218,7 @@
       this.$store.commit('setTotalProgress', 20000)
       this.$store.commit('setCanAdvance', false)
       var gs = document.querySelectorAll('#graph > g')
-      gs.forEach(function (item) {
+      [].map.call(gs, function (item) {
         item.style.opacity = 0
       })
     },
