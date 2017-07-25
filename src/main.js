@@ -57,14 +57,10 @@ const store = new Vuex.Store({
  * VERIFICA SE O PRELOADER EXISTE E CARREGA OS ASSETS
  * @type {Element}
  */
-
 var preloader = document.getElementById('preloader')
 if (preloader) {
   preloader.classList.remove('hidePreloader')
 }
-// var pct = preloader.querySelector('.pct')
-// var mask = preloader.querySelector('#SVGID_2_')
-
 function removePReloader () {
   'use strict'
   if (preloader) {
@@ -88,37 +84,3 @@ if (window.addEventListener) {
 } else if (window.attachEvent) {
   window.attachEvent('onload', removePReloader)
 } else window.onload = removePReloader
-/*
- AssetsLoader.loade((event) => {
- if (pct) {
- pct.innerHTML = 'Carregando: ' + Math.ceil(event.progress) + '%'
- }
- if (mask) {
- var value = ((-100) + Math.ceil(event.progress))
- mask.style['webkitTransform'] = 'translateX(' + value + '%)'
- mask.style['mozTransform'] = 'translateX(' + value + '%)'
- mask.style['msTransform'] = 'translateX(' + value + '%)'
- mask.style['oTransform'] = 'translateX(' + value + '%)'
- }
- }).then(function () {
- console.log('complete')
- removePReloader()
- }).catch(function (err) {
- 'use strict'
- console.log(err)
- removePReloader()
- })
- */
-//
-// CREATE VUE APP
-/*
- new Vue({
- el: '#app',
- router,
- store,
- template: '<App/>',
- components: {App}
- })
- */
-
-console.log('main js')

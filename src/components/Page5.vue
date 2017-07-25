@@ -1,6 +1,6 @@
 <template>
   <section class="page">
-    <div class="sections">
+    <div class="sections" style="display: none;">
       <!-- SCENE 01 -->
       <section class="page-item">
         <div class="scene1">
@@ -114,12 +114,8 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      
-      setTimeout(function () {
-        this.scroller = new ScrollOnePage('.page', '.scroll-indicator')
-        this.scroller.start()
-      }.bind(this), 500)
-      
+      this.scroller = new ScrollOnePage()
+      this.scroller.start('.page', '.scroll-indicator')
       setTimeout(function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this), 500)
@@ -132,6 +128,7 @@
     destroyed () {
       if (this.scroller) {
         this.scroller.removeScrollListeners()
+        this.scroller = null
       }
     }
   }

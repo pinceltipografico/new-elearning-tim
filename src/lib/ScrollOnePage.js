@@ -3,21 +3,33 @@
  */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-unused-vars */
-export default function OnPageScroll (itemContainer, scrollIndicator) {
+export default function OnPageScroll () {
   'use strict'
+  
   //
   // VARIABLES
-  this.scrollContainer = document.querySelector(itemContainer)
-  this.pagesContainer = this.scrollContainer.querySelector('.sections')
-  this.sectionCount = this.scrollContainer.querySelectorAll('.page-item').length
-  this.scrollIndicatorContainer = document.querySelector(scrollIndicator)
-  this.currentSection = 0
-  this.maxHeight = this.scrollContainer.offsetHeight
-  this.iOS = navigator.userAgent.match(/(iPad|iPhone|iPod)/g)
-  this.isScrolling = false
-  this.keyCodes = {
-    up: 38,
-    down: 40
+  this.configure = function (itemContainer, scrollIndicator) {
+    this.scrollContainer = document.querySelector(itemContainer)
+    this.pagesContainer = document.querySelector('.sections')
+    this.sectionCount = document.querySelectorAll('.page-item').length
+    this.scrollIndicatorContainer = document.querySelector(scrollIndicator)
+    this.currentSection = 0
+    this.maxHeight = this.scrollContainer.offsetHeight
+    this.iOS = navigator.userAgent.match(/(iPad|iPhone|iPod)/g)
+    this.isScrolling = false
+    this.keyCodes = {
+      up: 38,
+      down: 40
+    }
+    if (!this.scrollContainer || !this.pagesContainer) {
+      this.configure(itemContainer, scrollIndicator)
+      return
+    }
+    
+    this.setStyles()
+    this.addScrollListeners()
+    this.setScrollIndicators()
+    this.gotoSection(0)
   }
   
   /**
@@ -114,12 +126,14 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
    | ----------------------------------------------
    **/
   this.setStyles = function () {
-    console.log(this.pagesContainer)
-    this.pagesContainer.style.height = (this.maxHeight * this.sectionCount) + 'px'
+    this.pagesContainer = this.scrollContainer.querySelector('.sections')
+    this.pagesContainer.style.display = 'block'
+    this.pagesContainer.style.height = Number((this.maxHeight * this.sectionCount)) + 'px'
     var pages = this.pagesContainer.querySelectorAll('.page-item')
-    pages.forEach(function (item) {
+    for (var i = 0; i < pages.length; i++) {
+      var item = pages[i]
       item.style.height = this.maxHeight + 'px'
-    }.bind(this))
+    }
   }
   
   /**
@@ -233,11 +247,10 @@ export default function OnPageScroll (itemContainer, scrollIndicator) {
    * START PROCESS
    | ----------------------------------------------
    **/
-  this.start = function () {
-    this.setStyles()
-    this.addScrollListeners()
-    this.setScrollIndicators()
-    this.gotoSection(0)
+  this.start = function (itemContainer, scrollIndicator) {
+    setTimeout(function () {
+      this.configure(itemContainer, scrollIndicator)
+    }.bind(this), 500)
   }
   
   return this
