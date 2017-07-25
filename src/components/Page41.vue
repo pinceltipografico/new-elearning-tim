@@ -42,10 +42,16 @@
           time: 500,
           step: 'active',
           selector: '.tiles'
+        }, {
+          time: 4500,
+          step: 'active',
+          selector: '.tiles'
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline()
+      Animations.animationTimeline(function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
       var progress = document.querySelector('.progress-audio')
       if (progress) {
         progress.style.display = 'none'
@@ -187,8 +193,8 @@
         font-weight: bold;
       }
     }
-    &.active{
-      .tile{
+    &.active {
+      .tile {
         opacity: 1;
       }
     }
