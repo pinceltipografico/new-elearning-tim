@@ -99,6 +99,7 @@
         var vm = this
         this.removeClass(this.$el.querySelector('.script2'), 'show')
         setTimeout(function () {
+          NodeList.prototype.forEach = Array.prototype.forEach
           vm.$el.querySelectorAll('.script1 h1').forEach(function (h1) {
             vm.removeClass(h1, 'active')
             vm.removeClass(h1, 'to-left')
