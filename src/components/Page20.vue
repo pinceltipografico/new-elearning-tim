@@ -247,7 +247,8 @@
         if (!els) {
           return
         }
-        els.forEach(function (el, index) {
+        
+        [].map.call(els, function (el, index) {
           el.setAttribute('class', 'svg-group-element')
           el.style.opacity = 0
         })
@@ -288,7 +289,8 @@
         if (span) {
           span.innerText = 'Por favor clique em ' + this.titles[keepIndex]
         }
-        g.forEach(function (item, index) {
+        
+        [].map.call(g, function (item, index) {
           if (index !== keepIndex) {
             item.style.opacity = 0.2
             item.onclick = null
