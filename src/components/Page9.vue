@@ -75,7 +75,9 @@
       newHtml ($event, value) {
         var vm = this
         var parent = this.$el.querySelector('.script1')
-        parent.querySelectorAll('h1').forEach(function (h1) {
+        var h1s = parent.querySelectorAll('h1')
+        for (var i = 0; i < h1s.length; i++) {
+          var h1 = h1s[i]
           vm.removeClass(h1, 'active')
           vm.removeClass(h1, 'to-left')
           if (h1.getAttribute('data-index') !== value) {
@@ -83,7 +85,8 @@
           } else {
             vm.addClass(h1, 'active')
           }
-        })
+        }
+        
         this.addClass(this.$el.querySelector('.script2'), 'show')
         this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
         this.addClass(this.$el.querySelector('.script2 div.image'), 'style' + value)
