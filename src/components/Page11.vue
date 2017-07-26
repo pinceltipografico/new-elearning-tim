@@ -88,7 +88,7 @@
             ['Pertencer', 15],
             ['Identidade', 10]
           ],
-          wait: 50,
+          wait: 200,
           maxRotation: 0,
           clearCanvas: true,
           backgroundColor: 'transparent',

@@ -13,10 +13,10 @@
     <div class="icon-5"><img src="../assets/sprites/computer-page12.jpg" alt=""></div>
     <div class="icon-6"><img src="../assets/sprites/message-page12.png" alt=""></div>
     <div class="script1">
-      <h1>consiste na <span>percepção</span> do cliente</h1>
+      <h1>Essa interação pode se dar de vários <span>níveis</span> e <span>formas</span></h1>
     </div>
     <div class="script2">
-      <h1>Essa interação pode se dar de vários <span>níveis</span> e <span>formas</span></h1>
+      <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>
     </div>
     <div class="script3">
       <h1>O cliente no centro em <span>todos os movimentos de uma organização</span></h1>
@@ -60,7 +60,7 @@
           step: 'show',
           selector: '.script2'
         }, {
-          time: 5000,
+          time: 8000,
           step: 'show',
           selector: '.script2',
           reverse: true
@@ -232,7 +232,7 @@
       }
     }
     .script2 {
-      top: 50%;
+      top: 40%;
       right: 0;
       &.show {
         right: 75px;

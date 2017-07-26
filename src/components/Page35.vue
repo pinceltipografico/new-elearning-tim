@@ -27,6 +27,7 @@
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
+      <span class="title"><i class="material-icons">&#xE5D2;</i>Interação</span>
       <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar.</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
@@ -93,19 +94,19 @@
         showVoltar: false,
         popups: [
           {
-            html: '<h1>OUVIR O CLIENTE<small>alta de informação e dificuldade de uso de algum equipamento ou funcionalidade podem ser o motivo de uma reclamação</small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>E se o cliente está pedindo a nossa ajuda, pode ser uma oportunidade</span>'
+            html: '<h1>OUVIR O CLIENTE<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>E se o cliente está pedindo a nossa ajuda, pode ser uma oportunidade</span>'
           }, {
-            html: '<h1>CONHECER O CLIENTE <small>O cliente espera que a TIM, em qualquer de seus canais ou representantes, tenha disponível suas informações</small></h1><h4>Ele Espera achar:</h4><span>seu perfil de consumo</span><span>suas transações</span><span>reclamações ou solicitações recentes</span>'
+            html: '<h1>CONHECER O CLIENTE <small></small></h1><h4>Ele Espera encontrar:</h4><span>seu perfil de consumo</span><span>suas transações</span><span>reclamações ou solicitações recentes</span>'
           }, {
-            html: '<h1>OTIMIZAR O AUTOATENDIMENTO<small>Soluções digitais não substituem a interação humana, e sim complementam.</small></h1><h4>A tendência atual: </h4><span>canais digitais de suporte</span><span>menor necessidade de contato</span>'
+            html: '<h1>OTIMIZAR O AUTOATENDIMENTO<small></small></h1><h4>A tendência atual: </h4><span>canais digitais de suporte</span><span>maior autonomia</span><span>menor necessidade de contato</span>'
           }, {
-            html: '<h1>Criar uma interface amigável<small>Se a tendência atual é o crescimento dos canais digitais com maior autonomia do cliente, a interface passa a ser elemento-chave na conquista de uma experiência diferenciada. </small></h1><h4></h4><span>Uma interface amigável estimula o uso da solução, seja em qualquer ferramenta é ideal para soluções mais interativas, disponibilidade imediata e custo menor, podendo ainda ser personalizada.</h4span>'
+            html: '<h1>Criar uma interface amigável<small></small></h1><h4></h4><span>estimula o uso da solução</span><span>ideal para soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada.</span></h4>'
           }, {
-            html: '<h1>Canais diversos, experiência única.<small>Ainda que existam limitações e diferenças entre canais, buscar a uniformidade da experiência em todos eles é fundamental</small>'
+            html: '<h1>Canais diversos, experiência única.<small></small><h4><span>Buscar a uniformidade da experiência em todos os canais</span></h4>'
           }, {
-            html: '<h1>VIVER A EXPERIÊNCIA <small>A organização deve “respirar” Customer Experience! Os comportamentos e atitudes de todas as áreas devem estar voltados às possibilidades de melhoria da experiencia do cliente.</small>'
+            html: '<h1>VIVER A EXPERIÊNCIA <small></small><h4><span>A organização deve “respirar” Customer Experience! Os comportamentos e atitudes de todas as áreas devem estar voltados às possibilidades de melhoria da experiencia do cliente.</span></h4>'
           }, {
-            html: '<h1>CUSTOMIZAR PARA SATISFAZER<small>A possibilidade de escolher e combinar elementos que melhor se adequam aos hábitos dos clientes é o diferencial na experiência de sua jornada</small>'
+            html: '<h1>CUSTOMIZAR PARA SATISFAZER<small></small><h4><span>A possibilidade de escolher e combinar elementos que melhor se adequam aos hábitos dos clientes é o diferencial na experiência de sua jornada</span></h4>'
           }
         ]
       }

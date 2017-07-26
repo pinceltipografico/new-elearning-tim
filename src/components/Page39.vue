@@ -13,7 +13,10 @@
     <div class="animation1"></div>
     <div class="animation2"></div>
     <div class="script">
-      <h1>Juntos na <span>geração CX</span></h1>
+      <h1>Uma comunidade <span>única</span></h1>
+    </div>
+    <div class="palavras-colaborador">
+      <span>conhecimento</span><span>encantamento</span><span>satisafação</span><span>crescimento</span><span>celebração</span><span>empoderamento</span><span>fidelidade</span><span>suporte</span><span>conexão</span><span>paixão</span>
     </div>
   </section>
 </template>
@@ -29,7 +32,7 @@
     mounted () {
       var animations = [
         {
-          time: 500,
+          time: 1500,
           step: 'step1',
           selector: '.animation1'
         }, {
@@ -37,7 +40,7 @@
           step: 'step2',
           selector: '.animation1'
         }, {
-          time: 500,
+          time: 1500,
           step: 'step1',
           selector: '.animation2'
         }, {
@@ -45,7 +48,7 @@
           step: 'step2',
           selector: '.animation2'
         }, {
-          time: 2000,
+          time: 4000,
           step: 'step1',
           selector: '.colaboradores'
         }, {
@@ -200,6 +203,11 @@
           top:-92px;
         }
       }
+    }
+    .palavras-colaborador{
+      position: absolute;
+      top:50%;
+      left: 50px;
     }
   }
 </style>

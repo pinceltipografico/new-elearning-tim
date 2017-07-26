@@ -8,7 +8,7 @@
     <section class="page" v-if="scene === 0">
       <div class="start">
         <h1>
-          O Monitoramento em uma abordagem de CX vai muito além de relatórios e KPIs que já são utilizados pelas diferentes áreas da <span>TIM</span>
+          O Monitoramento em uma abordagem de CX vai muito além de relatórios e KPIs que já são utilizados pelas diferentes áreas da <span class="uppercase">TIM</span>
           para fazer a gestão de suas atividades.</h1>
         <div class="buttons" @click="startAnim">
           <span>Ver como funciona</span>
@@ -114,9 +114,13 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 15000)
       this.$store.commit('setCanAdvance', false)
+      var next = document.querySelector('.can-advance')
+      next.style.display = 'none'
     },
     destroyed () {
       Animations.destroyAnimations()
+      var next = document.querySelector('.can-advance')
+      next.style.display = 'block'
     },
     methods: {
       startAnim () {
@@ -516,6 +520,7 @@
         background: $brand-details;
         text-align: center;
         border-radius: 7px;
+        @include font-size(1.5);
       }
       img {
         width: 100%;

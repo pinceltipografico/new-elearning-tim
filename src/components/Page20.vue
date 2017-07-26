@@ -12,7 +12,7 @@
     <!-- INTRO -->
     <section class="page intro">
       <div class="script1">
-        <h1>Vamos observar 0 <span>ciclo de vida</span> de um cliente</h1>
+        <h1>Vamos observar o <span>ciclo de vida</span> de um cliente</h1>
       </div>
       <div class="script2">
         <h1>Esse é a <span>jornada</span> que o cliente percorre</h1>
@@ -85,7 +85,7 @@
       <div class="iconButton" @click="showSvgEls(3,startSceneSix)">
         <div>
           <span class="click">clique e</span>
-          <span>Me ajude-o a comprar</span>
+          <span>Comprar</span>
           <i class="material-icons">&#xE263;</i>
         </div>
       </div>
@@ -96,7 +96,7 @@
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>Fazer com que o cliente sinta que acertou na escolha em adquirir a marca é o <span>passo importante!</span>
+        <h1>Fazer com que o cliente sinta que acertou na escolha</span>
         </h1>
         <div @click="startSceneSeven">Clique e veja um exemplo</div>
       </div>
@@ -107,7 +107,7 @@
       <div class="iconButton" @click="showSvgEls(4,startSceneEight)">
         <div>
           <span class="click">clique aqui</span>
-          <span>e veja receber</span>
+          <span>receber</span>
           <i class="material-icons">&#xE905;</i>
         </div>
       </div>
@@ -123,7 +123,7 @@
       <div class="iconButton" @click="showSvgEls(5, startSceneNine)">
         <div>
           <span class="click">clique para</span>
-          <span>ver usar</span>
+          <span>usar</span>
           <i class="material-icons">&#xE912;</i>
         </div>
       </div>
@@ -135,11 +135,18 @@
       <div class="effects"></div>
       <div class="script1">
         <h1>O que a empresa e você podem fazer para melhorar cada vez mais a <span>experiencia do usuário?</span></h1>
+        <div class="buttons" @click="startSceneNineTwo">
+          <span>clique e veja um exemplo</span>
+        </div>
+      </div>
+      <div class="video">
+        <video src="/static/video/vdeo3.m4v" autoplay loop></video>
+        <h1>Imagine você organizando a tão esperada viagem, utilizando um app que te ajuda a identificar os melhores roteiros e passeios</h1>
       </div>
       <div class="iconButton" @click="showSvgEls(6,startSceneTen)">
         <div>
           <span class="click">clique para</span>
-          <span>ver manter</span>
+          <span>manter</span>
           <i class="material-icons">&#xE8DC;</i>
         </div>
       </div>
@@ -155,6 +162,10 @@
       </div>
       <div class="script2">
         <h1><span>Agilidade e Eficiência</span> são as palavras importantes para esse momento</h1>
+      </div>
+      <div class="script3">
+        <h1>Qual é a melhor forma de atende-lo quando ele já usa o produto ou serviço?</h1>
+        <h1>O que pode ser feito para que le continue apaixonado e continue confiando na marca?</h1>
       </div>
       <div class="iconButton" @click="showSvgEls(7,startSceneEleven)">
         <div>
@@ -172,7 +183,10 @@
       <div class="script1">
         <h1> Recomendar é o resultado de toda experiência que o cliente teve ao <span>longo da jornada de contato com o produto ou serviço</span>
         </h1>
-        <div @click="startLastScene">Ok. Acho que entendi</div>
+      </div>
+      <div class="homem"></div>
+      <div class="script2">
+        <h1>Recomendar é o resultado de toda boa experiência que o cliente teve ao lono da jornada de contato com o produto ou serviço<small>Precisamos tornar o cliente um defensor da marca!</small></h1>
       </div>
     </section>
     <!-- ANIMAÇÕES DE RECOMENDAR -->
@@ -222,6 +236,8 @@
         var item = gs[i]
         item.style.opacity = 0
       }
+//      this.scene = 7
+//      this.startSceneEleven()
     },
     /**
      | ----------------------------------------------
@@ -601,8 +617,32 @@
             time: 300,
             step: 'show',
             selector: '.usar > .script1'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline()
+      },
+      
+      startSceneNineTwo () {
+        var animations = [
+          {
+            time: 50,
+            step: 'show',
+            selector: '.usar > .video'
           }, {
-            time: 4000,
+            time: 300,
+            step: 'step1',
+            selector: '.usar > .video'
+          }, {
+            time: 1000,
+            step: 'step2',
+            selector: '.usar > .video'
+          }, {
+            time: 1000,
+            step: 'step3',
+            selector: '.usar > .video'
+          }, {
+            time: 5000,
             step: 'show',
             selector: '.usar > .iconButton'
           }
@@ -653,6 +693,31 @@
             step: 'show',
             selector: '.manter > .script2'
           }, {
+            time: 4000,
+            step: 'show',
+            selector: '.manter > .script2',
+            reverse: true
+          }, {
+            time: 500,
+            step: 'step4',
+            selector: '.manter > .effects'
+          }, {
+            time: 500,
+            step: 'step3',
+            selector: '.manter > .image-background'
+          }, {
+            time: 1000,
+            step: 'step5',
+            selector: '.manter > .effects'
+          }, {
+            time: 1000,
+            step: 'show',
+            selector: '.manter > .script3 > h1:nth-of-type(1)'
+          }, {
+            time: 1500,
+            step: 'show',
+            selector: '.manter > .script3 > h1:nth-of-type(2)'
+          }, {
             time: 4500,
             step: 'show',
             selector: '.manter > .iconButton'
@@ -682,6 +747,31 @@
             time: 500,
             step: 'step1',
             selector: '.recomendar > .script1'
+          }, {
+            time: 4000,
+            step: 'step1',
+            selector: '.recomendar > .script1',
+            reverse: true
+          }, {
+            time: 500,
+            step: 'step2',
+            selector: '.recomendar > .effects'
+          }, {
+            time: 500,
+            step: 'step3',
+            selector: '.recomendar > .effects'
+          }, {
+            time: 0,
+            step: 'hide',
+            selector: '.recomendar > .image-background'
+          }, {
+            time: 1000,
+            step: 'step1',
+            selector: '.recomendar > .homem'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.recomendar > .script2'
           }
         ]
         Animation.setAnimations(animations)
@@ -849,7 +939,7 @@
     opacity: 0;
     cursor: pointer;
     border: 4px solid #fff;
-    animation: buttonAnimation 1s infinite ease-in-out alternate;
+    animation: buttonAnimation 0.250s infinite ease-in-out alternate;
     &.show {
       transform: translateY(-50%);
       opacity: 1;
@@ -898,7 +988,7 @@
   .precisar {
     .image-background {
       &.step1 {
-        background: url("../assets/backgrounds/page20/02.jpg") no-repeat;
+        background: url("../assets/backgrounds/page20/ref-526149550.jpg") no-repeat;
         background-size: cover;
       }
       &.step2 {
@@ -931,7 +1021,7 @@
         top: 50%;
         transform: translateY(-50%);
         right: 0;
-        background: $brand-secondary;
+        background: rgba(#fff, 0.4);
       }
       &.step6 {
         top: 0;
@@ -946,7 +1036,7 @@
     .script1 {
       top: 50%;
       max-width: 35%;
-      right: 10%;
+      right: 12%;
       transform: translateY(-50%);
       opacity: 0;
       h1 {
@@ -974,6 +1064,7 @@
       transform: translate(-100%, -50%);
       border-left: 2px solid #fff;
       border-right: 2px solid #fff;
+      background: $brand-details;
       opacity: 0;
       h1 {
         @include font-size(2);
@@ -1042,7 +1133,7 @@
     .script1 {
       max-width: 400px;
       top: 50%;
-      right: 15%;
+      right: 13%;
       color: #666;
       @include font-size(2);
       opacity: 0;
@@ -1158,12 +1249,12 @@
       @include font-size(2);
       color: #666;
       left: 12%;
-      top: 50%;
+      top: 40%;
       opacity: 0;
       > div {
         border: 1px solid $brand-details;
         padding: 5px;
-        animation: buttonAnimation 2s infinite ease-in-out alternate;
+        animation: buttonAnimation 0.250s infinite ease-in-out alternate;
         cursor: pointer;
       }
       &.step1 {
@@ -1234,16 +1325,86 @@
       color: #666;
       @include font-size(2);
       max-width: 30%;
-      top: 50%;
+      top: 40%;
       left: 8%;
       opacity: 0;
       &.show {
         opacity: 1;
       }
+      div.buttons {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .video{
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      display: none;
+      *{
+        transition: all $animationTime;
+      }
+      video{
+        position: absolute;
+        width: 100%;
+        height: 110%;
+        margin-top: -20px;
+        z-index: 1;
+      }
+      h1{
+        position: absolute;
+        z-index: 2;
+        right: 5%;
+        top:50%;
+        transform: translateY(-50%);
+        max-width: 600px;
+        @include font-size(2);
+        color:#fff;
+        background: rgba(#000,0.6);
+        padding: 5px 40px;
+        opacity: 0;
+        &:after,
+        &:before{
+          position: absolute;
+          content: '';
+          display: block;
+          width: 100%;
+          height: 2px;
+          background: #fff;
+          left: 0;
+          transform: scaleX(0);
+          transition: all $animationTime;
+        }
+        &:after{
+          bottom:-5px;
+          transform-origin: 100% 0;
+        }
+        &:before{
+          top:-5px;
+          transform-origin: 0 0;
+        }
+      }
+      &.show{
+        display: block;
+      }
+      &.step1{
+        opacity: 1;
+      }
+      &.step2{
+        h1{
+          opacity: 1;
+        }
+      }
+      &.step3{
+        h1:after,
+        h1:before{
+          transform: scaleX(1);
+        }
+      }
     }
     .iconButton {
       top: 50%;
-      left: 60%;
+      left: 10%;
     }
   }
   
@@ -1255,6 +1416,10 @@
       background-size: cover;
       &.step2 {
         background: url("../assets/backgrounds/page20/11.jpg") no-repeat;
+        background-size: cover;
+      }
+      &.step3{
+        background: url("../assets/backgrounds/page20/ref-580048861.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1271,6 +1436,12 @@
         top: 0;
       }
       &.step3 {
+        opacity: 0;
+      }
+      &.step4{
+        opacity: 1;
+      }
+      &.step5{
         opacity: 0;
       }
     }
@@ -1299,9 +1470,27 @@
         opacity: 1;
       }
     }
+    .script3{
+      top:20%;
+      left: 7%;
+      @include font-size(1.5);
+      padding: 20px;
+      max-width: 500px;
+      h1{
+        color: $brand-details;
+        border-left: 10px double $brand-details;
+        padding-left: 10px;
+        opacity: 0;
+        transition: all $animationTime;
+        
+        &.show{
+          opacity: 1;
+        }
+      }
+    }
     .iconButton {
       top: 50%;
-      left: 20%;
+      right: 10%;
     }
   }
   
@@ -1311,6 +1500,22 @@
     .image-background {
       background: url("../assets/backgrounds/page20/12.jpg") no-repeat;
       background-size: cover;
+      &.hide{
+        display: none;
+      }
+    }
+    .homem{
+      width: 538px;
+      height: 709px;
+      background: url("../assets/backgrounds/page20/13.png") no-repeat;
+      bottom:-100px;
+      right: -100%;
+      opacity: 0;
+      
+      &.step1{
+        right: 10%;
+        opacity: 1;
+      }
     }
     .script1 {
       max-width: 35%;
@@ -1326,8 +1531,25 @@
       > div {
         border: 1px solid $brand-details;
         padding: 5px;
-        animation: buttonAnimation 2s infinite ease-in-out alternate;
+        animation: buttonAnimation 0.250s infinite ease-in-out alternate;
         cursor: pointer;
+      }
+    }
+    .script2{
+      max-width: 500px;
+      color:#fff;
+      @include font-size(2);
+      top:50%;
+      left:10%;
+      transform: translateY(-50%);
+      opacity: 0;
+      &.show{
+        opacity: 1;
+      }
+      small{
+        display: block;
+        margin-top: 15px;
+        color:$brand-details;
       }
     }
     .effects {
@@ -1337,6 +1559,14 @@
       background: rgba(#fff, 0.8);
       &.step1 {
         height: 100%;
+      }
+      &.step2{
+        width: 100%;
+        left: 0;
+        background: #fff;
+      }
+      &.step3{
+        opacity: 0;
       }
     }
   }

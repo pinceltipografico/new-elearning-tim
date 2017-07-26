@@ -17,7 +17,7 @@
     </div>
     <div class="script2" v-if="!showEnd">
       <div class="image"></div>
-      <div class="close" @click="closeItem"><i class="fa fa-times-circle"></i>fechar</div>
+      <div class="close" @click="closeItem"><i class="material-icons">&#xE5CD;</i>fechar</div>
       <p></p>
     </div>
     <div class="script3 end-tag" :class="{'show':showEnd}">
@@ -126,7 +126,7 @@
         texts: {
           '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico.',
           '2': 'Hoje temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar.',
-          '3': 'Serviços de comércio eletrônico, por exemplo, que extrapolam a simples entrega, em que desde a navegação de pesquisa além do serviço tradicional, pensar novos modelos, formatos e surpreender'
+          '3': 'Além do serviço tradicional, pensar novos modelos, formatos e surpreender'
         },
         viewed: [],
         showEnd: false

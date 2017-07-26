@@ -20,12 +20,12 @@
       </div>
     </div>
     <div class="script1">
-      <h1>clique no <span>menu:</span></h1>
+      <h1>clique nos ícones <span>e veja o que apresentaremos para você!</span></h1>
     </div>
     <transition name="enter">
       <div class="popup" v-if="showPopup">
         <div class="inner">
-          <div class="close" @click="closePopup"><i class="fa fa-times-circle"></i></div>
+          <div class="close" @click="closePopup"><i class="material-icons">&#xE5CD;</i></div>
           <h1>{{text}}</h1>
           <div class="buttons" v-if="allowToSee">
             <!-- -->Ver Módulo<!-- -->
@@ -200,16 +200,21 @@
       transform: translate(-50%, -50%);
       h1 {
         color: #fff;
+        @include font-size(2.3);
       }
       > div {
-        @include font-size(2);
+        @include font-size(1.5);
       }
       .close {
         position: absolute;
-        color: #fff;
+        color: $brand-details;
         right: -13px;
         top: -13px;
+        background: #fff;
         @include font-size(3);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
       }
     }
   }

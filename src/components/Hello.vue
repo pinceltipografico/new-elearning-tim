@@ -19,10 +19,10 @@
     // APP NAME
     name: 'hello',
     /**
-    | ----------------------------------------------
-    * RETURN THE DATA OF COMPONENT
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE DATA OF COMPONENT
+     | ----------------------------------------------
+     **/
     data () {
       return {
         animation: false,
@@ -30,30 +30,34 @@
       }
     },
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       setTimeout(function () {
         this.animation = true
       }.bind(this), 1000)
     },
     /**
-    | ----------------------------------------------
-    * RETURN THE COMPONENT METHODS
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE COMPONENT METHODS
+     | ----------------------------------------------
+     **/
     methods: {
       gotoExplain: function () {
         this.animation = false
+        this.$router.replace('explain')
+  
+        /*
         setTimeout(function () {
-          if (this.$cookie.get('explain_viewed')) {
-            this.$router.replace('page1')
-          } else {
-            this.$router.replace('explain')
-          }
+           if (this.$cookie.get('explain_viewed')) {
+           this.$router.replace('page1')
+           } else {
+           this.$router.replace('explain')
+           }
         }.bind(this), 1000)
+         */
       }
     }
   }

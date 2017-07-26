@@ -178,6 +178,17 @@
     }
     
     section.comunicacao {
+      .title{
+        background: $brand-secondary;
+        color:#fff;
+        top:18%;
+        @include font-size(3);
+        padding: 5px 15px;
+        text-transform: uppercase;
+        i{
+          margin-right: 10px;
+        }
+      }
       h1 {
         top: 70px;
         left: 50%;
@@ -235,7 +246,7 @@
             font-weight: bold;
             transform: translateX(-50%);
             max-width: 90%;
-            @include font-size(1.2);
+            @include font-size(1.5);
           }
         }
       }

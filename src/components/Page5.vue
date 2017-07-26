@@ -201,7 +201,7 @@
             height: 500px;
             background-size: 100% auto;
             top: 50%;
-            left: 200px;
+            left: 100px;
             transform: translateY(-50%) rotateZ(0deg);
           }
           .script2 {

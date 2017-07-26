@@ -42,7 +42,7 @@
           step: 'show',
           selector: '.script1'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'step2',
           selector: '.effects'
         }, {

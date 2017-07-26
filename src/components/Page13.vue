@@ -3,7 +3,7 @@
     <section class="page step1" v-if="!showTodo">
       <div class="script2">
         <h1>
-          Já em 2016 criamos a estrutura de Customer Experience que vem trabalhando para introduzir e desdobrar as diretrizes de <span>Customer Experience no dia a dia do colaborador</span>
+          Iniciamos este processo em 2016, investimos em estudo para mergulhar <span>em todo o ciclo de vida do cliente</span> e na jornada de conexão da marca com o consumidor
         </h1>
       </div>
       <div class="blue"></div>
@@ -299,7 +299,7 @@
         display: block;
         width: 240px;
         height: 100px;
-        @include font-size(10);
+        @include font-size(9);
         line-height: 100px;
         text-align: center;
         transform: translateY(0);

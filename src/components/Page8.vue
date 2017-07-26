@@ -1,7 +1,8 @@
 <template>
   <section class="page">
     <div class="image-background"></div>
-    <div class="script1 end-tag">
+    <div class="script1">
+      <video src="/static/video/560156650.m4v" autoplay loop></video>
       <h1>entender o que bate em seu coração</h1>
     </div>
     <div class="effect"></div>
@@ -29,13 +30,22 @@
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
+      
       var animations = [
         {
           time: 500,
           step: 'show',
           selector: '.script1'
         }, {
-          time: 4000,
+          time: 1500,
+          step: 'step1',
+          selector: '.script1'
+        }, {
+          time: 500,
+          step: 'step2',
+          selector: '.script1'
+        }, {
+          time: 8000,
           step: 'step1',
           selector: '.effect'
         }, {
@@ -79,9 +89,6 @@
   
   section.page {
     div.image-background {
-      background: url("../assets/backgrounds/page8/01.jpg") no-repeat;
-      background-size: cover;
-      
       &.step2 {
         background: url('../assets/backgrounds/page8/02.jpg') no-repeat;
         background-size: cover;
@@ -89,8 +96,58 @@
     }
     
     .script1 {
+      width: 100%;
+      height: 100%;
+      video{
+        margin-top: -20px;
+        width: 100%;
+        height: 110%;
+      }
+      h1{
+        position: absolute;
+        @include font-size(2);
+        color:#fff;
+        top:50%;
+        right: -100%;
+        transform: translateY(-50%);
+        background: rgba(#000,0.5);
+        padding: 20px;
+        transition: all $animationTime;
+        
+        &:after,
+        &:before{
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background: #fff;
+          transform: scaleX(0);
+          transition: all $animationTime;
+        }
+        &:before{
+          top:-5px;
+          left: 0;
+          transform-origin: 0 0;
+        }
+        &:after{
+          bottom:-5px;
+          right: 0;
+          transform-origin: 100% 0;
+        }
+      }
       &.hide {
         display: none;
+      }
+      &.step1{
+        h1{
+          right: 5%;
+        }
+      }
+      &.step2{
+        h1:before,
+        h1:after{
+          transform: scaleX(1);
+        }
       }
     }
     

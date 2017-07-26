@@ -13,11 +13,13 @@
       <span>DE</span>
       <div class="script2">
         <h1>abordagem tradicional de mercado
-          <!-- -->
-          <small>Não integrada, a oferta é o centro, sem context, reativa</small><!-- -->
         </h1>
       </div>
       <div class="abordages-tradicionais">
+        <div>Não integrada</div>
+        <div>sem contexto</div>
+        <div>a oferta é o centro</div>
+        <div>reativa</div>
         <div>Sem diferença por cliente</div>
         <div>Sem integração</div>
         <div>Mal suportada pelas novas tecnologias</div>
@@ -30,11 +32,13 @@
       <span>PARA</span>
       <div class="script3">
         <h1>Uma Nova Visão
-          <small>Onde o <span class="red">cliente</span> está sempre no centro
-            <div>
-              Podendo utilizar todos os nossos canais: email, apps, Web, Phone, IVR (interative voice response) o atendimento automático, POS – point of sale, CC
-            </div>
-            <div>Onde nossas soluções devem ser inovadoras, Rentáveis, Multichannel, Processo Cross</div>
+          <small>
+            <hr/>
+            <div>O cliente no centro</div>
+            <div>Soluções inovadoras</div>
+            <div>rentáveis</div>
+            <div>Mulichannel</div>
+            <div>Processos integrados</div>
           </small>
         </h1>
       </div>
@@ -188,7 +192,7 @@
     width: 120px;
     height: 120px;
     background: $brand-details;
-    top: 50%;
+    top: 40%;
     margin-top: -60px;
     z-index: 4;
     color: #fff;
@@ -269,6 +273,7 @@
       > span {
         @include font-size(10);
         font-weight: bold;
+        text-transform: uppercase;
       }
       > * {
         position: absolute;
@@ -282,7 +287,7 @@
         height: 0;
       }
       &:before {
-        top: 50%;
+        top: 40%;
       }
     }
     
@@ -293,30 +298,31 @@
       }
       span {
         color: $brand-details;
-        top: 35%;
+        top: 23%;
       }
       .script3 {
-        top: 52%;
+        top: 40%;
         color: #fff;
+        @include font-size(1.5);
         small {
           display: block;
           color: $brand-details;
-          
+          hr{
+            opacity: 0;
+          }
           div {
             color: #fff;
-            padding: 10px;
-            max-width: 450px;
-            @include font-size(1.5);
-            font-weight: normal;
+            @include font-size(1.8);
             border-left: 5px double $brand-details;
-            margin: 10px 0;
+            padding: 0 5px 0 15px;
+            margin-bottom: 5px;
           }
         }
       }
       .customer_centric {
         width: 550px;
         right: 5%;
-        top: 50%;
+        top: 40%;
         transform: translateY(-52%);
         opacity: 0;
       }
@@ -344,26 +350,27 @@
       }
       span {
         color: #fff;
-        top: 35%;
+        top: 23%;
         left: 10%;
       }
       .script2 {
         left: 10%;
-        top: 52%;
+        top: 40%;
         color: #fff;
+        @include font-size(1.5);
         small {
           display: block;
           color: $brand-details;
         }
       }
       .abordages-tradicionais {
-        top: 60%;
+        top: 50%;
         left: 15%;
         div {
           color: #fff;
           @include font-size(1.8);
           border-left: 5px double $brand-details;
-          padding: 5px 5px 0 15px;
+          padding: 0 5px 0 15px;
           margin-bottom: 5px;
         }
       }

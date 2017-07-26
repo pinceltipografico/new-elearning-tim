@@ -38,7 +38,7 @@
           step: 'show',
           selector: '.script1'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'step1',
           selector: '.effects'
         }, {
@@ -58,7 +58,7 @@
           step: 'step2',
           selector: '.image-background'
         }, {
-          time: 4500,
+          time: 8500,
           step: 'hide',
           selector: '.script2'
         }, {
@@ -70,7 +70,7 @@
           step: 'show',
           selector: '.script3'
         }, {
-          time: 4500,
+          time: 8500,
           step: 'step3',
           selector: '.effects',
           reverse: true
