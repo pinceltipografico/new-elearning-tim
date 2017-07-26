@@ -2,7 +2,7 @@
   <section class="page">
     <div class="image-background"></div>
     <div class="script1">
-      <video src="/static/video/560156650.m4v" autoplay loop></video>
+      <video src="/tim/static/video/560156650.m4v" autoplay loop></video>
       <h1>entender o que bate em seu coração</h1>
     </div>
     <div class="effect"></div>

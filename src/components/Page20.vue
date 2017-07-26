@@ -140,7 +140,7 @@
         </div>
       </div>
       <div class="video">
-        <video src="/static/video/vdeo3.m4v" autoplay loop></video>
+        <video src="/tim/static/video/vdeo3.m4v" autoplay loop></video>
         <h1>Imagine você organizando a tão esperada viagem, utilizando um app que te ajuda a identificar os melhores roteiros e passeios</h1>
       </div>
       <div class="iconButton" @click="showSvgEls(6,startSceneTen)">
