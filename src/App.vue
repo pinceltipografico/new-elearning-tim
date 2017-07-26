@@ -377,7 +377,7 @@
     background: rgba($brand-primary, 0.5);
     z-index: 3;
     left: 50%;
-    bottom: 50px;
+    bottom: 30px;
     transform: translateX(-50%);
     
     div {

@@ -18,6 +18,9 @@
     <div class="palavras-colaborador">
       <span>conhecimento</span><span>encantamento</span><span>satisafação</span><span>crescimento</span><span>celebração</span><span>empoderamento</span><span>fidelidade</span><span>suporte</span><span>conexão</span><span>paixão</span>
     </div>
+    <div class="palavras-clientes">
+      <span>engajamento</span><span>entusiasmo</span><span>satisfação</span><span>lealdade</span><span>conexão</span><span>felicidade</span><span>conhecimento</span>
+    </div>
   </section>
 </template>
 <script type="text/javascript">
@@ -67,6 +70,14 @@
           time: 0,
           step: 'step3',
           selector: '.animation2'
+        }, {
+          time: 2000,
+          step: 'show',
+          selector: '.palavras-colaborador'
+        }, {
+          time: 5000,
+          step: 'show',
+          selector: '.palavras-clientes'
         }
       ]
       Animations.setAnimations(animations)
@@ -204,10 +215,41 @@
         }
       }
     }
-    .palavras-colaborador{
+    .palavras-colaborador,
+    .palavras-clientes{
       position: absolute;
       top:50%;
+      width: 300px;
+      transform: translateY(-50%);
+      span{
+        display: inline-block;
+        background: $brand-details;
+        color:#fff;
+        @include font-size(1.5);
+        margin:0 10px 10px 0;
+        padding: 5px 10px;
+        font-weight: bold;
+        border-radius: 5px;
+        opacity: 0;
+        transition: all $animationTime;
+        
+        @for $i from 1 through 10{
+          &:nth-of-type(#{$i}){
+            transition-delay: #{(0.5 * $i)+'s'};
+          }
+        }
+      }
+      &.show{
+        span{
+          opacity: 1;
+        }
+      }
+    }
+    .palavras-colaborador{
       left: 50px;
+    }
+    .palavras-clientes{
+      right: 50px;
     }
   }
 </style>

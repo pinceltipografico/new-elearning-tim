@@ -8,13 +8,14 @@
       <div class="icon">
         <i class="material-icons">&#xE228;</i>
       </div>
-      <span>Customer Centric</span>
+      <span><strong>Customer Centric</strong></span>
       <span>Entender as necessidades</span>
     </div>
     <div class="item user-experience">
       <div class="icon">
         <img src="../assets/backgrounds/page40/touch.png"/>
       </div>
+      <span><strong>User Experience</strong></span>
       <span>Emoções Preferências</span>
       <span>Comportamentos</span>
       <span>Realizações</span>
@@ -23,6 +24,7 @@
       <div class="icon">
         <i class="material-icons">&#xE8B6;</i>
       </div>
+      <span><strong>Monitoring & Analisys</strong></span>
       <span>O que são?</span>
       <span>O que querem?</span>
       <span>Quando e como querem?</span>
@@ -31,6 +33,7 @@
       <div class="icon">
         <i class="material-icons">&#xE7FD;</i>
       </div>
+      <span><strong>Crew Experience</strong></span>
       <span>Oferecer a melhor experiência para os colaboradores é a chave</span>
     </div>
   </section>
@@ -140,7 +143,7 @@
     }
     &.user-experience {
       left: 50%;
-      top: 50%;
+      top: 48%;
       transform: translate(-50%, 90%);
     }
     &.custumer-monitoring {
