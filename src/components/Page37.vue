@@ -26,7 +26,7 @@
         <span>Voltar</span>
       </router-link>
       <span class="title"><i class="material-icons">&#xE8B6;</i>Monitoramento</span>
-      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar.</span><br/>
+      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">

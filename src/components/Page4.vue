@@ -2,25 +2,25 @@
   <section class="page">
     <div class="menu">
       <div class="item-container">
-        <div class="item" @click="onItemClick(0)">
+        <div class="item active" @click="onItemClick(0)">
           <i class="material-icons">&#xE88E;</i>
         </div>
-        <div class="item" @click="onItemClick(1)">
-          <!-- dna -->
-        </div>
+        <!--<div class="item" @click="onItemClick(1)">-->
+           <!--dna -->
+        <!--</div>-->
         <div class="item" @click="onItemClick(2)">
           <!-- infinite -->
         </div>
         <div class="item" @click="onItemClick(3)">
           <i class="material-icons">&#xE871;</i>
         </div>
-        <div class="item" @click="onItemClick(4)">
-          <i class="material-icons">&#xE8DC;</i>
-        </div>
+        <!--<div class="item" @click="onItemClick(4)">-->
+          <!--<i class="material-icons">&#xE8DC;</i>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="script1">
-      <h1>clique nos ícones <span>e veja o que apresentaremos para você!</span></h1>
+      <h1>vamos para o nosso <span>primeiro modulo</span></span></h1>
     </div>
     <transition name="enter">
       <div class="popup" v-if="showPopup">
@@ -60,7 +60,7 @@
       return {
         text: '',
         texts: [
-          'O Porquê das mudanças e conceito de CX (Customer Experience)',
+          'O Porquê das mudanças e conceito de CX',
           'DNA CX TIM',
           'Ciclo de Vida do Cliente',
           'Diretrizes de Customer Experience',
@@ -123,50 +123,40 @@
         vertical-align: middle;
         transition: background $animationTime;
         
+        &.active{
+          animation: activeItem 0.300s infinite ease-in-out alternate;
+        }
+        
         i {
           display: inline-block;
           @include font-size(7);
-          line-height: 150px;
+          line-height: 300px;
         }
         
-        &:nth-of-type(1),
-        &:nth-of-type(2) {
+        &:nth-of-type(1){
           left: 10px;
         }
+        &:nth-of-type(3){
+          right: 10px;
+        }
         &:nth-of-type(1),
-        &:nth-of-type(4),
+        &:nth-of-type(2),
         &:nth-of-type(3) {
           top: 10px;
+          height: 94%;
         }
         &:nth-of-type(2) {
-          bottom: 10px;
-          background: darken($brand-details, 20%) url("../assets/sprites/dna.png") no-repeat center;
-        }
-        &:nth-of-type(3) {
           left: 50%;
-          height: 94%;
           transform: translatex(-50%);
           line-height: 340px;
           background: darken($brand-details, 40%) url("../assets/sprites/infinite.png") no-repeat center;
           background-size: 85% auto;
         }
-        &:nth-of-type(4),
-        &:nth-of-type(5) {
-          right: 10px;
-        }
-        &:nth-of-type(5) {
-          bottom: 10px;
-        }
-        &:nth-of-type(4) {
-          background: darken($brand-details, 10%);
-        }
+        
         
         &:hover {
           background: $brand-primary;
-          &:nth-of-type(2) {
-            background: $brand-primary url("../assets/sprites/dna.png") no-repeat center;
-          }
-          &:nth-of-type(3){
+          &:nth-of-type(2){
             background: $brand-primary url("../assets/sprites/infinite.png") no-repeat center;
             background-size: 85% auto;
           }
@@ -236,6 +226,11 @@
     }
     100%{
       transform: translateX(10%);
+    }
+  }
+  @keyframes activeItem {
+    to{
+      background: lighten($brand-details,20%);
     }
   }
 </style>

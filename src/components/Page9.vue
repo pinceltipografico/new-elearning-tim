@@ -124,8 +124,8 @@
     data: function () {
       return {
         texts: {
-          '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico.',
-          '2': 'Hoje temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar.',
+          '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico',
+          '2': 'Hoje temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar',
           '3': 'Além do serviço tradicional, pensar novos modelos, formatos e surpreender'
         },
         viewed: [],

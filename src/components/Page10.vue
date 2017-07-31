@@ -9,7 +9,7 @@
       </h1>
     </div>
     <div class="script2">
-      <h1>Na TIM estamos passando por esse <span>movimento!</span></h1>
+      <h1>Na <span class="tim">TIM</span> estamos passando por esse <span>movimento!</span></h1>
     </div>
   </section>
 </template>

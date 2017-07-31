@@ -27,7 +27,7 @@
       </router-link>
       
       <span class="title"><i class="material-icons">&#xE0BF;</i>Comunicação</span>
-      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar.</span><br/>
+      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -85,7 +85,7 @@
           }, {
             html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>Claro</span><span>Conciso</span><span>Concreto</span><span>Correto</span><span>Coerente</span><span>Completo</span><span>Cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>Perguntar</span><span>repetir</span><span>sumarizar</span><span>exemplificar</span>'
           }, {
-            html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>Falar diferente com gente diferente</span><span>Considerar a linguagem do cliente</span><span>Dispensar o termo técnico.</span>'
+            html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>Falar diferente com gente diferente</span><span>Considerar a linguagem do cliente</span><span>Dispensar o termo técnico</span>'
           }, {
             html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>Considerar como essas mudanças afetarão o cliente</span>'
           }, {

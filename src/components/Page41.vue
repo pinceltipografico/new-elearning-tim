@@ -17,7 +17,7 @@
         <span>customer centric</span>
       </div>
       <div class="tile tile10">
-        <span>persona tim</span>
+        <span>persona <span class="tim">tim</span></span>
       </div>
     </div>
   </section>

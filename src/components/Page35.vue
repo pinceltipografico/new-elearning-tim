@@ -28,7 +28,7 @@
         <span>Voltar</span>
       </router-link>
       <span class="title"><i class="material-icons">&#xE5D2;</i>Interação</span>
-      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar.</span><br/>
+      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">

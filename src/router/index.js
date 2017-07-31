@@ -6,7 +6,6 @@ import Page1 from '@/components/Page1'
 import Page2 from '@/components/Page2'
 import Page4 from '@/components/Page4'
 import Page5 from '@/components/Page5'
-import Page6 from '@/components/Page6'
 import Page7 from '@/components/Page7'
 import Page8 from '@/components/Page8'
 import Page9 from '@/components/Page9'
@@ -45,7 +44,7 @@ const router = new Router({
     }, {
       path: '/explain',
       name: 'explain',
-      meta: {pageTitle: 'Veja<span>como navegar</span>'},
+      meta: {pageTitle: '<span>Veja como navegar</span>'},
       component: ExplainMenu
     }, {
       path: '/page1',
@@ -65,127 +64,127 @@ const router = new Router({
     }, {
       path: '/page5',
       name: 'Page5',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page5
-    }, {
+    }, /* {
       path: '/page6',
       name: 'Page6',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page6
-    }, {
+    }, */{
       path: '/page7',
       name: 'page7',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page7
     }, {
       path: '/page8',
       name: 'page8',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page8
     }, {
       path: '/page9',
       name: 'page9',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page9
     }, {
       path: '/page10',
       name: 'page10',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page10
     }, {
       path: '/page11',
       name: 'page11',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page11
     }, {
       path: '/page12',
       name: 'page12',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page12
     }, {
       path: '/page13',
       name: 'page13',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page13
     }, {
       path: '/page15',
       name: 'page15',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page15
     }, {
       path: '/page16',
       name: 'page16',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page16
     }, {
       path: '/page17',
       name: 'page17',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page17
     }, {
       path: '/page18',
       name: 'page18',
-      meta: {pageTitle: 'Modulo: <span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
+      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX (Customer Experience)</span>'},
       component: Page18
     }, {
       path: '/page20',
       name: 'page20',
-      meta: {pageTitle: 'Módulo:<span>Ciclo de vida do Cliente</span>'},
+      meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page20
     }, {
       path: '/page30',
       name: 'page30',
-      meta: {pageTitle: 'Módulo:<span>Ciclo de vida do Cliente</span>'},
+      meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page30
     }, {
       path: '/page31',
       name: 'page31',
-      meta: {pageTitle: 'Módulo:<span>Ciclo de vida do Cliente</span>'},
+      meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page31
     }, {
       path: '/page33',
       name: 'page33',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page33
     }, {
       path: '/page34',
       name: 'page34',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page34
     }, {
       path: '/page35',
       name: 'page35',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page35
     }, {
       path: '/page36',
       name: 'page36',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page36
     }, {
       path: '/page37',
       name: 'page37',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page37
     }, {
       path: '/page38',
       name: 'page38',
-      meta: {pageTitle: 'Módulo:<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page38
     }, {
       path: '/page39',
       name: 'page39',
-      meta: {pageTitle: 'Módulo:<span>DNA Customer Experience</span>'},
+      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page39
     }, {
       path: '/page40',
       name: 'page40',
-      meta: {pageTitle: 'Módulo:<span>DNA Customer Experience</span>'},
+      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page40
     }, {
       path: '/page41',
       name: 'page41',
-      meta: {pageTitle: 'Módulo:<span>DNA Customer Experience</span>'},
+      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page41
     }, {
       path: '/page42',

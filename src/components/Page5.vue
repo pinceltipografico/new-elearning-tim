@@ -1,10 +1,13 @@
 <template>
   <section class="page">
+    <div class="scroll-arrow">
+      <i class="material-icons">&#xE313;</i>
+    </div>
     <div class="sections" style="display: none;">
       <!-- SCENE 01 -->
       <section class="page-item">
         <div class="scene1">
-          <h1>Utilize o scroll do mouse ou as setas do teclado para <span>visualizar o conteúdo</span></h1>
+          <h1>Role a tela para baixo</h1>
           <div class="icons">
             <div>
               <mouse-scroll></mouse-scroll>
@@ -19,35 +22,42 @@
       <!-- SCENE 2 -->
       <section class="page-item">
         <div class="scene2">
-          <div class="script2"><h1>A gente muda, o mundo muda a gente e a gente muda o mundo.</h1></div>
-          <div class="world">
-            <world-map></world-map>
-          </div>
+          <div class="script2"><h1>A gente muda, o mundo muda a gente e a gente muda o mundo</h1></div>
         </div>
       </section>
       <!-- SCENE 2 -->
       <!-- SCENE 3 -->
-      <section class="page-item">
-        <div class="scene3">
-          <div class="image-market"></div>
-          <div class="script3">
-            <h1>O mercado está passando por rompimento de paradigmas</h1>
-          </div>
-        </div>
-      </section>
+      <!--<section class="page-item">-->
+      <!--<div class="scene3">-->
+      <!--<div class="image-market"></div>-->
+      <!--<div class="script3">-->
+      <!--<h1>O mercado está passando por rompimento de paradigmas</h1>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</section>-->
       <!-- SCENE 3 -->
       <!-- SCENE 4 -->
       <section class="page-item">
         <div class="scene4">
+          <div class="script3">
+            O mercado está passando por rompimento de paradigmas
+          </div>
           <div class="script4">
-            <!-- -->Novas tecnologias mudam profundamente nossa sociedade.<!-- -->
+            <!-- -->Novas tecnologias mudam profundamente nossa sociedade<!-- -->
           </div>
-          <div class="script5"><!-- -->Facilitam o acesso a informação<!-- -->
-          </div>
+          <!--<div class="script5">&lt;!&ndash; &ndash;&gt;Facilitam o acesso a informação&lt;!&ndash; &ndash;&gt;-->
+          <!--</div>-->
         </div>
       </section>
       <!-- SCENE 4 -->
       <!-- SCENE 5 -->
+      <section class="page-item">
+        <div class="scene6 video-overlay">
+          <video src="/tim/static/video/583335745.m4v" autoplay loop></video>
+          <h1>Cada vez mais autónomas</h1>
+        </div>
+      </section>
+      <!-- SCENE 6 -->
       <section class="page-item" style="z-index: 5;">
         <div class="scene5">
           <div class="script6">
@@ -55,15 +65,13 @@
           </div>
         </div>
       </section>
-      <!-- SCENE 5 -->
       <!-- SCENE 6 -->
       <section class="page-item">
-        <div class="scene6">
-          <video src="/tim/static/video/583335745.m4v" autoplay loop></video>
-          <div class="script7"><h1>É necessário se adaptar</h1></div>
+        <div class="scene8">
+          <h1>É necessário se adaptar</h1>
         </div>
       </section>
-      <!-- SCENE 7 -->
+      <!-- SCENE 8 -->
       <section class="page-item">
         <div class="scene7">
           <div class="background"></div>
@@ -73,7 +81,23 @@
             </h1></div>
         </div>
       </section>
-      <!-- SCENE 7 -->
+      <!-- SCENE 8 -->
+      <!-- SCENE 9 -->
+      <section class="page-item">
+        <div class="scene9">
+          <div class="script1">
+            <h1>
+              <span>A CHAVE É:</span><br/>
+              <small>Antecipar-se as tendências, <br/>adaptar-se com velocidade e criar verdadeiros seguidores</small>
+            </h1>
+          </div>
+          <div class="middle-image"></div>
+        </div>
+      </section>
+      <!-- SCENE 9 -->
+    </div>
+    <div class="world" :class="{'rotate':currentSection === 1}" v-if="currentSection <= 1">
+      <world-map></world-map>
     </div>
     <ul class="scroll-indicator">
     </ul>
@@ -85,7 +109,8 @@
   import ScrollOnePage from '../lib/ScrollOnePage'
   import MouseScroll from '../assets/svgs/mouse.svg'
   import Arrows from '../assets/svgs/arrows.svg'
-  import WorldMap from '../assets/svgs/worldMap.svg'
+  import WorldMap from '../assets/svgs/world-page5.svg'
+  
   export default {
     components: {
       MouseScroll,
@@ -102,7 +127,8 @@
      **/
     data () {
       return {
-        scroller: null
+        scroller: null,
+        currentSection: 0
       }
     },
     /**
@@ -114,8 +140,11 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      var vm = this
       this.scroller = new ScrollOnePage()
-      this.scroller.start('.page', '.scroll-indicator')
+      this.scroller.start('.page', '.scroll-indicator', function (index) {
+        vm.currentSection = index
+      })
       setTimeout(function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this), 500)
@@ -139,6 +168,32 @@
   
   section.page {
     @extend %gradient;
+    
+    .scroll-arrow {
+      left: 50%;
+      bottom: 30px;
+      transform: translate(-50%, 0);
+      color: #fff;
+      animation: scrollIndicator infinite 1s ease-in-out alternate;
+      z-index: 99;
+      i {
+        @include font-size(5);
+        color: $brand-details;
+      }
+    }
+    
+    .world {
+      width: 500px;
+      height: 500px;
+      background-size: 100% auto;
+      top: 50%;
+      left: 100px;
+      transform: translateY(-50%) rotateZ(0deg);
+      transition: all $animationTime;
+      &.rotate{
+        transform: translateY(-50%) rotateZ(360deg);
+      }
+    }
     
     .sections {
       width: 100%;
@@ -164,8 +219,8 @@
           position: absolute;
           max-width: 550px;
           top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          right: 10%;
+          transform: translate(0, -50%);
           text-align: center;
           h1 {
             color: #fff;
@@ -195,14 +250,6 @@
         .scene2 {
           > * {
             position: absolute;
-          }
-          .world {
-            width: 500px;
-            height: 500px;
-            background-size: 100% auto;
-            top: 50%;
-            left: 100px;
-            transform: translateY(-50%) rotateZ(0deg);
           }
           .script2 {
             top: 50%;
@@ -258,19 +305,27 @@
           background-size: 60% auto;
           
           .script4,
+          .script3,
           .script5 {
             position: absolute;
           }
-          .script4 {
-            top: 100px;
+          .script4,
+          .script3 {
             right: 0;
             opacity: 0;
-            max-width: 450px;
             @include font-size(3);
             color: $brand-details;
             font-weight: bold;
             border-left: 2px solid $brand-primary;
             padding-left: 15px;
+          }
+          .script3 {
+            top: 180px;
+            max-width: 450px;
+          }
+          .script4 {
+            max-width: 450px;
+            top: 340px;
           }
           .script5 {
             background: $brand-details;
@@ -325,24 +380,6 @@
             top: -10%;
             left: 0;
           }
-          .script7 {
-            position: absolute;
-            background: $brand-details;
-            color: #fff;
-            width: 400px;
-            @include font-size(2);
-            top: 50%;
-            right: -100%;
-            transform: translate(0%, 0%);
-            padding: 20px;
-            border-radius: 15px;
-            h1 {
-              text-align: center;
-              border-top: 1px solid $brand-details;
-              border-bottom: 1px solid $brand-details;
-              padding: 10px 0;
-            }
-          }
         }
         
         //
@@ -370,13 +407,65 @@
           }
         }
         
+        //
+        // scene 8
+        .scene8 {
+          width: 100%;
+          height: 100%;
+          background: url("../assets/backgrounds/page5/ref-485074453.jpg") no-repeat;
+          background-size: cover;
+          
+          h1 {
+            position: absolute;
+            top: 30%;
+            left: -100%;
+            padding: 20px 15px 20px 50px;
+            @include font-size(4);
+            background: rgba(#000, 0.4);
+            color: #fff;
+            transition: all $animationTime;
+          }
+        }
+        
+        .scene9 {
+          width: 100%;
+          height: 100%;
+          background: url("../assets/backgrounds/page1/07.png") no-repeat;
+          background-size: cover;
+          
+          .script1,
+          .middle-image {
+            position: absolute;
+          }
+          .middle-image {
+            background: url("../assets/backgrounds/page1/08.png") no-repeat bottom;
+            width: 35%;
+            height: 100%;
+            left: 27%;
+            bottom: 0px;
+            transform: translateX(-50%);
+            opacity: 0;
+          }
+          
+          .script1 {
+            width: 45%;
+            color: #fff;
+            background-color: #1E3144;
+            padding: 20px 40px 20px 100px;
+            transform-origin: 0 50%;
+            transform: scaleX(0) translateX(-10%);
+            top: 35%;
+            left: 55%;
+            h1 {
+              @include font-size(2.5);
+            }
+          }
+        }
+        
         &.active {
           //
           // scene 2
           .scene2 {
-            .world {
-              animation: worldRotation 20s infinite linear;
-            }
             .script2 {
               transition-delay: 0.5s;
               transform: translate(0, -50%);
@@ -395,10 +484,16 @@
           //
           // scene 4
           .scene4 {
-            .script4 {
-              right: 10%;
+            .script4,
+            .script3 {
               opacity: 1;
+              right: 2%;
+            }
+            .script3 {
               transition-delay: 0.5s;
+            }
+            .script4 {
+              transition-delay: 2.5s;
             }
             .script5 {
               transform: translateX(0);
@@ -419,9 +514,35 @@
           //
           // SCENE 6
           .scene6 {
-            .script7 {
+            h1 {
+              right: 5%;
               transition-delay: 0.5s;
-              right: 10%;
+            }
+            h1:before,
+            h1:after {
+              transition-delay: 1s;
+              transform: scaleX(1);
+            }
+          }
+          
+          //
+          // SCENE 8
+          .scene8 {
+            h1 {
+              transition-delay: 1s;
+              left: 0;
+            }
+          }
+          
+          //
+          // SCENE 9
+          .scene9 {
+            .middle-image {
+              animation: imageAnimation 5s infinite ease-in-out alternate;
+              opacity: 1;
+            }
+            .script1 {
+              animation: imageAnimation 10s infinite ease-in-out alternate;
             }
           }
         }
@@ -454,6 +575,21 @@
   @keyframes worldRotation {
     to {
       transform: translateY(-50%) rotate(-360deg);
+    }
+  }
+  
+  @keyframes scrollIndicator {
+    to {
+      transform: translate(-50%, 20%);
+    }
+  }
+  
+  @keyframes imageAnimation {
+    0% {
+      transform: translateX(-10%);
+    }
+    100% {
+      transform: translateX(-20%);
     }
   }
 </style>

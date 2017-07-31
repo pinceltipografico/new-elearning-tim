@@ -9,7 +9,7 @@
       <div class="start">
         <h1>
           O Monitoramento em uma abordagem de CX vai muito além de relatórios e KPIs que já são utilizados pelas diferentes áreas da <span class="uppercase">TIM</span>
-          para fazer a gestão de suas atividades.</h1>
+          para fazer a gestão de suas atividades</h1>
         <div class="buttons" @click="startAnim">
           <span>Ver como funciona</span>
           <i class="material-icons">&#xE038;</i>

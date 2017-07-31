@@ -4,7 +4,7 @@
     <div class="intro-title" v-bind:class="{'animation':animation}">
       <hr>
       <h1>Customer</h1>
-      <h1>experience</h1>
+      <h1>experience <span>CX</span></h1>
       <hr>
       <div class="buttons" @click="gotoExplain">
         <span>iniciar</span>
@@ -79,6 +79,7 @@
     text-align: center;
     transform: translateX(-50%);
     z-index: 3;
+    text-transform: uppercase;
     
     * {
       transition: all $animationTime;
@@ -113,11 +114,14 @@
       transition-delay: 0.4s;
     }
     h1:nth-of-type(1) {
-      @include font-size(5.4);
+      @include font-size(6.8);
       color: $brand-details;
     }
     h1:nth-of-type(2) {
       margin-top: -15px;
+      span{
+        color:$brand-secondary;
+      }
     }
     
     .buttons {

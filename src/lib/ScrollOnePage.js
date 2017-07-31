@@ -8,7 +8,8 @@ export default function OnPageScroll () {
   
   //
   // VARIABLES
-  this.configure = function (itemContainer, scrollIndicator) {
+  this.configure = function (itemContainer, scrollIndicator, callback) {
+    this.callback = (callback && typeof callback === 'function') ? callback : null
     this.scrollContainer = document.querySelector(itemContainer)
     this.pagesContainer = document.querySelector('.sections')
     this.sectionCount = document.querySelectorAll('.page-item').length
@@ -43,6 +44,9 @@ export default function OnPageScroll () {
       this.pagesContainer.style.top = '-' + (this.currentSection * this.maxHeight) + 'px'
     }
     this.setActiveStatus()
+    if (this.callback) {
+      this.callback(this.currentSection)
+    }
   }
   
   /**
@@ -247,9 +251,9 @@ export default function OnPageScroll () {
    * START PROCESS
    | ----------------------------------------------
    **/
-  this.start = function (itemContainer, scrollIndicator) {
+  this.start = function (itemContainer, scrollIndicator, callback) {
     setTimeout(function () {
-      this.configure(itemContainer, scrollIndicator)
+      this.configure(itemContainer, scrollIndicator, callback)
     }.bind(this), 500)
   }
   

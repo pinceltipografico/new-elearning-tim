@@ -45,6 +45,7 @@
 <script>
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from './events/index'
+  
   const Logo = require('./assets/svgs/logo-01.svg')
   export default {
     components: {
@@ -59,7 +60,7 @@
       return {
         counter: null,
         pageIndex: 0,
-        pages: [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 38, 39, 40, 41, 42]
+        pages: [1, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 38, 39, 40, 41, 42]
       }
     },
     //
@@ -199,7 +200,7 @@
   
   body:after {
     display: none;
-    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/06.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg") url("assets/backgrounds/page33/ref-354939284.jpg") url("assets/backgrounds/page33/ref-428959477.jpg") url("assets/backgrounds/page33/ref-399241594.jpg") url("assets/backgrounds/page33/ref-572233399.jpg") url("assets/backgrounds/page33/ref-577848541.jpg") url("assets/backgrounds/page33/circlel.png") url("assets/backgrounds/page33/circle2.png") url("assets/backgrounds/page40/touch.png") url("assets/backgrounds/page40/dna.png") url("assets/backgrounds/page41/tile-6.jpg") url("assets/backgrounds/page41/tile-5.jpg") url("assets/backgrounds/page41/tile-4.jpg") url("assets/backgrounds/page41/tile-3.jpg") url("assets/backgrounds/page41/tile-2.jpg") url("assets/backgrounds/page41/tiles-1.jpg") url("assets/backgrounds/page41/tile-8.jpg") url("assets/backgrounds/page42/ref-287713304.jpg") url("assets/backgrounds/page39/ref-390285811.jpg") url("assets/backgrounds/page20/ref-526149550.jpg") url("assets/backgrounds/page20/ref-580048861.jpg");
+    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/ref-485074453.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/01.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg") url("assets/backgrounds/page33/ref-354939284.jpg") url("assets/backgrounds/page33/ref-428959477.jpg") url("assets/backgrounds/page33/ref-399241594.jpg") url("assets/backgrounds/page33/ref-572233399.jpg") url("assets/backgrounds/page33/ref-577848541.jpg") url("assets/backgrounds/page33/circlel.png") url("assets/backgrounds/page33/circle2.png") url("assets/backgrounds/page40/touch.png") url("assets/backgrounds/page40/dna.png") url("assets/backgrounds/page41/tile-6.jpg") url("assets/backgrounds/page41/tile-5.jpg") url("assets/backgrounds/page41/tile-4.jpg") url("assets/backgrounds/page41/tile-3.jpg") url("assets/backgrounds/page41/tile-2.jpg") url("assets/backgrounds/page41/tiles-1.jpg") url("assets/backgrounds/page41/tile-8.jpg") url("assets/backgrounds/page42/ref-287713304.jpg") url("assets/backgrounds/page39/ref-390285811.jpg") url("assets/backgrounds/page20/ref-526149550.jpg") url("assets/backgrounds/page20/ref-580048861.jpg");
   }
   
   main {
@@ -216,8 +217,8 @@
     left: 50%;
     top: 0;
     transform: translateX(-50%);
-  
-    .uppercase{
+    
+    .uppercase {
       text-transform: uppercase !important;
     }
     
@@ -280,14 +281,9 @@
           margin: 0;
           @include font-size(1.4);
         }
-        span {
-          color: $brand-secondary;
-        }
         small {
+          color: $brand-secondary;
           display: block;
-          span {
-            margin-left: 5px;
-          }
         }
       }
     }
@@ -583,7 +579,7 @@
             padding: 5px 10px;
             font-weight: bold;
             border-radius: 5px;
-            &:before{
+            &:before {
               content: '• ';
             }
           }
@@ -595,147 +591,200 @@
     }
   }
   
-  /**
-  * ----------------------------------------------
-  * ANIMATIONS FOR V-IF OR V-FOR
-  * ----------------------------------------------
-  **/
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity $animationTime;
-    position: absolute !important;
-    top: 0;
-    left: 0;
+  span.tim {
+    text-transform: uppercase !important;
   }
   
-  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
-  {
-    opacity: 0
-  }
+  .video-overlay {
+    h1 {
+      position: absolute;
+      @include font-size(2);
+      color: #fff;
+      top: 50%;
+      right: -100%;
+      transform: translateY(-50%);
+      background: rgba(#000, 0.5);
+      padding: 20px;
+      transition: all $animationTime;
   
-  /**
-  * ----------------------------------------------
-  * ANIMATIONS FOR V-IF OR V-FOR
-  * ----------------------------------------------
-  **/
-  .enter-nav-enter-active, .enter-nav-leave-active {
-    transition: opacity $animationTime;
-  }
-  
-  .enter-nav-enter, .enter-nav-leave-to /* .fade-leave-active in <2.1.8 */
-  {
-    opacity: 0;
-  }
-  
-  /**
-  * ----------------------------------------------
-  * EXIT SCENE
-  * ----------------------------------------------
-  **/
-  .exit-scene-enter-active,
-  .exit-scene-leave-active {
-    transition: all $animationTime;
-    position: absolute !important;
-  }
-  
-  .exit-scene-enter,
-  .exit-scene-leave-to {
-    transform: translateX(-100%);
-  }
-  
-  /**
-  * ----------------------------------------------
-  * ENTER SCENE
-  * ----------------------------------------------
-  **/
-  .enter-scene-enter-active,
-  .enter-scene-leave-active {
-    transition: all $animationTime;
-    position: absolute !important;
-  }
-  
-  .enter-scene-enter {
-    transform: translateX(100%);
-    top: 0;
-  }
-  
-  .enter-scene-leave-to {
-    transform: translateX(0%);
-    top: 0;
-  }
-  
-  //
-  // ENTER
-  .enter-enter-active, .enter-leave-active {
-    transition: opacity $animationTime;
-  }
-  
-  .enter-enter, .enter-leave-to {
-    opacity: 0
-  }
-  
-  //
-  // LIST ANIMATIONS
-  .list-item {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .list-enter-active, .list-leave-active {
-    transition: all $animationTime;
-  }
-  
-  .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */
-  {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  
-  @keyframes enterBorder {
-    to {
-      border: 15px solid #fff;
+      &:after,
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        transform: scaleX(0);
+        transition: all $animationTime;
+      }
+      &:before {
+        top: -5px;
+        left: 0;
+        transform-origin: 0 0;
+      }
+      &:after {
+        bottom: -5px;
+        right: 0;
+        transform-origin: 100% 0;
+      }
+    }
+    &.hide {
+      display: none;
+    }
+    &.step1 {
+      h1 {
+        right: 5%;
+      }
+    }
+    &.step2 {
+      h1:before,
+      h1:after {
+        transform: scaleX(1);
+      }
     }
   }
-  
-  //
-  // mouse scrol indicadors
-  .mouseScroll {
-    animation: scrollIndicator 0.5s infinite ease-in-out alternate;
-  }
-  
-  .arrowDown,
-  .arrowUp {
-    animation: scrollIndicator 1s infinite 0.5s ease-in-out alternate;
-  }
-  
-  .arrowDown {
-    animation-delay: 1.5s;
-  }
-  
-  .clock_minutes {
-    transform-origin: 50% 100%;
-    animation: clockRotation 2s infinite linear;
-  }
-  
-  .clock_hours {
-    transform-origin: 50% 100%;
-    animation: clockRotation 4s infinite linear;
-  }
-  
-  @keyframes scrollIndicator {
-    to {
+    
+    /**
+		* ----------------------------------------------
+		* ANIMATIONS FOR V-IF OR V-FOR
+		* ----------------------------------------------
+		**/
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity $animationTime;
+      position: absolute !important;
+      top: 0;
+      left: 0;
+    }
+    
+    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+    {
+      opacity: 0
+    }
+    
+    /**
+		* ----------------------------------------------
+		* ANIMATIONS FOR V-IF OR V-FOR
+		* ----------------------------------------------
+		**/
+    .enter-nav-enter-active, .enter-nav-leave-active {
+      transition: opacity $animationTime;
+    }
+    
+    .enter-nav-enter, .enter-nav-leave-to /* .fade-leave-active in <2.1.8 */
+    {
       opacity: 0;
     }
-  }
-  
-  @keyframes nextAnimation {
-    to {
-      background: $brand-details;
+    
+    /**
+		* ----------------------------------------------
+		* EXIT SCENE
+		* ----------------------------------------------
+		**/
+    .exit-scene-enter-active,
+    .exit-scene-leave-active {
+      transition: all $animationTime;
+      position: absolute !important;
     }
-  }
-  
-  @keyframes clockRotation {
-    to {
-      transform: rotate(360deg);
+    
+    .exit-scene-enter,
+    .exit-scene-leave-to {
+      transform: translateX(-100%);
     }
-  }
+    
+    /**
+		* ----------------------------------------------
+		* ENTER SCENE
+		* ----------------------------------------------
+		**/
+    .enter-scene-enter-active,
+    .enter-scene-leave-active {
+      transition: all $animationTime;
+      position: absolute !important;
+    }
+    
+    .enter-scene-enter {
+      transform: translateX(100%);
+      top: 0;
+    }
+    
+    .enter-scene-leave-to {
+      transform: translateX(0%);
+      top: 0;
+    }
+    
+    //
+    // ENTER
+    .enter-enter-active, .enter-leave-active {
+      transition: opacity $animationTime;
+    }
+    
+    .enter-enter, .enter-leave-to {
+      opacity: 0
+    }
+    
+    //
+    // LIST ANIMATIONS
+    .list-item {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .list-enter-active, .list-leave-active {
+      transition: all $animationTime;
+    }
+    
+    .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */
+    {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    
+    @keyframes enterBorder {
+      to {
+        border: 15px solid #fff;
+      }
+    }
+    
+    //
+    // mouse scrol indicadors
+    .mouseScroll {
+      animation: scrollIndicator 0.5s infinite ease-in-out alternate;
+    }
+    
+    .arrowDown,
+    .arrowUp {
+      animation: scrollIndicator 1s infinite 0.5s ease-in-out alternate;
+    }
+    
+    .arrowDown {
+      animation-delay: 1.5s;
+    }
+    
+    .clock_minutes {
+      transform-origin: 50% 100%;
+      animation: clockRotation 2s infinite linear;
+    }
+    
+    .clock_hours {
+      transform-origin: 50% 100%;
+      animation: clockRotation 4s infinite linear;
+    }
+    
+    @keyframes scrollIndicator {
+      to {
+        opacity: 0;
+      }
+    }
+    
+    @keyframes nextAnimation {
+      to {
+        background: $brand-details;
+      }
+    }
+    
+    @keyframes clockRotation {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 </style>
