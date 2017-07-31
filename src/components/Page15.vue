@@ -61,6 +61,7 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   var infographic = require('../assets/svgs/customer_centric.svg')
   export default {
@@ -132,17 +133,6 @@
           }, {
             time: 4000,
             step: 'step2',
-            selector: '.button'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline()
-      },
-      step3 () {
-        var anims = [
-          {
-            time: 0,
-            step: 'step2',
             selector: '.button',
             reverse: true
           }, {
@@ -159,10 +149,18 @@
             selector: '.para'
           }
         ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline()
+      },
+      step3 () {
+        /*
+        var anims = [
+        ]
         Animations.setAnimations(anims)
         Animations.animationTimeline(function () {
           this.$store.commit('setCanAdvance', true)
         }.bind(this))
+        */
       },
       buttonClick () {
         if (this.scene === 0) {
@@ -307,7 +305,7 @@
         small {
           display: block;
           color: $brand-details;
-          hr{
+          hr {
             opacity: 0;
           }
           div {

@@ -4,10 +4,11 @@
     <div class="white"></div>
     <div class="icon">
       <i class="material-icons">&#xE55A;</i>
+      <span @click="startScene" v-if="showNext">próximo</span>
     </div>
     <div class="script1">
       <h1>
-        <span>admire</span>.
+        <span>admire</span>
       </h1>
     </div>
     <div class="script2">
@@ -27,7 +28,7 @@
     </div>
     <div class="script5">
       <h1>
-        Arraste três palavras até a <span>sacola de compras</span>
+        Arraste até as sacolas <span>3 palavras</span> que representem a sua escolha.
       </h1>
     </div>
     <div class="script6">
@@ -59,6 +60,7 @@
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   import draggable from 'vuedraggable'
+  
   export default {
     /**
      | ----------------------------------------------
@@ -87,46 +89,14 @@
           time: 500,
           step: 'show',
           selector: '.script1'
-        }, {
-          time: 2000,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 2000,
-          step: 'show',
-          selector: '.script3'
-        }, {
-          time: 2000,
-          step: 'show',
-          selector: '.script4'
-        }, {
-          time: 500,
-          step: 'step3',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'step4',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'step5',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.script5'
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.script6'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script6'
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
+      Animations.animationTimeline(function () {
+        setTimeout(function () {
+          this.showNext = true
+        }.bind(this), 1500)
+      }.bind(this))
       setTimeout(function () {
         EventBus.$emit('start-progress')
       }, 500)
@@ -146,7 +116,9 @@
           {name: 'Funcionalidade', order: 5},
           {name: 'Qualidade', order: 6}
         ],
-        list2: []
+        list2: [],
+        currentScene: 1,
+        showNext: false
       }
     },
     /**
@@ -158,10 +130,90 @@
       draggable
     },
     methods: {
+      startScene () {
+        if (this.currentScene === 1) {
+          this.step2()
+        } else if (this.currentScene === 2) {
+          this.step3()
+        } else if (this.currentScene === 3) {
+          this.step4()
+        }
+      },
       onAdded () {
         if (this.list2.length === 3) {
           this.$store.commit('setCanAdvance', true)
         }
+      },
+      step2 () {
+        this.showNext = false
+        var animations = [
+          {
+            time: 500,
+            step: 'show',
+            selector: '.script2'
+          }
+        ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline(function () {
+          this.currentScene = 2
+          setTimeout(function () {
+            this.showNext = true
+          }.bind(this), 1500)
+        }.bind(this))
+      },
+      step3 () {
+        this.showNext = false
+        var animations = [
+          {
+            time: 500,
+            step: 'show',
+            selector: '.script3'
+          }
+        ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline(function () {
+          this.currentScene = 3
+          setTimeout(function () {
+            this.showNext = true
+          }.bind(this), 1500)
+        }.bind(this))
+      },
+      step4 () {
+        this.showNext = false
+        var animations = [
+          {
+            time: 500,
+            step: 'show',
+            selector: '.script4'
+          }, {
+            time: 2500,
+            step: 'step3',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step4',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step5',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.script5'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.script6'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.script6'
+          }
+        ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline(function () {
+        })
       }
     },
     
@@ -224,7 +276,7 @@
   
   .icon {
     left: 50%;
-    bottom: 100px;
+    bottom: 120px;
     transform: translateX(-50%);
     color: #666;
     opacity: 0;
@@ -233,6 +285,22 @@
     }
     &.step1 {
       opacity: 1;
+    }
+    span {
+      display: block;
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      bottom: -25px;
+      transform: translateX(-50%);
+      color: #fff;
+      @include font-size(2);
+      cursor: pointer;
+      background: $brand-details;
+      border-radius: 10px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      animation: proximoAnim 1s infinite ease-in-out alternate;
     }
   }
   
@@ -365,6 +433,7 @@
         color: #fff;
         padding: 20px;
         border: 1px solid #fff;
+        cursor: pointer;
         span {
           display: inline-block;
           font-weight: bold;
@@ -386,6 +455,12 @@
     }
     100% {
       transform: translateY(-50%) rotate(2deg);
+    }
+  }
+  
+  @keyframes proximoAnim {
+    to {
+      background: darken($brand-details, 20%);
     }
   }
 </style>

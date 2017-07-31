@@ -3,7 +3,7 @@
     <section class="page step1" v-if="!showTodo">
       <div class="script2">
         <h1>
-          Iniciamos este processo em 2016, investimos em estudo para mergulhar <span>em todo o ciclo de vida do cliente</span> e na jornada de conexão da marca com o consumidor
+          Criamos uma estrutura de <span>customer experience</span>
         </h1>
       </div>
       <div class="blue"></div>

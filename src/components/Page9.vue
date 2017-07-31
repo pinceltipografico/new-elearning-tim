@@ -12,13 +12,15 @@
         <div>Sermos surpreendidos onde estivermos</div>
       </h1>
       <h1 v-on:click="newHtml($event,'3')" data-index="3">
-        <div>previsão de seus comportamentos</div>
+        <div>previsão de nossos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
       </h1>
     </div>
     <div class="script2" v-if="!showEnd">
       <div class="image"></div>
-      <div class="close" @click="closeItem"><i class="material-icons">&#xE5CD;</i>fechar</div>
-      <p></p>
+      <div class="content">
+        <div class="close" @click="closeItem"><i class="material-icons">&#xE5CD;</i></div>
+        <p></p>
+      </div>
     </div>
     <div class="script3 end-tag" :class="{'show':showEnd}">
       <h1>Estes são apenas alguns exemplos que já incorporamos na <span>nossa maneira de pensar a compra</span></h1>
@@ -190,15 +192,16 @@
     margin: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     padding: 20px;
     
     div {
-      width: 100%;
+      width: 80%;
       display: block;
       color: #fff;
-      @include font-size(1.5);
+      @include font-size(2.5);
       &:after {
         content: 'clique aqui';
         display: block;
@@ -209,6 +212,7 @@
         max-width: 50%;
         border-radius: 5px;
         padding: 5px;
+        @include font-size(1.3);
       }
     }
     
@@ -233,7 +237,6 @@
     &.to-left {
       left: 0;
       width: 20%;
-      @include font-size(1);
       div:after {
         display: none !important;
       }
@@ -242,6 +245,9 @@
       z-index: 4;
       background: $brand-details;
       opacity: 1;
+      div {
+        font-size: 130%;
+      }
     }
     &.to-left {
       z-index: 2;
@@ -256,11 +262,11 @@
     position: absolute;
     color: #fff;
     font-size: 20px;
-    padding: 20px;
+    padding: 20px 50px;
     background: $brand-primary;
     transform: translateX(100%);
-    div.close,
-    p {
+    div.content{
+      margin:20% 0 0 5px;
       position: relative;
       z-index: 2;
       background: $brand-details;
@@ -268,20 +274,25 @@
       font-weight: bold;
     }
     div.close {
-      display: flex;
-      align-items: center;
-      margin-top: 100px;
+      position: absolute;
+      top:-15px;
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      display: block;
       cursor: pointer;
       animation: closeButton 2s infinite ease-in-out alternate;
+      text-align: center;
+      background: $brand-details;
+      border:1px solid #fff;
+      border-radius: 50%;
       i {
-        @include font-size(4);
-        color: #fff;
-        margin-right: 10px;
+        @include font-size(2);
+        color:#fff;
+        line-height: 30px;
       }
     }
     p {
-      margin: 5px 0;
-      padding: 50px;
       @include font-size(3);
     }
     div.image {
@@ -347,7 +358,7 @@
   
   @keyframes closeButton {
     to {
-      background: $brand-secondary;
+      background: darken($brand-details, 20%);
     }
   }
 </style>

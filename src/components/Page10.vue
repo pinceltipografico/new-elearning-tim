@@ -19,6 +19,7 @@
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
+  
   export default {
     /**
      | ----------------------------------------------
@@ -38,11 +39,11 @@
         }, {
           time: 1500,
           step: 'show',
-          selector: '.infographic'
+          selector: '.script2'
         }, {
           time: 1500,
           step: 'show',
-          selector: '.script2'
+          selector: '.infographic'
         }
       ]
       Animations.setAnimations(animations)
