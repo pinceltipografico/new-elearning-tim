@@ -64,67 +64,67 @@ const router = new Router({
     }, {
       path: '/page5',
       name: 'Page5',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page5
     }, /* {
       path: '/page6',
       name: 'Page6',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page6
     }, */{
       path: '/page7',
       name: 'page7',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page7
     }, {
       path: '/page8',
       name: 'page8',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page8
     }, {
       path: '/page9',
       name: 'page9',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page9
     }, {
       path: '/page10',
       name: 'page10',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page10
     }, {
       path: '/page11',
       name: 'page11',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page11
     }, {
       path: '/page12',
       name: 'page12',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page12
     }, {
       path: '/page13',
       name: 'page13',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page13
     }, {
       path: '/page15',
       name: 'page15',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page15
     }, {
       path: '/page16',
       name: 'page16',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page16
     }, {
       path: '/page17',
       name: 'page17',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page17
     }, {
       path: '/page18',
       name: 'page18',
-      meta: {pageTitle: '<span>O Porquê das mudanças e conceito de CX</span>'},
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page18
     }, {
       path: '/page20',
