@@ -27,7 +27,6 @@ import Page36 from '@/components/Page36'
 import Page37 from '@/components/Page37'
 import Page38 from '@/components/Page38'
 import Page39 from '@/components/Page39'
-import Page40 from '@/components/Page40'
 import Page41 from '@/components/Page41'
 import Page42 from '@/components/Page42'
 
@@ -176,11 +175,6 @@ const router = new Router({
       name: 'page39',
       meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page39
-    }, {
-      path: '/page40',
-      name: 'page40',
-      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
-      component: Page40
     }, {
       path: '/page41',
       name: 'page41',

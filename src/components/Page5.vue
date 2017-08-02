@@ -4,25 +4,24 @@
       <i class="material-icons">&#xE313;</i>
     </div>
     <div class="sections" style="display: none;">
-      <!-- SCENE 01 -->
-      <section class="page-item">
-        <div class="scene1">
-          <h1>Role a tela para baixo</h1>
-          <div class="icons">
-            <div>
-              <mouse-scroll></mouse-scroll>
-            </div>
-            <div>
-              <arrows></arrows>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SCENE 01 -->
       <!-- SCENE 2 -->
       <section class="page-item">
         <div class="scene2">
           <div class="script2"><h1>A gente muda, o mundo muda a gente e a gente muda o mundo</h1></div>
+          <div class="explain">
+            <h1>Role a tela para baixo</h1>
+            <div class="icons">
+              <div>
+                <mouse-scroll></mouse-scroll>
+              </div>
+              <div>
+                <arrows></arrows>
+              </div>
+            </div>
+          </div>
+          <div class="world">
+            <world-map></world-map>
+          </div>
         </div>
       </section>
       <!-- SCENE 2 -->
@@ -54,7 +53,7 @@
       <section class="page-item">
         <div class="scene6 video-overlay">
           <video src="/tim/static/video/583335745.m4v" autoplay loop></video>
-          <h1>Cada vez mais autónomas</h1>
+          <h1>Cada vez mais autônomas</h1>
         </div>
       </section>
       <!-- SCENE 6 -->
@@ -95,9 +94,6 @@
         </div>
       </section>
       <!-- SCENE 9 -->
-    </div>
-    <div class="world" :class="{'rotate':currentSection === 1}" v-if="currentSection <= 1">
-      <world-map></world-map>
     </div>
     <ul class="scroll-indicator">
     </ul>
@@ -182,19 +178,6 @@
       }
     }
     
-    .world {
-      width: 500px;
-      height: 500px;
-      background-size: 100% auto;
-      top: 50%;
-      left: 100px;
-      transform: translateY(-50%) rotateZ(0deg);
-      transition: all $animationTime;
-      &.rotate{
-        transform: translateY(-50%) rotateZ(360deg);
-      }
-    }
-    
     .sections {
       width: 100%;
       position: absolute;
@@ -214,42 +197,11 @@
         }
         
         //
-        // cena 01
-        .scene1 {
-          position: absolute;
-          max-width: 550px;
-          top: 50%;
-          right: 10%;
-          transform: translate(0, -50%);
-          text-align: center;
-          h1 {
-            color: #fff;
-            @include font-size(3);
-            letter-spacing: 2px;
-            span {
-              color: $brand-details;
-            }
-          }
-          .icons {
-            display: inline-block;
-            width: 60%;
-            > div {
-              width: 45%;
-              &:nth-of-type(1) {
-                float: left;
-              }
-              &:nth-of-type(2) {
-                float: right;
-              }
-            }
-          }
-        }
-        
-        //
         // cena 2
         .scene2 {
           > * {
             position: absolute;
+            transition: all $animationTime;
           }
           .script2 {
             top: 50%;
@@ -266,6 +218,45 @@
               padding-right: 40px;
               margin: 0;
             }
+          }
+          .explain {
+            position: absolute;
+            max-width: 550px;
+            right: 10%;
+            bottom: 0;
+            transform: translate(0, -50%);
+            text-align: center;
+            opacity: 0;
+            h1 {
+              color: #fff;
+              @include font-size(3);
+              letter-spacing: 2px;
+              span {
+                color: $brand-details;
+              }
+            }
+            .icons {
+              display: inline-block;
+              width: 60%;
+              > div {
+                width: 45%;
+                &:nth-of-type(1) {
+                  float: left;
+                }
+                &:nth-of-type(2) {
+                  float: right;
+                }
+              }
+            }
+          }
+          .world {
+            width: 500px;
+            height: 500px;
+            background-size: 100% auto;
+            top: 50%;
+            left: 100px;
+            transform: translateY(-50%) rotateZ(0deg);
+            transition: all $animationTime;
           }
         }
         
@@ -467,8 +458,17 @@
           // scene 2
           .scene2 {
             .script2 {
-              transition-delay: 0.5s;
+              transition-delay: 1s;
               transform: translate(0, -50%);
+            }
+            .world{
+              transition-delay: 0s;
+              transform: translateY(-50%) rotateZ(360deg);
+            }
+            .explain{
+              transition-delay: 1.8s;
+              bottom: 50px;
+              opacity: 1;
             }
           }
           

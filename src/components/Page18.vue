@@ -5,6 +5,9 @@
     <div class="script1">
       <h1>proporcionando boas <span>experiências</span></h1>
     </div>
+    <div class="script1_2">
+      <h1>compreender o outro cada vez melhor</h1>
+    </div>
     <div class="script2">
       <h1>simplificando e potencializando esta experiência</h1>
     </div>
@@ -13,6 +16,9 @@
     </div>
     <div class="script4">
       <h1>é o que chamamos de Crew Experience</h1>
+    </div>
+    <div class="script5">
+      <h1>colaborador e cliente na mesma sintonia</h1>
     </div>
   </section>
 </template>
@@ -51,6 +57,30 @@
           selector: '.effects'
         }, {
           time: 500,
+          step: 'step1',
+          selector: '.image-background'
+        }, {
+          time: 1000,
+          step: 'step2_1',
+          selector: '.effects'
+        }, {
+          time: 500,
+          step: 'show',
+          selector: '.script1_2'
+        }, {
+          time: 1000,
+          step: 'step1',
+          selector: '.script1_2'
+        }, {
+          time: 6000,
+          step: 'hide',
+          selector: '.script1_2'
+        }, {
+          time: 500,
+          step: 'step2_1_2',
+          selector: '.effects'
+        }, {
+          time: 500,
           step: 'show',
           selector: '.script2'
         }, {
@@ -70,7 +100,7 @@
           step: 'show',
           selector: '.script3'
         }, {
-          time: 8500,
+          time: 7000,
           step: 'step3',
           selector: '.effects',
           reverse: true
@@ -88,13 +118,9 @@
           step: 'step4',
           selector: '.effects'
         }, {
-          time: 500,
+          time: 1000,
           step: 'show',
-          selector: '.script4'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.script4'
+          selector: '.script5'
         }
       ]
       Animations.setAnimations(animations)
@@ -123,12 +149,16 @@
   .image-background {
     background: url("../assets/backgrounds/page18/02.jpg") no-repeat;
     background-size: cover;
+    &.step1{
+      background: url("../assets/backgrounds/page18/ref-525655138.jpg") no-repeat;
+      background-size: cover;
+    }
     &.step2 {
       background: url("../assets/backgrounds/page18/01.jpg") no-repeat;
       background-size: cover;
     }
     &.step3 {
-      background: url("../assets/backgrounds/page18/03.jpg") no-repeat;
+      background: url("../assets/backgrounds/page18/ref-565936849.jpg") no-repeat;
       background-size: cover;
     }
   }
@@ -148,11 +178,18 @@
       width: 100%;
       right: 0;
     }
+    &.step2_1{
+      opacity: 0;
+    }
+    &.step2_1_2{
+      opacity: 1;
+    }
     &.step3 {
       opacity: 0.2;
     }
     &.step4 {
-      opacity: 0;
+      background: #000;
+      opacity: 0.3;
     }
   }
   
@@ -169,6 +206,32 @@
       transform: translate(0, -50%);
     }
     &.hide {
+      opacity: 0;
+    }
+  }
+
+  .script1_2{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+    @include font-size(2.5);
+    text-align: center;
+    padding: 0 40px;
+    display: block;
+    color:#fff;
+    opacity: 0;
+    h1{
+      background: rgba(#000,0.5);
+      border-radius: 10px;
+    }
+    &.show{
+      transform: translate(-50%,-50%);
+      opacity: 1;
+    }
+    &.step1{
+      border: 10px double $brand-details;
+    }
+    &.hide{
       opacity: 0;
     }
   }
@@ -225,6 +288,22 @@
     }
     &.step2 {
       transform: translate(0, -50%) rotate(-2deg);
+    }
+  }
+  .script5{
+    top:50%;
+    right: -105%;
+    transform: translateY(-50%);
+    h1{
+      @include font-size(3.5);
+      max-width: 400px;
+      color:#fff;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      padding: 10px 0;
+    }
+    &.show{
+      right: 5%;
     }
   }
 </style>

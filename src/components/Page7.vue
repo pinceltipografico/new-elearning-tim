@@ -1,10 +1,14 @@
 <template>
   <section class="page">
+    <transition name="enter-nav">
+      <a class="nav-button next-page can-advance" v-if="showNext" @click="step2">
+        <i class="material-icons">&#xE5CC;</i>
+      </a>
+    </transition>
     <div class="image-background"></div>
     <div class="white"></div>
     <div class="icon">
       <i class="material-icons">&#xE55A;</i>
-      <span @click="startScene" v-if="showNext">próximo</span>
     </div>
     <div class="script1">
       <h1>
@@ -72,6 +76,8 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 10000)
       this.$store.commit('setCanAdvance', false)
+      var next = document.querySelector('.can-advance')
+      next.style.display = 'none'
       var animations = [
         {
           time: 500,
@@ -89,6 +95,18 @@
           time: 500,
           step: 'show',
           selector: '.script1'
+        }, {
+          time: 2000,
+          step: 'show',
+          selector: '.script2'
+        }, {
+          time: 2000,
+          step: 'show',
+          selector: '.script3'
+        }, {
+          time: 2000,
+          step: 'show',
+          selector: '.script4'
         }
       ]
       Animations.setAnimations(animations)
@@ -130,15 +148,6 @@
       draggable
     },
     methods: {
-      startScene () {
-        if (this.currentScene === 1) {
-          this.step2()
-        } else if (this.currentScene === 2) {
-          this.step3()
-        } else if (this.currentScene === 3) {
-          this.step4()
-        }
-      },
       onAdded () {
         if (this.list2.length === 3) {
           this.$store.commit('setCanAdvance', true)
@@ -148,45 +157,7 @@
         this.showNext = false
         var animations = [
           {
-            time: 500,
-            step: 'show',
-            selector: '.script2'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline(function () {
-          this.currentScene = 2
-          setTimeout(function () {
-            this.showNext = true
-          }.bind(this), 1500)
-        }.bind(this))
-      },
-      step3 () {
-        this.showNext = false
-        var animations = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.script3'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline(function () {
-          this.currentScene = 3
-          setTimeout(function () {
-            this.showNext = true
-          }.bind(this), 1500)
-        }.bind(this))
-      },
-      step4 () {
-        this.showNext = false
-        var animations = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.script4'
-          }, {
-            time: 2500,
+            time: 50,
             step: 'step3',
             selector: '.white'
           }, {
@@ -213,6 +184,8 @@
         ]
         Animations.setAnimations(animations)
         Animations.animationTimeline(function () {
+          var next = document.querySelector('.can-advance')
+          next.style.display = 'block'
         })
       }
     },
@@ -224,6 +197,8 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      var next = document.querySelector('.can-advance')
+      next.style.display = 'block'
     }
   }
 </script>

@@ -43,10 +43,12 @@ export default function OnPageScroll () {
     } else {
       this.pagesContainer.style.top = '-' + (this.currentSection * this.maxHeight) + 'px'
     }
-    this.setActiveStatus()
-    if (this.callback) {
-      this.callback(this.currentSection)
-    }
+    setTimeout(function () {
+      this.setActiveStatus()
+      if (this.callback) {
+        this.callback(this.currentSection)
+      }
+    }.bind(this), 500)
   }
   
   /**

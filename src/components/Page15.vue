@@ -16,11 +16,7 @@
         </h1>
       </div>
       <div class="abordages-tradicionais">
-        <div>Não integrada</div>
-        <div>sem contexto</div>
-        <div>a oferta é o centro</div>
-        <div>reativa</div>
-        <div>Sem diferença por cliente</div>
+        <div>Sem diferenciação por cliente</div>
         <div>Sem integração</div>
         <div>Mal suportada pelas novas tecnologias</div>
         <div>Básica</div>
@@ -34,11 +30,10 @@
         <h1>Uma Nova Visão
           <small>
             <hr/>
-            <div>O cliente no centro</div>
+            <div>Cliente único</div>
+            <div>Experiência única</div>
             <div>Soluções inovadoras</div>
-            <div>rentáveis</div>
-            <div>Mulichannel</div>
-            <div>Processos integrados</div>
+            <div>Rentável</div>
           </small>
         </h1>
       </div>
@@ -190,7 +185,7 @@
     width: 120px;
     height: 120px;
     background: $brand-details;
-    top: 40%;
+    top: 50%;
     margin-top: -60px;
     z-index: 4;
     color: #fff;
@@ -285,7 +280,7 @@
         height: 0;
       }
       &:before {
-        top: 40%;
+        top: 50%;
       }
     }
     
@@ -296,10 +291,10 @@
       }
       span {
         color: $brand-details;
-        top: 23%;
+        top: 34%;
       }
       .script3 {
-        top: 40%;
+        top: 50%;
         color: #fff;
         @include font-size(1.5);
         small {
@@ -320,8 +315,8 @@
       .customer_centric {
         width: 550px;
         right: 5%;
-        top: 40%;
-        transform: translateY(-52%);
+        top: 46%;
+        transform: translateY(-50%);
         opacity: 0;
       }
       &.step1 {
@@ -348,12 +343,12 @@
       }
       span {
         color: #fff;
-        top: 23%;
+        top: 34%;
         left: 10%;
       }
       .script2 {
         left: 10%;
-        top: 40%;
+        top: 50%;
         color: #fff;
         @include font-size(1.5);
         small {
@@ -362,7 +357,7 @@
         }
       }
       .abordages-tradicionais {
-        top: 50%;
+        top: 60%;
         left: 15%;
         div {
           color: #fff;

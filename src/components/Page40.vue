@@ -56,7 +56,7 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 7000)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
+      var dnaAnimation = [
         {
           time: 500,
           step: 'show',
@@ -79,7 +79,7 @@
           selector: '.crew-experience'
         }
       ]
-      Animations.setAnimations(animations)
+      Animations.setAnimations(dnaAnimation)
       Animations.animationTimeline(function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
@@ -108,7 +108,6 @@
       opacity: 1;
     }
   }
-  
   .item {
     width: 250px;
     text-align: center;

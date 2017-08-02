@@ -2,6 +2,10 @@
   <section class="page">
     <div class="overlay"></div>
     <div class="infographic">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
     <div class="script1">
       <h1>
@@ -44,6 +48,22 @@
           time: 1500,
           step: 'show',
           selector: '.infographic'
+        }, {
+          time: 50,
+          step: 'show',
+          selector: '.infographic > div:nth-of-type(1)'
+        }, {
+          time: 1000,
+          step: 'show',
+          selector: '.infographic > div:nth-of-type(2)'
+        }, {
+          time: 1000,
+          step: 'show',
+          selector: '.infographic > div:nth-of-type(3)'
+        }, {
+          time: 1000,
+          step: 'show',
+          selector: '.infographic > div:nth-of-type(4)'
         }
       ]
       Animations.setAnimations(animations)
@@ -84,13 +104,58 @@
   }
   
   .infographic {
-    width: 450px;
-    height: 500px;
+    width: 370px;
+    height: 365px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    background: url("../assets/backgrounds/page10/01.png") no-repeat;
     background-size: 100% auto;
+    
+    div{
+      position: absolute;
+      opacity: 0;
+      transition: all $animationTime;
+      &.show{
+        opacity: 1;
+      }
+      
+      &:nth-of-type(1),
+      &:nth-of-type(2){
+        top:0;
+      }
+      &:nth-of-type(1){
+        width: #{(421/2)+'px'};
+        height: #{(364/2)+'px'};
+        background: url("../assets/backgrounds/page10/graph4.png") no-repeat;
+        background-size: 100% auto;
+        left: 0;
+      }
+      &:nth-of-type(2){
+        width: #{(395/2)+'px'};
+        height: #{(417/2)+'px'};
+        background: url("../assets/backgrounds/page10/graph3.png") no-repeat;
+        background-size: 100% auto;
+        right: 0;
+      }
+      &:nth-of-type(3),
+      &:nth-of-type(4){
+        bottom: 0;
+      }
+      &:nth-of-type(3){
+        width: #{(397/2)+'px'};
+        height: #{(420/2)+'px'};
+        background: url("../assets/backgrounds/page10/graph1.png") no-repeat;
+        background-size: 100% auto;
+        left: 0;
+      }
+      &:nth-of-type(4){
+        width: #{(425/2)+'px'};
+        height: #{(442/2)+'px'};
+        background: url("../assets/backgrounds/page10/graph2.png") no-repeat;
+        background-size: 100% auto;
+        right: 0;
+      }
+    }
     
     &.show {
       transform: translate(-50%, -50%) scale(1);

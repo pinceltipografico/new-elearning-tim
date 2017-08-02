@@ -1,6 +1,6 @@
 <template>
   <div class="outer-page">
-    <section class="page step1" v-if="!showTodo">
+    <section class="page step1" :class="{'hide':scene === 1}" v-if="scene < 2">
       <div class="script2">
         <h1>
           Criamos uma estrutura de <span>customer experience</span>
@@ -14,7 +14,45 @@
         <span>Clique aqui e veja o que já existe desde então:</span>
       </div>
     </section>
-    <section class="page todo" v-if="showTodo">
+    <section class="page gradient" v-if="scene === 1">
+      <div class="dna">
+        <img src="../assets/backgrounds/page40/dna.png" alt="DNA"/>
+        <div class="shadow"></div>
+      </div>
+      <div class="item costumer">
+        <div class="icon">
+          <i class="material-icons">&#xE228;</i>
+        </div>
+        <span><strong>Customer Centric</strong></span>
+        <span>Entender as necessidades</span>
+      </div>
+      <div class="item user-experience">
+        <div class="icon">
+          <img src="../assets/backgrounds/page40/touch.png"/>
+        </div>
+        <span><strong>User Experience</strong></span>
+        <span>Emoções Preferências</span>
+        <span>Comportamentos</span>
+        <span>Realizações</span>
+      </div>
+      <div class="item custumer-monitoring">
+        <div class="icon">
+          <i class="material-icons">&#xE8B6;</i>
+        </div>
+        <span><strong>Monitoring & Analisys</strong></span>
+        <span>O que são?</span>
+        <span>O que querem?</span>
+        <span>Quando e como querem?</span>
+      </div>
+      <div class="item crew-experience">
+        <div class="icon">
+          <i class="material-icons">&#xE7FD;</i>
+        </div>
+        <span><strong>Crew Experience</strong></span>
+        <span>Oferecer a melhor experiência para os colaboradores é a chave</span>
+      </div>
+    </section>
+    <section class="page todo" v-if="scene === 2">
       <div class="icon-container">
         <div class="icone one">
           <icon-one></icon-one>
@@ -52,6 +90,7 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   import iconOne from '../assets/svgs/page13-1.svg'
   import iconTwo from '../assets/svgs/page13-2.svg'
@@ -60,6 +99,7 @@
   import iconFive from '../assets/svgs/page13-5.svg'
   import iconSix from '../assets/svgs/page13-6.svg'
   import iconSeven from '../assets/svgs/page13-7.svg'
+  
   export default {
     components: {
       iconOne,
@@ -79,7 +119,8 @@
       return {
         dates: [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
         showTodo: false,
-        activeTotoList: []
+        activeTotoList: [],
+        scene: 0
       }
     },
     /**
@@ -110,6 +151,7 @@
        **/
       startTodo () {
         this.showTodo = true
+        this.scene = 2
         var animations = [
           {
             time: 500,
@@ -163,6 +205,10 @@
             time: 300,
             step: 'active',
             selector: '.icon-container > .seven'
+          }, {
+            time: 4000,
+            step: 'small',
+            selector: '.icon-container > .seven'
           }
         ]
         Animations.setAnimations(animations)
@@ -188,10 +234,12 @@
             selector: '.text-animation'
           }
         ]
+        /*
         Animations.setAnimations(animations)
         Animations.animationTimeline(function () {
           removeItem()
-        })
+        }) */
+        this.startTodo()
         
         function removeItem () {
           if (vm.dates.length - 2) {
@@ -207,12 +255,48 @@
             ]
             Animations.setAnimations(animations)
             Animations.animationTimeline(() => {
-              setTimeout(() => { showEnd() }, 8000)
+              setTimeout(() => { showDna() }, 4000)
             })
           }
         }
         
+        function showDna () {
+          vm.scene = 1
+          var dnaAnimation = [
+            {
+              time: 500,
+              step: 'show',
+              selector: '.dna'
+            }, {
+              time: 1500,
+              step: 'show',
+              selector: '.costumer'
+            }, {
+              time: 1500,
+              step: 'show',
+              selector: '.user-experience'
+            }, {
+              time: 1500,
+              step: 'show',
+              selector: '.custumer-monitoring'
+            }, {
+              time: 1500,
+              step: 'show',
+              selector: '.crew-experience'
+            }, {
+              time: 5000,
+              step: 'show',
+              selector: '.crew-experience'
+            }
+          ]
+          Animations.setAnimations(dnaAnimation)
+          Animations.animationTimeline(function () {
+            showEnd()
+          })
+        }
+        
         function showEnd () {
+          vm.scene = 0
           animations = [
             {
               time: 500,
@@ -260,12 +344,83 @@
   @import "~susy/sass/susy";
   
   section.page {
+    
+    .dna {
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      transform: translate(-50%, -40%);
+      img {
+        width: 100%;
+      }
+      opacity: 0;
+      &.show {
+        opacity: 1;
+      }
+    }
+    .item {
+      width: 250px;
+      text-align: center;
+      .icon {
+        display: inline-block;
+        background: $brand-details;
+        border: 5px solid #fff;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        line-height: 75px;
+        color: #fff;
+        margin-bottom: 5px;
+        img {
+          display: inline;
+          margin-top: 15px;
+        }
+        i {
+          @include font-size(4);
+          line-height: inherit;
+        }
+      }
+      span {
+        color: #fff;
+        display: block;
+        @include font-size(1.4);
+      }
+      &.costumer {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -200%);
+      }
+      &.user-experience {
+        left: 50%;
+        top: 48%;
+        transform: translate(-50%, 90%);
+      }
+      &.custumer-monitoring {
+        top: 50%;
+        left: 50%;
+        transform: translate(80%, -50%);
+      }
+      &.crew-experience {
+        top: 50%;
+        left: 50%;
+        transform: translate(-230%, -40%);
+        width: 180px;
+      }
+      opacity: 0;
+      &.show {
+        opacity: 1;
+      }
+    }
+    
     &.step1 {
       background: url("../assets/backgrounds/page13/01.jpg") no-repeat;
       background-size: cover;
     }
     &.todo {
       @extend %gradient;
+    }
+    &.hide {
+      display: none;
     }
     
     .blue {
@@ -357,11 +512,33 @@
         transform: translate(-50%, -50%);
         opacity: 0;
         transition: all $animationTime;
+        
         &.small {
           width: 12%;
-          left: 120px;
+          opacity: 0.8;
         }
         
+        &.one.small {
+          left: calc(12.5% * 1);
+        }
+        &.two.small {
+          left: calc(12.5% * 2);
+        }
+        &.three.small {
+          left: calc(12.5% * 3);
+        }
+        &.four.small {
+          left: calc(12.5% * 4);
+        }
+        &.five.small {
+          left: calc(12.5% * 5);
+        }
+        &.six.small {
+          left: calc(12.5% * 6);
+        }
+        &.seven.small{
+          left: calc(12.5% * 7);
+        }
         &.active {
           opacity: 1;
         }
