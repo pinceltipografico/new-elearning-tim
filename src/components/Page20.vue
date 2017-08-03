@@ -988,7 +988,7 @@
         Animation.setAnimations(anim)
         Animation.animationTimeline(function () {
           this.$store.commit('setCanAdvance', true)
-        })
+        }.bind(this))
       }
     }
   }
