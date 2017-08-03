@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-page diretrizes">
+  <div class="outer-page diretrizes gradient">
     <transition name="fade">
       <div class="popups" v-if="showPopup">
         <div class="inner" :class="{'active':showInnerPopup}">
@@ -19,13 +19,42 @@
         </div>
       </div>
     </transition>
+    <section class="page page-menu">
+      <div class="menu">
+        <div class="tim-icon">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="items">
+          <router-link to="/page34">
+            <div class="item1 active">
+              <span>COMUNICAÇÃO</span>
+              <i class="material-icons">&#xE0BF;</i>
+            </div>
+          </router-link>
+          <router-link to="/page35">
+            <div class="item2 active">
+              <span>INTERAÇÃO</span>
+              <i class="material-icons">&#xE5D2;</i>
+            </div>
+          </router-link>
+          <router-link to="/page36">
+            <div class="item3 active">
+              <span>MONITORAMENTO</span>
+              <i class="material-icons">&#xE8B6;</i>
+            </div>
+          </router-link>
+        </div>
+        <div class="shadow"></div>
+      </div>
+    </section>
     <!-- scene comunicação -->
-    <section class="page comunicacao gradient">
+    <section class="page comunicacao" v-if="activeScene">
       <router-link to="/page33" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
-      <span class="title"><i class="material-icons">&#xE8B6;</i>Monitoramento</span>
       <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
@@ -58,6 +87,7 @@
 <script type="text/javascript">
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
+  var Animations = require('../lib/ChainAnimation')
   import Avaliar from '../assets/svgs/icon-avaliar.svg'
   import Informacao from '../assets/svgs/ico-info.svg'
   import Analitics from '../assets/svgs/icon-analitcs.svg'
@@ -78,17 +108,18 @@
         showInnerPopup: false,
         actualPopup: 0,
         showVoltar: false,
+        activeScene: false,
         popups: [
           {
-            html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>O canal de avalição também é essencial:</h4><span>uma avaliação simples e rápida aumenta a adesão do público</span><span>avaliar em tempo real</span>'
+            html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>É essencial que as avaliações sejam:</h4><span>uma avaliação simples e rápida aumenta a adesão do público</span><span>avaliar em tempo real</span>'
           }, {
-            html: '<h1>INFORMAÇÃO DEVE SER TRANSFORMADA EM AÇÃO<small></small><span>Ser rápido</span><span>ser proativo</span>'
+            html: '<h1>INFORMAÇÃO DEVE SER TRANSFORMADA EM AÇÃO<small></small><h4>é importante para:</h4><span>tagir em prol de soluções</span><span>treverter insatisfações</span><span>tproporcionar emoções</span>'
           }, {
-            html: '<h1>PREVER USANDO ANALYTCS<small></small><h4><span>Além de usar os dados disponíveis para atender melhor, monitorar a satisfação e tomar ações corretivas, eles podem e devem ser usados para se antecipar ao cliente</span></h4>'
+            html: '<h1>PREVER USANDO ANALYTCS<small></small><h4>Usar os dados disponíveis para</h4><span>Monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
           }, {
             html: '<h1>CRIAR E GERIR OS INDICADORES<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>processo recorrente de análise</span><span>planos de ação de melhorias</span>'
           }, {
-            html: '<h1>RETER OU CONQUISTAR O CLIENTE<small><h4><span>O monitoramento constante dos indicadores e o uso de análise preditiva de dados possibilitam prever e prevenir a perda de clientes da carteira atual, assim como identificar campanhas e iniciativas de sucesso com o objetivo de atrair novos clientes</span></h4></small>'
+            html: '<h1>RETER OU CONQUISTAR O CLIENTE<small></small><h4>Aproveitar as informações para</h4><span>Entender a necessidade do cliente</span><span>Reconhece-lo como único</span><span>Surpreende-lo</span>'
           }
         ]
       }
@@ -97,6 +128,37 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setTotalProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      var animations = [
+        {
+          time: 500,
+          step: 'step1',
+          selector: '.menu'
+        }, {
+          time: 500,
+          step: 'monitoramento',
+          selector: '.menu'
+        }, {
+          time: 500,
+          step: 'step2',
+          selector: '.menu'
+        }, {
+          time: 500,
+          step: 'step3',
+          selector: '.menu'
+        }, {
+          time: 500,
+          step: 'step4',
+          selector: '.menu'
+        }, {
+          time: 500,
+          step: 'absolute',
+          selector: '.page-menu'
+        }
+      ]
+      Animations.setAnimations(animations)
+      Animations.animationTimeline(function () {
+        this.activeScene = true
+      }.bind(this))
     },
     destroyed () {
     },

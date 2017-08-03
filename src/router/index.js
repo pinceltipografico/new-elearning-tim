@@ -25,7 +25,6 @@ import Page34 from '@/components/Page34'
 import Page35 from '@/components/Page35'
 import Page36 from '@/components/Page36'
 import Page37 from '@/components/Page37'
-import Page38 from '@/components/Page38'
 import Page39 from '@/components/Page39'
 import Page41 from '@/components/Page41'
 import Page42 from '@/components/Page42'
@@ -165,11 +164,6 @@ const router = new Router({
       name: 'page37',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page37
-    }, {
-      path: '/page38',
-      name: 'page38',
-      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page38
     }, {
       path: '/page39',
       name: 'page39',

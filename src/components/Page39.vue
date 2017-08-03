@@ -16,10 +16,10 @@
       <h1>Uma comunidade <span>única</span></h1>
     </div>
     <div class="palavras-colaborador">
-      <span>conhecimento</span><span>encantamento</span><span>satisafação</span><span>crescimento</span><span>celebração</span><span>empoderamento</span><span>fidelidade</span><span>suporte</span><span>conexão</span><span>paixão</span>
+      <span>Conhecimento</span><span>Crescimento</span><span>Suporte</span><span>Conexão</span><span>Satisfação</span><span>Empoderamento</span><span>Paixão </span><span>Celebração</span>
     </div>
     <div class="palavras-clientes">
-      <span>engajamento</span><span>entusiasmo</span><span>satisfação</span><span>lealdade</span><span>conexão</span><span>felicidade</span><span>conhecimento</span>
+      <span>Suporte</span><span>Conexão</span><span>Conhecimento</span><span>Satisfação</span><span>Encantamento</span><span>Lealdade</span><span>Felicidade</span>
     </div>
   </section>
 </template>
@@ -27,6 +27,7 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   export default {
     data () {
@@ -78,11 +79,17 @@
           time: 5000,
           step: 'show',
           selector: '.palavras-clientes'
+        }, {
+          time: 10000,
+          step: 'show',
+          selector: '.palavras-clientes'
         }
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {
         this.$store.commit('setCanAdvance', true)
+        var tim = this.$el.querySelector('.script')
+        tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
       }.bind(this))
     },
     destroyed () {
@@ -96,17 +103,17 @@
   section.page {
     background: url("../assets/backgrounds/page39/ref-390285811.jpg") no-repeat;
     background-size: cover;
-  
-    .script{
-      top:50%;
+    
+    .script {
+      top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       @include font-size(2);
-      background: rgba(#000,0.5);
+      background: rgba(#000, 0.5);
       padding: 0 25px;
-      color:#fff;
+      color: #fff;
       opacity: 0;
-      &.show{
+      &.show {
         opacity: 1;
       }
     }
@@ -137,14 +144,14 @@
     .colaboradores {
       left: 0;
       background: darken($brand-details, 20%);
-      &.step1{
+      &.step1 {
         transform: translateY(-100%);
       }
     }
     .clientes {
       right: 0;
       background: $brand-details;
-      &.step1{
+      &.step1 {
         transform: translateY(100%);
       }
     }
@@ -179,9 +186,9 @@
       &.step2:before {
         transform: scaleX(1);
       }
-      &.step3{
+      &.step3 {
         width: 480px;
-        &:after{
+        &:after {
           height: 92px;
         }
       }
@@ -194,8 +201,8 @@
       &:before {
         transform-origin: 0% 50%;
       }
-      &.step3{
-        top:43%;
+      &.step3 {
+        top: 43%;
       }
     }
     .animation2 {
@@ -208,48 +215,54 @@
       &:before {
         transform-origin: 100% 50%;
       }
-      &.step3{
+      &.step3 {
         top: 57%;
-        &:after{
-          top:-92px;
+        &:after {
+          top: -92px;
         }
       }
     }
     .palavras-colaborador,
-    .palavras-clientes{
+    .palavras-clientes {
       position: absolute;
-      top:50%;
+      top: 50%;
       width: 300px;
       transform: translateY(-50%);
-      span{
+      span {
         display: inline-block;
-        background: $brand-details;
-        color:#fff;
+        color: #fff;
         @include font-size(1.5);
-        margin:0 10px 10px 0;
+        margin: 0 10px 10px 0;
         padding: 5px 10px;
         font-weight: bold;
         border-radius: 5px;
         opacity: 0;
         transition: all $animationTime;
         
-        @for $i from 1 through 10{
-          &:nth-of-type(#{$i}){
+        @for $i from 1 through 10 {
+          &:nth-of-type(#{$i}) {
             transition-delay: #{(0.5 * $i)+'s'};
           }
         }
       }
-      &.show{
-        span{
+      &.show {
+        span {
           opacity: 1;
         }
       }
     }
-    .palavras-colaborador{
+    .palavras-colaborador {
       left: 50px;
+      span {
+        background: $brand-details;
+      }
     }
-    .palavras-clientes{
+    .palavras-clientes {
+      text-align: right;
       right: 50px;
+      span {
+        background: darken($brand-details, 20%);
+      }
     }
   }
 </style>

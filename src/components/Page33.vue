@@ -11,19 +11,19 @@
         </div>
         <div class="items">
           <router-link to="/page34">
-            <div>
+            <div class="item1">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
           </router-link>
           <router-link to="/page35">
-            <div>
+            <div class="item2">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </router-link>
           <router-link to="/page36">
-            <div>
+            <div class="item3">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
             </div>
@@ -36,6 +36,11 @@
   </div>
 </template>
 <script type="text/javascript">
+  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
+  import { EventBus } from '../events/index'
+  
+  var Animations = require('../lib/ChainAnimation')
   export default {
     /**
      | ----------------------------------------------
@@ -54,6 +59,23 @@
      **/
     mounted () {
       this.$store.commit('setCanAdvance', true)
+      var animations = [
+        {
+          time: 1500,
+          step: 'active',
+          selector: '.item1'
+        }, {
+          time: 1500,
+          step: 'active',
+          selector: '.item2'
+        }, {
+          time: 1500,
+          step: 'active',
+          selector: '.item3'
+        }
+      ]
+      Animations.setAnimations(animations)
+      Animations.animationTimeline()
     },
     /**
      | ----------------------------------------------
@@ -90,6 +112,9 @@
         text-align: center;
         border-bottom: 1px solid $brand-details;
       }
+      &.absolute{
+        position: absolute;
+      }
     }
     
     .menu {
@@ -97,6 +122,10 @@
       top: 55%;
       left: 50px;
       transform: translateY(-50%);
+      transition: all $animationTime;
+      *{
+        transition: all $animationTime;
+      }
       .shadow {
         position: absolute;
         bottom: -50px;
@@ -105,6 +134,7 @@
       }
       .tim-icon {
         width: 400px;
+        transition: opacity $animationTime;
         div {
           position: relative;
           height: 70px;
@@ -160,7 +190,11 @@
           cursor: pointer;
           transition: all $animationTime;
           transform: translateX(100%);
-          animation: itemAnimation 0.5s forwards 1s;
+          
+          &.active {
+            transform: translateX(0%);
+          }
+          
           span {
             @include font-size(2.5);
           }
@@ -175,17 +209,107 @@
           }
         }
       }
+      
+      &.step1{
+        .tim-icon{
+          opacity: 0;
+        }
+        .shadow{
+          display: none;
+        }
+      }
+      
+      //
+      // comunicaao animation
+      &.comunicacao{
+        .items div.item2,
+        .items div.item3{
+          transform: translateX(100%);
+        }
+      }
+      &.comunicacao.step2{
+        left: 0;
+        .items{
+          left: 0;
+        }
+        .items div.item2,
+        .items div.item3{
+          visibility: hidden;
+        }
+      }
+      &.comunicacao.step2.step3{
+        top:40%;
+      }
+      &.comunicacao.step2.step3.step4{
+        .item1{
+          width: 300px;
+          /*transform-origin: 0 0;*/
+          /*transform: scale(0.7);*/
+        }
+      }
+      
+      //
+      // interação
+      &.interacao{
+        .items div.item1,
+        .items div.item3{
+          transform: translateX(100%);
+        }
+      }
+      &.interacao.step2{
+        left:0;
+        .items{
+          left: 0;
+        }
+        .items div.item1,
+        .items div.item3{
+          visibility: hidden;
+        }
+      }
+      &.interacao.step2.step3{
+        top:20%;
+      }
+      &.interacao.step2.step3.step4{
+        .item2{
+          width: 300px;
+        }
+      }
+      
+      &.monitoramento{
+        .items div.item1,
+        .items div.item2{
+          transform: translateX(100%);
+        }
+      }
+      &.monitoramento.step2{
+        left:0;
+        .items{
+          left: 0;
+        }
+        div.item1,
+        div.item2{
+          visibility: hidden;
+        }
+      }
+      &.monitoramento.step2.step3{
+        top:0%;
+      }
+      &.monitoramento.step2.step3.step4{
+        .items{
+          width: 300px;
+        }
+      }
     }
     
     section.comunicacao {
-      .title{
+      .title {
         background: $brand-secondary;
-        color:#fff;
-        top:18%;
+        color: #fff;
+        top: 18%;
         @include font-size(3);
         padding: 5px 15px;
         text-transform: uppercase;
-        i{
+        i {
           margin-right: 10px;
         }
       }
@@ -218,6 +342,7 @@
         @include font-size(1.8);
         font-weight: bold;
         transform: translateX(-50%);
+        text-transform: uppercase;
       }
       .icones {
         width: 80%;
@@ -252,11 +377,6 @@
       }
     }
     
-    @keyframes itemAnimation {
-      to {
-        transform: translateX(0%);
-      }
-    }
     @keyframes backButton {
       to {
         background: #fff;

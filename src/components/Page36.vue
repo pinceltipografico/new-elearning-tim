@@ -8,8 +8,7 @@
     <section class="page" v-if="scene === 0">
       <div class="start">
         <h1>
-          O Monitoramento em uma abordagem de CX vai muito além de relatórios e KPIs que já são utilizados pelas diferentes áreas da <span class="uppercase">TIM</span>
-          para fazer a gestão de suas atividades</h1>
+          O Monitoramento em uma abordagem de <span>Customer Experience</span> vai muito além de relatórios e Indicadores</h1>
         <div class="buttons" @click="startAnim">
           <span>Ver como funciona</span>
           <i class="material-icons">&#xE038;</i>
@@ -225,6 +224,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     h1 {
+      max-width: 500px;
       color: #fff;
       @include font-size(2.5);
       text-align: center;
