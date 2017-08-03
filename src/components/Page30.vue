@@ -1,6 +1,7 @@
 <template>
   <section class="page gradient">
-    <h1 class="title">Arraste os textos para sua fase apropriada</h1>
+    <h1 class="title">
+      Arraste exemplos de perguntas e necessidades que o cliente tem ao longo do ciclo de vida do cliente</h1>
     <div class="script1">
       <div class="svg-container">
         <div class="client-image">
@@ -50,7 +51,7 @@
         Vá pra TIM, eu consigo ver meus filmes favoritos no caminho do trabalho e a conexão é boa e ainda tem um monte de promoções
       </div>
     </div>
-    <div class="result-container">
+    <div class="result-container" :class="{'active':showResults}">
       <div v-for="(result, key) in results" v-bind:key="key" v-if="result.items.length">
         <h2>{{result.name}}</h2>
         <span v-for="item in result.items">{{item}}</span>
@@ -70,32 +71,33 @@
     name: 'page6',
     data () {
       return {
-        count: 13,
+        count: 12,
+        showResults: false,
         results: [
           {
             name: 'Precisar',
-            items: []
+            items: ['Interação humana e experiências sociais']
           }, {
             name: 'Pesquisar',
-            items: []
+            items: ['Comparar alternativa']
           }, {
             name: 'Escolher',
-            items: []
+            items: ['Customizar']
           }, {
             name: 'Comprar',
-            items: []
+            items: ['Cadastro', 'Compra e ativação do chip']
           }, {
             name: 'Receber',
-            items: []
+            items: ['Praticidade']
           }, {
             name: 'Usar',
-            items: []
+            items: ['Ativação e desativação de ofertas e plugins', 'Contratação de serviços (VAS) e facilidades TIM', 'Recargas']
           }, {
             name: 'Manter',
-            items: []
+            items: ['Suporte sobre aparelhos', 'Migração de plano', 'Gestão de pagamento e consumo', 'Funcionamento de rede de voz e dados', 'Atendimento Omnichannel']
           }, {
             name: 'Recomendar',
-            items: []
+            items: ['Monte sua comunidade TIM']
           }
         ]
       }
@@ -214,6 +216,7 @@
               
               if (!--self.count) {
                 setTimeout(function () {
+                  self.showResults = true
                   self.$store.commit('setCanAdvance', true)
                 }, 1500)
               }
@@ -272,7 +275,7 @@
     color: #fff;
     bottom: 20px;
     left: 50%;
-    max-width: 250px;
+    max-width: 500px;
     text-align: center;
     transform: translateX(-50%);
     @include font-size(1.5);
@@ -286,10 +289,10 @@
   }
   
   .result-container {
-    display: none;
     top: 50%;
-    left: 100px;
+    left: -100%;
     transform: translateY(-50%);
+    font-size: 150%;
     h2 {
       color: $brand-details;
       margin-bottom: 5px;
@@ -298,6 +301,10 @@
     span {
       color: #fff;
       display: block;
+      font-weight: bold;
+    }
+    &.active {
+      left: 100px;
     }
   }
   
