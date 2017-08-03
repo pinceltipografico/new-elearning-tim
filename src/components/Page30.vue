@@ -18,36 +18,37 @@
       <div class="drop" data-name="Escolher" data-key="choise" style="top: 134px; left: -5px;">
         <div style="margin:-50px 0 0 0;"></div>
       </div>
-      <div class="drop" data-name="Comprar" data-key="buy" style="top: -5px; left: 105px;">
+      <div class="drop" data-name="Comprar" data-key="buy" style="top: -2px; left: 120px;">
         <div style="margin: -10px 0 0 160px;"></div>
       </div>
       <div class="drop" data-name="Receber" data-key="receive" style="bottom:15px; left: 515px;">
         <div style="margin: 0 0 0 -100px;"></div>
       </div>
-      <div class="drop" data-name="Usar" data-key="use" style="bottom: 115px; right: -10px;">
+      <div class="drop" data-name="Usar" data-key="use" style="bottom: 118px; right: -153px;">
         <div style="margin: -60px 0px 0px 40px; width:250px;"></div>
       </div>
-      <div class="drop" data-name="Manter" data-key="keep" style="top: 135px; right:-10px;">
+      <div class="drop" data-name="Manter" data-key="keep" style="top: 137px; right:-150px;">
         <div style="margin: -70px 0px 0px 0px;width:200px"></div>
       </div>
-      <div class="drop" data-name="Recomendar" data-key="share" style="top: -7px; right: 125px;">
+      <div class="drop" data-name="Recomendar" data-key="share" style="top: -2px; right: -12px;">
         <div style="margin: -5px 0 0 -100px;"></div>
       </div>
     </div>
     <div class="dragElements">
-      <div class="drag" data-key="need"> Interação humana e experiências sociais</div>
-      <div class="drag" data-key="search"> Comparar Alternativa</div>
-      <div class="drag" data-key="choise"> Customizar e Escolher plano</div>
-      <div class="drag" data-key="buy"> Cadastro</div>
-      <div class="drag" data-key="buy"> Compra e ativação do chip</div>
-      <div class="drag" data-key="receive"> Comodidade</div>
-      <div class="drag" data-key="use"> Contratação de Serviços (VAS)</div>
-      <div class="drag" data-key="use"> Ativação/Desativação de Ofertas e Plugins</div>
-      <div class="drag" data-key="use"> Recargas</div>
-      <div class="drag" data-key="keep"> Suporte sobre Aparelhos</div>
-      <div class="drag" data-key="keep"> Migração de Planos</div>
-      <div class="drag" data-key="keep"> Atendimento Ominichannel</div>
-      <div class="drag" data-key="share"> Monte sua comunidade TIM</div>
+      <div class="drag" data-key="need"> Preciso trocar meu aparelho</div>
+      <div class="drag" data-key="need"> Quero ver mais filmes a caminho do trabalho, preciso de mais internet</div>
+      <div class="drag" data-key="search"> Qual o mais novo aparelho?</div>
+      <div class="drag" data-key="search"> Onde encontro o aparelho com mais internet?</div>
+      <div class="drag" data-key="choise"> Porque a TIM?</div>
+      <div class="drag" data-key="buy"> Já decidi, como posso pagar?</div>
+      <div class="drag" data-key="buy"> Quero fazer um cadastro rápido</div>
+      <div class="drag" data-key="receive"> Quando o meu aparelho vai chegar?</div>
+      <div class="drag" data-key="use"> Oba! Estou vendo o meu filme no caminho do trabalho</div>
+      <div class="drag" data-key="keep"> Nossa, estou usando bem mais do que imaginava</div>
+      <div class="drag" data-key="keep"> opa, acabei de receber uma mensagem com promoção para aumentar meu plano</div>
+      <div class="drag" data-key="share">
+        Vá pra TIM, eu consigo ver meus filmes favoritos no caminho do trabalho e a conexão é boa e ainda tem um monte de promoções
+      </div>
     </div>
     <div class="result-container">
       <div v-for="(result, key) in results" v-bind:key="key" v-if="result.items.length">
@@ -64,6 +65,7 @@
   var graph = require('../assets/svgs/infinity.svg')
   import { EventBus } from '../events/index'
   import interact from 'interact.js'
+  
   export default {
     name: 'page6',
     data () {
@@ -143,7 +145,6 @@
         var result = null
         for (var i = 0; i < this.results.length; i++) {
           var _name = this.results[i].name
-          console.log(_name)
           if (_name === name) {
             result = this.results[i]
             break
@@ -168,10 +169,12 @@
           event.target.style.transform = ''
           event.target.removeAttribute('data-x')
           event.target.removeAttribute('data-y')
+          event.target.classList.remove('no-animation')
         }
         
         // on move
         function dragMoveListener (event) {
+          event.target.classList.add('no-animation')
           var target, x, y
           target = event.target
           x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
@@ -201,17 +204,21 @@
               div.innerHTML += '<span style="display: block;">' + dropzoneElement.innerHTML + '</span>'
               self.addClass(dropzoneElement, 'dropped')
               
+              /*
               var name = draggableElement.getAttribute('data-name')
               var item = self.getByName(name)
               if (item) {
                 item.items.push(dropzoneElement.innerHTML)
               }
+              */
               
               if (!--self.count) {
                 setTimeout(function () {
                   self.$store.commit('setCanAdvance', true)
                 }, 1500)
               }
+            } else {
+              self.removeClass(dropzoneElement, 'can-drop')
             }
           },
           ondragenter: onDragEnter,
@@ -261,11 +268,15 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  .title{
-    color:#fff;
-    top:50px;
+  .title {
+    color: #fff;
+    bottom: 20px;
     left: 50%;
+    max-width: 250px;
+    text-align: center;
     transform: translateX(-50%);
+    @include font-size(1.5);
+    text-transform: uppercase;
   }
   
   .script1,
@@ -275,6 +286,7 @@
   }
   
   .result-container {
+    display: none;
     top: 50%;
     left: 100px;
     transform: translateY(-50%);
@@ -290,14 +302,14 @@
   }
   
   .script1 {
-    width: 800px;
+    width: 650px;
     height: 450px;
     color: #fff;
     transform-origin: 0 50%;
-    top: 45%;
-    left: 70%;
+    top: 50%;
+    right: 5%;
     z-index: 3;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translateY(-50%) scale(0.8);
     h1 {
       @include font-size(2.5);
     }
@@ -328,18 +340,17 @@
   }
   
   .dragElements {
-    bottom: 50px;
-    width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 400px;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
     position: absolute;
   }
   
   .drag, .drop {
     width: 150px;
-    text-align: center;
     font-size: 16px;
-    margin: 5px;
+    margin: 0 0 5px 0;
     color: #fff;
     font-weight: bold;
     border-radius: 5px;
@@ -347,11 +358,25 @@
   }
   
   .drag {
-    @include font-size(1);
+    max-width: 350px;
+    @include font-size(1.3);
     float: left;
     width: auto;
-    background: darken($brand-details, 20%);
+    background: #fff;
+    color: #666;
     font-weight: 700 !important;
+    border: 2px solid $brand-details;
+    transition: all $animationTime;
+    animation: none;
+    &.no-animation {
+      background: $brand-details;
+      color: #fff;
+      transition: none;
+      box-shadow: 0 0 10px rgba(#000, 0.8);
+    }
+    &.can-drop {
+      animation: backgroundDrop 0.3s infinite ease-in-out alternate;
+    }
   }
   
   .drop {
@@ -370,6 +395,7 @@
     }
     &.drop-active {
       border: 2px dotted $brand-details;
+      background: rgba($brand-details, 0.3);
     }
     &.drop-target {
       border: 2px dotted $brand-secondary;
@@ -378,5 +404,11 @@
   
   .drag.dropped {
     display: none;
+  }
+  
+  @keyframes backgroundDrop {
+    to {
+      background: $brand-secondary;
+    }
   }
 </style>
