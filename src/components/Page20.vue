@@ -63,11 +63,15 @@
         <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele?</span>
         </h1>
       </div>
-      <div class="iconButton" @click="showSvgEls(3,startSceneSix)">
+      <div class="script2">
+        <h1>Proporcionar que o cliente experimente o <span>serviço ou produto</span>
+          é uma alternativa para ajuda-lo na tomada de decisão e um oportunidade de avaliar previamente se as necessidades serão atendidas.
+        </h1>
+      </div>
+      <div class="iconButton" @click="startSceneFiveTwo">
         <div>
-          <span class="click">clique e</span>
-          <span>Comprar</span>
-          <i class="material-icons">&#xE263;</i>
+          <span>O que será que o fez decidir?</span>
+          <span>Clique e veja um exemplo</span>
         </div>
       </div>
     </section>
@@ -128,6 +132,7 @@
       </div>
       <div class="iconButton" @click="startSceneNineTwo">
         <div>
+          <span>O que a empresa e você podem fazer para melhorar cada vez mais a experiencia do usuário?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -145,14 +150,14 @@
         <h1><span>Agilidade e Eficiência</span> são as palavras importantes para esse momento</h1>
       </div>
       <div class="script3">
-        <h1>Qual é a melhor forma de atende-lo quando ele já usa o produto ou serviço?</h1>
-        <h1>O que pode ser feito para que le continue apaixonado e continue confiando na marca?</h1>
+        <h1>
+          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independente do canal, <span>sua necessidade será atendida.</span>
+        </h1>
       </div>
-      <div class="iconButton" @click="showSvgEls(7,startSceneEleven)">
+      <div class="iconButton" @click="startSceneTenTwo">
         <div>
-          <span class="click">clique para</span>
-          <span>recomendar</span>
-          <i class="material-icons">&#xE80D;</i>
+          <span>Qual é a melhor forma de atende-lo quando ele já usa o produto ou serviço?</span>
+          <span>Clique e veja um exemplo</span>
         </div>
       </div>
     </section>
@@ -171,6 +176,12 @@
           Recomendar é o resultado de toda boa experiência que o cliente teve ao lono da jornada de contato com o produto ou serviço
           <small>Precisamos tornar o cliente um defensor da marca!</small>
         </h1>
+      </div>
+      <div class="iconButton" @click="startSceneElevenTwo">
+        <div>
+          <span>O que mais podemos fazer para nos diferenciar?</span>
+          <span>Clique e veja um exemplo</span>
+        </div>
       </div>
     </section>
     <!-- ANIMAÇÕES DE RECOMENDAR -->
@@ -530,8 +541,49 @@
             selector: '.escolher > .script1'
           }, {
             time: 4050,
-            step: 'show',
+            step: 'step2',
             selector: '.escolher > .script1'
+          }, {
+            time: 500,
+            step: 'step3',
+            selector: '.escolher > .script1'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.escolher > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline(function () {
+        })
+      },
+      startSceneFiveTwo () {
+        var animations = [
+          {
+            time: 500,
+            step: 'show',
+            selector: '.escolher > .iconButton',
+            reverse: true
+          }, {
+            time: 500,
+            step: 'step4',
+            selector: '.escolher > .script1'
+          }, {
+            time: 500,
+            step: 'step4',
+            selector: '.escolher > .script1'
+          }, {
+            time: 500,
+            step: 'step2',
+            selector: '.escolher > .image-background'
+          }, {
+            time: 1500,
+            step: 'step5',
+            selector: '.escolher > .script1'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.escolher > .script2'
           }
         ]
         Animation.setAnimations(animations)
@@ -823,6 +875,27 @@
             reverse: true
           }, {
             time: 500,
+            step: 'step3_1',
+            selector: '.manter > .effects'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.manter > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline(function () {})
+      },
+      startSceneTenTwo () {
+        var anim = [
+          {
+            time: 0,
+            step: 'show',
+            selector: '.manter > .iconButton',
+            reverse: true
+          },
+          {
+            time: 500,
             step: 'step4',
             selector: '.manter > .effects'
           }, {
@@ -841,9 +914,8 @@
             time: 1500,
             step: 'show',
             selector: '.manter > .script3 > h1:nth-of-type(2)'
-          }
-        ]
-        Animation.setAnimations(animations)
+          }]
+        Animation.setAnimations(anim)
         Animation.animationTimeline(function () {
           this.addListenerSvg(7, this.startSceneEleven)
         }.bind(this))
@@ -880,6 +952,23 @@
             selector: '.recomendar > .effects'
           }, {
             time: 500,
+            step: 'show',
+            selector: '.recomendar > .iconButton'
+          }
+        ]
+        Animation.setAnimations(animations)
+        Animation.animationTimeline(function () {})
+      },
+      startSceneElevenTwo () {
+        var anim = [
+          {
+            time: 500,
+            step: 'show',
+            selector: '.recomendar > .iconButton',
+            reverse: true
+          },
+          {
+            time: 500,
             step: 'step3',
             selector: '.recomendar > .effects'
           }, {
@@ -896,10 +985,10 @@
             selector: '.recomendar > .script2'
           }
         ]
-        Animation.setAnimations(animations)
+        Animation.setAnimations(anim)
         Animation.animationTimeline(function () {
           this.$store.commit('setCanAdvance', true)
-        }.bind(this))
+        })
       }
     }
   }
@@ -1338,6 +1427,10 @@
     .image-background {
       background: url("../assets/backgrounds/page20/05.jpg") no-repeat;
       background-size: cover;
+      &.step2 {
+        background: url("../assets/backgrounds/page20/ref-326967050.jpg") no-repeat;
+        background-size: cover;
+      }
     }
     .script1 {
       top: 50%;
@@ -1350,6 +1443,40 @@
       color: #666;
       &.show {
         left: 0;
+      }
+      &.step2 {
+        h1 {
+          visibility: hidden;
+        }
+      }
+      &.step3 {
+        height: 40%;
+        width: 100%;
+        background: rgba(#fff, 0.4);
+        max-width: 100%;
+      }
+      &.step4 {
+        height: 100%;
+        top: 0;
+        transform: translateY(0);
+        background: #fff;
+      }
+      &.step5 {
+        opacity: 0;
+      }
+    }
+    .script2 {
+      top: 150%;
+      transform: translateY(-50%);
+      h1 {
+        background: #fff;
+        @include font-size(2);
+        max-width: 50%;
+        color: #666;
+        padding: 5px 50px;
+      }
+      &.show {
+        top: 70%;
       }
     }
   }
@@ -1644,7 +1771,16 @@
       &.step3 {
         opacity: 0;
       }
+      &.step3_1 {
+        opacity: 0.5;
+        height: 40%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       &.step4 {
+        height: 100%;
+        top: 0;
+        transform: translateY(0);
         opacity: 1;
       }
       &.step5 {
@@ -1678,16 +1814,15 @@
     }
     .script3 {
       top: 20%;
-      left: 7%;
+      left: 0;
       @include font-size(1.5);
-      padding: 20px;
-      max-width: 500px;
+      max-width: 50%;
       h1 {
-        color: $brand-details;
-        border-left: 10px double $brand-details;
-        padding-left: 10px;
+        color: #666;
+        padding: 10px 60px;
         opacity: 0;
         transition: all $animationTime;
+        background: #fff;
         
         &.show {
           opacity: 1;
@@ -1764,8 +1899,12 @@
       }
       &.step2 {
         width: 100%;
+        height: 40%;
         left: 0;
+        top: 50%;
+        transform: translateY(-50%);
         background: #fff;
+        opacity: 0.4;
       }
       &.step3 {
         opacity: 0;
