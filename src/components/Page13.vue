@@ -234,12 +234,12 @@
             selector: '.text-animation'
           }
         ]
-        /*
         Animations.setAnimations(animations)
         Animations.animationTimeline(function () {
           removeItem()
-        }) */
-        this.startTodo()
+        })
+
+//        this.startTodo()
         
         function removeItem () {
           if (vm.dates.length - 2) {
@@ -536,7 +536,7 @@
         &.six.small {
           left: calc(12.5% * 6);
         }
-        &.seven.small{
+        &.seven.small {
           left: calc(12.5% * 7);
         }
         &.active {
