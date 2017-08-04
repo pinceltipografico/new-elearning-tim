@@ -294,6 +294,7 @@
     }
     p {
       @include font-size(3);
+      text-transform: none;
     }
     div.image {
       width: 100%;

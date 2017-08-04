@@ -55,128 +55,133 @@ const router = new Router({
       meta: {pageTitle: ''},
       component: Page2
     }, {
-      path: '/page4',
-      name: 'Menu',
-      meta: {pageTitle: 'Menu'},
+      path: '/menu',
+      name: 'menu',
+      meta: {pageTitle: 'Menu', module: 'primeiro'},
       component: Page4
     }, {
-      path: '/page5',
-      name: 'Page5',
+      path: '/page3',
+      name: 'page3',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page5
-    }, /* {
-      path: '/page6',
-      name: 'Page6',
+    }, {
+      path: '/page4',
+      name: 'page4',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page6
-    }, */{
+      component: Page7
+    }, {
+      path: '/page5',
+      name: 'page5',
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
+      component: Page8
+    }, {
+      path: '/page6',
+      name: 'page6',
+      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
+      component: Page9
+    }, {
       path: '/page7',
       name: 'page7',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page7
+      component: Page10
     }, {
       path: '/page8',
       name: 'page8',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page8
+      component: Page11
     }, {
       path: '/page9',
       name: 'page9',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page9
+      component: Page12
     }, {
       path: '/page10',
       name: 'page10',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page10
+      component: Page17
     }, {
       path: '/page11',
       name: 'page11',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page11
+      component: Page13
     }, {
       path: '/page12',
       name: 'page12',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page12
+      component: Page15
     }, {
       path: '/page13',
       name: 'page13',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page13
-    }, {
-      path: '/page15',
-      name: 'page15',
-      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page15
-    }, {
-      path: '/page16',
-      name: 'page16',
-      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page16
     }, {
-      path: '/page17',
-      name: 'page17',
-      meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page17
-    }, {
-      path: '/page18',
-      name: 'page18',
+      path: '/page14',
+      name: 'page14',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
       component: Page18
     }, {
-      path: '/page20',
-      name: 'page20',
+      path: '/menu/2',
+      name: 'menu/2',
+      meta: {pageTitle: '<span>Menu</span>', module: 'segundo'},
+      component: Page4
+    }, {
+      path: '/page15',
+      name: 'page15',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page20
     }, {
-      path: '/page30',
-      name: 'page30',
+      path: '/page16',
+      name: 'page16',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page30
     }, {
-      path: '/page31',
-      name: 'page31',
+      path: '/page17',
+      name: 'page17',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page31
     }, {
-      path: '/page33',
-      name: 'page33',
+      path: '/menu/3',
+      name: 'menu/3',
+      meta: {pageTitle: '<span>Menu</span>', module: 'terceiro'},
+      component: Page4
+    }, {
+      path: '/page18',
+      name: 'page18',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page33
     }, {
-      path: '/page34',
-      name: 'page34',
+      path: '/page19',
+      name: 'page19',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page34
     }, {
-      path: '/page35',
-      name: 'page35',
+      path: '/page20',
+      name: 'page20',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page35
     }, {
-      path: '/page36',
-      name: 'page36',
+      path: '/page21',
+      name: 'page21',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page36
     }, {
-      path: '/page37',
-      name: 'page37',
+      path: '/page22',
+      name: 'page22',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
       component: Page37
     }, {
-      path: '/page39',
-      name: 'page39',
+      path: '/page23',
+      name: 'page23',
       meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page39
     }, {
-      path: '/page41',
-      name: 'page41',
+      path: '/page24',
+      name: 'page24',
       meta: {pageTitle: '<span>DNA Customer Experience</span>'},
       component: Page41
     }, {
-      path: '/page42',
-      name: 'page42',
+      path: '/page25',
+      name: 'page25',
       meta: {pageTitle: 'Obrigado!'},
       component: Page42
     }

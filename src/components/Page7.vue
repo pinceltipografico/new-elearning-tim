@@ -32,7 +32,7 @@
     </div>
     <div class="script5">
       <h1>
-        Arraste até as sacolas <span>3 palavras</span> que representem a sua escolha.
+        escolha <span>três palavras</span> que representem o que você mais valoriza na hora da compra e leve-as até a sacola
       </h1>
     </div>
     <div class="script6">
@@ -326,13 +326,13 @@
   
   .script5 {
     width: 100%;
-    @include font-size(2);
+    @include font-size(1.7);
     color: #fff;
-    text-align: center;
     top: -100px;
+    padding-left: 100px;
     h1 {
       display: inline-block;
-      max-width: 40%;
+      max-width: 60%;
     }
     &.step1 {
       top: 100px;

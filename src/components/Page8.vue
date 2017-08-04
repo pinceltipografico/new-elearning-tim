@@ -7,7 +7,7 @@
     </div>
     <div class="effect"></div>
     <div class="script2">
-      <h1>Mas nós todos <span>como clientes</span> desejamos mais...</h1>
+      <h1>Mas nós todos, <span>como clientes</span>, desejamos mais...</h1>
     </div>
   </section>
 </template>

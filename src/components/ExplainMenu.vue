@@ -2,7 +2,7 @@
   <section class="page">
     <div class="overlay darken"></div>
     <div class="explain-item volume">
-      <!-- --> Clique aqui para ativar ou desativar o audio<!-- -->
+      <!-- --> Clique aqui para ativar ou desativar o áudio<!-- -->
     </div>
     <div class="explain-item close">
       <!-- --> Clique aqui para sair do curso<!-- -->

@@ -10,19 +10,19 @@
           <div></div>
         </div>
         <div class="items">
-          <router-link to="/page34">
+          <router-link to="/page19">
             <div class="item1">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
           </router-link>
-          <router-link to="/page35">
+          <router-link to="/page20">
             <div class="item2">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </router-link>
-          <router-link to="/page36">
+          <router-link to="/page21">
             <div class="item3">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>

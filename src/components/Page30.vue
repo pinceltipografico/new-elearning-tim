@@ -40,7 +40,7 @@
       <div class="drag" data-key="need"> Quero ver mais filmes a caminho do trabalho, preciso de mais internet</div>
       <div class="drag" data-key="search"> Qual o mais novo aparelho?</div>
       <div class="drag" data-key="search"> Onde encontro o aparelho com mais internet?</div>
-      <div class="drag" data-key="choise"> Porque a TIM?</div>
+      <div class="drag" data-key="choise"> Porque a <span>TIM?</span></div>
       <div class="drag" data-key="buy"> Já decidi, como posso pagar?</div>
       <div class="drag" data-key="buy"> Quero fazer um cadastro rápido</div>
       <div class="drag" data-key="receive"> Quando o meu aparelho vai chegar?</div>
@@ -48,7 +48,7 @@
       <div class="drag" data-key="keep"> Nossa, estou usando bem mais do que imaginava</div>
       <div class="drag" data-key="keep"> opa, acabei de receber uma mensagem com promoção para aumentar meu plano</div>
       <div class="drag" data-key="share">
-        Vá pra TIM, eu consigo ver meus filmes favoritos no caminho do trabalho e a conexão é boa e ainda tem um monte de promoções
+        Vá pra <span>TIM</span>, eu consigo ver meus filmes favoritos no caminho do trabalho e a conexão é boa e ainda tem um monte de promoções
       </div>
     </div>
     <div class="result-container" :class="{'active':showResults}">

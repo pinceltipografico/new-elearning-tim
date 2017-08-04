@@ -57,8 +57,8 @@
     data () {
       return {
         counter: null,
-        pageIndex: 0,
-        pages: [1, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 4, 20, 30, 31, 4, 33, 39, 40, 41, 42]
+        pageIndex: 2,
+        pages: null
       }
     },
     //
@@ -77,6 +77,7 @@
       
       // start the progress bar
       EventBus.$on('start-progress', this.startProgress.bind(this))
+      this.pages = this.$router.options.routes
       
       //
       // GET THE LAST PAGE
@@ -84,11 +85,17 @@
       if (this.$route.name === null) {
         this.$router.replace('Hello')
       } else if (this.$route.name !== 'Hello') {
+        var lastPage = this.$route.name
+        var lastRouteIndex = this.getRouteByName(lastPage)
+        this.pageIndex = lastRouteIndex
+        this.$store.commit('toggleIterface', true)
+        /*
         var lastPage = Number(this.$route.path.split('page')[1]) || 0
         var hasPage = this.pages.indexOf(lastPage)
         this.pageIndex = (hasPage !== -1) ? hasPage : 1
         this.$router.replace('page' + this.pages[this.pageIndex])
         this.$store.commit('toggleIterface', true)
+        */
       }
     },
     /**
@@ -132,7 +139,7 @@
         if (this.pageIndex < this.pages.length - 1) {
           this.pageIndex++
           var page = this.pages[this.pageIndex]
-          this.$router.replace('page' + page)
+          this.$router.push({name: page.name})
         }
       },
       /**
@@ -144,11 +151,26 @@
         if (this.$route.name === 'explain') {
           return
         }
-        if (this.pageIndex > 0) {
+        if (this.pageIndex > 2) {
           this.pageIndex--
           var page = this.pages[this.pageIndex]
-          this.$router.replace('page' + page)
+          this.$router.push({name: page.name})
         }
+      },
+      
+      /**
+       | ----------------------------------------------
+       * GET A ROUTE BY NAAME
+       | ----------------------------------------------
+       **/
+      getRouteByName (name) {
+        var result = null
+        for (var i = 0; i < this.pages.length; i++) {
+          if (this.pages[i].name === name) {
+            result = i
+          }
+        }
+        return result
       }
     },
     

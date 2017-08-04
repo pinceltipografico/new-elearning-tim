@@ -2,25 +2,25 @@
   <section class="page">
     <div class="menu">
       <div class="item-container">
-        <div class="item active" @click="onItemClick(0)">
+        <div class="item" @click="onItemClick(0)" :class="{'active':moduleTitle==='primeiro'}">
           <i class="material-icons">&#xE88E;</i>
         </div>
         <!--<div class="item" @click="onItemClick(1)">-->
-           <!--dna -->
+        <!--dna -->
         <!--</div>-->
-        <div class="item" @click="onItemClick(2)">
+        <div class="item" @click="onItemClick(2)" :class="{'active':moduleTitle==='segundo'}">
           <!-- infinite -->
         </div>
-        <div class="item" @click="onItemClick(3)">
+        <div class="item" @click="onItemClick(3)" :class="{'active':moduleTitle==='terceiro'}">
           <i class="material-icons">&#xE871;</i>
         </div>
         <!--<div class="item" @click="onItemClick(4)">-->
-          <!--<i class="material-icons">&#xE8DC;</i>-->
+        <!--<i class="material-icons">&#xE8DC;</i>-->
         <!--</div>-->
       </div>
     </div>
     <div class="script1">
-      <h1>vamos para o nosso <span>primeiro modulo</span></span></h1>
+      <h1>vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
     </div>
     <transition name="enter">
       <div class="popup" v-if="showPopup">
@@ -31,7 +31,7 @@
             <!-- -->Ver Módulo<!-- -->
           </div>
           <div v-if="!allowToSee">
-            <span>Você ainda não pode visualizar este conteúdo. Faça o modulo anterior e tente novamente!</span>
+            <span>Você ainda não pode visualizar este conteúdo. Faça o módulo anterior e tente novamente!</span>
             <div class="buttons" @click="closePopup">Voltar</div>
           </div>
         </div>
@@ -50,12 +50,13 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', true)
+      this.moduleTitle = this.$route.meta.module
     },
     /**
-    | ----------------------------------------------
-    * RETURN DATA OF THE COMPONENT
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN DATA OF THE COMPONENT
+     | ----------------------------------------------
+     **/
     data () {
       return {
         text: '',
@@ -67,14 +68,15 @@
           'Benefícios da nossa mudança'
         ],
         showPopup: false,
-        allowToSee: false
+        allowToSee: false,
+        moduleTitle: ''
       }
     },
     /**
-    | ----------------------------------------------
-    * RETURN THE METHODS OF COMPONENT
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE METHODS OF COMPONENT
+     | ----------------------------------------------
+     **/
     methods: {
       onItemClick: function (index) {
         this.allowToSee = this.$store.state.modulesAllowed.indexOf(index) !== -1
@@ -123,20 +125,23 @@
         vertical-align: middle;
         transition: background $animationTime;
         
-        &.active{
-          animation: activeItem 0.300s infinite ease-in-out alternate;
-        }
-        
         i {
           display: inline-block;
           @include font-size(7);
           line-height: 300px;
         }
         
-        &:nth-of-type(1){
+        &:nth-of-type(1),
+        &:nth-of-type(3){
+          &.active {
+            animation: activeItem 0.300s infinite ease-in-out alternate;
+          }
+        }
+        
+        &:nth-of-type(1) {
           left: 10px;
         }
-        &:nth-of-type(3){
+        &:nth-of-type(3) {
           right: 10px;
         }
         &:nth-of-type(1),
@@ -151,12 +156,14 @@
           line-height: 340px;
           background: darken($brand-details, 40%) url("../assets/sprites/infinite.png") no-repeat center;
           background-size: 85% auto;
+          &.active{
+            animation: activeItem2 0.300s infinite ease-in-out alternate;
+          }
         }
-        
         
         &:hover {
           background: $brand-primary;
-          &:nth-of-type(2){
+          &:nth-of-type(2) {
             background: $brand-primary url("../assets/sprites/infinite.png") no-repeat center;
             background-size: 85% auto;
           }
@@ -174,6 +181,7 @@
     color: #fff;
     animation: slideText 10s ease-in-out alternate infinite;
   }
+  
   .popup {
     width: 100%;
     height: 100%;
@@ -210,27 +218,35 @@
   }
   
   @keyframes slideImage {
-    0%{
+    0% {
       transform: translateX(0);
     }
-    50%{
+    50% {
       transform: translateX(2%);
     }
-    100%{
+    100% {
       transform: translateX(0%);
     }
   }
+  
   @keyframes slideText {
-    0%{
+    0% {
       transform: translateX(-10%);
     }
-    100%{
+    100% {
       transform: translateX(10%);
     }
   }
+  
   @keyframes activeItem {
+    to {
+      background: lighten($brand-details, 20%);
+    }
+  }
+  @keyframes activeItem2 {
     to{
-      background: lighten($brand-details,20%);
+      background: lighten($brand-details, 20%) url("../assets/sprites/infinite.png") no-repeat center;
+      background-size: 85% auto;
     }
   }
 </style>

@@ -60,7 +60,7 @@
       <section class="page-item" style="z-index: 5;">
         <div class="scene5">
           <div class="script6">
-            <!-- -->Que impactos isso pode acarretar?<!-- -->
+            <!-- -->Que impactos isto pode acarretar?<!-- -->
           </div>
         </div>
       </section>
@@ -76,7 +76,7 @@
           <div class="background"></div>
           <div class="script7">
             <h1>E neste desafio, <span>todas as pessoas da organização</span>
-              se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mante-lo.</span>
+              se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mante-lo</span>
             </h1></div>
         </div>
       </section>
@@ -87,7 +87,7 @@
           <div class="script1">
             <h1>
               <span>A CHAVE É:</span><br/>
-              <small>Antecipar-se as tendências, <br/>adaptar-se com velocidade e criar verdadeiros seguidores</small>
+              <small>Antecipar-se às tendências, <br/>adaptar-se com velocidade e criar verdadeiros seguidores</small>
             </h1>
           </div>
           <div class="middle-image"></div>

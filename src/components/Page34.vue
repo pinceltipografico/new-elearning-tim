@@ -112,7 +112,7 @@
         activeScene: false,
         popups: [
           {
-            html: '<h1>Usar a persona TIM<small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>Cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>Carismática</span><span>leve</span><span>autêntica e espontânea</span><span>espontânea</span>'
+            html: '<h1>Usar a persona <span class="tim">TIM</span><small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>Cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>Carismática</span><span>leve</span><span>autêntica e espontânea</span><span>espontânea</span>'
           }, {
             html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>Claro</span><span>Conciso</span><span>Concreto</span><span>Correto</span><span>Coerente</span><span>Completo</span><span>Cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>Perguntar</span><span>repetir</span><span>sumarizar</span><span>exemplificar</span>'
           }, {

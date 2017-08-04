@@ -1,7 +1,7 @@
 <template>
   <div class="outer-page gradient">
     <transition name="enter-nav">
-      <router-link to="/page37" class="nav-button next-page can-advance" v-if="showNext">
+      <router-link to="/page22" class="nav-button next-page can-advance" v-if="showNext">
         <i class="material-icons">&#xE5CC;</i>
       </router-link>
     </transition>

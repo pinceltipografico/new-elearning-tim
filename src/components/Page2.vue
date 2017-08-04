@@ -3,7 +3,7 @@
     <div class="image-background"></div>
     <div class="effects"></div>
     <div class="script1">
-      <h1>Adapte-se a esse <span>contexto!</span></h1>
+      <h1>Adapte-se a este <span>contexto!</span></h1>
     </div>
     <div class="script2">
       <h1>A <span class="tim">TIM</span> está se movimentando para esta <span>mudança</span></h1>
