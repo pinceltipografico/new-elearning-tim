@@ -21,6 +21,13 @@ Vue.use(AddClass)
 Vue.use(LoadSvg)
 Vue.use(Audio)
 
+const sprites = {
+  scene1: [0, 32500],
+  scene2: [32501, (61500 - 32501)],
+  scene3: [61500, 63000]
+}
+Vue.prototype.sprites = sprites
+
 /**
  * GUAR VARIAVEIS GLOBAIS
  * @type {Store}
@@ -89,11 +96,7 @@ function removePReloader () {
 function configAudio () {
   var audio = new Howl.Howl({
     src: ['/static/audio/tim_cx.mp3'],
-    volume: 0,
-    sprite: {
-      scene1: [0, 32500],
-      scene2: [32501, 5000]
-    }
+    sprite: sprites
   })
   audio.once('load', function () {
     store.commit('setAudio', audio)

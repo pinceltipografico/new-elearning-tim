@@ -15,7 +15,7 @@
           <li class="last">
             <i class="material-icons">&#xE5CD;</i>
           </li>
-          <li>
+          <li :class="{'active':isMute}" @click="setVolume">
             <i class="material-icons">&#xE04D;</i>
           </li>
           <li class="small" :class="{'active':showSubtitle}" @click="showSubtitle = !showSubtitle">
@@ -51,6 +51,8 @@
   /* eslint-disable no-unused-vars */
   import { EventBus } from './events/index'
   
+  var Howl = require('howler/dist/howler.min')
+  
   const Logo = require('./assets/svgs/logo-01.svg')
   export default {
     components: {
@@ -66,7 +68,8 @@
         counter: null,
         pageIndex: 2,
         pages: null,
-        showSubtitle: true
+        showSubtitle: true,
+        isMute: false
       }
     },
     //
@@ -151,6 +154,11 @@
           }
         }
         return result
+      },
+      
+      setVolume () {
+        window.Howler.mute(this.isMute)
+        this.isMute = !this.isMute
       }
     },
     

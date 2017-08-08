@@ -53,7 +53,7 @@
           step: 'show',
           selector: '.blue-left'
         }, {
-          time: 4000,
+          time: 5000,
           step: 'large',
           selector: '.blue-left'
         }, {
@@ -73,7 +73,7 @@
           step: 'show',
           selector: '.script2'
         }, {
-          time: 4500,
+          time: 9000,
           step: 'hide',
           selector: '.script2'
         }, {
@@ -113,7 +113,7 @@
           step: 'show',
           selector: '.script3'
         }, {
-          time: 4000,
+          time: 3000,
           step: 'hide',
           selector: '.script3'
         }, {

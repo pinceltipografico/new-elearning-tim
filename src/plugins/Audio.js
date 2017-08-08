@@ -3,10 +3,11 @@
 const Audio = {}
 Audio.install = function (Vue, options) {
   'use strict'
-  Vue.prototype.playAudio = function (spriteInte, subtitles, timeUpdateCb, doneCb) {
+  Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
-    var soundid = this.$store.state.audio.play(spriteInte)
+    var soundid = this.$store.state.audio.play(spriteID)
     var duration = this.$store.state.audio.duration(soundid)
+    var offset = this.sprites[spriteID][0]
     var pct = 100 / duration
     var vm = this
     var id = null
@@ -29,9 +30,10 @@ Audio.install = function (Vue, options) {
      | ----------------------------------------------
      **/
     function increase () {
-      var pos = vm.$store.state.audio.seek()
+      var pos = (vm.$store.state.audio.seek(spriteID) || 0) - (offset / 1000)
       var subtitleTime = convertTime(pos)
       var currentSubTitle = subtitlesObj[subtitleTime]
+      console.log(subtitleTime)
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
       }

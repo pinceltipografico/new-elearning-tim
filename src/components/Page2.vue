@@ -32,6 +32,7 @@
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
+  
   export default {
     /**
      | ----------------------------------------------
@@ -52,7 +53,7 @@
           step: 'step1',
           selector: '.script1'
         }, {
-          time: 4500,
+          time: 7500,
           step: 'step2',
           selector: '.script1'
         }, {
@@ -150,12 +151,11 @@
       Animations.animationTimeline(function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
+      this.playAudio('scene2', '/static/subtitles/page2.json', function (pos) {}, function () {})
     },
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
