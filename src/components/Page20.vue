@@ -224,7 +224,6 @@
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 20000)
       this.$store.commit('setCanAdvance', false)
       var gs = document.querySelectorAll('#graph > g')
       for (var i = 0; i < gs.length; i++) {

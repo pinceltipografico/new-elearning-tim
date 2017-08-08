@@ -14,7 +14,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "font-awesome": "^4.7.0",
+    "howler": "^2.0.4",
     "interact.js": "^1.2.8",
     "interactjs": "^1.2.9",
     "manifest-revision-webpack-plugin": "^0.4.0",

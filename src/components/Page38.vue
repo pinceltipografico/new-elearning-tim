@@ -46,7 +46,6 @@
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 3000)
       this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         this.addClass(this.$el.querySelector('.items'), 'active')

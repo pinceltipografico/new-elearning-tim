@@ -111,7 +111,6 @@
     },
     mounted () {
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
       this.$store.commit('setCanAdvance', false)
       var next = document.querySelector('.can-advance')
       next.style.display = 'none'

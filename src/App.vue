@@ -12,15 +12,21 @@
     <transition name="fade">
       <nav class="user-interface" v-if="showInterfaceItems">
         <ul>
+          <li class="last">
+            <i class="material-icons">&#xE5CD;</i>
+          </li>
           <li>
             <i class="material-icons">&#xE04D;</i>
           </li>
-          <li>
-            <i class="material-icons">&#xE5CD;</i>
+          <li class="small" :class="{'active':showSubtitle}" @click="showSubtitle = !showSubtitle">
+            <i class="material-icons">&#xE0CA;</i>
           </li>
         </ul>
       </nav>
     </transition>
+    <div class="subtitles" id="subtitles" v-show="showSubtitle">
+      <p>Olá mundo cruel</p>
+    </div>
     <transition name="fade">
       <div class="progress-audio" v-if="showInterfaceItems">
         <div :style="'width:'+pageProgress+'%'"></div>
@@ -42,6 +48,7 @@
 </template>
 <script>
   /* eslint-disable no-trailing-spaces */
+  /* eslint-disable no-unused-vars */
   import { EventBus } from './events/index'
   
   const Logo = require('./assets/svgs/logo-01.svg')
@@ -58,7 +65,8 @@
       return {
         counter: null,
         pageIndex: 2,
-        pages: null
+        pages: null,
+        showSubtitle: true
       }
     },
     //
@@ -73,10 +81,10 @@
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
+        this.showSubtitle = true
       }
       
       // start the progress bar
-      EventBus.$on('start-progress', this.startProgress.bind(this))
       this.pages = this.$router.options.routes
       
       //
@@ -89,13 +97,7 @@
         var lastRouteIndex = this.getRouteByName(lastPage)
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
-        /*
-        var lastPage = Number(this.$route.path.split('page')[1]) || 0
-        var hasPage = this.pages.indexOf(lastPage)
-        this.pageIndex = (hasPage !== -1) ? hasPage : 1
-        this.$router.replace('page' + this.pages[this.pageIndex])
-        this.$store.commit('toggleIterface', true)
-        */
+        this.showSubtitle = true
       }
     },
     /**
@@ -104,28 +106,6 @@
      | ----------------------------------------------
      **/
     methods: {
-      /**
-       | ----------------------------------------------
-       * START TH PROGRESS COUNTER OF PAGE
-       * need to change when audio was delivered
-       | ----------------------------------------------
-       **/
-      startProgress: function () {
-        this.$store.commit('setCanAdvance', false)
-        var total = this.totalProgress
-        var pct = 100 / total
-        var vm = this
-        var lastTime = 0
-        this.couter = setInterval(function () {
-          var _pct = pct * lastTime
-          if (_pct <= 100) {
-            lastTime += 100
-            vm.$store.commit('setPageProgress', _pct)
-          } else {
-            clearInterval(vm.couter)
-          }
-        }, 100)
-      },
       /**
        | ----------------------------------------------
        * GO TO NEXT PAGE OF ELEARNING
@@ -183,7 +163,6 @@
       if (this.counter) {
         clearInterval(this.couter)
       }
-      EventBus.$off('start-progress', this.startProgress.bind(this))
     },
     
     /**
@@ -196,9 +175,6 @@
       },
       pageProgress: function () {
         return this.$store.state.pageProgress
-      },
-      totalProgress: function () {
-        return this.$store.state.totalProgress
       },
       canAdvance () {
 //        return this.$store.state.canAdvance
@@ -258,7 +234,7 @@
     .menu-overlay {
       width: 100%;
       height: 55px;
-      background: rgba(#000, 0.2);
+      background: rgba(#000, 0.6);
       position: absolute;
       z-index: 3;
       top: 25px;
@@ -362,15 +338,20 @@
           width: 35px;
           height: 35px;
           background: $brand-details;
-          display: inline-block;
+          display: block;
+          float: right;
           border-radius: 50%;
           cursor: pointer;
           transition: background $animationTime;
-          &:nth-of-type(1) {
-            margin-right: 10px;
+          margin-right: 10px;
+          &.last {
+            margin: 0;
           }
           &:hover {
             background: $brand-primary;
+          }
+          &.active {
+            background: $brand-secondary;
           }
           i {
             width: 35px;
@@ -380,8 +361,29 @@
             text-align: center;
             line-height: 35px;
           }
+          &.small {
+            i {
+              @include font-size(2);
+              line-height: 35px;
+            }
+          }
         }
       }
+    }
+  }
+  
+  .subtitles {
+    position: absolute;
+    z-index: 99;
+    bottom: 50px;
+    right: 15px;
+    left: 15px;
+    overflow: hidden;
+    background: rgba(#000, 0.3);
+    p {
+      color: #fff;
+      padding: 0 50px;
+      @include font-size(1.5);
     }
   }
   

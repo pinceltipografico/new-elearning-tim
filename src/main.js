@@ -10,12 +10,16 @@ import Vuex from 'vuex'
 import VueCookie from 'vue-cookie'
 import AddClass from './plugins/addClass'
 import LoadSvg from './plugins/LoadSvg'
+import Audio from './plugins/Audio'
+import axios from 'axios'
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 Vue.use(Vuex)
 Vue.use(VueCookie)
 Vue.use(AddClass)
 Vue.use(LoadSvg)
+Vue.use(Audio)
 
 /**
  * GUAR VARIAVEIS GLOBAIS
@@ -24,10 +28,10 @@ Vue.use(LoadSvg)
 const store = new Vuex.Store({
   state: {
     showUserInterface: false,
-    pageProgress: 30,
-    totalProgress: 20000,
+    pageProgress: 10,
     modulesAllowed: [0],
-    canAdvance: false
+    canAdvance: false,
+    audio: null
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -38,10 +42,6 @@ const store = new Vuex.Store({
       'use strict'
       state.pageProgress = progress
     },
-    setTotalProgress (state, progress) {
-      'use strict'
-      state.totalProgress = progress
-    },
     setModuleAllowed (state, module) {
       'use strict'
       state.modulesAllowed.push(module)
@@ -49,6 +49,10 @@ const store = new Vuex.Store({
     setCanAdvance (state, value) {
       'use strict'
       state.canAdvance = value
+    },
+    setAudio (state, value) {
+      'use strict'
+      state.audio = value
     }
   }
 })
@@ -58,9 +62,11 @@ const store = new Vuex.Store({
  * @type {Element}
  */
 var preloader = document.getElementById('preloader')
+var Howl = require('howler/dist/howler.min')
 if (preloader) {
   preloader.classList.remove('hidePreloader')
 }
+
 function removePReloader () {
   'use strict'
   if (preloader) {
@@ -79,8 +85,24 @@ function removePReloader () {
     }, 1000)
   }
 }
+
+function configAudio () {
+  var audio = new Howl.Howl({
+    src: ['/static/audio/tim_cx.mp3'],
+    volume: 0,
+    sprite: {
+      scene1: [0, 32500],
+      scene2: [32501, 5000]
+    }
+  })
+  audio.once('load', function () {
+    store.commit('setAudio', audio)
+    removePReloader()
+  })
+}
+
 if (window.addEventListener) {
-  window.addEventListener('load', removePReloader, false)
+  window.addEventListener('load', configAudio, false)
 } else if (window.attachEvent) {
-  window.attachEvent('onload', removePReloader)
-} else window.onload = removePReloader
+  window.attachEvent('onload', configAudio)
+} else window.onload = configAudio

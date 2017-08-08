@@ -40,7 +40,6 @@
       // set progress of current page
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 15000)
       this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         EventBus.$emit('start-progress')

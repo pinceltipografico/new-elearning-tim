@@ -144,7 +144,6 @@
     },
     mounted () {
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 0)
       this.$store.commit('setCanAdvance', false)
       var animations = [
         {

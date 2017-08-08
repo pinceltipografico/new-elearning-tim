@@ -41,7 +41,6 @@
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 30000)
       this.$store.commit('setCanAdvance', false)
       var animations = [
         {

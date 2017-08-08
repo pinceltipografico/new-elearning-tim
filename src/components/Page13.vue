@@ -131,7 +131,6 @@
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setTotalProgress', 40000)
       this.$store.commit('setCanAdvance', false)
       setTimeout(function () {
         EventBus.$emit('start-progress')
