@@ -120,7 +120,8 @@
         dates: [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
         showTodo: false,
         activeTotoList: [],
-        scene: 0
+        scene: 0,
+        canShowTags: false
       }
     },
     /**
@@ -132,10 +133,11 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
       this.startSceneOne()
+      setTimeout(function () {
+        this.playAudio('scene11', 'static/subtitles/page11.json', function (pos) {
+        }, function () {})
+      }.bind(this), 500)
     },
     /**
      | ----------------------------------------------
@@ -151,69 +153,71 @@
       startTodo () {
         this.showTodo = true
         this.scene = 2
-        var animations = [
-          {
-            time: 500,
-            step: 'active',
-            selector: '.icon-container > .one'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .one'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .two'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .two'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .three'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .three'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .four'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .four'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .five'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .five'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .six'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .six'
-          }, {
-            time: 300,
-            step: 'active',
-            selector: '.icon-container > .seven'
-          }, {
-            time: 4000,
-            step: 'small',
-            selector: '.icon-container > .seven'
+        var vm = this
+        var els
+        vm.canShowTags = true
+        
+        function PlayAudio (index) {
+          if (!vm.canShowTags) {
+            return
           }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline(function () {
-          this.$store.commit('setCanAdvance', true)
-        }.bind(this))
+          if (index === 7) {
+            vm.playAudio('scene11_2', 'static/subtitles/page11_2.json', null, function () {
+              this.$store.commit('setCanAdvance', true)
+            }.bind(this))
+            return
+          }
+          vm.addClass(els[index], 'active')
+          switch (index) {
+            case 0:
+              vm.playAudio('guidelineCX', 'static/subtitles/page11_guidelines.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(1)
+              })
+              break
+            case 1:
+              vm.playAudio('aprovado', 'static/subtitles/page11_aprovado.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(2)
+              })
+              break
+            case 2:
+              vm.playAudio('FocusGroup', 'static/subtitles/page11_focus_group.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(3)
+              })
+              break
+            case 3:
+              vm.playAudio('NPS', 'static/subtitles/page11_nps.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(4)
+              })
+              break
+            case 4:
+              vm.playAudio('LojaFuturo', 'static/subtitles/page11_loja.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(5)
+              })
+              break
+            case 5:
+              vm.playAudio('TransformacaoDigital', 'static/subtitles/page11_transformacao.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(6)
+              })
+              break
+            case 6:
+              vm.playAudio('RealTime', 'static/subtitles/page11_realtime.json', null, function () {
+                vm.addClass(els[index], 'small')
+                PlayAudio(7)
+              })
+              break
+          }
+        }
+        
+        setTimeout(function () {
+          els = vm.$el.querySelectorAll('.icone')
+          PlayAudio(0)
+        }, 500)
       },
       /**
        | ----------------------------------------------
@@ -222,6 +226,7 @@
        **/
       startSceneOne () {
         var vm = this
+        this.canShowTags = false
         var animations = [
           {
             time: 500,
@@ -237,13 +242,11 @@
         Animations.animationTimeline(function () {
           removeItem()
         })
-
-//        this.startTodo()
         
         function removeItem () {
           if (vm.dates.length - 2) {
             vm.dates.shift()
-            setTimeout(removeItem, 50)
+            setTimeout(removeItem, 900)
           } else {
             animations = [
               {
@@ -254,7 +257,7 @@
             ]
             Animations.setAnimations(animations)
             Animations.animationTimeline(() => {
-              setTimeout(() => { showDna() }, 4000)
+              setTimeout(() => { showDna() }, 7000)
             })
           }
         }
@@ -267,23 +270,23 @@
               step: 'show',
               selector: '.dna'
             }, {
-              time: 1500,
+              time: 17000,
               step: 'show',
               selector: '.costumer'
             }, {
-              time: 1500,
+              time: 10000,
               step: 'show',
               selector: '.user-experience'
             }, {
-              time: 1500,
+              time: 22000,
               step: 'show',
               selector: '.custumer-monitoring'
             }, {
-              time: 1500,
+              time: 17000,
               step: 'show',
               selector: '.crew-experience'
             }, {
-              time: 5000,
+              time: 18000,
               step: 'show',
               selector: '.crew-experience'
             }
@@ -322,6 +325,9 @@
           Animations.setAnimations(animations)
           Animations.animationTimeline(() => {
             vm.dates.shift()
+            setTimeout(function () {
+              vm.playAudio('scene11Click', 'static/subtitles/page11_1.json', null, null)
+            }, 500)
           })
         }
       }
@@ -334,6 +340,8 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.canShowTags = false
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -423,11 +431,11 @@
     }
     
     .blue {
-      width: 40%;
+      width: 47%;
       height: 0;
       top: 0;
       background: $brand-details;
-      left: 180px;
+      left: 130px;
       &.show {
         height: 100%;
       }
@@ -442,7 +450,7 @@
     
     .text-animation {
       top: 50%;
-      left: 100px;
+      left: 80px;
       width: 240px;
       height: 100px;
       overflow: hidden;

@@ -36,18 +36,18 @@
       this.$store.commit('setCanAdvance', false)
       var animations = [
         {
-          time: 500,
+          time: 1000,
+          step: 'show',
+          selector: '.script2'
+        }, {
+          time: 6000,
           step: 'show',
           selector: '.script1 h1:first-of-type'
         }, {
           time: 1500,
           step: 'show',
-          selector: '.script2'
-        }, {
-          time: 1500,
-          step: 'show',
           selector: '.infographic'
-        }, {
+        }/* , {
           time: 50,
           step: 'show',
           selector: '.infographic > div:nth-of-type(1)'
@@ -63,15 +63,28 @@
           time: 1000,
           step: 'show',
           selector: '.infographic > div:nth-of-type(4)'
-        }
+        } */
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
+      Animations.animationTimeline()
+      var els = this.$el.querySelectorAll('.infographic > div')
+      var vm = this
+      this.playAudio('scene7', 'static/subtitles/page7.json', function (pos) {
+        if (pos === 21) {
+          vm.addClass(els[0], 'show')
+        }
+        if (pos === 22) {
+          vm.addClass(els[1], 'show')
+        }
+        if (pos === 23) {
+          vm.addClass(els[2], 'show')
+        }
+        if (pos === 24) {
+          vm.addClass(els[3], 'show')
+        }
+      }, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
     },
     
     /**
@@ -81,6 +94,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -110,26 +124,26 @@
     transform: translate(-50%, -50%) scale(0);
     background-size: 100% auto;
     
-    div{
+    div {
       position: absolute;
       opacity: 0;
       transition: all $animationTime;
-      &.show{
+      &.show {
         opacity: 1;
       }
       
       &:nth-of-type(1),
-      &:nth-of-type(2){
-        top:0;
+      &:nth-of-type(2) {
+        top: 0;
       }
-      &:nth-of-type(1){
+      &:nth-of-type(1) {
         width: #{(421/2)+'px'};
         height: #{(364/2)+'px'};
         background: url("../assets/backgrounds/page10/graph4.png") no-repeat;
         background-size: 100% auto;
         left: 0;
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) {
         width: #{(395/2)+'px'};
         height: #{(417/2)+'px'};
         background: url("../assets/backgrounds/page10/graph3.png") no-repeat;
@@ -137,17 +151,17 @@
         right: 0;
       }
       &:nth-of-type(3),
-      &:nth-of-type(4){
+      &:nth-of-type(4) {
         bottom: 0;
       }
-      &:nth-of-type(3){
+      &:nth-of-type(3) {
         width: #{(397/2)+'px'};
         height: #{(420/2)+'px'};
         background: url("../assets/backgrounds/page10/graph1.png") no-repeat;
         background-size: 100% auto;
         left: 0;
       }
-      &:nth-of-type(4){
+      &:nth-of-type(4) {
         width: #{(425/2)+'px'};
         height: #{(442/2)+'px'};
         background: url("../assets/backgrounds/page10/graph2.png") no-repeat;

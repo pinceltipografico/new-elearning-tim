@@ -15,6 +15,7 @@
   var WorldCluod = require('wordcloud')
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
+  
   export default {
     /**
      | ----------------------------------------------
@@ -87,7 +88,7 @@
             ['Pertencer', 15],
             ['Identidade', 10]
           ],
-          wait: 200,
+          wait: 300,
           maxRotation: 0,
           clearCanvas: true,
           backgroundColor: 'transparent',
@@ -99,13 +100,10 @@
           },
           drawOutOfBound: true
         })
-        setTimeout(function () {
-          self.$store.commit('setCanAdvance', true)
-        }, 3000)
       })
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
+      this.playAudio('scene8', 'static/subtitles/page8.json', null, function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
     },
     
     /**
@@ -115,6 +113,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>

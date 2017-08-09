@@ -30,35 +30,33 @@ Audio.install = function (Vue, options) {
      | ----------------------------------------------
      **/
     function increase () {
-      var pos = (vm.$store.state.audio.seek(spriteID) || 0) - (offset / 1000)
+      var pos = (vm.$store.state.audio.seek(soundid) || 0) - (offset / 1000)
+      // console.log(pos)
       var subtitleTime = convertTime(pos)
       var currentSubTitle = subtitlesObj[subtitleTime]
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
       }
-      vm.$store.commit('setPageProgress', Math.ceil((pct * pos)))
-      if (vm.$store.state.audio.playing()) {
+      var progress = Math.ceil((pct * pos))
+      vm.$store.commit('setPageProgress', progress)
+      if (vm.$store.state.audio.playing(soundid) && progress <= 100) {
         if (timeUpdateCb) {
           timeUpdateCb(Math.floor(pos))
         }
-        id = requestAnimationFrame(increase)
+        requestAnimationFrame(increase)
       } else {
+        subtitlesEl.innerHTML = ''
+        vm.$store.state.audio.stop(soundid)
         if (doneCb) {
           doneCb()
         }
       }
     }
     
-    //
-    // WHEN AUDIO STOPS
-    this.$store.state.audio.once('stop', function () {
-      cancelAnimationFrame(id)
-    })
-    
     this.$http.get(subtitles)
       .then(function (res) {
         subtitlesObj = res.data
-        id = requestAnimationFrame(increase)
+        requestAnimationFrame(increase)
       })
       .catch(function () {
         console.log('erro ao carregar a legenda')

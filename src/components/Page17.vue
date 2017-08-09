@@ -14,6 +14,7 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
@@ -27,9 +28,6 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
       
       var animations = [
         {
@@ -67,7 +65,8 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
+      Animations.animationTimeline()
+      this.playAudio('scene10', 'static/subtitles/page10.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
@@ -78,6 +77,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>

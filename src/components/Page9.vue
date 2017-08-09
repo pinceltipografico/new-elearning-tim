@@ -18,7 +18,7 @@
     <div class="script2" v-if="!showEnd">
       <div class="image"></div>
       <div class="content">
-        <div class="close" @click="closeItem"><i class="material-icons">&#xE5CD;</i></div>
+        <div class="close" @click="closeItem" v-if="canClose"><i class="material-icons">&#xE5CD;</i></div>
         <p></p>
       </div>
     </div>
@@ -47,25 +47,27 @@
           time: 500,
           step: 'show',
           selector: '.wish'
-        }, {
-          time: 3500,
-          step: 'show',
-          selector: '.script1 h1:first-of-type'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1 h1:nth-child(2)'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1 h1:nth-child(3)'
         }
       ]
+      var els = this.$el.querySelectorAll('.script1 > h1')
+      var vm = this
       Animations.setAnimations(animations)
       Animations.animationTimeline(null)
-      this.playAudio('scene6', 'static/subtitles/page6.json', null, function () {
-        console.log('hey')
-      })
+      this.playAudio('scene6', 'static/subtitles/page6.json', function (pos) {
+        if (els) {
+          if (pos === 2) {
+            vm.addClass(els[0], 'show')
+          }
+          if (pos === 4) {
+            vm.addClass(els[1], 'show')
+          }
+          if (pos === 7) {
+            vm.addClass(els[2], 'show')
+          }
+        }
+      }, function () {
+        this.canClick = true
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -74,6 +76,10 @@
      **/
     methods: {
       newHtml ($event, value) {
+        if (!this.canClick) {
+          return
+        }
+        this.canClose = false
         var vm = this
         var parent = this.$el.querySelector('.script1')
         var h1s = parent.querySelectorAll('h1')
@@ -92,6 +98,12 @@
         this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
         this.addClass(this.$el.querySelector('.script2 div.image'), 'style' + value)
         
+        var sprite = 'scene6Item' + value
+        var subtitle = 'static/subtitles/page6_' + value + '.json'
+        this.playAudio(sprite, subtitle, null, function () {
+          this.canClose = true
+        }.bind(this))
+        
         if (this.viewed.indexOf(value) === -1) {
           this.viewed.push(value)
         }
@@ -108,9 +120,9 @@
             setTimeout(function () {
               if (vm.viewed.length === 3) {
                 vm.showEnd = true
-                setTimeout(function () {
+                vm.playAudio('scene6_2', 'static/subtitles/page6_4.json', null, function () {
                   vm.$store.commit('setCanAdvance', true)
-                }, 3000)
+                })
               }
             }, 1000)
           }
@@ -130,7 +142,9 @@
           '3': 'Além do serviço tradicional, pensar novos modelos, formatos e surpreender'
         },
         viewed: [],
-        showEnd: false
+        showEnd: false,
+        canClose: false,
+        canClick: false
       }
     },
     
@@ -141,6 +155,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -358,7 +373,7 @@
   
   @keyframes closeButton {
     to {
-      background: darken($brand-details, 20%);
+      background: darken($brand-secondary, 20%);
     }
   }
 </style>
