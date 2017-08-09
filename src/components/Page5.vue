@@ -141,9 +141,11 @@
       this.scroller.start('.page', '.scroll-indicator', function (index) {
         vm.currentSection = index
       })
-      setTimeout(function () {
+      this.playAudio('scene3', '/static/subtitles/page3.json', function () {
+      
+      }, function () {
         this.$store.commit('setCanAdvance', true)
-      }.bind(this), 500)
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -155,6 +157,7 @@
         this.scroller.removeScrollListeners()
         this.scroller = null
       }
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -461,11 +464,11 @@
               transition-delay: 1s;
               transform: translate(0, -50%);
             }
-            .world{
+            .world {
               transition-delay: 0s;
               transform: translateY(-50%) rotateZ(360deg);
             }
-            .explain{
+            .explain {
               transition-delay: 1.8s;
               bottom: 50px;
               opacity: 1;

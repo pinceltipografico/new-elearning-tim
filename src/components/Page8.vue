@@ -15,6 +15,7 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
@@ -44,7 +45,7 @@
           step: 'step2',
           selector: '.script1'
         }, {
-          time: 8000,
+          time: 12000,
           step: 'step1',
           selector: '.effect'
         }, {
@@ -66,7 +67,8 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
+      Animations.animationTimeline()
+      this.playAudio('scene5', '/static/subtitles/page5.json', function () {}, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
@@ -78,6 +80,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -98,7 +101,7 @@
     .script1 {
       width: 100%;
       height: 100%;
-      video{
+      video {
         margin-top: -20px;
         width: 100%;
         height: 110%;

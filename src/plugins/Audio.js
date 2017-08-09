@@ -33,19 +33,19 @@ Audio.install = function (Vue, options) {
       var pos = (vm.$store.state.audio.seek(spriteID) || 0) - (offset / 1000)
       var subtitleTime = convertTime(pos)
       var currentSubTitle = subtitlesObj[subtitleTime]
-      console.log(subtitleTime)
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
       }
       vm.$store.commit('setPageProgress', Math.ceil((pct * pos)))
       if (vm.$store.state.audio.playing()) {
         if (timeUpdateCb) {
-          timeUpdateCb(pos)
+          timeUpdateCb(Math.floor(pos))
         }
         id = requestAnimationFrame(increase)
-      }
-      if (doneCb) {
-        doneCb()
+      } else {
+        if (doneCb) {
+          doneCb()
+        }
       }
     }
     

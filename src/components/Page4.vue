@@ -2,16 +2,16 @@
   <section class="page">
     <div class="menu">
       <div class="item-container">
-        <div class="item" @click="onItemClick(0)" :class="{'active':moduleTitle==='primeiro'}">
+        <div class="item" @click="onItemClick(0)">
           <i class="material-icons">&#xE88E;</i>
         </div>
         <!--<div class="item" @click="onItemClick(1)">-->
         <!--dna -->
         <!--</div>-->
-        <div class="item" @click="onItemClick(2)" :class="{'active':moduleTitle==='segundo'}">
+        <div class="item" @click="onItemClick(2)">
           <!-- infinite -->
         </div>
-        <div class="item" @click="onItemClick(3)" :class="{'active':moduleTitle==='terceiro'}">
+        <div class="item" @click="onItemClick(3)">
           <i class="material-icons">&#xE871;</i>
         </div>
         <!--<div class="item" @click="onItemClick(4)">-->
@@ -51,6 +51,29 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', true)
       this.moduleTitle = this.$route.meta.module
+      var itens = this.$el.querySelectorAll('.item-container > div')
+      var vm = this
+      this.playAudio('menuintro', '/static/subtitles/menu_1.json', function (pos) {
+        console.log(pos)
+        if (pos >= 10 && pos < 14) {
+          vm.addClass(itens[0], 'active')
+        } else if (pos >= 14 && pos < 16) {
+          vm.removeClass(itens[0], 'active')
+          vm.addClass(itens[1], 'active')
+        } else if (pos >= 16) {
+          vm.removeClass(itens[1], 'active')
+          vm.addClass(itens[2], 'active')
+        }
+      }, function () {
+        for (var i = 0; i < itens.length; i++) {
+          vm.removeClass(itens[i], 'active')
+        }
+        if (vm.moduleTitle === 'primeiro') {
+          vm.playAudio('menuItem1', '/static/subtitles/menu_2.json', function () {}, function () {
+            vm.addClass(itens[0], 'active')
+          })
+        }
+      })
     },
     /**
      | ----------------------------------------------
@@ -86,6 +109,10 @@
       closePopup: function () {
         this.showPopup = false
       }
+    },
+    
+    destroyed () {
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -132,7 +159,7 @@
         }
         
         &:nth-of-type(1),
-        &:nth-of-type(3){
+        &:nth-of-type(3) {
           &.active {
             animation: activeItem 0.300s infinite ease-in-out alternate;
           }
@@ -156,7 +183,7 @@
           line-height: 340px;
           background: darken($brand-details, 40%) url("../assets/sprites/infinite.png") no-repeat center;
           background-size: 85% auto;
-          &.active{
+          &.active {
             animation: activeItem2 0.300s infinite ease-in-out alternate;
           }
         }
@@ -243,8 +270,9 @@
       background: lighten($brand-details, 20%);
     }
   }
+  
   @keyframes activeItem2 {
-    to{
+    to {
       background: lighten($brand-details, 20%) url("../assets/sprites/infinite.png") no-repeat center;
       background-size: 85% auto;
     }

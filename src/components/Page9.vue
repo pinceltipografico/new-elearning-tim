@@ -31,7 +31,7 @@
   /* eslint-disable semi */
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
-  import { EventBus } from '../events/index'
+  
   export default {
     /**
      | ----------------------------------------------
@@ -63,9 +63,9 @@
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(null)
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
+      this.playAudio('scene6', 'static/subtitles/page6.json', null, function () {
+        console.log('hey')
+      })
     },
     /**
      | ----------------------------------------------
@@ -264,8 +264,8 @@
     padding: 20px 50px;
     background: $brand-primary;
     transform: translateX(100%);
-    div.content{
-      margin:20% 0 0 5px;
+    div.content {
+      margin: 20% 0 0 5px;
       position: relative;
       z-index: 2;
       background: $brand-details;
@@ -274,7 +274,7 @@
     }
     div.close {
       position: absolute;
-      top:-15px;
+      top: -15px;
       right: -15px;
       width: 30px;
       height: 30px;
@@ -283,11 +283,11 @@
       animation: closeButton 2s infinite ease-in-out alternate;
       text-align: center;
       background: $brand-details;
-      border:1px solid #fff;
+      border: 1px solid #fff;
       border-radius: 50%;
       i {
         @include font-size(2);
-        color:#fff;
+        color: #fff;
         line-height: 30px;
       }
     }

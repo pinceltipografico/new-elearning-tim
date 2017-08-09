@@ -32,7 +32,8 @@
     </div>
     <div class="script5">
       <h1>
-        escolha <span>três palavras</span> que representem o que você mais valoriza na hora da compra e leve-as até a sacola
+        escolha <span>três palavras</span>
+        que representem o que você mais valoriza na hora da compra e leve-as até a sacola
       </h1>
     </div>
     <div class="script6">
@@ -75,8 +76,6 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var next = document.querySelector('.can-advance')
-      next.style.display = 'none'
       var animations = [
         {
           time: 500,
@@ -99,25 +98,23 @@
           step: 'show',
           selector: '.script2'
         }, {
-          time: 2000,
+          time: 2200,
           step: 'show',
           selector: '.script3'
         }, {
-          time: 2000,
+          time: 3000,
           step: 'show',
           selector: '.script4'
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
-        setTimeout(function () {
-          this.showNext = true
-        }.bind(this), 1500)
+      Animations.animationTimeline()
+      this.playAudio('scene4', 'static/subtitles/page4.json', function (pos) {
+      }, function () {
+        this.showNext = true
       }.bind(this))
-      setTimeout(function () {
-        EventBus.$emit('start-progress')
-      }, 500)
     },
+    
     /**
      | ----------------------------------------------
      * RETURN DATA OF THE COMPONENT
@@ -183,9 +180,8 @@
         ]
         Animations.setAnimations(animations)
         Animations.animationTimeline(function () {
-          var next = document.querySelector('.can-advance')
-          next.style.display = 'block'
-        })
+          this.playAudio('scene4DragAndDrop', 'static/subtitles/page4_2.json')
+        }.bind(this))
       }
     },
     
@@ -196,8 +192,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
-      var next = document.querySelector('.can-advance')
-      next.style.display = 'block'
+      this.$store.state.audio.stop()
     }
   }
 </script>

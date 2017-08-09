@@ -15,7 +15,7 @@
           <li class="last">
             <i class="material-icons">&#xE5CD;</i>
           </li>
-          <li :class="{'active':isMute}" @click="setVolume">
+          <li :class="{'active':!isMute}" @click="setVolume">
             <i class="material-icons">&#xE04D;</i>
           </li>
           <li class="small" :class="{'active':showSubtitle}" @click="showSubtitle = !showSubtitle">
@@ -157,8 +157,8 @@
       },
       
       setVolume () {
-        window.Howler.mute(this.isMute)
         this.isMute = !this.isMute
+        window.Howler.mute(this.isMute)
       }
     },
     
@@ -185,8 +185,7 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-//        return this.$store.state.canAdvance
-        return true
+        return this.$store.state.canAdvance
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
