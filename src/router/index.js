@@ -113,12 +113,12 @@ const router = new Router({
       path: '/page13',
       name: 'page13',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page16
+      component: Page18
     }, {
       path: '/page14',
       name: 'page14',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page18
+      component: Page16
     }, {
       path: '/menu/2',
       name: 'menu/2',

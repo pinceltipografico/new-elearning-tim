@@ -53,27 +53,31 @@
       this.moduleTitle = this.$route.meta.module
       var itens = this.$el.querySelectorAll('.item-container > div')
       var vm = this
-      this.playAudio('menuintro', '/static/subtitles/menu_1.json', function (pos) {
-        console.log(pos)
-        if (pos >= 10 && pos < 14) {
-          vm.addClass(itens[0], 'active')
-        } else if (pos >= 14 && pos < 16) {
-          vm.removeClass(itens[0], 'active')
-          vm.addClass(itens[1], 'active')
-        } else if (pos >= 16) {
-          vm.removeClass(itens[1], 'active')
-          vm.addClass(itens[2], 'active')
-        }
-      }, function () {
-        for (var i = 0; i < itens.length; i++) {
-          vm.removeClass(itens[i], 'active')
-        }
-        if (vm.moduleTitle === 'primeiro') {
+      if (vm.moduleTitle === 'primeiro') {
+        this.playAudio('menuintro', '/static/subtitles/menu_1.json', function (pos) {
+          console.log(pos)
+          if (pos >= 10 && pos < 14) {
+            vm.addClass(itens[0], 'active')
+          } else if (pos >= 14 && pos < 16) {
+            vm.removeClass(itens[0], 'active')
+            vm.addClass(itens[1], 'active')
+          } else if (pos >= 16) {
+            vm.removeClass(itens[1], 'active')
+            vm.addClass(itens[2], 'active')
+          }
+        }, function () {
+          for (var i = 0; i < itens.length; i++) {
+            vm.removeClass(itens[i], 'active')
+          }
           vm.playAudio('menuItem1', '/static/subtitles/menu_2.json', function () {}, function () {
             vm.addClass(itens[0], 'active')
           })
-        }
-      })
+        })
+      } else if (vm.moduleTitle === 'segundo') {
+        vm.playAudio('menuItem2', '/static/subtitles/menu_3.json', function () {}, function () {
+          vm.addClass(itens[1], 'active')
+        })
+      }
     },
     /**
      | ----------------------------------------------

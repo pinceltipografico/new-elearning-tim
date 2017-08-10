@@ -3,10 +3,10 @@
     <div class="image-background"></div>
     <div class="effects"></div>
     <div class="script1">
-      <h1>proporcionando boas <span>experiências</span></h1>
+      <h1>proporcionando boas experiências</h1>
     </div>
     <div class="script1_2">
-      <h1>compreender o outro cada vez melhor</h1>
+      <h1>compreender o outro<br/>cada vez melhor</h1>
     </div>
     <div class="script2">
       <h1>simplificando e potencializando esta experiência</h1>
@@ -26,6 +26,7 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
@@ -37,37 +38,14 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      var vm = this
       var animations = [
         {
           time: 500,
           step: 'show',
-          selector: '.script1'
-        }, {
-          time: 8000,
-          step: 'step1',
-          selector: '.effects'
-        }, {
-          time: 400,
-          step: 'hide',
-          selector: '.script1'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.effects'
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.image-background'
-        }, {
-          time: 1000,
-          step: 'step2_1',
-          selector: '.effects'
-        }, {
-          time: 500,
-          step: 'show',
           selector: '.script1_2'
         }, {
-          time: 1000,
+          time: 2000,
           step: 'step1',
           selector: '.script1_2'
         }, {
@@ -76,58 +54,88 @@
           selector: '.script1_2'
         }, {
           time: 500,
-          step: 'step2_1_2',
+          step: 'step1',
+          selector: '.effects'
+        }, {
+          time: 1000,
+          step: 'step1',
+          selector: '.image-background'
+        }, {
+          time: 100,
+          step: 'step2',
+          selector: '.effects'
+        }, {
+          time: 50,
+          step: 'step2_1',
           selector: '.effects'
         }, {
           time: 500,
           step: 'show',
           selector: '.script2'
         }, {
-          time: 0,
-          step: 'step2',
-          selector: '.image-background'
+          time: 8000,
+          step: 'show',
+          selector: '.script2',
+          reverse: true
         }, {
-          time: 8500,
-          step: 'hide',
-          selector: '.script2'
-        }, {
-          time: 500,
+          time: 1000,
           step: 'step3',
           selector: '.effects'
         }, {
           time: 500,
           step: 'show',
-          selector: '.script3'
+          selector: '.script1'
         }, {
-          time: 7000,
+          time: 4000,
+          step: 'show',
+          selector: '.script1',
+          reverse: true
+        }, {
+          time: 500,
           step: 'step3',
           selector: '.effects',
           reverse: true
         }, {
+          time: 1000,
+          step: 'step2',
+          selector: '.image-background'
+        }, {
           time: 500,
+          step: 'step4',
+          selector: '.effects'
+        }, {
+          time: 1500,
+          step: 'show',
+          selector: '.script3'
+        }, {
+          time: 6000,
           step: 'show',
           selector: '.script3',
           reverse: true
         }, {
-          time: 0,
-          step: 'step3',
-          selector: '.image-background'
-        }, {
-          time: 1000,
-          step: 'step4',
+          time: 500,
+          step: 'step5',
           selector: '.effects'
         }, {
           time: 1000,
+          step: 'step3',
+          selector: '.image-background'
+        }, {
+          time: 100,
+          step: 'step6',
+          selector: '.effects'
+        }, {
+          time: 1500,
           step: 'show',
           selector: '.script5'
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
-        this.$store.commit('setCanAdvance', true)
-      }.bind(this))
+      Animations.animationTimeline()
       setTimeout(function () {
-        EventBus.$emit('start-progress')
+        vm.playAudio('scene13', 'static/subtitles/page13.json', null, function () {
+          vm.$store.commit('setCanAdvance', true)
+        })
       }, 500)
     },
     
@@ -138,6 +146,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -146,10 +155,10 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page18/02.jpg") no-repeat;
+    background: url("../assets/backgrounds/page18/ref-525655138.jpg") no-repeat;
     background-size: cover;
-    &.step1{
-      background: url("../assets/backgrounds/page18/ref-525655138.jpg") no-repeat;
+    &.step1 {
+      background: url("../assets/backgrounds/page18/02.jpg") no-repeat;
       background-size: cover;
     }
     &.step2 {
@@ -163,42 +172,43 @@
   }
   
   .effects {
-    width: 40%;
-    height: 0;
-    background: rgba(#000, 0.3);
-    transform: translate(0, 0);
-    right: 7%;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    left: 0;
+    opacity: 0;
+    
     &.step1 {
-      height: 100%;
+      opacity: 1;
     }
-    &.step2 {
+    &.step2_1 {
       background: $brand-details;
-      height: 100%;
-      width: 100%;
-      right: 0;
     }
-    &.step2_1{
-      opacity: 0;
-    }
-    &.step2_1_2{
+    &.step2_1_2 {
       opacity: 1;
     }
     &.step3 {
-      opacity: 0.2;
+      width: 40%;
+      left: 55%;
     }
     &.step4 {
-      background: #000;
-      opacity: 0.3;
+      opacity: 0;
+    }
+    &.step5 {
+      opacity: 1;
+    }
+    &.step6 {
+      transform: translateX(-100%);
     }
   }
   
   .script1 {
-    @include font-size(2);
-    max-width: 400px;
-    color: #666;
+    @include font-size(2.3);
+    max-width: 350px;
+    color: #fff;
     top: 50%;
     transform: translate(100%, -50%);
-    right: 10%;
+    left: 60%;
     opacity: 0;
     &.show {
       opacity: 1;
@@ -208,29 +218,29 @@
       opacity: 0;
     }
   }
-
-  .script1_2{
-    top:50%;
+  
+  .script1_2 {
+    top: 50%;
     left: 50%;
-    transform: translate(-50%,-100%);
+    transform: translate(-50%, -100%);
     @include font-size(2.5);
     text-align: center;
-    padding: 0 40px;
     display: block;
-    color:#fff;
+    color: #fff;
     opacity: 0;
-    h1{
-      background: rgba(#000,0.5);
-      border-radius: 10px;
+    h1 {
+      background: $brand-details;
+      margin: 0;
+      padding: 0 20px;
     }
-    &.show{
-      transform: translate(-50%,-50%);
+    &.show {
+      transform: translate(-50%, -50%);
       opacity: 1;
     }
-    &.step1{
+    &.step1 {
       border: 10px double $brand-details;
     }
-    &.hide{
+    &.hide {
       opacity: 0;
     }
   }
@@ -289,19 +299,20 @@
       transform: translate(0, -50%) rotate(-2deg);
     }
   }
-  .script5{
-    top:50%;
+  
+  .script5 {
+    top: 50%;
     right: -105%;
     transform: translateY(-50%);
-    h1{
+    h1 {
       @include font-size(3.5);
       max-width: 400px;
-      color:#fff;
+      color: #fff;
       border-top: 1px solid #fff;
       border-bottom: 1px solid #fff;
       padding: 10px 0;
     }
-    &.show{
+    &.show {
       right: 5%;
     }
   }

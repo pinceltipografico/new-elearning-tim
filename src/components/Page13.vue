@@ -163,8 +163,8 @@
           }
           if (index === 7) {
             vm.playAudio('scene11_2', 'static/subtitles/page11_2.json', null, function () {
-              this.$store.commit('setCanAdvance', true)
-            }.bind(this))
+              vm.$store.commit('setCanAdvance', true)
+            })
             return
           }
           vm.addClass(els[index], 'active')

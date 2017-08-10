@@ -12,6 +12,7 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  
   var Animations = require('../lib/ChainAnimation')
   export default {
     /**
@@ -35,7 +36,8 @@
         }
       ]
       Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
+      Animations.animationTimeline()
+      this.playAudio('scene14', 'static/subtitles/page14.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },

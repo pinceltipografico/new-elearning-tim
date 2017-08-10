@@ -799,6 +799,19 @@
     animation: clockRotation 4s infinite linear;
   }
   
+  .item-icon {
+    transition: all $animationTime;
+    opacity: 0;
+    &.show {
+      opacity: 1 !important;
+    }
+    @for $i from 1 through 7 {
+      &.item-#{$i} {
+        transition-delay: #{(0.5 * $i)+'s'};
+      }
+    }
+  }
+  
   @keyframes scrollIndicator {
     to {
       opacity: 0;

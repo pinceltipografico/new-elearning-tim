@@ -96,16 +96,30 @@
           time: 0,
           step: 'step0',
           selector: '.de'
-        }, {
-          time: 4000,
-          step: 'step1',
-          selector: '.button'
         }
       ]
       Animations.setAnimations(animations)
       Animations.animationTimeline(null)
+      var els = this.$el.querySelectorAll('.abordages-tradicionais > div')
+      var btn = this.$el.querySelector('.button')
+      var vm = this
       setTimeout(function () {
-        EventBus.$emit('start-progress')
+        vm.playAudio('scene12', 'static/subtitles/page12.json', function (pos) {
+          if (pos === 6) {
+            vm.addClass(els[0], 'show')
+          }
+          if (pos === 10) {
+            vm.addClass(els[1], 'show')
+          }
+          if (pos === 13) {
+            vm.addClass(els[2], 'show')
+          }
+          if (pos === 19) {
+            vm.addClass(els[3], 'show')
+          }
+        }, function () {
+          vm.addClass(btn, 'step1')
+        })
       }, 500)
     },
     methods: {
@@ -124,37 +138,47 @@
             time: 0,
             step: 'step1',
             selector: '.para'
-          }, {
-            time: 4000,
-            step: 'step2',
-            selector: '.button',
-            reverse: true
-          }, {
-            time: 400,
-            step: 'step2',
-            selector: '.para'
-          }, {
-            time: 0,
-            step: 'step2',
-            selector: '.de'
-          }, {
-            time: 400,
-            step: 'step3',
-            selector: '.para'
           }
         ]
         Animations.setAnimations(animations)
         Animations.animationTimeline()
-      },
-      step3 () {
-        /*
-        var anims = [
-        ]
-        Animations.setAnimations(anims)
-        Animations.animationTimeline(function () {
-          this.$store.commit('setCanAdvance', true)
-        }.bind(this))
-        */
+        var els = this.$el.querySelectorAll('.script3 > h1 div')
+        var de = this.$el.querySelector('.de')
+        var para = this.$el.querySelector('.para')
+        var svgItems = this.$el.querySelectorAll('.item-icon')
+        var vm = this
+        this.playAudio('scene12_1', 'static/subtitles/page12_1.json', function (pos) {
+          if (pos === 6) {
+            vm.addClass(els[0], 'show')
+          }
+          if (pos === 12) {
+            vm.addClass(els[1], 'show')
+          }
+          if (pos === 16) {
+            vm.addClass(els[2], 'show')
+          }
+          if (pos === 20) {
+            vm.addClass(els[3], 'show')
+          }
+          if (pos === 24) {
+            vm.addClass(de, 'step2')
+            vm.addClass(para, 'step2')
+          }
+          if (pos === 25) {
+            vm.addClass(para, 'step3')
+          }
+          if (pos === 26) {
+            svgItems[0].style.opacity = 1
+            svgItems[1].style.opacity = 1
+            svgItems[2].style.opacity = 1
+            svgItems[3].style.opacity = 1
+            svgItems[4].style.opacity = 1
+            svgItems[5].style.opacity = 1
+            svgItems[6].style.opacity = 1
+          }
+        }, function () {
+          vm.$store.commit('setCanAdvance', true)
+        })
       },
       buttonClick () {
         if (this.scene === 0) {
@@ -172,6 +196,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
@@ -308,13 +333,20 @@
             border-left: 5px double $brand-details;
             padding: 0 5px 0 15px;
             margin-bottom: 5px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all $animationTime;
+            &.show {
+              transform: translateX(0);
+              opacity: 1;
+            }
           }
         }
       }
       .customer_centric {
         width: 550px;
-        right: 5%;
-        top: 46%;
+        right: 2%;
+        top: 50%;
         transform: translateY(-50%);
         opacity: 0;
       }
@@ -364,6 +396,13 @@
           border-left: 5px double $brand-details;
           padding: 0 5px 0 15px;
           margin-bottom: 5px;
+          transform: translateX(100%);
+          opacity: 0;
+          transition: all $animationTime;
+          &.show {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
       }
       &.step0 {
