@@ -139,7 +139,7 @@
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
       
-      this.playAudio('scene1', '/static/subtitles/page1.json', function (pos) {}, function () {})
+      this.playAudio('scene1', 'static/subtitles/page1.json', function (pos) {}, function () {})
     },
     destroyed () {
       this.$store.state.audio.stop()

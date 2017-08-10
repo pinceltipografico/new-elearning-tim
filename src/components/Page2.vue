@@ -69,7 +69,7 @@
           step: 'step1',
           selector: '.script2'
         }, {
-          time: 5000,
+          time: 3000,
           step: 'step3',
           selector: '.script2'
         }, {
@@ -93,7 +93,7 @@
           step: 'step2',
           selector: '.script3'
         }, {
-          time: 4500,
+          time: 2500,
           step: 'step2',
           selector: '.script3',
           reverse: true
@@ -126,7 +126,7 @@
           step: 'step1',
           selector: '.script4'
         }, {
-          time: 4500,
+          time: 6000,
           step: 'step2',
           selector: '.script4'
         }, {
@@ -151,7 +151,7 @@
       Animations.animationTimeline(function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
-      this.playAudio('scene2', '/static/subtitles/page2.json', function (pos) {}, function () {})
+      this.playAudio('scene2', 'static/subtitles/page2.json', function (pos) {}, function () {})
     },
     destroyed () {
       Animations.destroyAnimations()

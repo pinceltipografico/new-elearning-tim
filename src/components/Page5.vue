@@ -141,11 +141,13 @@
       this.scroller.start('.page', '.scroll-indicator', function (index) {
         vm.currentSection = index
       })
-      this.playAudio('scene3', '/static/subtitles/page3.json', function () {
-      
-      }, function () {
-        this.$store.commit('setCanAdvance', true)
-      }.bind(this))
+      setTimeout(function () {
+        vm.playAudio('scene3', 'static/subtitles/page3.json', function () {
+        
+        }, function () {
+          vm.$store.commit('setCanAdvance', true)
+        })
+      }, 500)
     },
     /**
      | ----------------------------------------------

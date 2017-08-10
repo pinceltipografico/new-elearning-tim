@@ -25,7 +25,7 @@
       </nav>
     </transition>
     <div class="subtitles" id="subtitles" v-show="showSubtitle">
-      <p>Olá mundo cruel</p>
+      <p></p>
     </div>
     <transition name="fade">
       <div class="progress-audio" v-if="showInterfaceItems">
@@ -43,6 +43,7 @@
         <i class="material-icons">&#xE5CB;</i>
       </a>
     </transition>
+    <!--<div id="timer" style="font-size: 24px"></div>-->
     <router-view></router-view>
   </main>
 </template>
@@ -82,9 +83,8 @@
      **/
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) && this.$route.name !== null) {
+      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) !== -1 && this.$route.name !== null) {
         this.$store.commit('toggleIterface', true)
-        this.showSubtitle = true
       }
       
       // start the progress bar
@@ -391,6 +391,7 @@
       color: #fff;
       padding: 0 50px;
       @include font-size(1.5);
+      font-weight: bold;
     }
   }
   

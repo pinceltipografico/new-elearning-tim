@@ -5,6 +5,7 @@ Audio.install = function (Vue, options) {
   'use strict'
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
+    // var timer = document.querySelector('#timer')
     var soundid = this.$store.state.audio.play(spriteID)
     var duration = this.$store.state.audio.duration(soundid)
     var offset = this.sprites[spriteID][0]
@@ -33,6 +34,7 @@ Audio.install = function (Vue, options) {
       var pos = (vm.$store.state.audio.seek(soundid) || 0) - (offset / 1000)
       // console.log(pos)
       var subtitleTime = convertTime(pos)
+      // timer.innerHTML = subtitleTime
       var currentSubTitle = subtitlesObj[subtitleTime]
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
