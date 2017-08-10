@@ -6,13 +6,22 @@ Audio.install = function (Vue, options) {
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
     // var timer = document.querySelector('#timer')
-    var soundid = this.$store.state.audio.play(spriteID)
-    var duration = this.$store.state.audio.duration(soundid)
-    var offset = this.sprites[spriteID][0]
-    var pct = 100 / duration
+    var soundid
+    var duration
+    var offset
+    var pct
     var vm = this
     var id = null
     var subtitlesObj
+    
+    function startAudio (res) {
+      subtitlesObj = res || {}
+      soundid = vm.$store.state.audio.play(spriteID)
+      duration = vm.$store.state.audio.duration(soundid)
+      offset = vm.sprites[spriteID][0]
+      pct = 100 / duration
+      requestAnimationFrame(increase)
+    }
     
     /**
      | ----------------------------------------------
@@ -57,11 +66,11 @@ Audio.install = function (Vue, options) {
     
     this.$http.get(subtitles)
       .then(function (res) {
-        subtitlesObj = res.data
-        requestAnimationFrame(increase)
+        startAudio(res.data)
       })
       .catch(function () {
         console.log('erro ao carregar a legenda')
+        startAudio(null)
       })
   }
 }
