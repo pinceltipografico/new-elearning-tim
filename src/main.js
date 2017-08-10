@@ -224,7 +224,7 @@ function removePReloader () {
 
 function configAudio () {
   var audio = new Howl.Howl({
-    src: ['/static/audio/tim_cx.mp3'],
+    src: ['static/audio/tim_cx.mp3'],
     sprite: sprites
   })
   audio.once('load', function () {
