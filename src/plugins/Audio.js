@@ -3,24 +3,40 @@
 const Audio = {}
 Audio.install = function (Vue, options) {
   'use strict'
+  var currentAudioId = null
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
     // var timer = document.querySelector('#timer')
-    var soundid
     var duration
     var offset
     var pct
     var vm = this
-    var id = null
     var subtitlesObj
     
     function startAudio (res) {
       subtitlesObj = res || {}
-      soundid = vm.$store.state.audio.play(spriteID)
-      duration = vm.$store.state.audio.duration(soundid)
+      currentAudioId = vm.$store.state.audio.play(spriteID)
+      duration = vm.$store.state.audio.duration(currentAudioId)
       offset = vm.sprites[spriteID][0]
       pct = 100 / duration
-      requestAnimationFrame(increase)
+      
+      //
+      // quando o audio terminar
+      vm.$store.state.audio.once('end', function () {
+        if (doneCb) {
+          doneCb()
+        }
+      }, currentAudioId)
+      
+      //
+      // quando for pausado
+      vm.$store.state.audio.on('pause', function () {
+      }, currentAudioId)
+      
+      // quando der o play
+      vm.$store.state.audio.on('play', function () {
+        requestAnimationFrame(increase)
+      }, currentAudioId)
     }
     
     /**
@@ -40,30 +56,29 @@ Audio.install = function (Vue, options) {
      | ----------------------------------------------
      **/
     function increase () {
-      var pos = (vm.$store.state.audio.seek(soundid) || 0) - (offset / 1000)
-      // console.log(pos)
+      var pos = (vm.$store.state.audio.seek(currentAudioId) || 0) - (offset / 1000)
       var subtitleTime = convertTime(pos)
-      // timer.innerHTML = subtitleTime
+      var progress = Math.ceil((pct * pos))
       var currentSubTitle = subtitlesObj[subtitleTime]
+      // timer.innerHTML = subtitleTime
+      
+      // set page progress
+      vm.$store.commit('setPageProgress', progress)
+      
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
       }
-      var progress = Math.ceil((pct * pos))
-      vm.$store.commit('setPageProgress', progress)
-      if (vm.$store.state.audio.playing(soundid) && progress <= 100) {
+      if (vm.$store.state.audio.playing(currentAudioId) && progress <= 100) {
         if (timeUpdateCb) {
           timeUpdateCb(Math.floor(pos))
         }
         requestAnimationFrame(increase)
-      } else {
-        subtitlesEl.innerHTML = ''
-        vm.$store.state.audio.stop(soundid)
-        if (doneCb) {
-          doneCb()
-        }
       }
     }
     
+    //
+    // FETCH SUBTITLES
+    //
     this.$http.get(subtitles)
       .then(function (res) {
         startAudio(res.data)
@@ -72,6 +87,15 @@ Audio.install = function (Vue, options) {
         console.log('erro ao carregar a legenda')
         startAudio(null)
       })
+  }
+  
+  /**
+   | ----------------------------------------------
+   * GET THE CURRENT AUDIO ID
+   | ----------------------------------------------
+   **/
+  Vue.prototype.getCurrentAudioId = function () {
+    return currentAudioId
   }
 }
 export default Audio

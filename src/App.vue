@@ -1,5 +1,5 @@
 <template>
-  <main id="app">
+  <main id="app" :class="{'subtitle-active':showSubtitle}">
     <div class="menu-overlay"></div>
     <div class="logo">
       <span style="width: 80px;"><logo></logo></span>
@@ -15,10 +15,11 @@
           <li class="last">
             <i class="material-icons">&#xE5CD;</i>
           </li>
-          <li :class="{'active':!isMute}" @click="setVolume">
+          <li :class="{'active':!isMute, 'inactive':isMute}" @click="setVolume">
             <i class="material-icons">&#xE04D;</i>
           </li>
-          <li class="small" :class="{'active':showSubtitle}" @click="showSubtitle = !showSubtitle">
+          <li class="small" :class="{'active':showSubtitle, 'inactive':!showSubtitle}"
+              @click="showSubtitle = !showSubtitle">
             <i class="material-icons">&#xE0CA;</i>
           </li>
         </ul>
@@ -28,8 +29,17 @@
       <p></p>
     </div>
     <transition name="fade">
-      <div class="progress-audio" v-if="showInterfaceItems">
-        <div :style="'width:'+pageProgress+'%'"></div>
+      <div class="player-controls">
+        <div class="back-button" @click="onRewind">
+          <i class="material-icons">&#xE020;</i>
+        </div>
+        <div class="play-pause-button" @click="onPause">
+          <i class="material-icons" v-if="isPaused">&#xE038;</i>
+          <i class="material-icons" v-if="!isPaused">&#xE035;</i>
+        </div>
+        <div class="progress-audio" v-if="showInterfaceItems">
+          <div :style="'width:'+pageProgress+'%'"></div>
+        </div>
       </div>
     </transition>
     <transition name="enter-nav">
@@ -69,8 +79,9 @@
         counter: null,
         pageIndex: 2,
         pages: null,
-        showSubtitle: true,
-        isMute: false
+        showSubtitle: false,
+        isMute: false,
+        isPaused: false
       }
     },
     //
@@ -100,7 +111,6 @@
         var lastRouteIndex = this.getRouteByName(lastPage)
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
-        this.showSubtitle = true
       }
     },
     /**
@@ -156,9 +166,41 @@
         return result
       },
       
+      /**
+       | ----------------------------------------------
+       * MUTE OR UNMUTE
+       | ----------------------------------------------
+       **/
       setVolume () {
         this.isMute = !this.isMute
         window.Howler.mute(this.isMute)
+      },
+      
+      /**
+       | ----------------------------------------------
+       * ON PAUSE COURSE
+       | ----------------------------------------------
+       **/
+      onPause () {
+        this.isPaused = !this.isPaused
+        EventBus.$emit('pause', this.isPaused)
+        var currentId = this.getCurrentAudioId()
+        if (currentId) {
+          this.isPaused ? this.$store.state.audio.pause(currentId) : this.$store.state.audio.play(currentId)
+        }
+      },
+      
+      /**
+       | ----------------------------------------------
+       * ON REWIND
+       | ----------------------------------------------
+       **/
+      onRewind () {
+        EventBus.$emit('rewind')
+        var currentId = this.getCurrentAudioId()
+        if (currentId) {
+          this.$store.state.audio.seek(0, currentId)
+        }
       }
     },
     
@@ -212,208 +254,317 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #fff;
-    max-height: 680px;
     max-width: 1280px;
     width: 100%;
-    height: 100%;
+    height: 680px;
     min-height: 680px;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
     
-    .uppercase {
-      text-transform: uppercase !important;
+    &.subtitle-active {
+      section.page {
+        height: 88%;
+      }
+      .player-controls {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        /*background: rgba(#000, 0.8);*/
+      }
+      .subtitles {
+        background: #000;
+      }
     }
+  }
+  
+  /**
+  * ----------------------------------------------
+  * COMMOM STYLES
+  * ----------------------------------------------
+  **/
+  .uppercase {
+    text-transform: uppercase !important;
+  }
+  
+  /**
+  * ----------------------------------------------
+  * IMAGE BACKGROUNDS AND OUTER PAGES
+  * ----------------------------------------------
+  **/
+  .image-background,
+  .outer-page {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  
+  /**
+  * ----------------------------------------------
+  * MENU OVERLAY
+  * ----------------------------------------------
+  **/
+  .menu-overlay {
+    width: 100%;
+    height: 55px;
+    background: rgba(#000, 0.6);
+    position: absolute;
+    z-index: 3;
+    top: 25px;
+  }
+  
+  /**
+  * ----------------------------------------------
+  * OVERLAY
+  * ----------------------------------------------
+  **/
+  .overlay {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, 0.3);
     
-    .image-background,
-    .outer-page {
-      display: block;
-      position: absolute;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
+    &.darken {
+      background: rgba(#000, 0.7);
     }
-    .outer-page {
-      z-index: 2;
+  }
+  
+  /**
+  * ----------------------------------------------
+  * BRAND LOGO
+  * ----------------------------------------------
+  **/
+  .logo {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    width: auto;
+    top: 35px;
+    left: 40px;
+    align-items: center;
+    img,
+    div {
+      float: left;
     }
+    img {
+      width: 100px;
+    }
+    div {
+      margin-left: 10px;
+      color: #fff;
+      border-left: 4px double $brand-secondary;
+      padding-left: 6px;
+      height: 30px;
+      h2 {
+        margin: 0;
+        @include font-size(1.4);
+      }
+      small {
+        color: $brand-secondary;
+        display: block;
+      }
+    }
+  }
+  
+  /**
+  * ----------------------------------------------
+  * MAIN PAGE
+  * ----------------------------------------------
+  **/
+  section.page {
+    position: relative;
+    width: 100%;
+    height: 680px;
+    border: 0 solid #fff;
+    z-index: 2;
+    animation: enterBorder $animationTime forwards;
+    overflow: hidden;
+    text-transform: lowercase !important;
+    transition: all $animationTime;
     
-    .menu-overlay {
-      width: 100%;
-      height: 55px;
-      background: rgba(#000, 0.6);
+    > * {
       position: absolute;
       z-index: 3;
-      top: 25px;
     }
     
-    .overlay {
-      position: absolute;
-      z-index: 1;
+    .image-background {
       width: 100%;
       height: 100%;
-      background: rgba(#000, 0.3);
-      
-      &.darken {
-        background: rgba(#000, 0.7);
-      }
+      z-index: 1;
+      top: 0;
+      left: 0;
     }
     
-    .logo {
-      position: absolute;
-      z-index: 3;
-      display: flex;
-      width: auto;
-      top: 35px;
-      left: 40px;
-      align-items: center;
-      img,
-      div {
-        float: left;
-      }
-      img {
-        width: 100px;
-      }
-      div {
-        margin-left: 10px;
-        color: #fff;
-        border-left: 4px double $brand-secondary;
-        padding-left: 6px;
-        height: 30px;
-        h2 {
-          margin: 0;
-          @include font-size(1.4);
-        }
-        small {
+    h1 {
+      span {
+        color: $brand-details;
+        &.red {
           color: $brand-secondary;
-          display: block;
         }
       }
     }
-    
-    section.page {
-      width: 100%;
-      height: 100%;
-      min-height: 680px;
-      position: relative;
-      border: 0 solid #fff;
-      z-index: 2;
-      animation: enterBorder $animationTime forwards;
-      overflow: hidden;
-      text-transform: lowercase !important;
-      
-      @include responsive('tablet', true) {
-        zoom: 0.8;
-      }
-      
-      > * {
-        position: absolute;
-        z-index: 3;
-        transition: all $animationTime;
-      }
-      
-      .image-background {
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        top: 0;
-        left: 0;
-      }
-      
-      h1 {
-        span {
-          color: $brand-details;
-          &.red {
-            color: $brand-secondary;
+  }
+  
+  /**
+  * ----------------------------------------------
+  * USER INTERFACE
+  * ----------------------------------------------
+  **/
+  .user-interface {
+    position: absolute;
+    z-index: 3;
+    top: 35px;
+    right: 40px;
+    left: 0;
+    transition: all $animationTime;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: right;
+      li {
+        width: 35px;
+        height: 35px;
+        display: block;
+        float: right;
+        background: #000;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background $animationTime;
+        margin-right: 10px;
+        background: $brand-details;
+        
+        &.last {
+          margin: 0;
+        }
+        &:hover {
+          background: $brand-primary;
+        }
+        &.inactive {
+          background: black;
+          i {
+            color: darken(#fff, 20%);
           }
         }
-      }
-    }
-    .user-interface {
-      position: absolute;
-      z-index: 3;
-      top: 35px;
-      right: 40px;
-      left: 0;
-      transition: all $animationTime;
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: right;
-        li {
+        &.active {
+        }
+        i {
           width: 35px;
           height: 35px;
-          background: $brand-details;
-          display: block;
-          float: right;
-          border-radius: 50%;
-          cursor: pointer;
-          transition: background $animationTime;
-          margin-right: 10px;
-          &.last {
-            margin: 0;
-          }
-          &:hover {
-            background: $brand-primary;
-          }
-          &.active {
-            background: $brand-secondary;
-          }
+          @include font-size(2.6);
+          color: #fff;
+          text-align: center;
+          line-height: 35px;
+        }
+        &.small {
           i {
-            width: 35px;
-            height: 35px;
-            @include font-size(2.6);
-            color: #fff;
-            text-align: center;
+            @include font-size(2);
             line-height: 35px;
-          }
-          &.small {
-            i {
-              @include font-size(2);
-              line-height: 35px;
-            }
           }
         }
       }
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * PLAYER CONTROLES
+  * ----------------------------------------------
+  **/
+  .player-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    right: 50px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    background: rgba(#000, 0.1);
+    border-radius: 10px;
+    transition: all $animationTime;
+    .play-pause-button,
+    .back-button {
+      position: relative;
+      cursor: pointer;
+      border-radius: 50%;
+      i {
+        position: relative;
+        color: $brand-details;
+        transition: all $animationTime;
+        z-index: 2;
+      }
+      &:hover i {
+        color: $brand-primary;
+      }
+    }
+    .play-pause-button {
+      i {
+        @include font-size(5);
+      }
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        background: #fff;
+        width: 30px;
+        height: 30px;
+        top: 50%;
+        left: 50%;
+        margin: -15px 0 0 -15px;
+        z-index: 1;
+      }
+    }
+    .back-button i {
+      @include font-size(3);
+    }
+    .progress-audio {
+      width: 100%;
+      height: 7px;
+      background: rgba($brand-primary, 0.5);
+      left: 50%;
+      bottom: 10px;
+      div {
+        width: 50%;
+        height: 7px;
+        background: $brand-details;
+        transition: width $animationTime;
+      }
+    }
+  }
+  
+  /**
+  * ----------------------------------------------
+  * LEGENDAS
+  * ----------------------------------------------
+  **/
   .subtitles {
     position: absolute;
     z-index: 99;
-    bottom: 50px;
+    height: 55px;
+    bottom: 45px;
     right: 15px;
     left: 15px;
     overflow: hidden;
     background: rgba(#000, 0.3);
+    z-index: 3;
+    transition: all $animationTime;
     p {
       color: #fff;
-      padding: 0 50px;
-      @include font-size(1.5);
+      padding: 0 150px;
+      @include font-size(1.3);
       font-weight: bold;
     }
   }
   
-  .progress-audio {
-    position: absolute;
-    width: 100%;
-    max-width: 85%;
-    height: 7px;
-    background: rgba($brand-primary, 0.5);
-    z-index: 3;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    
-    div {
-      width: 50%;
-      height: 7px;
-      background: $brand-details;
-      transition: width $animationTime;
-    }
-  }
-  
+  /**
+  * ----------------------------------------------
+  * BOTOES DE NAVEGAÇÃO
+  * ----------------------------------------------
+  **/
   .nav-button {
     position: absolute;
     z-index: 4;
@@ -444,6 +595,11 @@
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * TAG THAT ENDS SLIDES
+  * ----------------------------------------------
+  **/
   .end-tag {
     width: 100%;
     text-transform: uppercase;
@@ -469,6 +625,11 @@
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * SHADOWS
+  * ----------------------------------------------
+  **/
   .shadow {
     width: 80%;
     margin: 0 auto;
@@ -480,6 +641,11 @@
     opacity: 1;
   }
   
+  /**
+  * ----------------------------------------------
+  * SCVGS ELEMENTS
+  * ----------------------------------------------
+  **/
   .svg-group-element {
     transition: all $animationTime;
     cursor: pointer;
@@ -488,6 +654,11 @@
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * MESSAGES
+  * ----------------------------------------------
+  **/
   .message {
     position: absolute;
     top: 0;
@@ -621,10 +792,20 @@
     }
   }
   
+  /**
+  * ----------------------------------------------
+  * DESTAQUE NAS PALAVRAS TIM
+  * ----------------------------------------------
+  **/
   span.tim {
     text-transform: uppercase !important;
   }
   
+  /**
+  * ----------------------------------------------
+  * VIDEO OVERLAYS
+  * ----------------------------------------------
+  **/
   .video-overlay {
     h1 {
       position: absolute;

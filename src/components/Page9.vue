@@ -30,7 +30,10 @@
 <script type="text/javascript">
   /* eslint-disable semi */
   /* eslint-disable no-trailing-spaces */
+  /* eslint-disable no-unused-vars */
   var Animations = require('../lib/ChainAnimation')
+  import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
   export default {
     /**
@@ -42,30 +45,47 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 500,
-          step: 'show',
-          selector: '.wish'
-        }
-      ]
-      var els = this.$el.querySelectorAll('.script1 > h1')
       var vm = this
-      Animations.setAnimations(animations)
-      Animations.animationTimeline(null)
-      this.playAudio('scene6', 'static/subtitles/page6.json', function (pos) {
-        if (els) {
-          if (pos === 2) {
-            vm.addClass(els[0], 'show')
+      var els = this.$el.querySelectorAll('.script1 > h1')
+      
+      this.TimelineCtrl = anime.timeline({
+        loop: false
+      })
+      
+      this.TimelineCtrl
+        .add({
+          targets: '.wish',
+          translateX: ['-100%', '-50%'],
+          translateY: ['-50%', '-50%'],
+          easing: 'linear',
+          opacity: 1,
+          duration: 300,
+          offset: '+=300'
+        })
+        .add({
+          targets: els,
+          translateY: ['-100%', 0],
+          duration: 200,
+          easing: 'linear',
+          delay: function (el, i) {
+            if (i === 0) {
+              return 1500
+            } else if (i === 1) {
+              return 3000
+            } else if (i === 2) {
+              return 6000
+            }
           }
-          if (pos === 4) {
-            vm.addClass(els[1], 'show')
-          }
-          if (pos === 7) {
-            vm.addClass(els[2], 'show')
-          }
-        }
-      }, function () {
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
+      this.playAudio('scene6', 'static/subtitles/page6.json', function (pos) {}, function () {
         this.canClick = true
       }.bind(this))
     },
@@ -79,6 +99,8 @@
         if (!this.canClick) {
           return
         }
+        EventBus.$off('pause')
+        EventBus.$off('rewind')
         this.canClose = false
         var vm = this
         var parent = this.$el.querySelector('.script1')
@@ -144,7 +166,8 @@
         viewed: [],
         showEnd: false,
         canClose: false,
-        canClick: false
+        canClick: false,
+        TimeLineCtrl: null
       }
     },
     
@@ -178,15 +201,11 @@
     left: 50%;
     @include font-size(3);
     color: #fff;
-    transform: translate(-50%, -50%);
-    visibility: hidden;
+    opacity: 0;
     h1 {
       padding: 20px 40px;
       border-top: 2px dotted $brand-details;
       border-bottom: 2px dotted $brand-details;
-    }
-    &.show {
-      animation: slideInLeft 0.350s forwards;
     }
   }
   
@@ -202,7 +221,6 @@
     height: 100%;
     transform: translateY(-110%);
     opacity: 0.9;
-    transition: all $animationTime;
     margin: 0;
     display: flex;
     align-items: center;
@@ -210,6 +228,7 @@
     text-align: center;
     cursor: pointer;
     padding: 20px;
+    transition: all $animationTime;
     
     div {
       width: 80%;
@@ -339,18 +358,6 @@
   
   .script3 {
     transition-delay: 1s;
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      transform: translate3d(-100%, -50%, 0);
-      visibility: visible;
-    }
-    
-    to {
-      transform: translate3d(-50%, -50%, 0);
-      visibility: visible;
-    }
   }
   
   @keyframes overlay {

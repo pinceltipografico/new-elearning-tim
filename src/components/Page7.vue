@@ -65,6 +65,7 @@
   var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   import draggable from 'vuedraggable'
+  import anime from 'animejs'
   
   export default {
     /**
@@ -76,39 +77,51 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 500,
-          step: 'step1',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.icon'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }, {
-          time: 2000,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 2200,
-          step: 'show',
-          selector: '.script3'
-        }, {
-          time: 3000,
-          step: 'show',
-          selector: '.script4'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
+      
+      this.TimelineCtrl = anime.timeline({
+        elasticity: 0
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.white',
+          right: ['100%', '0%'],
+          easing: 'linear',
+          height: [{value: 0}, {value: 200, delay: 300}],
+          bottom: 50,
+          duration: 500,
+          offset: '+=300'
+        })
+        .add({
+          targets: '.icon',
+          opacity: 1,
+          offset: '+=300'
+        })
+        .add({
+          targets: ['.script1', '.script2', '.script3', '.script4'],
+          opacity: 1,
+          easing: 'linear',
+          translateX: ['100%', 0],
+          duration: 200,
+          delay: function (el, i, l) {
+            if (i === 0) {
+              return 0
+            } else if (i === 1) {
+              return 2000
+            } else if (i === 2) {
+              return 4500
+            } else {
+              return 7500
+            }
+          }
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
       this.playAudio('scene4', 'static/subtitles/page4.json', function (pos) {
       }, function () {
         this.showNext = true
@@ -132,7 +145,8 @@
         ],
         list2: [],
         currentScene: 1,
-        showNext: false
+        showNext: false,
+        TimeLineCtrl: null
       }
     },
     /**
@@ -205,6 +219,10 @@
     background-size: cover;
   }
   
+  *{
+    transition: all $animationTime;
+  }
+  
   .script1,
   .script2,
   .script3,
@@ -223,19 +241,11 @@
     height: 0%;
     right: 100%;
     
-    &.step1 {
-      right: 0%;
-      opacity: 1;
-      bottom: 50px;
-    }
-    &.step2 {
-      height: 30%;
-    }
     &.step3 {
-      bottom: 0;
+      bottom: 0 !important;
     }
     &.step4 {
-      height: 100%;
+      height: 100% !important;
       z-index: 5;
     }
     &.step5 {

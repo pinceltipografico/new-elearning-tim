@@ -21,10 +21,15 @@
   /* eslint-disable semi */
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
-  var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
   export default {
+    data () {
+      return {
+        TimeLineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT IS READY
@@ -34,55 +39,46 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 1000,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 6000,
-          step: 'show',
-          selector: '.script1 h1:first-of-type'
-        }, {
-          time: 1500,
-          step: 'show',
-          selector: '.infographic'
-        }/* , {
-          time: 50,
-          step: 'show',
-          selector: '.infographic > div:nth-of-type(1)'
-        }, {
-          time: 1000,
-          step: 'show',
-          selector: '.infographic > div:nth-of-type(2)'
-        }, {
-          time: 1000,
-          step: 'show',
-          selector: '.infographic > div:nth-of-type(3)'
-        }, {
-          time: 1000,
-          step: 'show',
-          selector: '.infographic > div:nth-of-type(4)'
-        } */
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
       var els = this.$el.querySelectorAll('.infographic > div')
-      var vm = this
-      this.playAudio('scene7', 'static/subtitles/page7.json', function (pos) {
-        if (pos === 21) {
-          vm.addClass(els[0], 'show')
-        }
-        if (pos === 22) {
-          vm.addClass(els[1], 'show')
-        }
-        if (pos === 23) {
-          vm.addClass(els[2], 'show')
-        }
-        if (pos === 24) {
-          vm.addClass(els[3], 'show')
-        }
-      }, function () {
+      
+      this.TimelineCtrl = anime.timeline({
+        loop: false
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.script2',
+          translateY: ['100%', '0'],
+          easing: 'linear',
+          opacity: 1,
+          duration: 500
+        })
+        .add({
+          targets: '.script1 h1:first-of-type',
+          translateX: ['100%', '0'],
+          translateY: ['-50%', '-50%'],
+          opacity: 1,
+          easing: 'linear',
+          duration: 500,
+          offset: '+=6000'
+        })
+        .add({
+          targets: els,
+          opacity: 1,
+          duration: 300,
+          delay: function (el, i) {
+            return 1000 * i
+          },
+          offset: '+=7000'
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
+      this.playAudio('scene7', 'static/subtitles/page7.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
@@ -93,8 +89,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
       this.$store.state.audio.stop()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     }
   }
 </script>
@@ -104,9 +101,6 @@
   
   section.page {
     @extend %gradient;
-    * {
-      transition: all $animationTime;
-    }
   }
   
   .script1,
@@ -121,16 +115,13 @@
     height: 365px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(1);
     background-size: 100% auto;
     
     div {
       position: absolute;
       opacity: 0;
       transition: all $animationTime;
-      &.show {
-        opacity: 1;
-      }
       
       &:nth-of-type(1),
       &:nth-of-type(2) {
@@ -169,10 +160,6 @@
         right: 0;
       }
     }
-    
-    &.show {
-      transform: translate(-50%, -50%) scale(1);
-    }
   }
   
   .script1,
@@ -193,11 +180,6 @@
     color: #fff;
     transform: translate(100%, -50%) scale(1) rotate(0deg);
     opacity: 0;
-    
-    &.show {
-      transform: translate(0%, -50%) scale(1) rotate(0deg);
-      opacity: 1;
-    }
   }
   
   .script2 {
@@ -212,11 +194,6 @@
       @include font-size(2.5);
       padding: 10px 0;
       display: inline-block;
-    }
-    
-    &.show {
-      transform: translateY(-50%);
-      opacity: 1;
     }
   }
 </style>

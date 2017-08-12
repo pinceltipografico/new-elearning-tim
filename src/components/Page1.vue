@@ -31,9 +31,15 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   var Animations = require('../lib/ChainAnimation')
+  import anime from 'animejs'
   import { EventBus } from '../events/index'
   
   export default {
+    data () {
+      return {
+        TimelineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT WAS READY
@@ -43,106 +49,183 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }, {
-          time: 700,
-          step: 'show',
-          selector: '.blue-left'
-        }, {
-          time: 5000,
-          step: 'large',
-          selector: '.blue-left'
-        }, {
-          time: 100,
-          step: 'blue',
-          selector: '.blue-left'
-        }, {
-          time: 100,
-          step: 'hide',
-          selector: '.script1'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.image-right'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 9000,
-          step: 'hide',
-          selector: '.script2'
-        }, {
-          time: 400,
-          step: 'hide',
-          selector: '.image-right'
-        }, {
-          time: 400,
-          step: 'white',
-          selector: '.blue-left'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.image-full'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.tag1'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.tag2'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.tag3'
-        }, {
-          time: 0,
-          step: 'step4',
-          selector: '.blue-left'
-        }, {
-          time: 2550,
-          step: 'step5',
-          selector: '.blue-left'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.script3'
-        }, {
-          time: 3000,
-          step: 'hide',
-          selector: '.script3'
-        }, {
-          time: 400,
-          step: 'step6',
-          selector: '.blue-left'
-        }, {
-          time: 400,
-          step: 'step3',
-          selector: '.image-full'
-        }, {
-          time: 1000,
-          step: 'hide',
-          selector: '.blue-left'
-        }, {
-          time: 400,
-          step: 'show',
-          selector: '.script4'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
-        this.$store.commit('setCanAdvance', true)
+      var vm = this
+      
+      this.TimelineCtrl = anime.timeline({
+        direction: 'alternate',
+        loop: false,
+        elasticity: 0,
+        update: function (anim) {}
+      })
+        .add({
+          targets: '.script1',
+          translateY: ['100%', '-50%'],
+          easing: 'linear',
+          opacity: 1,
+          duration: 200
+        })
+        .add({
+          targets: '.blue-left',
+          height: '100%',
+          opacity: 1,
+          easing: 'linear',
+          duration: 200,
+          offset: 500
+        })
+        .add({
+          targets: '.blue-left',
+          width: 1280,
+          easing: 'linear',
+          duration: 200,
+          offset: '+=4500'
+        })
+        .add({
+          targets: '.blue-left',
+          backgroundColor: '#09182d',
+          easing: 'linear',
+          duration: 200,
+          offset: '+=200'
+        })
+        .add({
+          targets: '.script1',
+          easing: 'linear',
+          opacity: 0,
+          duration: 200
+        })
+        .add({
+          targets: '.image-right',
+          easing: 'linear',
+          translateX: [{value: '100%', duration: 0}, {value: 0, delay: 100}],
+          duration: 500,
+          opacity: 1,
+          offset: '+=200'
+        })
+        .add({
+          targets: '.script2',
+          easing: 'linear',
+          scaleX: [{value: 0, duration: 0}, {value: 1, delay: 100}],
+          paddingBottom: [{value: 70, duration: 6700}],
+          paddingTop: [{value: 70, duration: 6700}],
+          top: [{value: -500, duration: 500, delay: 6700}],
+          opacity: 1,
+          duration: 500,
+          offset: '+=300'
+        })
+        .add({
+          targets: '.image-right',
+          easing: 'linear',
+          translateX: '100%',
+          duration: 200,
+          offset: '+=300'
+        })
+        .add({
+          targets: '.blue-left',
+          backgroundColor: '#fff',
+          easing: 'linear',
+          duration: 200,
+          offset: '+=200'
+        })
+        .add({
+          targets: '.image-full',
+          easing: 'linear',
+          opacity: 1,
+          duration: 200,
+          offset: '+=200'
+        })
+        .add({
+          targets: ['.tag1', '.tag2', '.tag3'],
+          easing: 'linear',
+          opacity: 1,
+          duration: 200,
+          translateY: [0, function (item, index) {
+            var ammount = ((50 * index) * -1)
+            return ammount
+          }],
+          delay: function () {
+            return 1
+          },
+          offset: '+=200'
+        })
+        .add({
+          targets: '.blue-left',
+          backgroundColor: '#fff',
+          opacity: [{value: 0, duration: 0}, {value: 0.8, delay: 200}],
+          width: 450,
+          height: [{value: 0, duration: 0}, {value: 890, delay: 400, duration: 500}],
+          left: '55%',
+          zIndex: 6,
+          easing: 'linear',
+          duration: 200,
+          offset: '+=1000'
+        })
+        .add({
+          targets: '.script3',
+          opacity: 1,
+          translateX: 0,
+          translateY: '-50%',
+          duration: 300,
+          offset: '+=500'
+        })
+        .add({
+          targets: '.script3',
+          opacity: 0,
+          translateX: 0,
+          translateY: '-50%',
+          duration: 300,
+          offset: '+=5500'
+        })
+        .add({
+          targets: '.blue-left',
+          backgroundColor: '#fff',
+          opacity: 1,
+          width: 1280,
+          left: 0,
+          easing: 'linear',
+          duration: 200,
+          offset: '+=1000'
+        })
+        .add({
+          targets: {prop1: 0},
+          prop1: 100,
+          begin: function () {
+            var el = document.querySelector('.image-full')
+            vm.removeClass(el, 'step3')
+          },
+          complete: function () {
+            var el = document.querySelector('.image-full')
+            vm.addClass(el, 'step3')
+          },
+          duration: 100
+        })
+        .add({
+          targets: '.blue-left',
+          opacity: 0,
+          offset: '+=1000'
+        })
+        .add({
+          targets: '.script4',
+          translateY: ['100%', '-50%'],
+          opacity: [0, 1],
+          duration: 300,
+          easing: 'linear',
+          offset: '+=100'
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
       }.bind(this))
       
-      this.playAudio('scene1', 'static/subtitles/page1_1.json', function (pos) {}, function () {})
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
+      this.playAudio('scene1', 'static/subtitles/page1_1.json', function (pos) {}, function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
     },
     destroyed () {
       this.$store.state.audio.stop()
+      this.TimelineCtrl.seek(0)
     }
   }
 </script>
@@ -161,12 +244,6 @@
     background: url("../assets/backgrounds/page1/04.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
-    &.show {
-      opacity: 1;
-    }
-    &.hide {
-      opacity: 0;
-    }
     &.step3 {
       background: url("../assets/backgrounds/page1/06.jpg") no-repeat;
       background-size: cover;
@@ -181,52 +258,13 @@
     background-size: cover;
     right: 0;
     transform: translateX(100%);
-    
-    &.show {
-      transform: translateX(0);
-    }
-    &.hide {
-      transform: translateX(100%);
-    }
+    opacity: 0;
   }
   
   .blue-left {
     width: 40%;
-    height: 100%;
+    height: 0;
     background: $brand-primary;
-    transform: translate(0, -110%);
-    
-    &.show {
-      transform: translate(0, 0);
-    }
-    &.blue {
-      background: darken($brand-primary, 20%);
-    }
-    &.large {
-      width: 100%;
-    }
-    &.white {
-      background: #fff;
-    }
-    &.step4 {
-      width: 40%;
-      height: 0;
-      background: rgba(#fff, 0.8);
-      right: 6%;
-    }
-    &.step5 {
-      z-index: 5;
-      height: 100%;
-    }
-    &.step6 {
-      background: #fff;
-      width: 100%;
-      right: 0;
-      z-index: 6;
-    }
-    &.hide {
-      opacity: 0;
-    }
   }
   
   .script1 {
@@ -235,18 +273,9 @@
     max-width: 400px;
     @include font-size(2.5);
     color: #fff;
-    transform: translate(100%, -50%) scale(1) rotate(0deg);
     opacity: 0;
     span {
       color: $brand-details;
-    }
-    
-    &.show {
-      transform: translate(0%, -50%) scale(1) rotate(0deg);
-      opacity: 1;
-    }
-    &.hide {
-      transform: translate(0, -50%) scale(0) rotate(180deg);
     }
   }
   
@@ -257,17 +286,10 @@
     top: 50%;
     padding: 20px 40px;
     transform-origin: 0 50%;
-    transform: scaleX(0);
+    opacity: 0;
     h1 {
       max-width: 45%;
       @include font-size(3);
-    }
-    &.show {
-      transform: scaleX(1);
-      animation: scaleUp 5s forwards;
-    }
-    &.hide {
-      top: 100%;
     }
   }
   
@@ -278,9 +300,7 @@
     border-radius: 7px;
     top: 40%;
     opacity: 0;
-    &.show {
-      opacity: 1;
-    }
+    transition: all $animationTime;
     &:before {
       display: block;
       content: '';
@@ -308,15 +328,9 @@
       &:before {
         border-right-color: #fff;
       }
-      &.show {
-        transform: translateY(-120%);
-      }
     }
     &.tag3 {
       transition-delay: 1s;
-      &.show {
-        transform: translateY(-240%);
-      }
     }
   }
   
@@ -324,7 +338,6 @@
     max-width: 400px;
     top: 50%;
     right: 10%;
-    transform: translate(100%, -50%);
     padding: 15px;
     opacity: 0;
     z-index: 6;
@@ -335,18 +348,10 @@
         color: $brand-details;
       }
     }
-    &.show {
-      transform: translate(0, -50%);
-      opacity: 1;
-    }
-    &.hide {
-      transform: translate(100%, -50%);
-      opacity: 0;
-    }
   }
   
   .script4 {
-    z-index: 5;
+    z-index: 7;
   }
   
   @keyframes scaleUp {

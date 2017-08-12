@@ -9,12 +9,12 @@
       <svg-item id="graph"></svg-item>
       <span v-if="!smallMenu"></span>
     </div>
-    <!-- INTRO -->
+    <!-- INTRO
     <section class="page intro" v-if="!started">
       <div class="buttons" @click="start">
         <span>iniciar</span>
       </div>
-    </section>
+    </section> --->
     <!-- INTRO -->
     <!-- ANIMAÇÕES DE PRECISAR -->
     <section class="page precisar" v-if="scene === 0">
@@ -230,6 +230,7 @@
         var item = gs[i]
         item.style.opacity = 0
       }
+      this.start()
 //      this.started = true
 //      this.scene = 7
 //      this.startSceneEleven()
@@ -245,7 +246,11 @@
     methods: {
       start () {
         this.started = true
-        this.showSvgEls(0, this.startSceneOne)
+        var vm = this
+        this.playAudio('scene15_1', 'static/subtitles/page15.json', null, null)
+        setTimeout(function () {
+          vm.showSvgEls(0, vm.startSceneOne)
+        }, 10000)
       },
       /**
        | ----------------------------------------------
@@ -392,6 +397,9 @@
         ]
         Animation.setAnimations(animations)
         Animation.animationTimeline(null)
+        setTimeout(function () {
+          this.playAudio('precisar1', 'static/subtitles/page15_precisar1.json', null, null)
+        }.bind(this), 500)
       },
       startSceneTwo () {
         var anim = [
