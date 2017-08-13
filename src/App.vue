@@ -28,16 +28,16 @@
     <div class="subtitles" id="subtitles" v-show="showSubtitle">
       <p></p>
     </div>
-    <transition name="fade">
+    <transition name="fade" v-if="showInterfaceItems">
       <div class="player-controls">
         <div class="back-button" @click="onRewind">
           <i class="material-icons">&#xE020;</i>
         </div>
-        <div class="play-pause-button" @click="onPause">
+        <div class="play-pause-button" @click="onPause" :class="{'active':!isPaused}">
           <i class="material-icons" v-if="isPaused">&#xE038;</i>
           <i class="material-icons" v-if="!isPaused">&#xE035;</i>
         </div>
-        <div class="progress-audio" v-if="showInterfaceItems">
+        <div class="progress-audio">
           <div :style="'width:'+pageProgress+'%'"></div>
         </div>
       </div>
@@ -61,8 +61,6 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from './events/index'
-  
-  var Howl = require('howler/dist/howler.min')
   
   const Logo = require('./assets/svgs/logo-01.svg')
   export default {
@@ -112,6 +110,10 @@
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
       }
+      
+      EventBus.$on('audio-started', function () {
+        this.isPaused = false
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -270,7 +272,6 @@
         bottom: 15px;
         left: 15px;
         right: 15px;
-        /*background: rgba(#000, 0.8);*/
       }
       .subtitles {
         background: #000;
@@ -497,7 +498,8 @@
         transition: all $animationTime;
         z-index: 2;
       }
-      &:hover i {
+      &:hover i,
+      &.active i {
         color: $brand-primary;
       }
     }
@@ -554,7 +556,7 @@
     transition: all $animationTime;
     p {
       color: #fff;
-      padding: 0 150px;
+      padding: 0 130px;
       @include font-size(1.3);
       font-weight: bold;
     }

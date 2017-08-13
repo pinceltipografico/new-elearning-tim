@@ -8,13 +8,13 @@
       </div>
       <div class="blue"></div>
       <div class="text-animation">
-        <span v-for="date in dates" v-bind:key="date" class="list-item">{{ date }}</span>
+        <span></span>
       </div>
       <div class="buttons" @click="startTodo">
         <span>Clique aqui e veja o que já existe desde então:</span>
       </div>
     </section>
-    <section class="page gradient" v-if="scene === 1">
+    <section class="page gradient scene2" style="position: absolute; top:0; left:0;">
       <div class="dna">
         <img src="../assets/backgrounds/page40/dna.png" alt="DNA"/>
         <div class="shadow"></div>
@@ -90,8 +90,7 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
-  
-  var Animations = require('../lib/ChainAnimation')
+  import anime from 'animejs'
   import iconOne from '../assets/svgs/page13-1.svg'
   import iconTwo from '../assets/svgs/page13-2.svg'
   import iconThree from '../assets/svgs/page13-3.svg'
@@ -117,11 +116,12 @@
      **/
     data () {
       return {
-        dates: [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
+        year: 1995,
         showTodo: false,
         activeTotoList: [],
         scene: 0,
-        canShowTags: false
+        canShowTags: false,
+        TimeLineCtrl: null
       }
     },
     /**
@@ -134,10 +134,6 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       this.startSceneOne()
-      setTimeout(function () {
-        this.playAudio('scene11', 'static/subtitles/page11.json', function (pos) {
-        }, function () {})
-      }.bind(this), 500)
     },
     /**
      | ----------------------------------------------
@@ -226,110 +222,149 @@
        **/
       startSceneOne () {
         var vm = this
+        var years = {year: 1995}
+        var yearEl = document.querySelector('.text-animation span')
         this.canShowTags = false
-        var animations = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.blue'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.text-animation'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline(function () {
-          removeItem()
+        
+        this.TimelineCtrl = anime.timeline({
+          loop: false
         })
-        
-        function removeItem () {
-          if (vm.dates.length - 2) {
-            vm.dates.shift()
-            setTimeout(removeItem, 900)
-          } else {
-            animations = [
-              {
-                time: 500,
-                step: 'show',
-                selector: '.script2'
-              }
-            ]
-            Animations.setAnimations(animations)
-            Animations.animationTimeline(() => {
-              setTimeout(() => { showDna() }, 7000)
-            })
-          }
-        }
-        
-        function showDna () {
-          vm.scene = 1
-          var dnaAnimation = [
-            {
-              time: 500,
-              step: 'show',
-              selector: '.dna'
-            }, {
-              time: 17000,
-              step: 'show',
-              selector: '.costumer'
-            }, {
-              time: 10000,
-              step: 'show',
-              selector: '.user-experience'
-            }, {
-              time: 22000,
-              step: 'show',
-              selector: '.custumer-monitoring'
-            }, {
-              time: 17000,
-              step: 'show',
-              selector: '.crew-experience'
-            }, {
-              time: 18000,
-              step: 'show',
-              selector: '.crew-experience'
-            }
-          ]
-          Animations.setAnimations(dnaAnimation)
-          Animations.animationTimeline(function () {
-            showEnd()
+        this.TimelineCtrl
+          .add({
+            targets: '.script2',
+            translateX: ['-100%', '0%'],
+            translateY: ['-50%', '-50%'],
+            duration: 200,
+            easing: 'linear',
+            offset: '+=500'
           })
-        }
-        
-        function showEnd () {
-          vm.scene = 0
-          animations = [
-            {
-              time: 500,
-              step: 'hide',
-              selector: '.script2'
-            }, {
-              time: 500,
-              step: 'step2',
-              selector: '.blue'
-            }, {
-              time: 500,
-              step: 'step3',
-              selector: '.blue'
-            }, {
-              time: 500,
-              step: 'step1',
-              selector: '.text-animation'
-            }, {
-              time: 500,
-              step: 'show',
-              selector: '.buttons'
-            }
-          ]
-          Animations.setAnimations(animations)
-          Animations.animationTimeline(() => {
-            vm.dates.shift()
-            setTimeout(function () {
-              vm.playAudio('scene11Click', 'static/subtitles/page11_1.json', null, null)
-            }, 500)
+          .add({
+            targets: '.blue',
+            height: [0, '100%'],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=14000'
           })
-        }
+          .add({
+            targets: '.text-animation',
+            opacity: 1,
+            translateX: '0%',
+            translateY: '-50%',
+            left: [80, 80],
+            top: ['50%', '50%']
+          })
+          .add({
+            targets: years,
+            year: 2016,
+            easing: 'linear',
+            update: function (y) {
+              yearEl.innerHTML = Math.floor(years.year)
+            },
+            duration: 1000
+          })
+          .add({
+            targets: '.scene2',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            offset: '+=11000',
+            begin: function () {
+              var _el = document.querySelector('.scene2')
+              _el.style.zIndex = 5
+            }
+          })
+          .add({
+            targets: '.dna',
+            opacity: 1,
+            easing: 'linear',
+            duration: 300
+          })
+          .add({
+            targets: '.costumer',
+            opacity: 1,
+            easing: 'linear',
+            duration: 300,
+            offset: '+=17000'
+          })
+          .add({
+            targets: '.user-experience',
+            opacity: 1,
+            easing: 'linear',
+            duration: 300,
+            offset: '+=10000'
+          })
+          .add({
+            targets: '.custumer-monitoring',
+            opacity: 1,
+            easing: 'linear',
+            duration: 300,
+            offset: '+=22000'
+          })
+          .add({
+            targets: '.crew-experience',
+            opacity: 1,
+            easing: 'linear',
+            duration: 300,
+            offset: '+=17000'
+          })
+          .add({
+            targets: '.scene2',
+            opacity: 0,
+            easing: 'linear',
+            duration: 1000,
+            offset: '+=18000',
+            complete: function () {
+              var _el = document.querySelector('.scene2')
+              _el.style.zIndex = -1
+            }
+          })
+          .add({
+            targets: '.script2',
+            translateX: '-100%',
+            translateY: '-50%',
+            duration: 200,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.blue',
+            left: 0,
+            easing: 'linear',
+            width: [{value: 1280, delay: 300}],
+            duration: 1000
+          })
+          .add({
+            targets: '.text-animation',
+            translateX: '-50%',
+            translateY: ['-50%', '-50%'],
+            top: ['50%', '50%'],
+            left: ['50%'],
+            easing: 'linear',
+            duration: 400
+          })
+          .add({
+            targets: years,
+            year: 2017,
+            easing: 'linear',
+            update: function (y) {
+              yearEl.innerHTML = Math.floor(years.year)
+            },
+            duration: 100
+          })
+          .add({
+            targets: '.buttons',
+            opacity: 1,
+            duration: 300
+          })
+        
+        EventBus.$on('pause', function (paused) {
+          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        }.bind(this))
+        EventBus.$on('rewind', function () {
+          this.TimelineCtrl.restart()
+        }.bind(this))
+        
+        this.playAudio('scene11', 'static/subtitles/page11.json', function (pos) {
+        }, function () {})
       }
     },
     
@@ -339,7 +374,6 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
       this.canShowTags = false
       this.$store.state.audio.stop()
     }
@@ -351,6 +385,12 @@
   @import "~susy/sass/susy";
   
   section.page {
+    
+    &.scene2 {
+      opacity: 0;
+      transition: opacity $animationTime;
+      z-index: -1;
+    }
     
     .dna {
       top: 50%;

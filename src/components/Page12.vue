@@ -27,11 +27,16 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
-  var Animations = require('../lib/ChainAnimation')
   export default {
     // component name
     name: 'Page12',
+    data () {
+      return {
+        TimeLineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT IS READY
@@ -42,73 +47,78 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 500,
-          step: 'show',
-          selector: '.white'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }, {
-          time: 7000,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 8000,
-          step: 'show',
-          selector: '.script2',
-          reverse: true
-        }, {
-          time: 10,
-          step: 'show',
-          selector: '.script1',
-          reverse: true
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.white'
-        }, {
-          time: 200,
-          step: 'show',
-          selector: '.image > img:nth-of-type(1)'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-2'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-4'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-1'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-3'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-6'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.icon-5'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.page'
-        }, {
-          time: 1500,
-          step: 'show',
-          selector: '.script3'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
+      
+      this.TimelineCtrl = anime.timeline({
+        loop: false
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.white',
+          width: [0, 1280],
+          duration: 200,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 1,
+          left: 75,
+          easing: 'linear',
+          duration: 200
+        })
+        .add({
+          targets: '.script2',
+          opacity: 1,
+          right: 75,
+          duration: 200,
+          easing: 'linear',
+          offset: '+=9000'
+        })
+        .add({
+          targets: '.script2',
+          opacity: 0,
+          easing: 'linear',
+          duration: 200,
+          offset: '+=6000'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 0,
+          easing: 'linear',
+          duration: 200
+        })
+        .add({
+          targets: '.white',
+          backgroundColor: '#fff',
+          easing: 'linear',
+          duration: 1000
+        })
+        .add({
+          targets: ['.icon-1', '.icon-2', '.icon-3', '.icon-4', '.icon-5', '.icon-6'],
+          opacity: 1,
+          duration: 300,
+          easing: 'linear',
+          delay: function (el, i) {
+            return 1000 * i
+          },
+          offset: '+=400'
+        })
+        .add({
+          targets: '.script3',
+          opacity: 1,
+          translateX: ['-50%', '-50%'],
+          translateY: ['0%', '-50%'],
+          easing: 'linear',
+          duration: 300,
+          offset: '+=200'
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
       this.playAudio('scene9', 'static/subtitles/page9.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
@@ -119,7 +129,6 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
       this.$store.state.audio.stop()
     }
   }
@@ -244,13 +253,9 @@
       left: 50%;
       bottom: 50px;
       padding: 0 40px;
-      transform: translate(-50%, 100%);
       opacity: 0;
       h1 {
         max-width: 600px;
-      }
-      &.show {
-        transform: translate(-50%, 0);
       }
     }
     

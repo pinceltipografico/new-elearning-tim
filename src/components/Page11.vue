@@ -126,6 +126,7 @@
     
     > * {
       position: absolute;
+      transition: all $animationTime;
     }
     
     canvas {

@@ -1,8 +1,11 @@
 <template>
   <section class="page">
     <div class="overlay darken"></div>
+    <div class="explain-item legenda">
+      <!-- --> Clique aqui para ativar ou desativar as legendas do curso<!-- -->
+    </div>
     <div class="explain-item volume">
-      <!-- --> Clique aqui para ativar ou desativar o áudio<!-- -->
+      <!-- --> Clique aqui para ativar ou desativar o áudio do curso<!-- -->
     </div>
     <div class="explain-item close">
       <!-- --> Clique aqui para sair do curso<!-- -->
@@ -11,10 +14,16 @@
       <!-- --> Esta barra indica o progresso de sua página <!-- -->
     </div>
     <div class="explain-item next-button">
-      <!-- --> Clique aqui para avançar uma página <!-- -->
+      <!-- --> Clique aqui para avançar para a próxima página <!-- -->
     </div>
     <div class="explain-item prev-button">
       <!-- --> Clique aqui para voltar uma página <!-- -->
+    </div>
+    <div class="explain-item play-button">
+      <!-- -->Clique aqui para pausar seu curso<!-- -->
+    </div>
+    <div class="explain-item rewind-button">
+      <!-- -->Clique aqui para voltar para o começo da página<!-- -->
     </div>
     <div class="accpet">
       <span>Ok. Entendi</span>
@@ -29,29 +38,37 @@
   var Animation = require('../lib/ChainAnimation')
   export default {
     /**
-    | ----------------------------------------------
-    * RETURN THE DATA OF COMPOENET
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE DATA OF COMPOENET
+     | ----------------------------------------------
+     **/
     data () {
       return {
         preventView: false
       }
     },
     /**
-    | ----------------------------------------------
-    * WHEN COMPONENT IS READY
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * WHEN COMPONENT IS READY
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('toggleIterface', true)
       let animationsScene = [
         {
           time: 500,
           step: 'show',
+          selector: '.explain-item.legenda'
+        }, {
+          time: 8000,
+          step: 'hide',
+          selector: '.explain-item.legenda'
+        }, {
+          time: 500,
+          step: 'show',
           selector: '.explain-item.volume'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'hide',
           selector: '.explain-item.volume'
         }, {
@@ -59,23 +76,15 @@
           step: 'show',
           selector: '.explain-item.close'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'hide',
           selector: '.explain-item.close'
         }, {
           time: 500,
           step: 'show',
-          selector: '.explain-item.progress-bar'
-        }, {
-          time: 4000,
-          step: 'hide',
-          selector: '.explain-item.progress-bar'
-        }, {
-          time: 500,
-          step: 'show',
           selector: '.explain-item.next-button'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'hide',
           selector: '.explain-item.next-button'
         }, {
@@ -83,9 +92,33 @@
           step: 'show',
           selector: '.explain-item.prev-button'
         }, {
-          time: 4000,
+          time: 8000,
           step: 'hide',
           selector: '.explain-item.prev-button'
+        }, {
+          time: 500,
+          step: 'show',
+          selector: '.explain-item.play-button'
+        }, {
+          time: 8000,
+          step: 'hide',
+          selector: '.explain-item.play-button'
+        }, {
+          time: 500,
+          step: 'show',
+          selector: '.explain-item.rewind-button'
+        }, {
+          time: 8000,
+          step: 'hide',
+          selector: '.explain-item.rewind-button'
+        }, {
+          time: 500,
+          step: 'show',
+          selector: '.explain-item.progress-bar'
+        }, {
+          time: 8000,
+          step: 'hide',
+          selector: '.explain-item.progress-bar'
         }, {
           time: 500,
           step: 'show',
@@ -93,15 +126,13 @@
         }
       ]
       Animation.setAnimations(animationsScene)
-      Animation.animationTimeline(function () {
-        console.log('done')
-      })
+      Animation.animationTimeline()
     },
     /**
-    | ----------------------------------------------
-    * RETURN THE METHODS OF COMPONENT
-    | ----------------------------------------------
-    **/
+     | ----------------------------------------------
+     * RETURN THE METHODS OF COMPONENT
+     | ----------------------------------------------
+     **/
     methods: {
       onAccept: function () {
         this.$cookie.set('explain_viewed', this.preventView)
@@ -113,25 +144,30 @@
 <style lang="scss" scoped>
   @import "../scss/variables";
   @import "../scss/mixins";
-
-  section.page{
+  
+  section.page {
     background: url("../assets/backgrounds/home/home.jpg") no-repeat;
     background-size: cover;
   }
+  
   .explain-item {
     position: absolute;
     display: block;
     z-index: 3;
-    color: #fff;
+    color: $brand-details;
     @include font-size(1.5);
-    max-width: 200px;
+    max-width: 300px;
     padding: 10px;
     border-top: 1px solid $brand-details;
     transition: opacity $animationTime, transform $animationTime;
     transform: translateX(-100%);
     opacity: 0;
+    text-transform: uppercase;
+    font-weight: bold;
     
-    &.progress-bar {
+    &.progress-bar,
+    &.play-button,
+    &.rewind-button {
       bottom: 70px;
       max-width: 250px;
       border-bottom: 1px solid $brand-details;
@@ -150,6 +186,20 @@
         border-right: 8px solid transparent;
         border-top: 8px solid $brand-details;
       }
+    }
+    &.play-button,
+    &.rewind-button {
+      bottom: 80px;
+      &:before {
+        right: auto;
+        left: 0;
+      }
+    }
+    &.play-button {
+      left: 90px;
+    }
+    &.rewind-button {
+      left: 45px;
     }
     
     &.next-button {
@@ -187,7 +237,8 @@
     }
     
     &.volume,
-    &.close {
+    &.close,
+    &.legenda {
       top: 80px;
       &:before {
         position: absolute;
@@ -208,11 +259,15 @@
     &.close {
       right: 35px;
     }
+    &.legenda {
+      right: 130px;
+    }
     
     &.show {
       transform: translateX(0);
       opacity: 1;
     }
+    
     &.hide {
       transform: translateX(-100%);
       opacity: 0;

@@ -1,5 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-unused-vars */
+import { EventBus } from '../events/index'
+
 const Audio = {}
 Audio.install = function (Vue, options) {
   'use strict'
@@ -37,6 +39,8 @@ Audio.install = function (Vue, options) {
       vm.$store.state.audio.on('play', function () {
         requestAnimationFrame(increase)
       }, currentAudioId)
+      
+      EventBus.$emit('audio-started')
     }
     
     /**

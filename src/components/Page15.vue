@@ -56,13 +56,15 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
   var Animations = require('../lib/ChainAnimation')
   var infographic = require('../assets/svgs/customer_centric.svg')
   export default {
     data () {
       return {
-        scene: 0
+        scene: 0,
+        TimeLineCtrl: null
       }
     },
     components: {
@@ -76,116 +78,171 @@
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      //
-      // animations
-      //
-      var animations = [
-        {
-          time: 500,
-          step: 'step1',
-          selector: '.intro > .script1'
-        }, {
-          time: 3500,
-          step: 'step1',
-          selector: '.intro'
-        }, {
-          time: 500,
-          step: 'hide',
-          selector: '.intro'
-        }, {
-          time: 0,
-          step: 'step0',
-          selector: '.de'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline(null)
-      var els = this.$el.querySelectorAll('.abordages-tradicionais > div')
-      var btn = this.$el.querySelector('.button')
+      var elsTrad = this.$el.querySelectorAll('.abordages-tradicionais > div')
+      var elsPara = this.$el.querySelectorAll('.script3 > h1 div')
+      var svgItems = this.$el.querySelectorAll('.item-icon')
       var vm = this
-      setTimeout(function () {
-        vm.playAudio('scene12', 'static/subtitles/page12.json', function (pos) {
-          if (pos === 6) {
-            vm.addClass(els[0], 'show')
-          }
-          if (pos === 10) {
-            vm.addClass(els[1], 'show')
-          }
-          if (pos === 13) {
-            vm.addClass(els[2], 'show')
-          }
-          if (pos === 19) {
-            vm.addClass(els[3], 'show')
-          }
-        }, function () {
-          vm.addClass(btn, 'step1')
+      
+      this.TimelineCtrl = anime.timeline({
+        loop: false,
+        elasticity: 100,
+        easing: [0.91, -0.54, 0.29, 1.56]
+      })
+      
+      this.TimelineCtrl
+        .add({
+          targets: '.script1',
+          translateY: ['-1000%', '-50%'],
+          translateX: ['-50%', '-50%'],
+          opacity: 1,
+          easing: 'linear',
+          duration: 300
         })
-      }, 500)
+        .add({
+          targets: '.intro',
+          translateX: '-100%',
+          easing: 'linear',
+          duration: 300,
+          opacity: 0,
+          offset: '+=3500'
+        })
+        .add({
+          targets: '.de',
+          left: 0,
+          easing: 'linear',
+          duration: 300,
+          begin: function () {
+            var el = document.querySelector('.de')
+            vm.removeClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: elsTrad,
+          translateX: ['100%', 0],
+          opacity: 1,
+          easing: 'linear',
+          duration: 300,
+          delay: function (el, i) {
+            if (i === 0) {
+              return 1000
+            } else if (i === 1) {
+              return 3000
+            } else if (i === 2) {
+              return 5000
+            } else {
+              return 8000
+            }
+          }
+        })
+        .add({
+          targets: '.button',
+          left: ['40%', '50%'],
+          easing: 'linear',
+          opacity: 1,
+          begin: function () {
+            var el = document.querySelector('.button')
+            el.style.display = 'block'
+          },
+          complete: function () {
+//            vm.TimelineCtrl.pause()
+          },
+          duration: 300
+        })
+        .add({
+          targets: '.button',
+          opacity: 0,
+          duration: 300,
+          easing: 'linear',
+          complete: function () {
+            var el = document.querySelector('.button')
+            el.style.display = 'block'
+          }
+        })
+        .add({
+          targets: '.de',
+          width: ['100%', '50%'],
+          left: 0,
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.para',
+          right: 0,
+          duration: 300,
+          easing: 'linear',
+          begin: function () {
+            var el = document.querySelector('.para')
+            vm.removeClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: elsPara,
+          translateX: ['100%', 0],
+          opacity: 1,
+          duration: 300,
+          easing: 'linear',
+          delay: function (el, i) {
+            if (i === 0) {
+              return 1000
+            } else if (i === 1) {
+              return 3000
+            } else if (i === 2) {
+              return 5000
+            } else {
+              return 7000
+            }
+          }
+        })
+        .add({
+          targets: '.para',
+          width: ['50%', '90%'],
+          easing: 'linear',
+          duration: 500,
+          complete: function () {
+            var el = document.querySelector('.para')
+            vm.addClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: '.de',
+          width: ['50%', '10%'],
+          easing: 'linear',
+          duration: 500,
+          offset: '-=300',
+          begin: function () {
+            var el = document.querySelector('.de')
+            vm.addClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: '.customer_centric',
+          opacity: 1,
+          easing: 'linear',
+          duration: 300
+        })
+        .add({
+          targets: svgItems,
+          opacity: 1,
+          easing: 'linear',
+          duration: 100
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
+      this.playAudio('scene12', 'static/subtitles/page12.json', null, function () {
+        vm.$store.commit('setCanAdvance', true)
+      })
     },
     methods: {
-      step2 () {
-        var animations = [
-          {
-            time: 0,
-            step: 'step1',
-            selector: '.button',
-            reverse: true
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.de'
-          }, {
-            time: 0,
-            step: 'step1',
-            selector: '.para'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline()
-        var els = this.$el.querySelectorAll('.script3 > h1 div')
-        var de = this.$el.querySelector('.de')
-        var para = this.$el.querySelector('.para')
-        var svgItems = this.$el.querySelectorAll('.item-icon')
-        var vm = this
-        this.playAudio('scene12_1', 'static/subtitles/page12_1.json', function (pos) {
-          if (pos === 6) {
-            vm.addClass(els[0], 'show')
-          }
-          if (pos === 12) {
-            vm.addClass(els[1], 'show')
-          }
-          if (pos === 16) {
-            vm.addClass(els[2], 'show')
-          }
-          if (pos === 20) {
-            vm.addClass(els[3], 'show')
-          }
-          if (pos === 24) {
-            vm.addClass(de, 'step2')
-            vm.addClass(para, 'step2')
-          }
-          if (pos === 25) {
-            vm.addClass(para, 'step3')
-          }
-          if (pos === 26) {
-            svgItems[0].style.opacity = 1
-            svgItems[1].style.opacity = 1
-            svgItems[2].style.opacity = 1
-            svgItems[3].style.opacity = 1
-            svgItems[4].style.opacity = 1
-            svgItems[5].style.opacity = 1
-            svgItems[6].style.opacity = 1
-          }
-        }, function () {
-          vm.$store.commit('setCanAdvance', true)
-        })
-      },
       buttonClick () {
         if (this.scene === 0) {
           this.step2()
           this.scene++
-        } else if (this.scene === 1) {
-          this.step3()
         }
       }
     },
@@ -218,6 +275,7 @@
     border: 4px solid #fff;
     animation: buttonAnimation 2.5s infinite ease-in-out alternate;
     cursor: pointer;
+    opacity: 0;
     
     div {
       display: table-cell;
@@ -233,16 +291,6 @@
     i {
       line-height: normal;
     }
-    
-    &.step1 {
-      left: 50%;
-      display: block;
-    }
-    &.step2 {
-      left: auto;
-      right: 5%;
-      display: block;
-    }
   }
   
   .scene {
@@ -254,16 +302,10 @@
         position: absolute;
         transition: all $animationTime;
       }
-      &.step1 {
-        transform: translateY(-100%);
-      }
-      &.hide {
-        z-index: -1;
-      }
       .script1 {
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -100%);
+        transform: translate(-50%, -50%);
         color: #fff;
         text-align: center;
         max-width: 400px;
@@ -274,11 +316,6 @@
         }
         i {
           @include font-size(10);
-        }
-        
-        &.step1 {
-          transform: translate(-50%, -50%);
-          opacity: 1;
         }
       }
     }
@@ -350,19 +387,11 @@
         transform: translateY(-50%);
         opacity: 0;
       }
-      &.step1 {
-        right: 0;
-      }
       &.step2 {
-        width: 90%;
         &:before,
         &:after {
+          transition: all $animationTime;
           width: 52%;
-        }
-      }
-      &.step3 {
-        .customer_centric {
-          opacity: 1;
         }
       }
     }
@@ -405,15 +434,7 @@
           }
         }
       }
-      &.step0 {
-        left: 0;
-      }
-      &.step1 {
-        left: 0;
-        width: 50%;
-      }
       &.step2 {
-        width: 10%;
         .script2,
         .abordages-tradicionais {
           display: none;

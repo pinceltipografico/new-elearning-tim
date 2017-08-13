@@ -1,6 +1,7 @@
 <template>
   <section class="page">
-    <div class="image-background"></div>
+    <div class="image-background step1"></div>
+    <div class="image-background image1"></div>
     <div class="effects"></div>
     <div class="script1">
       <h1>valorizamos aspectos diferentes</h1>
@@ -14,9 +15,14 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
-  var Animations = require('../lib/ChainAnimation')
   export default {
+    data () {
+      return {
+        TimeLineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT IS READY
@@ -29,43 +35,62 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       
-      var animations = [
-        {
-          time: 500,
-          step: 'step1',
-          selector: '.effects'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }, {
-          time: 8000,
-          step: 'step2',
-          selector: '.effects'
-        }, {
-          time: 0,
-          step: 'hide',
-          selector: '.script1'
-        }, {
-          time: 1000,
-          step: 'step3',
-          selector: '.effects'
-        }, {
-          time: 0,
-          step: 'step1',
-          selector: '.image-background'
-        }, {
-          time: 1000,
-          step: 'hide',
-          selector: '.effects'
-        }, {
-          time: 1000,
-          step: 'show',
-          selector: '.script2'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
+      this.TimelineCtrl = anime.timeline({
+        loop: false
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.effects',
+          height: [0, '100%'],
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 1,
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.effects',
+          left: 0,
+          width: [{value: 1280, delay: 300}],
+          duration: 200,
+          offset: '+=7000',
+          easing: 'linear'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 0,
+          duration: 200
+        })
+        .add({
+          targets: '.image1',
+          opacity: 0,
+          duration: 100
+        })
+        .add({
+          targets: '.effects',
+          opacity: 0,
+          duration: 200,
+          easing: 'linear',
+          offset: '+=400'
+        })
+        .add({
+          targets: '.script2',
+          opacity: 1,
+          easing: 'linear',
+          translateY: ['100%', '-50%'],
+          duration: 200
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
       this.playAudio('scene10', 'static/subtitles/page10.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
@@ -76,7 +101,6 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
       this.$store.state.audio.stop()
     }
   }
@@ -100,19 +124,6 @@
     height: 0;
     background: darken($brand-details, 20%);
     left: 10%;
-    &.step1 {
-      height: 100%;
-    }
-    &.step2 {
-      left: 0;
-    }
-    &.step3 {
-      width: 100%;
-      background: #fff;
-    }
-    &.hide {
-      opacity: 0;
-    }
   }
   
   .script1 {
@@ -123,12 +134,6 @@
     left: 10%;
     transform: translateY(-50%);
     opacity: 0;
-    &.show {
-      opacity: 1;
-    }
-    &.hide {
-      opacity: 0;
-    }
     h1 {
       padding: 20px;
     }

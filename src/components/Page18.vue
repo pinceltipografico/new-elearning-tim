@@ -1,6 +1,9 @@
 <template>
   <section class="page">
-    <div class="image-background"></div>
+    <div class="image-background step3 image4"></div>
+    <div class="image-background step2 image3"></div>
+    <div class="image-background step1 image2"></div>
+    <div class="image-background image1"></div>
     <div class="effects"></div>
     <div class="script1">
       <h1>proporcionando boas experiências</h1>
@@ -26,9 +29,14 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
-  var Animations = require('../lib/ChainAnimation')
   export default {
+    data () {
+      return {
+        TimeLineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
      * WHEN COMPONENT IS READY
@@ -39,104 +47,136 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       var vm = this
-      var animations = [
-        {
-          time: 500,
-          step: 'show',
-          selector: '.script1_2'
-        }, {
-          time: 2000,
-          step: 'step1',
-          selector: '.script1_2'
-        }, {
-          time: 6000,
-          step: 'hide',
-          selector: '.script1_2'
-        }, {
-          time: 500,
-          step: 'step1',
-          selector: '.effects'
-        }, {
-          time: 1000,
-          step: 'step1',
-          selector: '.image-background'
-        }, {
-          time: 100,
-          step: 'step2',
-          selector: '.effects'
-        }, {
-          time: 50,
-          step: 'step2_1',
-          selector: '.effects'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script2'
-        }, {
-          time: 8000,
-          step: 'show',
-          selector: '.script2',
-          reverse: true
-        }, {
-          time: 1000,
-          step: 'step3',
-          selector: '.effects'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }, {
-          time: 4000,
-          step: 'show',
-          selector: '.script1',
-          reverse: true
-        }, {
-          time: 500,
-          step: 'step3',
-          selector: '.effects',
-          reverse: true
-        }, {
-          time: 1000,
-          step: 'step2',
-          selector: '.image-background'
-        }, {
-          time: 500,
-          step: 'step4',
-          selector: '.effects'
-        }, {
-          time: 1500,
-          step: 'show',
-          selector: '.script3'
-        }, {
-          time: 6000,
-          step: 'show',
-          selector: '.script3',
-          reverse: true
-        }, {
-          time: 500,
-          step: 'step5',
-          selector: '.effects'
-        }, {
-          time: 1000,
-          step: 'step3',
-          selector: '.image-background'
-        }, {
-          time: 100,
-          step: 'step6',
-          selector: '.effects'
-        }, {
-          time: 1500,
-          step: 'show',
-          selector: '.script5'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
-      setTimeout(function () {
-        vm.playAudio('scene13', 'static/subtitles/page13.json', null, function () {
-          vm.$store.commit('setCanAdvance', true)
+      
+      this.TimelineCtrl = anime.timeline({
+        loop: false
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.script1_2',
+          translateY: ['-100%', '-50%'],
+          translateX: ['-50%', '-50%'],
+          opacity: [{value: 1}],
+          easing: 'linear',
+          duration: 300,
+          begin: function () {
+            var el = document.querySelector('.script1_2')
+            vm.removeClass(el, 'step1')
+          },
+          complete: function () {
+            setTimeout(function () {
+              var el = document.querySelector('.script1_2')
+              vm.addClass(el, 'step1')
+            }, 1000)
+          }
         })
-      }, 500)
+        .add({
+          targets: '.script1_2',
+          opacity: 0,
+          duration: 300,
+          easing: 'linear',
+          offset: '+=10000'
+        })
+        .add({
+          targets: '.effects',
+          opacity: 1,
+          easing: 'linear',
+          duration: 300,
+          offset: '+=500'
+        })
+        .add({
+          targets: '.image1',
+          opacity: 0,
+          duration: 100
+        })
+        .add({
+          targets: '.effects',
+          backgroundColor: [{value: '#2eb1e8', delay: 0}],
+          easing: 'linear',
+          duration: 300,
+          offset: '+=500'
+        })
+        .add({
+          targets: '.script2',
+          opacity: [{value: 1}, {value: 0, delay: 7000}],
+          duration: 400,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.effects',
+          opacity: [{value: 0}, {value: 1, delay: 1000}],
+          width: [{value: 400, delay: 500}],
+          left: [{value: '57%', delay: 500}],
+          easing: 'linear',
+          duration: 300
+        })
+        .add({
+          targets: '.script1',
+          opacity: [{value: 1}, {value: 0, delay: 6000}],
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.effects',
+          width: '100%',
+          left: 0,
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.image2',
+          opacity: 0,
+          duration: 10
+        })
+        .add({
+          targets: '.effects',
+          opacity: 0,
+          duration: 300,
+          easing: 'linear',
+          offset: '+=500'
+        })
+        .add({
+          targets: '.script3',
+          translateY: '-50%',
+          opacity: [{value: 1}, {value: 0, delay: 6000}],
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.effects',
+          opacity: 1,
+          duration: 300,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.image3',
+          opacity: 0,
+          duration: 100
+        })
+        .add({
+          targets: '.effects',
+          opacity: 0,
+          duration: 300,
+          easing: 'linear',
+          offset: '+=300'
+        })
+        .add({
+          targets: '.script5',
+          right: ['-105%', '5%'],
+          duration: 300,
+          easing: 'linear'
+        })
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+      
+      this.playAudio('scene13', 'static/subtitles/page13.json', null, function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
     },
     
     /**
@@ -145,7 +185,8 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
       this.$store.state.audio.stop()
     }
   }
@@ -178,15 +219,6 @@
     left: 0;
     opacity: 0;
     
-    &.step1 {
-      opacity: 1;
-    }
-    &.step2_1 {
-      background: $brand-details;
-    }
-    &.step2_1_2 {
-      opacity: 1;
-    }
     &.step3 {
       width: 40%;
       left: 55%;
@@ -207,41 +239,28 @@
     max-width: 350px;
     color: #fff;
     top: 50%;
-    transform: translate(100%, -50%);
+    transform: translate(0, -50%);
     left: 60%;
     opacity: 0;
-    &.show {
-      opacity: 1;
-      transform: translate(0, -50%);
-    }
-    &.hide {
-      opacity: 0;
-    }
   }
   
   .script1_2 {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -50%);
     @include font-size(2.5);
     text-align: center;
     display: block;
     color: #fff;
     opacity: 0;
+    transition: border $animationTime;
     h1 {
       background: $brand-details;
       margin: 0;
       padding: 0 20px;
     }
-    &.show {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
     &.step1 {
       border: 10px double $brand-details;
-    }
-    &.hide {
-      opacity: 0;
     }
   }
   
@@ -254,12 +273,6 @@
     top: 50%;
     left: 50%;
     opacity: 0;
-    &.show {
-      opacity: 1;
-    }
-    &.hide {
-      opacity: 0;
-    }
   }
   
   .script4 {
