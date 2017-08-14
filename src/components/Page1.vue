@@ -224,7 +224,7 @@
       }.bind(this))
     },
     destroyed () {
-      this.$store.state.audio.stop()
+      this.stopAudio()
       this.TimelineCtrl.seek(0)
     }
   }

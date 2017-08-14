@@ -79,7 +79,8 @@
         pages: null,
         showSubtitle: false,
         isMute: false,
-        isPaused: false
+        isPaused: false,
+        pageIsDone: false
       }
     },
     //
@@ -113,6 +114,12 @@
       
       EventBus.$on('audio-started', function () {
         this.isPaused = false
+        this.pageIsDone = false
+      }.bind(this))
+      
+      EventBus.$on('audio-end', function () {
+        this.isPaused = true
+        this.pageIsDone = true
       }.bind(this))
     },
     /**
@@ -189,6 +196,10 @@
         var currentId = this.getCurrentAudioId()
         if (currentId) {
           this.isPaused ? this.$store.state.audio.pause(currentId) : this.$store.state.audio.play(currentId)
+          if (this.pageIsDone && !this.isPaused) {
+            this.onRewind()
+            this.pageIsDone = false
+          }
         }
       },
       
@@ -202,6 +213,10 @@
         var currentId = this.getCurrentAudioId()
         if (currentId) {
           this.$store.state.audio.seek(0, currentId)
+          if (this.isPaused) {
+            this.$store.state.audio.play(currentId)
+            this.isPaused = false
+          }
         }
       }
     },

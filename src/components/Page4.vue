@@ -115,7 +115,7 @@
     },
     
     destroyed () {
-      this.$store.state.audio.stop()
+      this.stopAudio()
     }
   }
 </script>

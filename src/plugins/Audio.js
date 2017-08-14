@@ -6,6 +6,13 @@ const Audio = {}
 Audio.install = function (Vue, options) {
   'use strict'
   var currentAudioId = null
+  var actualCallback = null
+  
+  /**
+   | ----------------------------------------------
+   * PLAY AN AUDIO
+   | ----------------------------------------------
+   **/
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
     // var timer = document.querySelector('#timer')
@@ -21,13 +28,15 @@ Audio.install = function (Vue, options) {
       duration = vm.$store.state.audio.duration(currentAudioId)
       offset = vm.sprites[spriteID][0]
       pct = 100 / duration
+      actualCallback = doneCb
       
       //
       // quando o audio terminar
-      vm.$store.state.audio.once('end', function () {
-        if (doneCb) {
-          doneCb()
+      vm.$store.state.audio.on('end', function () {
+        if (actualCallback) {
+          actualCallback()
         }
+        EventBus.$emit('audio-end')
       }, currentAudioId)
       
       //
@@ -100,6 +109,17 @@ Audio.install = function (Vue, options) {
    **/
   Vue.prototype.getCurrentAudioId = function () {
     return currentAudioId
+  }
+  
+  /**
+   | ----------------------------------------------
+   * STOP AN AUDIO
+   | ----------------------------------------------
+   **/
+  Vue.prototype.stopAudio = function () {
+    this.$store.state.audio.stop()
+    currentAudioId = null
+    actualCallback = null
   }
 }
 export default Audio

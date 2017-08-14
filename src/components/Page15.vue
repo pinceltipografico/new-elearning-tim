@@ -63,7 +63,7 @@
   export default {
     data () {
       return {
-        scene: 0,
+        step: 0,
         TimeLineCtrl: null
       }
     },
@@ -86,7 +86,10 @@
       this.TimelineCtrl = anime.timeline({
         loop: false,
         elasticity: 100,
-        easing: [0.91, -0.54, 0.29, 1.56]
+        easing: [0.91, -0.54, 0.29, 1.56],
+        update: function (anim) {
+          vm.step = Math.floor(anim.progress)
+        }
       })
       
       this.TimelineCtrl
@@ -126,11 +129,11 @@
             if (i === 0) {
               return 1000
             } else if (i === 1) {
-              return 3000
-            } else if (i === 2) {
               return 5000
-            } else {
+            } else if (i === 2) {
               return 8000
+            } else {
+              return 14000
             }
           }
         })
@@ -145,8 +148,11 @@
           },
           complete: function () {
 //            vm.TimelineCtrl.pause()
+//            var CurrentAudio = vm.getCurrentAudioId()
+//            vm.$store.state.audio.pause(CurrentAudio)
           },
-          duration: 300
+          duration: 300,
+          offset: '+=6000'
         })
         .add({
           targets: '.button',
@@ -183,13 +189,13 @@
           easing: 'linear',
           delay: function (el, i) {
             if (i === 0) {
-              return 1000
+              return 4000
             } else if (i === 1) {
-              return 3000
+              return 10000
             } else if (i === 2) {
-              return 5000
+              return 14000
             } else {
-              return 7000
+              return 20000
             }
           }
         })
@@ -201,7 +207,8 @@
           complete: function () {
             var el = document.querySelector('.para')
             vm.addClass(el, 'step2')
-          }
+          },
+          offset: '+=4000'
         })
         .add({
           targets: '.de',
@@ -240,10 +247,9 @@
     },
     methods: {
       buttonClick () {
-        if (this.scene === 0) {
-          this.step2()
-          this.scene++
-        }
+        var currentAudio = this.getCurrentAudioId()
+        this.$store.state.audio.play(currentAudio)
+        this.TimelineCtrl.play()
       }
     },
     /**
@@ -252,8 +258,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
-      this.$store.state.audio.stop()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
+      this.stopAudio()
     }
   }
 </script>

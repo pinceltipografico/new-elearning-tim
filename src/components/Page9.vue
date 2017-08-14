@@ -31,7 +31,6 @@
   /* eslint-disable semi */
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
-  var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   import anime from 'animejs'
   
@@ -83,9 +82,11 @@
       }.bind(this))
       EventBus.$on('rewind', function () {
         this.TimelineCtrl.restart()
+        this.canClick = false
       }.bind(this))
       
       this.playAudio('scene6', 'static/subtitles/page6.json', function (pos) {}, function () {
+        console.log('done')
         this.canClick = true
       }.bind(this))
     },
@@ -177,8 +178,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      Animations.destroyAnimations()
-      this.$store.state.audio.stop()
+      this.stopAudio()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     }
   }
 </script>

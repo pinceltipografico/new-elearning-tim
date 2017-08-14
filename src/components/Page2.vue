@@ -33,7 +33,6 @@
 <script type="text/javascript">
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
-  var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
   import anime from 'animejs'
   
@@ -215,8 +214,9 @@
       }.bind(this))
     },
     destroyed () {
-      Animations.destroyAnimations()
-      this.$store.state.audio.stop()
+      this.stopAudio()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     }
   }
 </script>

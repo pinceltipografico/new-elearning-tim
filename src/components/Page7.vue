@@ -205,8 +205,10 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
       Animations.destroyAnimations()
-      this.$store.state.audio.stop()
+      this.stopAudio()
     }
   }
 </script>
@@ -219,7 +221,7 @@
     background-size: cover;
   }
   
-  *{
+  * {
     transition: all $animationTime;
   }
   

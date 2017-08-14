@@ -141,13 +141,9 @@
       this.scroller.start('.page', '.scroll-indicator', function (index) {
         vm.currentSection = index
       })
-      setTimeout(function () {
-        vm.playAudio('scene3', 'static/subtitles/page3.json', function () {
-        
-        }, function () {
-          vm.$store.commit('setCanAdvance', true)
-        })
-      }, 500)
+      this.playAudio('scene3', 'static/subtitles/page3.json', null, function () {
+        this.$store.commit('setCanAdvance', true)
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -159,7 +155,7 @@
         this.scroller.removeScrollListeners()
         this.scroller = null
       }
-      this.$store.state.audio.stop()
+      this.stopAudio()
     }
   }
 </script>
@@ -169,6 +165,10 @@
   
   section.page {
     @extend %gradient;
+    
+    * {
+      transition: all $animationTime;
+    }
     
     .scroll-arrow {
       left: 50%;
