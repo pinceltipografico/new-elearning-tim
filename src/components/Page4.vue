@@ -8,10 +8,10 @@
         <!--<div class="item" @click="onItemClick(1)">-->
         <!--dna -->
         <!--</div>-->
-        <div class="item" @click="onItemClick(2)">
+        <div class="item" @click="onItemClick(1)">
           <!-- infinite -->
         </div>
-        <div class="item" @click="onItemClick(3)">
+        <div class="item" @click="onItemClick(2)">
           <i class="material-icons">&#xE871;</i>
         </div>
         <!--<div class="item" @click="onItemClick(4)">-->
@@ -27,7 +27,7 @@
         <div class="inner">
           <div class="close" @click="closePopup"><i class="material-icons">&#xE5CD;</i></div>
           <h1>{{text}}</h1>
-          <div class="buttons" v-if="allowToSee">
+          <div class="buttons" v-if="allowToSee" @click="gotoModule(text)">
             <!-- -->Ver Módulo<!-- -->
           </div>
           <div v-if="!allowToSee">
@@ -49,7 +49,7 @@
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
-      this.$store.commit('setCanAdvance', true)
+      this.$store.commit('setCanAdvance', false)
       this.moduleTitle = this.$route.meta.module
       var itens = this.$el.querySelectorAll('.item-container > div')
       var vm = this
@@ -74,7 +74,7 @@
         })
       } else if (vm.moduleTitle === 'segundo') {
         vm.playAudio('menuItem2', 'static/subtitles/menu_3.json', function () {}, function () {
-          vm.addClass(itens[1], 'active')
+//          vm.addClass(itens[1], 'active')
         })
       }
     },
@@ -88,10 +88,8 @@
         text: '',
         texts: [
           'O Porquê das mudanças e conceito de CX',
-          'DNA CX TIM',
-          'Ciclo de Vida do Cliente',
-          'Diretrizes de Customer Experience',
-          'Benefícios da nossa mudança'
+          'Ciclo do Cliente',
+          'Diretrizes de Customer Experience'
         ],
         showPopup: false,
         allowToSee: false,
@@ -105,12 +103,20 @@
      **/
     methods: {
       onItemClick: function (index) {
-        this.allowToSee = this.$store.state.modulesAllowed.indexOf(index) !== -1
+        this.allowToSee = true // this.$store.state.modulesAllowed.indexOf(index) !== -1
         this.text = this.texts[index]
         this.showPopup = true
       },
       closePopup: function () {
         this.showPopup = false
+      },
+      gotoModule (t) {
+        if (t === this.texts[0]) {
+          this.$router.replace('page3')
+        }
+        if (t === this.texts[1]) {
+          this.$router.replace('/page15')
+        }
       }
     },
     

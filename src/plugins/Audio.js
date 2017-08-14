@@ -23,6 +23,7 @@ Audio.install = function (Vue, options) {
     var subtitlesObj
     
     function startAudio (res) {
+      vm.stopAudio()
       subtitlesObj = res || {}
       currentAudioId = vm.$store.state.audio.play(spriteID)
       duration = vm.$store.state.audio.duration(currentAudioId)

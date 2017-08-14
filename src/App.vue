@@ -544,6 +544,7 @@
       background: rgba($brand-primary, 0.5);
       left: 50%;
       bottom: 10px;
+      margin-right: 10px;
       div {
         width: 50%;
         height: 7px;

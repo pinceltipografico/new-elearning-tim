@@ -17,8 +17,9 @@
     </section> --->
     <!-- INTRO -->
     <!-- ANIMAÇÕES DE PRECISAR -->
-    <section class="page precisar" v-if="scene === 0">
-      <div class="image-background"></div>
+    <section class="page precisar" v-show="scene === 0">
+      <div class="image-background step2"></div>
+      <div class="image-background step1 image1"></div>
       <div class="white"></div>
       <div class="script1">
         <h1>É Quando surge a necessidade de <span>comprar</span></h1>
@@ -36,8 +37,9 @@
     </section>
     <!-- ANIMAÇÕES DE PRECISAR -->
     <!-- ANIMAÇÕES DE PESQUISAR -->
-    <section class="page pesquisar" v-if="scene === 1">
-      <div class="image-background"></div>
+    <section class="page pesquisar" v-show="scene === 1">
+      <div class="image-background step2"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
         <h1>é o momento em que o cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
@@ -56,8 +58,9 @@
     </section>
     <!-- ANIMAÇÕES DE PESQUISAR -->
     <!-- ANIMAÇÕES DE ESCOLHER -->
-    <section class="page escolher" v-if="scene === 2">
-      <div class="image-background"></div>
+    <section class="page escolher" v-show="scene === 2">
+      <div class="image-background step2"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
         <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele?</span>
@@ -77,8 +80,9 @@
     </section>
     <!-- ANIMAÇÕES DE ESCOLHER -->
     <!-- ANIMAÇÕES DE COMPRAR -->
-    <section class="page comprar" v-if="scene === 3">
-      <div class="image-background"></div>
+    <section class="page comprar" v-show="scene === 3">
+      <div class="image-background step2"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
         <h1>Fazer com que o cliente sinta que acertou na escolha</span>
@@ -97,8 +101,9 @@
     </section>
     <!-- ANIMAÇÕES DE COMPRAR -->
     <!-- ANIMAÇÕES DE RECEBER -->
-    <section class="page receber" v-if="scene === 4">
-      <div class="image-background"></div>
+    <section class="page receber" v-show="scene === 4">
+      <div class="image-background step1"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
         <h1>Como tornar a entrega do produto ou serviço vendido uma <span>experiência única?</span></h1>
@@ -116,7 +121,7 @@
     </section>
     <!-- ANIMAÇÕES DE RECEBER -->
     <!-- ANIMAÇÕES DE USAR -->
-    <section class="page usar" v-if="scene === 5">
+    <section class="page usar" v-show="scene === 5">
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
@@ -139,8 +144,10 @@
     </section>
     <!-- ANIMAÇÕES DE USAR -->
     <!-- ANIMAÇÕES DE MANTER -->
-    <section class="page manter" v-if="scene === 6">
-      <div class="image-background"></div>
+    <section class="page manter" v-show="scene === 6">
+      <div class="image-background step3"></div>
+      <div class="image-background step2 image2"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
         <h1>Manter o cliente encantado com a marca, mesmo quando ele encontra contratempos ou quando <span>ele precisa de algum suporte</span>
@@ -163,7 +170,7 @@
     </section>
     <!-- ANIMAÇÕES DE MANTER -->
     <!-- ANIMAÇÕES DE RECOMENDAR -->
-    <section class="page recomendar" v-if="scene === 7">
+    <section class="page recomendar" v-show="scene === 7">
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
@@ -190,6 +197,9 @@
 <script type="text/javascript">
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
+  import anime from 'animejs'
+  import { EventBus } from '../events/index'
+  
   var svgItem = require('../assets/svgs/infinity.svg')
   var Animation = require('../lib/ChainAnimation')
   export default {
@@ -203,7 +213,8 @@
         scene: -1,
         smallMenu: false,
         started: false,
-        titles: ['precisar', 'pesquisar', 'escolher', 'comprar', 'receber', 'usar', 'manter', 'recomendar']
+        titles: ['precisar', 'pesquisar', 'escolher', 'comprar', 'receber', 'usar', 'manter', 'recomendar'],
+        TimeLineCtrl: null
       }
     },
     
@@ -230,10 +241,18 @@
         var item = gs[i]
         item.style.opacity = 0
       }
-      this.start()
-//      this.started = true
-//      this.scene = 7
-//      this.startSceneEleven()
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
+
+//      this.start()
+      this.started = true
+      this.scene = 7
+      this.startSceneEleven()
     },
     /**
      | ----------------------------------------------
@@ -241,6 +260,7 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      this.stopAudio()
       Animation.destroyAnimations()
     },
     methods: {
@@ -342,107 +362,106 @@
        * START SCENE ONE
        | ----------------------------------------------
        **/
-      startSceneOne (event) {
+      startSceneOne () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.precisar'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.precisar > .white'
-          }, {
-            time: 100,
-            step: 'step1',
-            selector: '.precisar > .image-background'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.precisar > .white'
-          }, {
-            time: 400,
-            step: 'step2',
-            selector: '.precisar > .white'
-          }, {
-            time: 400,
-            step: 'step3',
-            selector: '.precisar > .white'
-          }, {
-            time: 100,
-            step: 'step4',
-            selector: '.precisar > .white'
-          }, {
-            time: 100,
-            step: 'show',
-            selector: '.precisar > .script1'
-          }, {
-            time: 4000,
-            step: 'step5',
-            selector: '.precisar > .white'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.precisar > .script1'
-          }, {
-            time: 1000,
-            step: 'show',
-            selector: '.precisar > .script2'
-          }, {
-            time: 1000,
-            step: 'show',
-            selector: '.precisar > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(null)
-        setTimeout(function () {
-          this.playAudio('precisar1', 'static/subtitles/page15_precisar1.json', null, null)
-        }.bind(this), 500)
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        
+        this.TimelineCtrl
+          .add({
+            targets: '.precisar',
+            opacity: 1,
+            duration: 300
+          })
+          .add({
+            targets: '.precisar > .white',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.precisar > .white',
+            opacity: [{value: 1, delay: 1000}],
+            width: [{value: '400px', delay: 1000}],
+            right: [{value: '10%', delay: 1000}],
+            height: [{value: 0}, {value: '100%', delay: 1500}],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=300'
+          })
+          .add({
+            targets: '.precisar > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 14000}],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=1500'
+          })
+          .add({
+            targets: '.precisar > .white',
+            right: 0,
+            width: '1280',
+            height: [{value: '50%', delay: 1000}],
+            top: '50%',
+            translateY: [0, '-50%'],
+            opacity: 0.4,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.precisar > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        
+        this.playAudio('precisar1', 'static/subtitles/page15_precisar1.json', null, null)
       },
       startSceneTwo () {
-        var anim = [
-          {
-            time: 0,
-            step: 'show',
-            selector: '.precisar > .iconButton',
-            reverse: true
-          },
-          {
-            time: 500,
-            step: 'show',
-            selector: '.precisar > .script2',
-            reverse: true
-          }, {
-            time: 0,
-            step: 'step6',
-            selector: '.precisar > .white'
-          }, {
-            time: 400,
-            step: 'hide',
-            selector: '.precisar > .script1'
-          }, {
-            time: 0,
-            step: 'step2',
-            selector: '.precisar > .image-background'
-          }, {
-            time: 1000,
-            step: 'step7',
-            selector: '.precisar > .white'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.precisar > .script3'
-          }, {
-            time: 4000,
-            step: 'show',
-            selector: '.precisar > .script3'
-          }
-        ]
-        Animation.setAnimations(anim)
-        Animation.animationTimeline(function () {
-          this.addListenerSvg(1, this.startSceneThree)
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        
+        this.TimelineCtrl
+          .add({
+            targets: '.precisar > .iconButton',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.precisar > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.precisar > .iconButton')
+              el.style.display = 'none'
+            }
+          })
+          .add({
+            targets: '.precisar > .white',
+            height: '100%',
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            top: 0,
+            translateY: ['-50%', '0%'],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.precisar > .image1',
+            opacity: 0,
+            duration: 10,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.precisar > .script3',
+            opacity: 1,
+            duration: 300,
+            offset: '+=3000'
+          })
+        this.playAudio('precisar2', 'static/subtitles/page15_precisar1.json', null, function () {
+          this.addListenerSvg(2, this.startSceneFive)
         }.bind(this))
       },
       
@@ -453,79 +472,95 @@
        **/
       startSceneThree () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.pesquisar'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.pesquisar > .effects'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.pesquisar > .script1'
-          }, {
-            time: 4000,
-            step: 'step2',
-            selector: '.pesquisar > .script1'
-          }, {
-            time: 500,
-            step: 'step2',
-            selector: '.pesquisar > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.pesquisar > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(null)
+        
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        this.TimelineCtrl
+          .add({
+            targets: '.pesquisar',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.pesquisar > .effects',
+            height: ['0%', '100%'],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=1000'
+          })
+          .add({
+            targets: '.pesquisar > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 14000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.pesquisar > .effects',
+            width: ['40$', '100%'],
+            height: [{value: '40%', delay: 1000}],
+            right: 0,
+            top: [{value: '50%', delay: 1000}],
+            translateY: [{value: '0%'}, {value: '-50%', delay: 1000}],
+            opacity: [{value: 1}, {value: 0.4, delay: 1000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.pesquisar > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        this.playAudio('pesquisar1', 'static/subtitles/page15_pesquisar1.json', null, null)
       },
       startSceneFour () {
-        var animations = [
-          {
-            time: 0,
-            step: 'show',
-            selector: '.pesquisar > .iconButton',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step4',
-            selector: '.pesquisar > .effects'
-          }, {
-            time: 500,
-            step: 'step2',
-            selector: '.pesquisar > .image-background'
-          }, {
-            time: 1000,
-            step: 'step5',
-            selector: '.pesquisar > .effects'
-          }, {
-            time: 50,
-            step: 'step3',
-            selector: '.pesquisar > .script2'
-          }, {
-            time: 250,
-            step: 'step4',
-            selector: '.pesquisar > .script2'
-          }, {
-            time: 1000,
-            step: 'step3',
-            selector: '.pesquisar > .effects'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.pesquisar > .script3'
-          }, {
-            time: 3000,
-            step: 'step1',
-            selector: '.pesquisar > .script3'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        this.TimelineCtrl
+          .add({
+            targets: '.pesquisar > .iconButton',
+            begin: function () {
+              var el = document.querySelector('.pesquisar > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.pesquisar > .iconButton')
+              el.style.display = 'none'
+            },
+            opacity: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.pesquisar > .effects',
+            height: '100%',
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            backgroundColor: '#ffffff',
+            translateY: 0,
+            top: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.pesquisar > .image1',
+            opacity: 0,
+            duration: 100,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.pesquisar > .script3',
+            left: ['-100%', '0%'],
+            duration: 400,
+            offset: '+=3000',
+            easing: 'linear'
+          })
+        
+        this.playAudio('pesquisar2', 'static/subtitles/page15_pesquisar2.json', null, function () {
           this.addListenerSvg(2, this.startSceneFive)
         }.bind(this))
       },
@@ -537,64 +572,87 @@
        **/
       startSceneFive () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.escolher'
-          }, {
-            time: 250,
-            step: 'show',
-            selector: '.escolher > .script1'
-          }, {
-            time: 4050,
-            step: 'step2',
-            selector: '.escolher > .script1'
-          }, {
-            time: 500,
-            step: 'step3',
-            selector: '.escolher > .script1'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.escolher > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline({
+          loop: false
         })
+        this.TimelineCtrl
+          .add({
+            targets: '.escolher',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.escolher > .script1',
+            left: ['-100%', '0%'],
+            width: [{value: '500px'}, {value: '1280px', delay: 13000}],
+            height: [{value: '150px'}, {value: '300px', delay: 13000}],
+            opacity: [{value: 1}, {value: 0.4, delay: 13000}],
+            backgroundColor: '#fff',
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.escolher > .script1 h1',
+            opacity: 0,
+            duration: 300,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.escolher > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            offset: '+=500'
+          })
+        this.playAudio('escolher1', 'static/subtitles/page15_escolher1.json', null, null)
       },
       startSceneFiveTwo () {
-        var animations = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.escolher > .iconButton',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step4',
-            selector: '.escolher > .script1'
-          }, {
-            time: 500,
-            step: 'step4',
-            selector: '.escolher > .script1'
-          }, {
-            time: 500,
-            step: 'step2',
-            selector: '.escolher > .image-background'
-          }, {
-            time: 1500,
-            step: 'step5',
-            selector: '.escolher > .script1'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.escolher > .script2'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        this.TimelineCtrl
+          .add({
+            targets: '.escolher > .iconButton',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.escolher > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.escolher > .iconButton')
+              el.style.display = 'none'
+            }
+          })
+          .add({
+            targets: '.escolher > .script1',
+            height: '100%',
+            opacity: [{value: 1}, {value: 0, delay: 1500}],
+            translateY: 0,
+            top: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.escolher > .image1',
+            opacity: 0,
+            duration: 10,
+            offset: '-=400'
+          })
+          .add({
+            targets: '.escolher > .script2',
+            top: ['170%', '70%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            offset: '+=1000'
+          })
+        
+        this.playAudio('escolher2', 'static/subtitles/page15_escolher2.json', null, function () {
           this.addListenerSvg(3, this.startSceneSix)
         }.bind(this))
       },
@@ -606,72 +664,94 @@
        **/
       startSceneSix () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.comprar'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.comprar > .effects'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.comprar > .script1'
-          }, {
-            time: 4000,
-            step: 'step1',
-            selector: '.comprar > .script1',
-            reverse: true
-          }, {
-            time: 400,
-            step: 'step2',
-            selector: '.comprar > .effects'
-          }, {
-            time: 0,
-            step: 'step3',
-            selector: '.comprar > .effects'
-          }, {
-            time: 400,
-            step: 'show',
-            selector: '.comprar > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline()
+        this.TimelineCtrl = anime.timeline({
+          loop: false
+        })
+        this.TimelineCtrl
+          .add({
+            targets: '.comprar',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.comprar > .effects',
+            height: ['0%', '100%'],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=300'
+          })
+          .add({
+            targets: '.comprar > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 7000}],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=300'
+          })
+          .add({
+            targets: '.comprar > .effects',
+            left: '0%',
+            width: ['35%', '100%'],
+            opacity: [{value: 0.4, delay: 1000}],
+            height: [{value: '40%', delay: 1000}],
+            top: [{value: '0%'}, {value: '50%', delay: 1000}],
+            translateY: [{value: '0%'}, {value: '-50%', delay: 1000}],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=300'
+          })
+          .add({
+            targets: '.comprar > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        
+        this.playAudio('comprar1', 'static/subtitles/page15_comprar1.json', null, null)
       },
       startSceneSeven () {
-        var animations = [
-          {
-            time: 0,
-            step: 'show',
-            selector: '.comprar > .iconButton',
-            reverse: true
-          }, {
-            time: 400,
-            step: 'step4',
-            selector: '.comprar > .effects'
-          }, {
-            time: 1000,
-            step: 'step2',
-            selector: '.comprar > .image-background'
-          }, {
-            time: 400,
-            step: 'step5',
-            selector: '.comprar > .effects'
-          }, {
-            time: 1000,
-            step: 'step3',
-            selector: '.comprar > .effects'
-          }, {
-            time: 400,
-            step: 'show',
-            selector: '.comprar > .script2'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.comprar > .iconButton',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.comprar > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.comprar > .iconButton')
+              el.style.display = 'none'
+            }
+          })
+          .add({
+            targets: '.comprar > .effects',
+            background: '#fff',
+            height: '100%',
+            top: ['50%', '0%'],
+            translateY: ['-50%', '0%'],
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.comprar > .image1',
+            opacity: 0,
+            duration: 100,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.comprar > .script2',
+            right: ['-100%', '0%'],
+            duration: 300,
+            easing: 'linear'
+          })
+        
+        this.playAudio('comprar2', 'static/subtitles/page15_comprar2.json', null, function () {
           this.addListenerSvg(4, this.startSceneEight)
         }.bind(this))
       },
@@ -683,59 +763,82 @@
        **/
       startSceneEight () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.receber'
-          }, {
-            time: 400,
-            step: 'show',
-            selector: '.receber > .script1'
-          }, {
-            time: 4000,
-            step: 'step2',
-            selector: '.receber > .script1'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.receber > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline()
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.receber',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.receber > .script1',
+            translateX: ['-100%', '0%'],
+            translateY: ['-50%', '-50%'],
+            background: [{value: '#fff'}],
+            opacity: [{value: 1}, {value: 0.4, delay: 14000}],
+            height: [{value: '28%'}, {value: '30%', delay: 14000}],
+            width: [{value: '50%'}, {value: '100%', delay: 14000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.receber > .script1 h1',
+            opacity: 0,
+            duration: 100,
+            easing: 'linear',
+            offset: '-=500'
+          })
+          .add({
+            targets: '.receber > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        this.playAudio('receber1', 'static/subtitles/page15_receber1.json', null, null)
       },
       startSceneEight2 () {
-        var animations = [
-          {
-            time: 0,
-            step: 'show',
-            selector: '.receber > .iconButton',
-            reverse: true
-          }, {
-            time: 400,
-            step: 'step3',
-            selector: '.receber > .script1'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.receber > .image-background'
-          }, {
-            time: 1000,
-            step: 'step4',
-            selector: '.receber > .script1'
-          }, {
-            time: 1000,
-            step: 'show',
-            selector: '.receber > .script2'
-          }, {
-            time: 4000,
-            step: 'show',
-            selector: '.receber > .script2'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.receber > .iconButton',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.receber > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.receber > .iconButton')
+              el.style.display = 'none'
+            }
+          })
+          .add({
+            targets: '.receber > .script1',
+            height: '100%',
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            translateY: ['-50%', '0%'],
+            top: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.receber > .image1',
+            opacity: 0,
+            duration: 10,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.receber > .script2',
+            opacity: 1,
+            right: ['-100%', '0%'],
+            duration: 400,
+            easing: 'linear'
+          })
+        this.playAudio('receber2', 'static/subtitles/page15_receber2.json', null, function () {
           this.addListenerSvg(5, this.startSceneNine)
         }.bind(this))
       },
@@ -747,89 +850,98 @@
        **/
       startSceneNine () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.usar'
-          }, {
-            time: 300,
-            step: 'step1',
-            selector: '.usar > .effects'
-          }, {
-            time: 300,
-            step: 'show',
-            selector: '.usar > .script1'
-          }, {
-            time: 3000,
-            step: 'show',
-            selector: '.usar > .script1',
-            reverse: true
-          }, {
-            time: 300,
-            step: 'step2',
-            selector: '.usar > .effects'
-          }, {
-            time: 500,
-            step: 'step3',
-            selector: '.usar > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.usar > .script2'
-          }, {
-            time: 4000,
-            step: 'show',
-            selector: '.usar > .script2',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step4',
-            selector: '.usar > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.usar > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline()
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.usar',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .effects',
+            height: ['0%', '100%'],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 18000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .effects',
+            left: ['5%', '0%'],
+            width: ['35%', '100%'],
+            opacity: [{value: 1}, {value: 0.4, delay: 1000}],
+            height: [{value: '100%'}, {value: '40%', delay: 1000}],
+            top: [{value: '0%'}, {value: '50%', delay: 1000}],
+            translateY: [{value: '0%'}, {value: '-50%', delay: 1000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        this.playAudio('usar1', 'static/subtitles/page15_usar1.json', null, null)
       },
       startSceneNineTwo () {
-        var animations = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.usar > .iconButton',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step5',
-            selector: '.usar > .effects'
-          }, {
-            time: 50,
-            step: 'show',
-            selector: '.usar > .video'
-          }, {
-            time: 300,
-            step: 'step1',
-            selector: '.usar > .video'
-          }, {
-            time: 1000,
-            step: 'step2',
-            selector: '.usar > .video'
-          }, {
-            time: 1000,
-            step: 'step3',
-            selector: '.usar > .video'
-          }, {
-            time: 4000,
-            step: 'step3',
-            selector: '.usar > .video'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {
+        var vm = this
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.usar > .iconButton',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.usar > .iconButton')
+              el.style.display = 'block'
+            },
+            complete: function () {
+              var el = document.querySelector('.usar > .iconButton')
+              el.style.display = 'none'
+            }
+          })
+          .add({
+            targets: '.usar > .effects',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .video',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.usar > .video')
+              el.style.display = 'block'
+            }
+          })
+          .add({
+            targets: '.usar > .video h1',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            begin: function () {
+              var el = document.querySelector('.usar > .video')
+              vm.removeClass(el, 'step3')
+            },
+            complete: function () {
+              setTimeout(function () {
+                var el = document.querySelector('.usar > .video')
+                vm.addClass(el, 'step3')
+              }, 1000)
+            }
+          })
+        this.playAudio('usar2', 'static/subtitles/page15_usar2.json', null, function () {
           this.addListenerSvg(6, this.startSceneTen)
         }.bind(this))
       },
@@ -841,89 +953,105 @@
        **/
       startSceneTen () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.manter'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.manter > .effects'
-          }, {
-            time: 400,
-            step: 'step1',
-            selector: '.manter > .script1'
-          }, {
-            time: 4000,
-            step: 'step1',
-            selector: '.manter > .script1',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step2',
-            selector: '.manter > .effects'
-          }, {
-            time: 100,
-            step: 'step2',
-            selector: '.manter > .image-background'
-          }, {
-            time: 1000,
-            step: 'step3',
-            selector: '.manter > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.manter > .script2'
-          }, {
-            time: 4000,
-            step: 'show',
-            selector: '.manter > .script2',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step3_1',
-            selector: '.manter > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.manter > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {})
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.manter',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .effects',
+            width: ['0%', '100%'],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 10000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .effects',
+            top: ['50%', '0%'],
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            height: ['30%', '100%'],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .image1',
+            opacity: 0,
+            duration: 100,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.manter > .script2',
+            opacity: [{value: 1}, {value: 0, delay: 15000}],
+            translateY: '-50%',
+            duration: 300,
+            easing: 'linear',
+            offset: '+=500'
+          })
+          .add({
+            targets: '.manter > .effects',
+            top: ['0%', '50%'],
+            opacity: 0.4,
+            height: '40%',
+            translateY: '-50%',
+            easing: 'linear',
+            duration: 300
+          })
+          .add({
+            targets: '.manter > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            easing: 'linear',
+            duration: 300
+          })
+        this.playAudio('manter1', 'static/subtitles/page15_manter1.json', null, null)
       },
       startSceneTenTwo () {
-        var anim = [
-          {
-            time: 0,
-            step: 'show',
-            selector: '.manter > .iconButton',
-            reverse: true
-          },
-          {
-            time: 500,
-            step: 'step4',
-            selector: '.manter > .effects'
-          }, {
-            time: 500,
-            step: 'step3',
-            selector: '.manter > .image-background'
-          }, {
-            time: 1000,
-            step: 'step5',
-            selector: '.manter > .effects'
-          }, {
-            time: 1000,
-            step: 'show',
-            selector: '.manter > .script3 > h1:nth-of-type(1)'
-          }, {
-            time: 1500,
-            step: 'show',
-            selector: '.manter > .script3 > h1:nth-of-type(2)'
-          }]
-        Animation.setAnimations(anim)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.manter > .iconButton',
+            opacity: 0,
+            zIndex: -2,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .effects',
+            height: '100%',
+            top: '0%',
+            translateY: '0%',
+            opacity: [{value: 1}, {value: 0, delay: 2000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.manter > .image2',
+            opacity: 0,
+            duration: 100,
+            offset: '-=500'
+          })
+          .add({
+            targets: [
+              '.manter > .script3 > h1:nth-of-type(1)',
+              '.manter > .script3 > h1:nth-of-type(1)'
+            ],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            delay: function (el, i) {
+              return 1000 * i
+            }
+          })
+        this.playAudio('manter2', 'static/subtitles/page15_manter2.json', null, function () {
           this.addListenerSvg(7, this.startSceneEleven)
         }.bind(this))
       },
@@ -935,65 +1063,87 @@
        **/
       startSceneEleven () {
         this.smallMenu = true
-        var animations = [
-          {
-            time: 50,
-            step: 'show',
-            selector: '.recomendar'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.recomendar > .effects'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.recomendar > .script1'
-          }, {
-            time: 4000,
-            step: 'step1',
-            selector: '.recomendar > .script1',
-            reverse: true
-          }, {
-            time: 500,
-            step: 'step2',
-            selector: '.recomendar > .effects'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.recomendar > .iconButton'
-          }
-        ]
-        Animation.setAnimations(animations)
-        Animation.animationTimeline(function () {})
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.recomendar',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .effects',
+            height: '100%',
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .script1',
+            opacity: [{value: 1}, {value: 0, delay: 15000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .effects',
+            width: ['40%', '100%'],
+            height: ['100%', '40%'],
+            left: ['5%', '0%'],
+            top: ['0%', '50%'],
+            translateY: ['-50%'],
+            backgroundColor: '#fff',
+            opacity: 0.4,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .iconButton',
+            translateY: ['0%', '-50%'],
+            translateX: ['-50%', '-50%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        this.playAudio('recomendar1', 'static/subtitles/page15_recomendar1.json', null, null)
       },
       startSceneElevenTwo () {
-        var anim = [
-          {
-            time: 500,
-            step: 'show',
-            selector: '.recomendar > .iconButton',
-            reverse: true
-          },
-          {
-            time: 500,
-            step: 'step3',
-            selector: '.recomendar > .effects'
-          }, {
-            time: 0,
-            step: 'hide',
-            selector: '.recomendar > .image-background'
-          }, {
-            time: 1000,
-            step: 'step1',
-            selector: '.recomendar > .homem'
-          }, {
-            time: 500,
-            step: 'show',
-            selector: '.recomendar > .script2'
-          }
-        ]
-        Animation.setAnimations(anim)
-        Animation.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: '.recomendar > .iconButton',
+            opacity: 0,
+            zIndex: -2,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .effects',
+            top: ['50%', '0%'],
+            height: '100%',
+            translateY: ['-50%', '0'],
+            opacity: [{value: 1}, {value: 0, delay: 1000}],
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .image-background',
+            opacity: 0,
+            duration: 100,
+            offset: '-=500'
+          })
+          .add({
+            targets: '.recomendar > .homem',
+            right: ['-100%', '10%'],
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.recomendar > .script2',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear'
+          })
+        this.playAudio('recomendar2', 'static/subtitles/page15_recomendar2.json', null, function () {
           this.$store.commit('setCanAdvance', true)
         }.bind(this))
       }
@@ -1211,10 +1361,6 @@
   .recomendar {
     opacity: 0;
     z-index: -1;
-    &.show {
-      z-index: 2;
-      opacity: 1;
-    }
   }
   
   //
@@ -1234,43 +1380,11 @@
       width: 100%;
       height: 100%;
       background: #fff;
-      &.step1 {
-        opacity: 0;
-      }
-      &.step2 {
-        width: 40%;
-        height: 0;
-        top: 0;
-        right: 10%;
-      }
-      &.step3 {
-        opacity: 1;
-      }
-      &.step4 {
-        height: 100%;
-      }
-      &.step5 {
-        width: 100%;
-        height: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        background: rgba(#fff, 0.4);
-      }
-      &.step6 {
-        top: 0;
-        transform: translateY(0);
-        height: 100%;
-        background: #fff;
-      }
-      &.step7 {
-        opacity: 0;
-      }
     }
     .script1 {
       top: 50%;
       max-width: 35%;
-      right: 12%;
+      right: 8%;
       transform: translateY(-50%);
       opacity: 0;
       h1 {
@@ -1306,10 +1420,6 @@
         color: #fff;
         text-align: center;
       }
-      &.show {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
     }
     .script3 {
       top: 50%;
@@ -1320,9 +1430,7 @@
       transform: translateY(-50%);
       opacity: 0;
       padding-left: 50px;
-      &.show {
-        opacity: 1;
-      }
+      transition: opacity $animationTime;
       h1 {
         padding: 10px 30px;
         @include font-size(2.5);
@@ -1347,30 +1455,6 @@
       height: 0;
       top: 0;
       right: 10%;
-      &.step1 {
-        height: 100%;
-      }
-      &.step2 {
-        width: 100%;
-        height: 40%;
-        right: 0;
-        background: rgba(#fff, 0.4);
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      &.step3 {
-        height: 40%;
-        top: 50%;
-      }
-      &.step4 {
-        top: 0;
-        height: 100%;
-        transform: translateY(0);
-        background: #fff;
-      }
-      &.step5 {
-        opacity: 0;
-      }
     }
     .script1 {
       max-width: 400px;
@@ -1379,39 +1463,6 @@
       color: #666;
       @include font-size(2);
       opacity: 0;
-      &.step1 {
-        opacity: 1;
-      }
-      &.step2 {
-        opacity: 0;
-      }
-    }
-    .script2 {
-      max-width: 60%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      @include font-size(2);
-      color: #fff;
-      border-right: 1px solid #fff;
-      border-left: 1px solid #fff;
-      opacity: 0;
-      visibility: hidden;
-      h1 {
-        padding: 0 40px;
-      }
-      &.step1 {
-        visibility: visible;
-      }
-      &.step2 {
-        opacity: 1;
-      }
-      &.step3 {
-        opacity: 0;
-      }
-      &.step4 {
-        visibility: hidden;
-      }
     }
     .script3 {
       max-width: 550px;
@@ -1443,33 +1494,12 @@
       top: 50%;
       left: -100%;
       background: #fff;
-      max-width: 500px;
       padding: 0 20px 0 50px;
       @include font-size(1.6);
       transform: translateY(-50%);
       color: #666;
       &.show {
         left: 0;
-      }
-      &.step2 {
-        h1 {
-          visibility: hidden;
-        }
-      }
-      &.step3 {
-        height: 40%;
-        width: 100%;
-        background: rgba(#fff, 0.4);
-        max-width: 100%;
-      }
-      &.step4 {
-        height: 100%;
-        top: 0;
-        transform: translateY(0);
-        background: #fff;
-      }
-      &.step5 {
-        opacity: 0;
       }
     }
     .script2 {
@@ -1481,9 +1511,6 @@
         max-width: 50%;
         color: #666;
         padding: 5px 50px;
-      }
-      &.show {
-        top: 70%;
       }
     }
   }
@@ -1504,29 +1531,6 @@
       height: 0;
       background: rgba(#fff, 0.9);
       left: 10%;
-      &.step1 {
-        height: 100%;
-      }
-      &.step2 {
-        width: 100%;
-        left: 0;
-        background: #fff;
-      }
-      &.step3 {
-        opacity: 0.4;
-        height: 40%;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      &.step4 {
-        height: 100%;
-        opacity: 1;
-        transform: translateY(0);
-        top: 0;
-      }
-      &.step5 {
-        opacity: 0;
-      }
     }
     .script1 {
       max-width: 30%;
@@ -1540,9 +1544,6 @@
         padding: 5px;
         animation: buttonAnimation 0.250s infinite ease-in-out alternate;
         cursor: pointer;
-      }
-      &.step1 {
-        opacity: 1;
       }
     }
     .script2 {
@@ -1573,34 +1574,11 @@
     }
     .script1 {
       top: 50%;
-      max-width: 600px;
       background: #fff;
       color: #666;
       @include font-size(2);
       padding: 0 20px 0 50px;
       transform: translate(-100%, -50%);
-      &.show {
-        transform: translate(0%, -50%);
-      }
-      &.step2 {
-        background: #fff;
-        opacity: 0.4;
-        height: 40%;
-        max-width: 100%;
-        width: 100%;
-        h1 {
-          display: none;
-        }
-      }
-      &.step3 {
-        height: 100%;
-        top: 0;
-        transform: translate(0, 0);
-        opacity: 1;
-      }
-      &.step4 {
-        opacity: 0;
-      }
     }
     .script2 {
       top: 50%;
@@ -1611,9 +1589,6 @@
         background: #fff;
         color: #666;
         padding: 10px 40px;
-      }
-      &.show {
-        right: 0;
       }
     }
   }
@@ -1630,27 +1605,6 @@
       background: rgba(#fff, 0.8);
       height: 0;
       left: 5%;
-      &.step1 {
-        height: 100%;
-      }
-      &.step2 {
-        width: 100%;
-        left: 0;
-      }
-      &.step3 {
-        background: darken($brand-details, 20%);
-        opacity: 1;
-      }
-      &.step4 {
-        height: 40%;
-        top: 50%;
-        background: #fff;
-        opacity: 0.4;
-        transform: translateY(-50%);
-      }
-      &.step5 {
-        opacity: 0;
-      }
     }
     .script1 {
       color: #666;
@@ -1659,9 +1613,6 @@
       top: 40%;
       left: 8%;
       opacity: 0;
-      &.show {
-        opacity: 1;
-      }
       div.buttons {
         width: 100%;
         max-width: 100%;
@@ -1715,17 +1666,6 @@
           transform-origin: 0 0;
         }
       }
-      &.show {
-        display: block;
-      }
-      &.step1 {
-        opacity: 1;
-      }
-      &.step2 {
-        h1 {
-          opacity: 1;
-        }
-      }
       &.step3 {
         h1:after,
         h1:before {
@@ -1768,22 +1708,6 @@
       height: 30%;
       top: 50%;
       background: #fff;
-      &.step1 {
-        width: 100%;
-      }
-      &.step2 {
-        height: 100%;
-        top: 0;
-      }
-      &.step3 {
-        opacity: 0;
-      }
-      &.step3_1 {
-        opacity: 0.5;
-        height: 40%;
-        top: 50%;
-        transform: translateY(-50%);
-      }
       &.step4 {
         height: 100%;
         top: 0;
@@ -1802,9 +1726,6 @@
       @include font-size(1.5);
       color: #666;
       opacity: 0;
-      &.step1 {
-        opacity: 1;
-      }
     }
     .script2 {
       max-width: 500px;
@@ -1814,10 +1735,6 @@
       left: 20%;
       color: #666;
       opacity: 0;
-      &.show {
-        transform: translateY(-50%);
-        opacity: 1;
-      }
     }
     .script3 {
       top: 20%;
@@ -1901,6 +1818,7 @@
       height: 0;
       left: 5%;
       background: rgba(#fff, 0.8);
+      transition: all $animationTime;
       &.step1 {
         height: 100%;
       }

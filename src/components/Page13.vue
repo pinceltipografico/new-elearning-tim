@@ -168,43 +168,64 @@
             case 0:
               vm.playAudio('guidelineCX', 'static/subtitles/page11_guidelines.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(1)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(1)
+                }, 500)
               })
               break
             case 1:
               vm.playAudio('aprovado', 'static/subtitles/page11_aprovado.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(2)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(2)
+                }, 500)
               })
               break
             case 2:
               vm.playAudio('FocusGroup', 'static/subtitles/page11_focus_group.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(3)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(3)
+                }, 500)
               })
               break
             case 3:
               vm.playAudio('NPS', 'static/subtitles/page11_nps.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(4)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(4)
+                }, 500)
               })
               break
             case 4:
               vm.playAudio('LojaFuturo', 'static/subtitles/page11_loja.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(5)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(5)
+                }, 500)
               })
               break
             case 5:
               vm.playAudio('TransformacaoDigital', 'static/subtitles/page11_transformacao.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(6)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(6)
+                }, 500)
               })
               break
             case 6:
               vm.playAudio('RealTime', 'static/subtitles/page11_realtime.json', null, function () {
                 vm.addClass(els[index], 'small')
-                PlayAudio(7)
+                vm.$store.commit('setPageProgress', 0)
+                setTimeout(function () {
+                  PlayAudio(7)
+                }, 500)
               })
               break
           }
@@ -312,7 +333,7 @@
             opacity: 0,
             easing: 'linear',
             duration: 1000,
-            offset: '+=18000',
+            offset: '+=13000',
             complete: function () {
               var _el = document.querySelector('.scene2')
               _el.style.zIndex = -1
@@ -330,7 +351,7 @@
             left: 0,
             easing: 'linear',
             width: [{value: 1280, delay: 300}],
-            duration: 1000
+            duration: 400
           })
           .add({
             targets: '.text-animation',
