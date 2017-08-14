@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="popups" v-if="showPopup">
         <div class="inner" :class="{'active':showInnerPopup}">
-          <div class="close" @click="closePopup()">
+          <div class="close" @click="closePopup()" v-if="canClose">
             <i class="material-icons">&#xE5CD;</i>
           </div>
           <div class="image">
@@ -52,7 +52,7 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-if="activeScene">
-      <router-link to="/page33" v-if="showVoltar" class="backButton">
+      <router-link to="/page18" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
@@ -110,6 +110,7 @@
         actualPopup: 0,
         showVoltar: false,
         activeScene: false,
+        canClose: false,
         popups: [
           {
             html: '<h1>Usar a persona <span class="tim">TIM</span><small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>Cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>Carismática</span><span>leve</span><span>autêntica e espontânea</span><span>espontânea</span>'
@@ -128,6 +129,7 @@
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      var vm = this
       var animations = [
         {
           time: 500,
@@ -159,19 +161,50 @@
       Animations.animationTimeline(function () {
         this.activeScene = true
       }.bind(this))
+      this.playAudio('comunicacao_intro', 'static/subtitles/page19.json', null, null)
     },
     destroyed () {
+      this.stopAudio()
     },
     methods: {
       onShowPopup (popup) {
         this.showPopup = true
         this.actualPopup = popup
+        this.canClose = false
         if (this.itemsComunicacao.indexOf(popup) === -1) {
           this.itemsComunicacao.push(popup)
         }
         setTimeout(function () {
           this.showInnerPopup = true
         }.bind(this), 500)
+        
+        switch (popup) {
+          case 0:
+            this.playAudio('usar_persona_tim', 'static/subtitles/page19_persona.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 1:
+            this.playAudio('comunicar_forma_clara', 'static/subtitles/page19_comunicar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 2:
+            this.playAudio('falar_lingua_cliente', 'static/subtitles/page19_falar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 3:
+            this.playAudio('se_mudar', 'static/subtitles/page19_mudar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 4:
+            this.playAudio('encantar_cliente', 'static/subtitles/page19_encantar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+        }
       },
       closePopup () {
         this.showPopup = this.showInnerPopup = false

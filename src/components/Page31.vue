@@ -13,9 +13,9 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      setTimeout(function () {
+      this.playAudio('scene17', 'static/subtitles/page17.json', null, function () {
         this.$store.commit('setCanAdvance', true)
-      }.bind(this), 4000)
+      }.bind(this))
     }
   }
 </script>

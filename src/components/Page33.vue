@@ -39,6 +39,7 @@
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
   var Animations = require('../lib/ChainAnimation')
   export default {
@@ -49,7 +50,8 @@
      **/
     data () {
       return {
-        scene: -1
+        scene: -1,
+        TimeLineCtrl: null
       }
     },
     /**
@@ -59,23 +61,37 @@
      **/
     mounted () {
       this.$store.commit('setCanAdvance', true)
-      var animations = [
-        {
-          time: 1500,
-          step: 'active',
-          selector: '.item1'
-        }, {
-          time: 1500,
-          step: 'active',
-          selector: '.item2'
-        }, {
-          time: 1500,
-          step: 'active',
-          selector: '.item3'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline()
+      this.TimelineCtrl = anime.timeline()
+      this.TimelineCtrl
+        .add({
+          targets: '.item1',
+          translateX: ['100%', '0%'],
+          duration: 300,
+          easing: 'linear',
+          delay: 21000
+        })
+        .add({
+          targets: '.item2',
+          translateX: ['100%', '0%'],
+          duration: 300,
+          easing: 'linear',
+          delay: 500
+        })
+        .add({
+          targets: '.item3',
+          translateX: ['100%', '0%'],
+          duration: 300,
+          easing: 'linear',
+          delay: 500
+        })
+      this.playAudio('scene18', 'static/subtitles/page18.json', null, null)
+      
+      EventBus.$on('pause', function (paused) {
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        this.TimelineCtrl.restart()
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -83,6 +99,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      this.stopAudio()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     },
     /**
      | ----------------------------------------------
@@ -112,7 +131,7 @@
         text-align: center;
         border-bottom: 1px solid $brand-details;
       }
-      &.absolute{
+      &.absolute {
         position: absolute;
       }
     }
@@ -123,7 +142,7 @@
       left: 50px;
       transform: translateY(-50%);
       transition: all $animationTime;
-      *{
+      * {
         transition: all $animationTime;
       }
       .shadow {
@@ -210,38 +229,38 @@
         }
       }
       
-      &.step1{
-        .tim-icon{
+      &.step1 {
+        .tim-icon {
           opacity: 0;
         }
-        .shadow{
+        .shadow {
           display: none;
         }
       }
       
       //
       // comunicaao animation
-      &.comunicacao{
+      &.comunicacao {
         .items div.item2,
-        .items div.item3{
+        .items div.item3 {
           transform: translateX(100%);
         }
       }
-      &.comunicacao.step2{
+      &.comunicacao.step2 {
         left: 0;
-        .items{
+        .items {
           left: 0;
         }
         .items div.item2,
-        .items div.item3{
+        .items div.item3 {
           visibility: hidden;
         }
       }
-      &.comunicacao.step2.step3{
-        top:40%;
+      &.comunicacao.step2.step3 {
+        top: 40%;
       }
-      &.comunicacao.step2.step3.step4{
-        .item1{
+      &.comunicacao.step2.step3.step4 {
+        .item1 {
           width: 300px;
           /*transform-origin: 0 0;*/
           /*transform: scale(0.7);*/
@@ -250,52 +269,52 @@
       
       //
       // interação
-      &.interacao{
+      &.interacao {
         .items div.item1,
-        .items div.item3{
+        .items div.item3 {
           transform: translateX(100%);
         }
       }
-      &.interacao.step2{
-        left:0;
-        .items{
+      &.interacao.step2 {
+        left: 0;
+        .items {
           left: 0;
         }
         .items div.item1,
-        .items div.item3{
+        .items div.item3 {
           visibility: hidden;
         }
       }
-      &.interacao.step2.step3{
-        top:20%;
+      &.interacao.step2.step3 {
+        top: 20%;
       }
-      &.interacao.step2.step3.step4{
-        .item2{
+      &.interacao.step2.step3.step4 {
+        .item2 {
           width: 300px;
         }
       }
       
-      &.monitoramento{
+      &.monitoramento {
         .items div.item1,
-        .items div.item2{
+        .items div.item2 {
           transform: translateX(100%);
         }
       }
-      &.monitoramento.step2{
-        left:0;
-        .items{
+      &.monitoramento.step2 {
+        left: 0;
+        .items {
           left: 0;
         }
         div.item1,
-        div.item2{
+        div.item2 {
           visibility: hidden;
         }
       }
-      &.monitoramento.step2.step3{
-        top:0%;
+      &.monitoramento.step2.step3 {
+        top: 0%;
       }
-      &.monitoramento.step2.step3.step4{
-        .items{
+      &.monitoramento.step2.step3.step4 {
+        .items {
           width: 300px;
         }
       }

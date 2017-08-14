@@ -74,7 +74,11 @@
         })
       } else if (vm.moduleTitle === 'segundo') {
         vm.playAudio('menuItem2', 'static/subtitles/menu_3.json', function () {}, function () {
-//          vm.addClass(itens[1], 'active')
+          vm.addClass(itens[1], 'active')
+        })
+      } else if (vm.moduleTitle === 'terceiro') {
+        vm.playAudio('menuItem3', 'static/subtitles/menu_4.json', function () {}, function () {
+          vm.addClass(itens[1], 'active')
         })
       }
     },
@@ -116,6 +120,9 @@
         }
         if (t === this.texts[1]) {
           this.$router.replace('/page15')
+        }
+        if (t === this.texts[2]) {
+          this.$router.replace('/page18')
         }
       }
     },

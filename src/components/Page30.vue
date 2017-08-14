@@ -68,7 +68,7 @@
   import interact from 'interact.js'
   
   export default {
-    name: 'page6',
+    name: 'page16',
     data () {
       return {
         count: 12,
@@ -111,26 +111,12 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var animations = [
-        {
-          time: 500,
-          step: 'show',
-          selector: '.script1'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {})
       
-      /*
-      var divC = this.$el.querySelector('.dragElements')
-      var divs = this.$el.querySelectorAll('.dragElements > div')
-      divC.innerHTML = ''
-      divs.forEach(function (div) {
-        console.log(div)
-      })
-      */
-      
-      this.startInteract()
+      this.playAudio('scene16', 'static/subtitles/page16.json', null, function () {
+        this.startInteract()
+        var questions = document.querySelector('.dragElements')
+        questions.style.opacity = 1
+      }.bind(this))
     },
     /**
      | ----------------------------------------------
@@ -352,6 +338,8 @@
     left: 5%;
     transform: translateY(-50%);
     position: absolute;
+    transition: all 0.4s;
+    opacity: 0;
   }
   
   .drag, .drop {
