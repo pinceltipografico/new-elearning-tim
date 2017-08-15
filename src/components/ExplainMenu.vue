@@ -60,7 +60,7 @@
           step: 'show',
           selector: '.explain-item.legenda'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.legenda'
         }, {
@@ -68,7 +68,7 @@
           step: 'show',
           selector: '.explain-item.volume'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.volume'
         }, {
@@ -76,7 +76,7 @@
           step: 'show',
           selector: '.explain-item.close'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.close'
         }, {
@@ -84,7 +84,7 @@
           step: 'show',
           selector: '.explain-item.next-button'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.next-button'
         }, {
@@ -92,7 +92,7 @@
           step: 'show',
           selector: '.explain-item.prev-button'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.prev-button'
         }, {
@@ -100,7 +100,7 @@
           step: 'show',
           selector: '.explain-item.play-button'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.play-button'
         }, {
@@ -108,7 +108,7 @@
           step: 'show',
           selector: '.explain-item.rewind-button'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.rewind-button'
         }, {
@@ -116,7 +116,7 @@
           step: 'show',
           selector: '.explain-item.progress-bar'
         }, {
-          time: 8000,
+          time: 5000,
           step: 'hide',
           selector: '.explain-item.progress-bar'
         }, {

@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page8">
     <canvas id="customer_experience" width="600" height="600"></canvas>
     <div class="script1">
       <h1>Mas o que é?</h1>

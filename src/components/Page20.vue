@@ -22,7 +22,7 @@
       <div class="image-background step1 image1"></div>
       <div class="white"></div>
       <div class="script1">
-        <h1>É Quando surge a necessidade de <span>comprar</span></h1>
+        <h1>É quando surge a necessidade de <span>comprar</span></h1>
       </div>
       <div class="iconButton" @click="startSceneTwo">
         <div>
@@ -42,16 +42,16 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>é o momento em que o cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
+        <h1>É o momento em que o cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
         </h1>
       </div>
       <div class="script3">
-        <h1>Imagine um aplicativo de festas. Poder criar um ambiente de interação com seus <span>convidados tão especiais</span>
+        <h1>Imagine um aplicativo de festas e poder criar um ambiente de interação com seus <span>convidados tão especiais</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
-          <span>Como promover uma experiencia de pesquisa que seduza o cliente?</span>
+          <span>Como promover uma experiência de pesquisa que seduza o cliente?</span>
           <span>Clique aqui e veja um exemplo</span>
         </div>
       </div>
@@ -89,12 +89,12 @@
         </h1>
       </div>
       <div class="script2">
-        <h1>cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática</span>
+        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneSeven">
         <div>
-          <span>Como podemos facilitar e melhorar a experiencia de compra?</span>
+          <span>Como podemos facilitar e melhorar a experiência de compra?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -125,10 +125,10 @@
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a <span>experiencia do usuário?</span></h1>
+        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a <span>experiência do usuário?</span></h1>
       </div>
       <div class="script2">
-        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a experiencia do usuário?</h1>
+        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a experiência do usuário?</h1>
       </div>
       <div class="video">
         <video src="/tim/static/video/vdeo3.m4v" autoplay loop></video>
@@ -137,7 +137,7 @@
       </div>
       <div class="iconButton" @click="startSceneNineTwo">
         <div>
-          <span>O que a empresa e você podem fazer para melhorar cada vez mais a experiencia do usuário?</span>
+          <span>O que a empresa e você podem fazer para melhorar cada vez mais a experiência do usuário?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -249,10 +249,10 @@
         this.TimelineCtrl.restart()
       }.bind(this))
 
-//      this.start()
-      this.started = true
-      this.scene = 7
-      this.startSceneEleven()
+      this.start()
+//      this.started = true
+//      this.scene = 7
+//      this.startSceneEleven()
     },
     /**
      | ----------------------------------------------
@@ -461,7 +461,7 @@
             offset: '+=3000'
           })
         this.playAudio('precisar2', 'static/subtitles/page15_precisar1.json', null, function () {
-          this.addListenerSvg(2, this.startSceneFive)
+          this.addListenerSvg(1, this.startSceneThree)
         }.bind(this))
       },
       

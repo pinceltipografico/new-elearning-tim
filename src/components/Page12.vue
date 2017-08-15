@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page9">
     <div class="image-background"></div>
     <div class="white"></div>
     <div class="image">
@@ -13,7 +13,7 @@
     <div class="icon-5"><img src="../assets/sprites/computer-page12.jpg" alt=""></div>
     <div class="icon-6"><img src="../assets/sprites/message-page12.png" alt=""></div>
     <div class="script1">
-      <h1>esta interação pode se dar de vários <span>níveis</span> e <span>formas</span></h1>
+      <h1>esta interação pode se dar de vários <span>níveis e formas</span></h1>
     </div>
     <div class="script2">
       <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>

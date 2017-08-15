@@ -38,6 +38,7 @@ Audio.install = function (Vue, options) {
           actualCallback()
         }
         EventBus.$emit('audio-end')
+        subtitlesEl.innerHTML = ''
       }, currentAudioId)
       
       //

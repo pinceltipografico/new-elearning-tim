@@ -1,14 +1,18 @@
 <template>
   <section class="page">
     <div class="image-background step2"></div>
+    <div class="image-background step1 image2"></div>
     <div class="image-background image1"></div>
     <div class="script1 video-overlay">
-      <video src="/tim/static/video/560156650.m4v" autoplay loop></video>
+      <video src="static/video/560156650.m4v" autoplay loop></video>
       <h1>entender o que bate em seu coração</h1>
     </div>
     <div class="effect"></div>
     <div class="script2">
       <h1>Mas nós todos, <span>como clientes</span>, desejamos mais...</h1>
+    </div>
+    <div class="script3">
+      <h1>Muitas empresas olham para seus concorrentes</h1>
     </div>
   </section>
 </template>
@@ -74,6 +78,30 @@
           duration: 100
         })
         .add({
+          targets: '.effect',
+          easing: 'linear',
+          opacity: 0,
+          duration: 100
+        })
+        .add({
+          targets: '.script3',
+          opacity: [{value: 0}, {value: 1}, {value: 0, delay: 7000}],
+          easing: 'linear',
+          duration: 300
+        })
+        .add({
+          targets: '.effect',
+          easing: 'linear',
+          opacity: [{value: 0}, {value: 1}, {value: 1, delay: 1000}],
+          duration: 300
+        })
+        .add({
+          targets: '.image2',
+          opacity: 0,
+          duration: 100,
+          offset: '-=500'
+        })
+        .add({
           targets: '.script2',
           opacity: 1,
           easing: 'linear',
@@ -119,6 +147,10 @@
   section.page {
     div.image-background {
       background: #000;
+      &.step1 {
+        background: url('../assets/backgrounds/page8/ref-525052798.jpg') no-repeat;
+        background-size: cover;
+      }
       &.step2 {
         background: url('../assets/backgrounds/page8/01.jpg') no-repeat;
         background-size: cover;
@@ -152,6 +184,17 @@
       h1 {
         color: #666;
       }
+    }
+    .script3 {
+      @include font-size(2);
+      max-width: 400px;
+      text-align: center;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: #666;
+      background: #fff;
+      opacity: 0;
     }
   }
 </style>

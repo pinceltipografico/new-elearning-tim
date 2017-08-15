@@ -52,7 +52,7 @@
       <!-- SCENE 5 -->
       <section class="page-item">
         <div class="scene6 video-overlay">
-          <video src="/tim/static/video/583335745.m4v" autoplay loop></video>
+          <video src="static/video/583335745.m4v" autoplay loop></video>
           <h1>Cada vez mais autônomas</h1>
         </div>
       </section>
@@ -76,7 +76,7 @@
           <div class="background"></div>
           <div class="script7">
             <h1>E neste desafio, <span>todas as pessoas da organização</span>
-              se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mante-lo</span>
+              se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mantê-lo</span>
             </h1></div>
         </div>
       </section>

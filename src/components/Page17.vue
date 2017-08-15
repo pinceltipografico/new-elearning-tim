@@ -116,7 +116,7 @@
     background-size: cover;
     
     &.step1 {
-      background: url("../assets/backgrounds/page17/02.jpg") no-repeat;
+      background: url("../assets/backgrounds/page17/ref-613155317.jpg") no-repeat;
       background-size: cover;
     }
   }

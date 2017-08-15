@@ -14,7 +14,7 @@
         <span>Clique aqui e veja o que já existe desde então:</span>
       </div>
     </section>
-    <section class="page gradient scene2" style="position: absolute; top:0; left:0;">
+    <section class="page gradient scene2 page11" style="position: absolute; top:0; left:0;">
       <div class="dna">
         <img src="../assets/backgrounds/page40/dna.png" alt="DNA"/>
         <div class="shadow"></div>
@@ -32,8 +32,7 @@
         </div>
         <span><strong>User Experience</strong></span>
         <span>Emoções Preferências</span>
-        <span>Comportamentos</span>
-        <span>Realizações</span>
+        <span>Comportamentos e Realizações</span>
       </div>
       <div class="item custumer-monitoring">
         <div class="icon">
