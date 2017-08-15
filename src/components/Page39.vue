@@ -27,72 +27,124 @@
   /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
+  import anime from 'animejs'
   
   var Animations = require('../lib/ChainAnimation')
   export default {
     data () {
-      return {}
+      return {
+        TimeLineCtrl: null
+      }
     },
-    mounted () {
-      var animations = [
-        {
-          time: 1500,
-          step: 'step1',
-          selector: '.animation1'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.animation1'
-        }, {
-          time: 1500,
-          step: 'step1',
-          selector: '.animation2'
-        }, {
-          time: 500,
-          step: 'step2',
-          selector: '.animation2'
-        }, {
-          time: 4000,
-          step: 'step1',
-          selector: '.colaboradores'
-        }, {
-          time: 20,
-          step: 'step1',
-          selector: '.clientes'
-        }, {
-          time: 1000,
-          step: 'show',
-          selector: '.script'
-        }, {
-          time: 500,
-          step: 'step3',
-          selector: '.animation1'
-        }, {
-          time: 0,
-          step: 'step3',
-          selector: '.animation2'
-        }, {
-          time: 2000,
-          step: 'show',
-          selector: '.palavras-colaborador'
-        }, {
-          time: 5000,
-          step: 'show',
-          selector: '.palavras-clientes'
-        }, {
-          time: 10000,
-          step: 'show',
-          selector: '.palavras-clientes'
-        }
-      ]
-      Animations.setAnimations(animations)
-      Animations.animationTimeline(function () {
-        this.$store.commit('setCanAdvance', true)
-        var tim = this.$el.querySelector('.script')
+    mounted: function () {
+      var vm = this
+      this.$store.commit('setCanAdvance', false)
+      this.playAudio('scene23', 'static/subtitles/page23.json', null, function () {
+        var tim = vm.$el.querySelector('.script')
         tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
-      }.bind(this))
+        vm.playAudio('scene23_1', 'static/subtitles/page23_1.json', null, function () {
+          vm.$store.commit('setCanAdvance', true)
+        })
+      })
+      var beforeAnim = {count: 0}
+      var anim1 = vm.$el.querySelector('.animation1')
+      var anim2 = vm.$el.querySelector('.animation2')
+      this.TimelineCtrl = anime.timeline()
+      this.TimelineCtrl
+        .add({
+          targets: beforeAnim,
+          duration: '3000',
+          easing: 'linear',
+          count: 100,
+          begin: function () {
+            anim1.className = 'animation1'
+            anim2.className = 'animation2'
+          },
+          update: function (ani) {
+            var c = Math.floor(beforeAnim.count)
+            if (c === 10) {
+              vm.addClass(anim1, 'step1')
+            } else if (c === 20) {
+              vm.addClass(anim1, 'step2')
+            } else if (c === 30) {
+              vm.addClass(anim2, 'step1')
+            } else if (c === 40) {
+              vm.addClass(anim2, 'step2')
+            }
+          }
+        })
+        .add({
+          targets: '.colaboradores',
+          duration: '500',
+          easing: 'linear',
+          translateY: ['0%', '-100%'],
+          offset: '+=5000'
+        })
+        .add({
+          targets: '.clientes',
+          duration: '500',
+          easing: 'linear',
+          translateY: ['0%', '100%']
+        })
+        .add({
+          targets: '.script',
+          opacity: [0, 1],
+          duration: '500',
+          easing: 'linear'
+        })
+        .add({
+          targets: ['.animation1', '.animation2'],
+          width: ['670px', '480px'],
+          duration: '300',
+          easing: 'linear'
+        })
+        .add({
+          targets: '.animation1',
+          top: ['40%', '43%'],
+          duration: '300',
+          easing: 'linear',
+          offset: '-=300'
+        })
+        .add({
+          targets: '.animation2',
+          top: ['60%', '57%'],
+          duration: '300',
+          easing: 'linear',
+          offset: '-=300'
+        })
+        .add({
+          targets: '.palavras-colaborador',
+          duration: '300',
+          easing: 'linear',
+          opacity: 1,
+          begin: function () {
+            var el = document.querySelector('.palavras-colaborador')
+            vm.removeClass(el, 'show')
+          },
+          complete: function () {
+            var el = document.querySelector('.palavras-colaborador')
+            vm.addClass(el, 'show')
+          },
+          offset: '+=4000'
+        })
+        .add({
+          targets: '.palavras-clientes',
+          duration: '300',
+          easing: 'linear',
+          opacity: 1,
+          begin: function () {
+            var el = document.querySelector('.palavras-clientes')
+            vm.removeClass(el, 'show')
+          },
+          complete: function () {
+            var el = document.querySelector('.palavras-clientes')
+            vm.addClass(el, 'show')
+          },
+          offset: '+=9000'
+        })
     },
     destroyed () {
+      this.stopAudio()
     }
   }
 </script>

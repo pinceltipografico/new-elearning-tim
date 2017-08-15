@@ -101,7 +101,9 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      this.$store.state.audio.stop()
+      this.stopAudio()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     }
   }
 </script>

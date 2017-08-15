@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="popups" v-if="showPopup">
         <div class="inner" :class="{'active':showInnerPopup}">
-          <div class="close" @click="closePopup()">
+          <div class="close" @click="closePopup()" v-if="canClose">
             <i class="material-icons">&#xE5CD;</i>
           </div>
           <div class="image">
@@ -51,7 +51,7 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-if="activeScene">
-      <router-link to="/page33" v-if="showVoltar" class="backButton">
+      <router-link to="/page18" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
@@ -93,6 +93,7 @@
   import Analitics from '../assets/svgs/icon-analitcs.svg'
   import Indicadores from '../assets/svgs/icon-indicadores.svg'
   import Reter from '../assets/svgs/icon-reter.svg'
+  
   export default {
     components: {
       Avaliar,
@@ -109,6 +110,8 @@
         actualPopup: 0,
         showVoltar: false,
         activeScene: false,
+        canClose: false,
+        canClick: false,
         popups: [
           {
             html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>É essencial que as avaliações sejam:</h4><span>uma avaliação simples e rápida aumenta a adesão do público</span><span>avaliar em tempo real</span>'
@@ -158,11 +161,19 @@
       Animations.animationTimeline(function () {
         this.activeScene = true
       }.bind(this))
+      
+      this.playAudio('monitoramento_2', 'static/subtitles/monitoramento_intro_2.json', null, function () {
+        this.canClick = true
+      }.bind(this))
     },
     destroyed () {
     },
     methods: {
       onShowPopup (popup) {
+        if (!this.canClick) {
+          return
+        }
+        this.canClose = false
         this.showPopup = true
         this.actualPopup = popup
         if (this.itemsComunicacao.indexOf(popup) === -1) {
@@ -171,6 +182,34 @@
         setTimeout(function () {
           this.showInnerPopup = true
         }.bind(this), 500)
+        
+        switch (popup) {
+          case 0:
+            this.playAudio('monitoramento_avaliar', 'static/subtitles/monitoramento_avaliar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 1:
+            this.playAudio('monitoramento_informacao', 'static/subtitles/monitoramento_informacao.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 2:
+            this.playAudio('monitoramento_analitics', 'static/subtitles/monitoramento_analitics.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 3:
+            this.playAudio('monitoramento_indicadores', 'static/subtitles/monitoramento_indicadores.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 4:
+            this.playAudio('monitoramento_reter', 'static/subtitles/monitoramento_reter.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+        }
       },
       closePopup () {
         this.showPopup = this.showInnerPopup = false

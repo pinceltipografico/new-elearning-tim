@@ -5,17 +5,18 @@
         <i class="material-icons">&#xE5CC;</i>
       </router-link>
     </transition>
-    <section class="page" v-if="scene === 0">
+    <section class="page" v-show="scene === 0">
       <div class="start">
         <h1>
-          O Monitoramento em uma abordagem de <span>Customer Experience</span> vai muito além de relatórios e Indicadores</h1>
-        <div class="buttons" @click="startAnim">
+          O Monitoramento em uma abordagem de <span>Customer Experience</span>
+          vai muito além de relatórios e Indicadores</h1>
+        <div class="buttons" @click="startAnim" v-if="showStart">
           <span>Ver como funciona</span>
           <i class="material-icons">&#xE038;</i>
         </div>
       </div>
     </section>
-    <section class="page monitoring" v-if="scene === 1">
+    <section class="page monitoring" v-show="scene === 1">
       <div class="people">
         <people></people>
         <h1>60<br/>milhões</h1>
@@ -81,6 +82,9 @@
 </template>
 <script type="text/javascript">
   /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
+  import anime from 'animejs'
+  import { EventBus } from '../events/index'
   import Animations from '../lib/ChainAnimation'
   import People from '../assets/svgs/people-page36.svg'
   import Server from '../assets/svgs/server_page36.svg'
@@ -91,6 +95,7 @@
   import Clock from '../assets/svgs/clock_page36.svg'
   import CostumerCentric from '../assets/svgs/customer_centric.svg'
   import Arrow2 from '../assets/svgs/arrow2_page36.svg'
+  
   export default {
     components: {
       People,
@@ -106,108 +111,170 @@
     data () {
       return {
         scene: 0,
-        showNext: false
+        showNext: false,
+        showStart: false,
+        TimeLineCtrl: null
       }
     },
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var next = document.querySelector('.can-advance')
-      next.style.display = 'none'
+      this.playAudio('monitoramento_intro', 'static/subtitles/monitoramento_intro.json', null, function () {
+        this.showStart = true
+      }.bind(this))
+      EventBus.$on('pause', function (paused) {
+        if (!this.TimelineCtrl) {
+          return
+        }
+        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        if (this.TimelineCtrl) {
+          this.TimelineCtrl.restart()
+        }
+      }.bind(this))
     },
     destroyed () {
-      Animations.destroyAnimations()
-      var next = document.querySelector('.can-advance')
-      next.style.display = 'block'
+      this.stopAudio()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     },
     methods: {
       startAnim () {
         this.scene = 1
-        var animations = [
-          {
-            time: 3000,
-            step: 'step1',
-            selector: '.people'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.informacao'
-          }, {
-            time: 50,
-            step: 'step2',
-            selector: '.informacao'
-          }, {
-            time: 150,
-            step: 'step3',
-            selector: '.informacao'
-          }, {
-            time: 1500,
-            step: 'step1',
-            selector: '.server'
-          }, {
-            time: 1500,
-            step: 'step1',
-            selector: '.big-data'
-          }, {
-            time: 50,
-            step: 'step2',
-            selector: '.big-data'
-          }, {
-            time: 150,
-            step: 'step3',
-            selector: '.big-data'
-          }, {
-            time: 1500,
-            step: 'step1',
-            selector: '.brain'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.arrow1'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.analise'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.arrow2'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.idea'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.arrow3'
-          }, {
-            time: 500,
-            step: 'step1',
-            selector: '.clock'
-          }, {
-            time: 2500,
-            step: 'step1',
-            selector: '.arrow4'
-          }, {
-            time: 1000,
-            step: 'step1',
-            selector: '.engajamento'
-          }, {
-            time: 1000,
-            step: 'step1',
-            selector: '.customer_centric'
-          }, {
-            time: 1000,
-            step: 'step1',
-            selector: '.customer_experience'
-          }, {
-            time: 4000,
-            step: 'step1',
-            selector: '.customer_experience'
-          }
-        ]
-        Animations.setAnimations(animations)
-        Animations.animationTimeline(function () {
+        this.TimelineCtrl = anime.timeline()
+        
+        this.TimelineCtrl
+          .add({
+            targets: '.people',
+            duration: 300,
+            easing: 'linear',
+            translateY: [{value: '-50%'}, {value: '-50%', delay: 5000}], // 5000
+            translateX: [{value: '-50%'}, {value: '-50%', delay: 5000}],
+            scale: [{value: 1}, {value: 0.3, delay: 5000}],
+            left: [{value: '50%'}, {value: '25%', delay: 5000}],
+            top: [{value: '50%'}, {value: '25%', delay: 5000}]
+          })
+          .add({
+            targets: '.informacao > .dot',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1]
+          })
+          .add({
+            targets: '.informacao > .arrow',
+            duration: 300,
+            easing: 'linear',
+            width: [{value: '0px'}, {value: '120px'}]
+          })
+          .add({
+            targets: '.informacao > h2',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1]
+          })
+          .add({
+            targets: '.server',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1],
+            offset: '+=5000'
+          })
+          .add({
+            targets: '.big-data > .dot',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1]
+          })
+          .add({
+            targets: '.big-data > .arrow',
+            duration: 300,
+            easing: 'linear',
+            width: [{value: '0px'}, {value: '120px'}]
+          })
+          .add({
+            targets: '.big-data > h2',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1]
+          })
+          .add({
+            targets: '.brain',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1],
+            offset: '+=5000'
+          })
+          .add({
+            targets: '.arrow1',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1],
+            rotate: ['50deg', '0deg']
+          })
+          .add({
+            targets: '.analise',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1],
+            opacity: [0, 1]
+          })
+          .add({
+            targets: '.arrow2',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1],
+            rotate: ['-90deg', '90deg']
+          })
+          .add({
+            targets: '.idea',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1]
+          })
+          .add({
+            targets: '.arrow3',
+            rotate: ['-220deg', '220deg'],
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 1]
+          })
+          .add({
+            targets: '.clock',
+            opacity: 1,
+            duration: 300,
+            easing: 'linear',
+            translateY: ['-50%', '0%']
+          })
+          .add({
+            targets: '.arrow4',
+            duration: 300,
+            easing: 'linear',
+            opacity: [0, 0.3],
+            offset: '+=3000'
+          })
+          .add({
+            targets: '.engajamento',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1]
+          })
+          .add({
+            targets: '.customer_centric',
+            scale: [0, 1],
+            duration: 300,
+            easing: 'linear',
+            offset: '+=2500'
+          })
+          .add({
+            targets: '.customer_experience',
+            duration: 300,
+            easing: 'linear',
+            scale: [0, 1],
+            offset: '+=3500'
+          })
+        
+        this.playAudio('monitoramento_anim', 'static/subtitles/monitoramento_animation.json', null, function () {
           this.showNext = true
         }.bind(this))
       }
@@ -244,11 +311,6 @@
         @include font-size(3);
         left: 65%;
       }
-      &.step1 {
-        transform: translate(-50%, -50%) scale(0.3);
-        left: 310px;
-        top: 160px;
-      }
     }
     .informacao {
       top: 150px;
@@ -277,30 +339,12 @@
         left: 18px;
         opacity: 0;
       }
-      &.step1 {
-        .dot {
-          transform: scale(1);
-        }
-      }
-      &.step2 {
-        .arrow {
-          width: 120px;
-        }
-      }
-      &.step3 {
-        h2 {
-          opacity: 1;
-        }
-      }
     }
     .server {
       width: 120px;
       top: 120px;
       left: 540px;
       opacity: 0;
-      &.step1 {
-        opacity: 1;
-      }
     }
     .big-data {
       top: 150px;
@@ -329,38 +373,20 @@
         left: 20px;
         opacity: 0;
       }
-      &.step1 {
-        .dot {
-          transform: scale(1);
-        }
-      }
-      &.step2 {
-        .arrow {
-          width: 80px;
-        }
-      }
-      &.step3 {
-        h2 {
-          opacity: 1;
-        }
-      }
     }
     .brain {
       width: 200px;
       top: 10%;
-      left: 770px;
+      left: 810px;
+      transform: scale(0);
       h2 {
         text-align: center;
         color: #fff;
       }
-      transform: scale(0);
-      &.step1 {
-        transform: scale(1);
-      }
     }
     .arrow1 {
       width: 130px;
-      left: 950px;
+      left: 980px;
       top: 150px;
       h2 {
         position: absolute;
@@ -370,10 +396,6 @@
       }
       transform: rotate(-50deg);
       opacity: 0;
-      &.step1 {
-        opacity: 1;
-        transform: rotate(0deg);
-      }
     }
     .analise {
       width: 180px;
@@ -387,10 +409,6 @@
       }
       transform: scale(0);
       opacity: 0;
-      &.step1 {
-        transform: scale(1);
-        opacity: 1;
-      }
     }
     .arrow2 {
       width: 130px;
@@ -405,10 +423,6 @@
         left: 50px;
         color: #fff;
       }
-      &.step1 {
-        opacity: 1;
-        transform: rotate(90deg);
-      }
     }
     .idea {
       width: 110px;
@@ -421,9 +435,6 @@
         top: -20px;
       }
       transform: scale(0);
-      &.step1 {
-        transform: scale(1);
-      }
     }
     .arrow3 {
       width: 130px;
@@ -438,10 +449,6 @@
         left: 0;
         color: #fff;
       }
-      &.step1 {
-        transform: rotate(220deg);
-        opacity: 1;
-      }
     }
     .clock {
       width: 50px;
@@ -454,10 +461,6 @@
         top: 50px;
         text-align: center;
         color: #fff;
-      }
-      &.step1 {
-        opacity: 1;
-        transform: translateY(0%);
       }
     }
     .engajamento {
@@ -474,9 +477,6 @@
       img {
         width: 100%;
       }
-      &.step1 {
-        transform: scale(1);
-      }
     }
     .customer_centric {
       width: 250px;
@@ -490,9 +490,6 @@
         width: 100%;
         color: #fff;
       }
-      &.step1 {
-        transform: scale(1);
-      }
     }
     .arrow4 {
       width: 590px;
@@ -500,9 +497,6 @@
       left: 200px;
       transform: rotate(-10deg);
       opacity: 0;
-      &.step1 {
-        opacity: 0.3;
-      }
     }
     .customer_experience {
       width: 250px;
@@ -523,9 +517,6 @@
       }
       img {
         width: 100%;
-      }
-      &.step1 {
-        transform: scale(1);
       }
     }
   }

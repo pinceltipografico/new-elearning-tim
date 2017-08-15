@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="popups" v-if="showPopup">
         <div class="inner" :class="{'active':showInnerPopup}">
-          <div class="close" @click="closePopup()">
+          <div class="close" @click="closePopup()" v-if="canClose">
             <i class="material-icons">&#xE5CD;</i>
           </div>
           <div class="image">
@@ -53,7 +53,7 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-if="activeScene">
-      <router-link to="/page33" v-if="showVoltar" class="backButton">
+      <router-link to="/page18" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
@@ -105,6 +105,7 @@
   import Canais from '../assets/svgs/icon-canais.svg'
   import Viver from '../assets/svgs/icon-viver.svg'
   import Customizar from '../assets/svgs/icon-sutomizar.svg'
+  
   export default {
     components: {
       Ouvir,
@@ -123,6 +124,7 @@
         actualPopup: 0,
         showVoltar: false,
         activeScene: false,
+        canClose: false,
         popups: [
           {
             html: '<h1>OUVIR O CLIENTE<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>E se o cliente está pedindo a nossa ajuda, pode ser uma oportunidade</span>'
@@ -176,11 +178,17 @@
       Animations.animationTimeline(function () {
         this.activeScene = true
       }.bind(this))
+      setTimeout(function () {
+        this.playAudio('interacao_intro', 'static/subtitles/page20.json', null, null)
+      }.bind(this), 1000)
     },
     destroyed () {
+      this.stopAudio()
+      Animations.destroyAnimations()
     },
     methods: {
       onShowPopup (popup) {
+        this.canClose = false
         this.showPopup = true
         this.actualPopup = popup
         if (this.itemsComunicacao.indexOf(popup) === -1) {
@@ -189,6 +197,44 @@
         setTimeout(function () {
           this.showInnerPopup = true
         }.bind(this), 500)
+        
+        switch (popup) {
+          case 0:
+            this.playAudio('ouvir_cliente', 'static/subtitles/page20_ouvir.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 1:
+            this.playAudio('conhecer_cliente', 'static/subtitles/page20_conhecer.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 2:
+            this.playAudio('otimizar_autoatendimento', 'static/subtitles/page20_otimizar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 3:
+            this.playAudio('criar_interface', 'static/subtitles/page20_interface.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 4:
+            this.playAudio('canais_diversos', 'static/subtitles/page20_canais.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 5:
+            this.playAudio('viver_experiencia', 'static/subtitles/page20_viver.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+          case 6:
+            this.playAudio('customizar_satisfazer', 'static/subtitles/page20_customizar.json', null, function () {
+              this.canClose = true
+            }.bind(this))
+            break
+        }
       },
       closePopup () {
         this.showPopup = this.showInnerPopup = false

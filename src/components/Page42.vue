@@ -14,8 +14,10 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      this.playAudio('scene25', 'static/subtitles/page25.json', null, null)
     },
     destroyed () {
+      this.stopAudio()
     }
   }
 </script>
@@ -23,11 +25,11 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  section.page{
+  section.page {
     background: url("../assets/backgrounds/page2/06.jpg") no-repeat;
     background-size: cover;
     
-    .script1{
+    .script1 {
       transition-delay: 1s;
     }
   }
