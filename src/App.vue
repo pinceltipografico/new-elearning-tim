@@ -1,7 +1,8 @@
 <template>
   <main id="app" :class="{'subtitle-active':showSubtitle}">
     <div class="menu-overlay">
-      <div id="timer" style="font-size: 24px; width: 100%; color:#fff; text-align: center; display: none; visibility: hidden;"></div>
+      <div id="timer"
+           style="font-size: 24px; width: 100%; color:#fff; text-align: center; display: none; visibility: hidden;"></div>
     </div>
     <div class="logo">
       <span style="width: 80px;"><logo></logo></span>
@@ -95,7 +96,7 @@
     mounted () {
       this.$store.commit('toggleIterface', false)
       console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
-      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name)) {
+      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {
         this.$store.commit('toggleIterface', true)
       }
       
