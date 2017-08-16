@@ -78,7 +78,7 @@
         counter: null,
         pageIndex: 2,
         pages: null,
-        showSubtitle: true,
+        showSubtitle: false,
         isMute: false,
         isPaused: false,
         pageIsDone: false
