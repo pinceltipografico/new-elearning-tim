@@ -146,7 +146,6 @@
       })
       
       EventBus.$on('rewind', function () {
-        console.log('re')
         if (vm.scroller) {
           vm.scroller.gotoSection(0)
         }

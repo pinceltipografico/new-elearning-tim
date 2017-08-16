@@ -213,6 +213,7 @@
       },
       closePopup () {
         this.showPopup = this.showInnerPopup = false
+        this.stopAudio()
         if (this.itemsComunicacao.length === 5) {
           this.showVoltar = true
         }

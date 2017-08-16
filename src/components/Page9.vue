@@ -78,10 +78,14 @@
         })
       
       EventBus.$on('pause', function (paused) {
-        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        if (this.TimelineCtrl) {
+          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        }
       }.bind(this))
       EventBus.$on('rewind', function () {
-        this.TimelineCtrl.restart()
+        if (this.TimelineCtrl) {
+          this.TimelineCtrl.restart()
+        }
         this.canClick = false
       }.bind(this))
       

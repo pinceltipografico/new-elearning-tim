@@ -48,6 +48,7 @@
      **/
     destroyed () {
       Animations.destroyAnimations()
+      this.stopAudio()
     }
   }
 </script>

@@ -164,6 +164,7 @@
       this.playAudio('comunicacao_intro', 'static/subtitles/page19.json', null, null)
     },
     destroyed () {
+      Animations.destroyAnimations()
       this.stopAudio()
     },
     methods: {
@@ -208,6 +209,7 @@
       },
       closePopup () {
         this.showPopup = this.showInnerPopup = false
+        this.stopAudio()
         if (this.itemsComunicacao.length === 5) {
           this.showVoltar = true
         }

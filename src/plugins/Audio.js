@@ -15,12 +15,13 @@ Audio.install = function (Vue, options) {
    **/
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
     var subtitlesEl = document.querySelector('#subtitles > p')
-    // var timer = document.querySelector('#timer')
+    var timer = document.querySelector('#timer')
     var duration
     var offset
     var pct
     var vm = this
     var subtitlesObj
+    var animId
     
     function startAudio (res) {
       vm.stopAudio()
@@ -37,6 +38,8 @@ Audio.install = function (Vue, options) {
         if (actualCallback) {
           actualCallback()
         }
+        console.log('audio end')
+        cancelAnimationFrame(animId)
         EventBus.$emit('audio-end')
         subtitlesEl.innerHTML = ''
       }, currentAudioId)
@@ -48,7 +51,7 @@ Audio.install = function (Vue, options) {
       
       // quando der o play
       vm.$store.state.audio.on('play', function () {
-        requestAnimationFrame(increase)
+        animId = requestAnimationFrame(increase)
       }, currentAudioId)
       
       EventBus.$emit('audio-started')
@@ -75,7 +78,7 @@ Audio.install = function (Vue, options) {
       var subtitleTime = convertTime(pos)
       var progress = Math.ceil((pct * pos))
       var currentSubTitle = subtitlesObj[subtitleTime]
-      // timer.innerHTML = subtitleTime
+      timer.innerHTML = subtitleTime
       
       // set page progress
       vm.$store.commit('setPageProgress', progress)
@@ -87,7 +90,7 @@ Audio.install = function (Vue, options) {
         if (timeUpdateCb) {
           timeUpdateCb(Math.floor(pos))
         }
-        requestAnimationFrame(increase)
+        animId = requestAnimationFrame(increase)
       }
     }
     

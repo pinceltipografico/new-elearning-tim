@@ -194,7 +194,6 @@
   import { EventBus } from '../events/index'
   
   var svgItem = require('../assets/svgs/infinity.svg')
-  var Animation = require('../lib/ChainAnimation')
   export default {
     /**
      | ----------------------------------------------
@@ -236,10 +235,14 @@
       }
       
       EventBus.$on('pause', function (paused) {
-        (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        if (this.TimelineCtrl) {
+          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        }
       }.bind(this))
       EventBus.$on('rewind', function () {
-        this.TimelineCtrl.restart()
+        if (this.TimelineCtrl) {
+          this.TimelineCtrl.restart()
+        }
       }.bind(this))
 
       this.start()
@@ -254,7 +257,8 @@
      **/
     destroyed () {
       this.stopAudio()
-      Animation.destroyAnimations()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
     },
     methods: {
       start () {
@@ -453,7 +457,7 @@
             duration: 300,
             offset: '+=3000'
           })
-        this.playAudio('precisar2', 'static/subtitles/page15_precisar1.json', null, function () {
+        this.playAudio('precisar2', 'static/subtitles/page15_precisar2.json', null, function () {
           this.addListenerSvg(1, this.startSceneThree)
         }.bind(this))
       },

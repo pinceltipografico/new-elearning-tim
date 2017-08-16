@@ -87,6 +87,8 @@
       }, 500)
     },
     destroyed () {
+      Animations.destroyAnimations()
+      this.stopAudio()
     }
   }
 </script>

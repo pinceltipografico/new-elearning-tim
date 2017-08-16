@@ -142,8 +142,21 @@
           },
           offset: '+=9000'
         })
+      
+      EventBus.$on('pause', function (paused) {
+        if (this.TimelineCtrl) {
+          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        }
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        if (this.TimelineCtrl) {
+          this.TimelineCtrl.restart()
+        }
+      }.bind(this))
     },
     destroyed () {
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
       this.stopAudio()
     }
   }

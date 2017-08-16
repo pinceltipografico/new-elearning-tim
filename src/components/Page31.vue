@@ -13,7 +13,7 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      this.playAudio('scene17', 'static/subtitles/page17.json', null, function () {
+      this.playAudio('scene17', 'static/subtitles/page16.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     }

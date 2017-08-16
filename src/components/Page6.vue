@@ -63,6 +63,7 @@
      | ----------------------------------------------
      **/
     destroyed () {
+      this.stopAudio()
       Animations.destroyAnimations()
     }
   }

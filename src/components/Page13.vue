@@ -377,10 +377,14 @@
           })
         
         EventBus.$on('pause', function (paused) {
-          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+          if (this.TimelineCtrl) {
+            (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+          }
         }.bind(this))
         EventBus.$on('rewind', function () {
-          this.TimelineCtrl.restart()
+          if (this.TimelineCtrl) {
+            this.TimelineCtrl.restart()
+          }
         }.bind(this))
         
         this.playAudio('scene11', 'static/subtitles/page11.json', function (pos) {
@@ -395,7 +399,9 @@
      **/
     destroyed () {
       this.canShowTags = false
-      this.$store.state.audio.stop()
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
+      this.stopAudio()
     }
   }
 </script>

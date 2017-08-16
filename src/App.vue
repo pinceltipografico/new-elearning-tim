@@ -1,6 +1,8 @@
 <template>
   <main id="app" :class="{'subtitle-active':showSubtitle}">
-    <div class="menu-overlay"></div>
+    <div class="menu-overlay">
+      <div id="timer" style="font-size: 24px; width: 100%; color:#fff; text-align: center;"></div>
+    </div>
     <div class="logo">
       <span style="width: 80px;"><logo></logo></span>
       <div class="title">
@@ -53,7 +55,6 @@
         <i class="material-icons">&#xE5CB;</i>
       </a>
     </transition>
-    <!--<div id="timer" style="font-size: 24px"></div>-->
     <router-view></router-view>
   </main>
 </template>
@@ -77,7 +78,7 @@
         counter: null,
         pageIndex: 2,
         pages: null,
-        showSubtitle: false,
+        showSubtitle: true,
         isMute: false,
         isPaused: false,
         pageIsDone: false
@@ -93,7 +94,8 @@
      **/
     mounted () {
       this.$store.commit('toggleIterface', false)
-      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) !== -1 && this.$route.name !== null) {
+      console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
+      if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name)) {
         this.$store.commit('toggleIterface', true)
       }
       
@@ -108,6 +110,7 @@
       } else if (this.$route.name !== 'Hello') {
         var lastPage = this.$route.name
         var lastRouteIndex = this.getRouteByName(lastPage)
+        console.log(lastRouteIndex)
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
       }
@@ -339,15 +342,15 @@
         }
       }
       
-      section.page16{
-        .image{
-          bottom:-40px;
+      section.page16 {
+        .image {
+          bottom: -40px;
         }
       }
-  
-      section.page-menu{
-        h1{
-          top:10% !important;
+      
+      section.page-menu {
+        h1 {
+          top: 10% !important;
         }
       }
       
@@ -641,7 +644,7 @@
     transition: all $animationTime;
     p {
       color: #fff;
-      padding: 0 130px;
+      padding: 0 100px;
       @include font-size(1.3);
       font-weight: bold;
     }
@@ -863,7 +866,7 @@
             color: #fff;
             margin: 0;
             @include font-size(1.5);
-            padding:2px 10px;
+            padding: 2px 10px;
             font-weight: bold;
             border-radius: 5px;
             &:before {
