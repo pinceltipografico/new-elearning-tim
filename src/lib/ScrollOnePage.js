@@ -8,7 +8,7 @@ export default function OnPageScroll () {
   
   //
   // VARIABLES
-  this.configure = function (itemContainer, scrollIndicator, callback) {
+  this.configure = function (itemContainer, withMouse, scrollIndicator, callback) {
     this.callback = (callback && typeof callback === 'function') ? callback : null
     this.scrollContainer = document.querySelector(itemContainer)
     this.pagesContainer = document.querySelector('.sections')
@@ -28,7 +28,9 @@ export default function OnPageScroll () {
     }
     
     this.setStyles()
-    this.addScrollListeners()
+    if (withMouse) {
+      this.addScrollListeners()
+    }
     this.setScrollIndicators()
     this.gotoSection(0)
   }
@@ -139,6 +141,7 @@ export default function OnPageScroll () {
     for (var i = 0; i < pages.length; i++) {
       var item = pages[i]
       item.style.height = this.maxHeight + 'px'
+      item.style.overflow = 'hidden'
     }
   }
   
@@ -253,9 +256,9 @@ export default function OnPageScroll () {
    * START PROCESS
    | ----------------------------------------------
    **/
-  this.start = function (itemContainer, scrollIndicator, callback) {
+  this.start = function (itemContainer, scrollIndicator, withMouse, callback) {
     setTimeout(function () {
-      this.configure(itemContainer, scrollIndicator, callback)
+      this.configure(itemContainer, withMouse, scrollIndicator, callback)
     }.bind(this), 500)
   }
   

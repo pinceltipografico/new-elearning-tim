@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page16">
     <div class="effects"></div>
     <div class="image"></div>
     <div class="script1">

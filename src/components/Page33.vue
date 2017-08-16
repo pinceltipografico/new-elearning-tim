@@ -10,19 +10,19 @@
           <div></div>
         </div>
         <div class="items">
-          <router-link to="/page19">
+          <router-link to="/page18">
             <div class="item1">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
           </router-link>
-          <router-link to="/page20">
+          <router-link to="/page19">
             <div class="item2">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </router-link>
-          <router-link to="/page21">
+          <router-link to="/page20">
             <div class="item3">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
@@ -382,7 +382,7 @@
             display: inline-block;
             background: $brand-details;
             color: #fff;
-            padding: 4px;
+            padding: 7px;
             text-align: center;
             border-radius: 7px;
             top: 100%;
@@ -390,7 +390,7 @@
             font-weight: bold;
             transform: translateX(-50%);
             max-width: 90%;
-            @include font-size(1.5);
+            @include font-size(1.3);
           }
         }
       }

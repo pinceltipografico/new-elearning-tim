@@ -19,7 +19,7 @@
     <section class="page monitoring" v-show="scene === 1">
       <div class="people">
         <people></people>
-        <h1>60<br/>milhões</h1>
+        <h1>milhões de<br/>clientes</h1>
       </div>
       <div class="informacao">
         <h2>Informação</h2>
@@ -298,6 +298,8 @@
   }
   
   .monitoring {
+    text-transform: uppercase;
+    @include font-size(1);
     /*zoom: 0.9;*/
     .people {
       width: 500px;
@@ -308,7 +310,7 @@
         position: absolute;
         color: #fff;
         bottom: 0;
-        @include font-size(3);
+        @include font-size(2.5);
         left: 65%;
       }
     }
@@ -369,9 +371,10 @@
       }
       h2 {
         color: #fff;
-        top: -40px;
-        left: 20px;
+        top: -25px;
+        left: 30px;
         opacity: 0;
+        width: 100px;
       }
     }
     .brain {

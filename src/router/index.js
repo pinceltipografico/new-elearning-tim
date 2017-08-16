@@ -18,7 +18,6 @@ import Page16 from '@/components/Page16'
 import Page17 from '@/components/Page17'
 import Page18 from '@/components/Page18'
 import Page20 from '@/components/Page20'
-import Page30 from '@/components/Page30'
 import Page31 from '@/components/Page31'
 import Page33 from '@/components/Page33'
 import Page34 from '@/components/Page34'
@@ -133,11 +132,6 @@ const router = new Router({
       path: '/page16',
       name: 'page16',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
-      component: Page30
-    }, {
-      path: '/page17',
-      name: 'page17',
-      meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
       component: Page31
     }, {
       path: '/menu/3',
@@ -145,43 +139,43 @@ const router = new Router({
       meta: {pageTitle: '<span>Menu</span>', module: 'terceiro'},
       component: Page4
     }, {
+      path: '/page17',
+      name: 'page17',
+      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
+      component: Page33
+    }, {
       path: '/page18',
       name: 'page18',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page33
+      component: Page34
     }, {
       path: '/page19',
       name: 'page19',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page34
+      component: Page35
     }, {
       path: '/page20',
       name: 'page20',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page35
+      component: Page36
     }, {
       path: '/page21',
       name: 'page21',
       meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page36
+      component: Page37
     }, {
       path: '/page22',
       name: 'page22',
-      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
-      component: Page37
+      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
+      component: Page39
     }, {
       path: '/page23',
       name: 'page23',
       meta: {pageTitle: '<span>DNA Customer Experience</span>'},
-      component: Page39
+      component: Page41
     }, {
       path: '/page24',
       name: 'page24',
-      meta: {pageTitle: '<span>DNA Customer Experience</span>'},
-      component: Page41
-    }, {
-      path: '/page25',
-      name: 'page25',
       meta: {pageTitle: 'Obrigado!'},
       component: Page42
     }

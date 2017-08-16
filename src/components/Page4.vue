@@ -78,7 +78,7 @@
         })
       } else if (vm.moduleTitle === 'terceiro') {
         vm.playAudio('menuItem3', 'static/subtitles/menu_4.json', function () {}, function () {
-          vm.addClass(itens[1], 'active')
+          vm.addClass(itens[2], 'active')
         })
       }
     },
@@ -122,7 +122,7 @@
           this.$router.replace('/page15')
         }
         if (t === this.texts[2]) {
-          this.$router.replace('/page18')
+          this.$router.replace('/page17')
         }
       }
     },

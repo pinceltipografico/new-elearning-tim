@@ -114,15 +114,15 @@
         canClick: false,
         popups: [
           {
-            html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>É essencial que as avaliações sejam:</h4><span>uma avaliação simples e rápida aumenta a adesão do público</span><span>avaliar em tempo real</span>'
+            html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>É essencial que as avaliação seja:</h4><span>Simples e rápida</span><span>Em tempo real</span>'
           }, {
-            html: '<h1>INFORMAÇÃO DEVE SER TRANSFORMADA EM AÇÃO<small></small><h4>é importante para:</h4><span>tagir em prol de soluções</span><span>treverter insatisfações</span><span>tproporcionar emoções</span>'
+            html: '<h1>INFORMAÇÃO DEVE SER TRANSFORMADA EM AÇÃO<small></small><h4>É importante para:</h4><span>Focado em soluções</span><span>Reverter insatisfações</span><span>Proporcionar emoções</span>'
           }, {
-            html: '<h1>PREVER USANDO ANALYTCS<small></small><h4>Usar os dados disponíveis para</h4><span>Monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
+            html: '<h1>PREVER USANDO ANALYTCS<small></small><h4>Usar os dados disponíveis para:</h4><span>Monitorar a satisfação</span><span>Se antecipar ao cliente</span><span>Propor a melhor oferta ou comunicação para o cliente</span>'
           }, {
-            html: '<h1>CRIAR E GERIR OS INDICADORES<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>processo recorrente de análise</span><span>planos de ação de melhorias</span>'
+            html: '<h1>CRIAR E GERIR OS INDICADORES<small></small></h1><h4>Para isso é essencial:</h4><span>Estabelecer indicadores relevantes com metas</span><span>Processo recorrente de análise</span><span>Planos de ação de melhorias</span>'
           }, {
-            html: '<h1>RETER OU CONQUISTAR O CLIENTE<small></small><h4>Aproveitar as informações para</h4><span>Entender a necessidade do cliente</span><span>Reconhece-lo como único</span><span>Surpreende-lo</span>'
+            html: '<h1>RETER OU CONQUISTAR O CLIENTE<small></small><h4>Aproveitar as informações para:</h4><span>Entender a necessidade do cliente</span><span>Reconhecê-lo como único</span><span>Surpreendê-lo</span>'
           }
         ]
       }

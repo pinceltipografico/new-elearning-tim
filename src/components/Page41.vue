@@ -7,11 +7,13 @@
       <div class="tile tile4"></div>
       <div class="tile tile5"></div>
       <div class="tile tile6"></div>
+      <div class="tile customer">Customer Experience</div>
       <div class="tile tile7"></div>
       <div class="tile tile8"></div>
       <div class="tile tile9"></div>
       <div class="tile tile10"></div>
       <div class="tile tile11"></div>
+      <div class="tile tim">TIM</div>
       <div class="tile tile12"></div>
       <div class="tile tile13"></div>
       <div class="tile tile14"></div>
@@ -24,13 +26,6 @@
       <div class="tile tile21"></div>
       <div class="tile tile22"></div>
       <div class="tile tile23"></div>
-      <div class="tile tile24"></div>
-      <div class="tile tile25"></div>
-      <div class="tile tile26"></div>
-      <div class="tile tile27"></div>
-      <div class="tile tile28"></div>
-      <div class="tile tile29"></div>
-      <div class="tile tile30"></div>
     </div>
   </section>
 </template>
@@ -64,7 +59,7 @@
           easing: 'linear',
           opacity: [0, 1],
           delay: function (el, i) {
-            return 300 * i
+            return 500 * i
           }
         })
       
@@ -96,7 +91,7 @@
     $limit: 5;
     $cols: 0;
     $rows: 0;
-    $height: 120;
+    $height: 140;
     $width: percentage(1/5);
     .tile {
       position: absolute;
@@ -108,10 +103,15 @@
       height: #{$height}px;
       width: $width;
       
-      @for $i from 1 through 30 {
-        &:nth-of-type(#{$i}) {
-          /*background: url(../assets/backgrounds/page41/tiles-#{$i}.jpg) no-repeat;*/
+      @for $i from 1 through 23 {
+        
+        &.tile#{$i} {
+          background: url("../assets/backgrounds/page41/tile-#{$i}.jpg") no-repeat;
           background-size: cover;
+        }
+      }
+      @for $e from 1 through 30{
+        &:nth-of-type(#{$e}) {
           @if ($cols == $limit) {
             $cols: 0;
             $rows: $rows+1;
@@ -120,6 +120,21 @@
           top: #{($height * $rows)}px;
           $cols: $cols + 1;
         }
+      }
+      &.customer{
+        background: $brand-details;
+        //line-height: #{$height}px;
+        color:#fff;
+        text-align: center;
+        @include font-size(3);
+        padding-top: 30px;
+      }
+      &.tim{
+        background: $brand-secondary;
+        color:#fff;
+        line-height: #{$height}px;
+        text-align: center;
+        @include font-size(3);
       }
     }
     &.active {

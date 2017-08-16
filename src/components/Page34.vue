@@ -78,7 +78,7 @@
         </div>
         <div class="icone" @click="onShowPopup(4)">
           <ecantar></ecantar>
-          <span>Encantar o cliente.</span>
+          <span>Encantar o cliente</span>
         </div>
       </div>
     </section>
@@ -113,15 +113,15 @@
         canClose: false,
         popups: [
           {
-            html: '<h1>Usar a persona <span class="tim">TIM</span><small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>Cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>Carismática</span><span>leve</span><span>autêntica e espontânea</span><span>espontânea</span>'
+            html: '<h1>Usar a persona TIM<small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>Coesa e padronizada</span><span>Cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>Carismática</span><span>Leve</span><span>Autêntica</span><span>Espontânea</span>'
           }, {
-            html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>Claro</span><span>Conciso</span><span>Concreto</span><span>Correto</span><span>Coerente</span><span>Completo</span><span>Cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>Perguntar</span><span>repetir</span><span>sumarizar</span><span>exemplificar</span>'
+            html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>Claro</span><span>Conciso</span><span>Concreto</span><span>Correto</span><span>Coerente</span><span>Completo</span><span>Cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>Perguntar</span><span>Repetir</span><span>Sumarizar</span><span>Exemplificar</span>'
           }, {
             html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>Falar diferente com gente diferente</span><span>Considerar a linguagem do cliente</span><span>Dispensar o termo técnico</span>'
           }, {
-            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>Considerar como essas mudanças afetarão o cliente</span><span>os impactos nos resultados</span>'
+            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>Considerar como essas mudanças afetarão o cliente</span><span>Os impactos nos resultados</span>'
           }, {
-            html: '<h1>Encantar o cliente.<small></small></h1><h4>Lembrando que:</h4><span>cada pessoa pode escolher o mesmo produto por diferentes razões</span><h4>Adequar a comunicação:</h4><span>ofereceça o que realmente é do interesse dele!</span>'
+            html: '<h1>Encantar o cliente.<small></small></h1><h4>Lembrando que:</h4><span>cada pessoa pode escolher o mesmo produto por diferentes razões</span><h4>Adequar a comunicação:</h4><span>Ofereceça o que realmente é do interesse dele</span>'
           }
         ]
       }

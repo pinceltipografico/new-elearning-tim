@@ -1,14 +1,11 @@
 <template>
-  <section class="page">
-    <div class="scroll-arrow">
-      <i class="material-icons">&#xE313;</i>
-    </div>
+  <section class="page page3">
     <div class="sections" style="display: none;">
       <!-- SCENE 2 -->
       <section class="page-item">
         <div class="scene2">
           <div class="script2"><h1>A gente muda, o mundo muda a gente e a gente muda o mundo</h1></div>
-          <div class="explain">
+          <!--<div class="explain">
             <h1>Role a tela para baixo</h1>
             <div class="icons">
               <div>
@@ -18,25 +15,15 @@
                 <arrows></arrows>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="world">
             <world-map></world-map>
           </div>
         </div>
       </section>
       <!-- SCENE 2 -->
-      <!-- SCENE 3 -->
-      <!--<section class="page-item">-->
-      <!--<div class="scene3">-->
-      <!--<div class="image-market"></div>-->
-      <!--<div class="script3">-->
-      <!--<h1>O mercado está passando por rompimento de paradigmas</h1>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</section>-->
-      <!-- SCENE 3 -->
       <!-- SCENE 4 -->
-      <section class="page-item">
+      <section class="page-item" style="z-index: 4;">
         <div class="scene4">
           <div class="script3">
             O mercado está passando por rompimento de paradigmas
@@ -44,8 +31,6 @@
           <div class="script4">
             <!-- -->Novas tecnologias mudam profundamente nossa sociedade<!-- -->
           </div>
-          <!--<div class="script5">&lt;!&ndash; &ndash;&gt;Facilitam o acesso a informação&lt;!&ndash; &ndash;&gt;-->
-          <!--</div>-->
         </div>
       </section>
       <!-- SCENE 4 -->
@@ -57,7 +42,7 @@
         </div>
       </section>
       <!-- SCENE 6 -->
-      <section class="page-item" style="z-index: 5;">
+      <section class="page-item" style="z-index: 6;">
         <div class="scene5">
           <div class="script6">
             <!-- -->Que impactos isto pode acarretar?<!-- -->
@@ -106,6 +91,7 @@
   import MouseScroll from '../assets/svgs/mouse.svg'
   import Arrows from '../assets/svgs/arrows.svg'
   import WorldMap from '../assets/svgs/world-page5.svg'
+  import { EventBus } from '../events/index'
   
   export default {
     components: {
@@ -138,12 +124,33 @@
       this.$store.commit('setCanAdvance', false)
       var vm = this
       this.scroller = new ScrollOnePage()
-      this.scroller.start('.page', '.scroll-indicator', function (index) {
+      this.scroller.start('.page', '.scroll-indicator', false, function (index) {
         vm.currentSection = index
       })
-      this.playAudio('scene3', 'static/subtitles/page3.json', null, function () {
-        this.$store.commit('setCanAdvance', true)
-      }.bind(this))
+      this.playAudio('scene3', 'static/subtitles/page3.json', function (pos) {
+        if (pos === 7) {
+          vm.scroller.gotoSection(1)
+        } else if (pos === 18) {
+          vm.scroller.gotoSection(2)
+        } else if (pos === 34) {
+          vm.scroller.gotoSection(3)
+        } else if (pos === 43) {
+          vm.scroller.gotoSection(4)
+        } else if (pos === 56) {
+          vm.scroller.gotoSection(5)
+        } else if (pos === 64) {
+          vm.scroller.gotoSection(6)
+        }
+      }, function () {
+        vm.$store.commit('setCanAdvance', true)
+      })
+      
+      EventBus.$on('rewind', function () {
+        console.log('re')
+        if (vm.scroller) {
+          vm.scroller.gotoSection(0)
+        }
+      })
     },
     /**
      | ----------------------------------------------
@@ -156,6 +163,7 @@
         this.scroller = null
       }
       this.stopAudio()
+      EventBus.$off('rewind')
     }
   }
 </script>
@@ -188,6 +196,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      overflow: hidden;
       &:after {
         content: '';
         display: table;

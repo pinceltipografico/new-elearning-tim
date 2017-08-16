@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-page">
+  <div class="outer-page page15">
     <div class="svg-container" :class="{'small':smallMenu}">
       <div class="shadow"></div>
       <div class="client-image">
@@ -9,13 +9,6 @@
       <svg-item id="graph"></svg-item>
       <span v-if="!smallMenu"></span>
     </div>
-    <!-- INTRO
-    <section class="page intro" v-if="!started">
-      <div class="buttons" @click="start">
-        <span>iniciar</span>
-      </div>
-    </section> --->
-    <!-- INTRO -->
     <!-- ANIMAÇÕES DE PRECISAR -->
     <section class="page precisar" v-show="scene === 0">
       <div class="image-background step2"></div>
@@ -68,7 +61,7 @@
       </div>
       <div class="script2">
         <h1>Proporcionar que o cliente experimente o <span>serviço ou produto</span>
-          é uma alternativa para ajuda-lo na tomada de decisão e um oportunidade de avaliar previamente se as necessidades serão atendidas.
+          é uma alternativa para ajudá-lo na tomada de decisão e um oportunidade de avaliar previamente se as necessidades serão atendidas.
         </h1>
       </div>
       <div class="iconButton" @click="startSceneFiveTwo">
@@ -89,7 +82,7 @@
         </h1>
       </div>
       <div class="script2">
-        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torna-la envolvente e prática</span>
+        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torná-la envolvente e prática</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneSeven">
@@ -106,7 +99,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>Como tornar a entrega do produto ou serviço vendido uma <span>experiência única?</span></h1>
+        <h1>Como tornar a entrega do produto ou serviço uma <span>experiência única?</span></h1>
       </div>
       <div class="script2">
         <h1>O cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja.
@@ -114,7 +107,7 @@
       </div>
       <div class="iconButton" @click="startSceneEight2">
         <div>
-          <span>Como tornar a entrega do produto ou serviço vendido uma experiência única?</span>
+          <span>Como tornar a entrega do produto ou serviço uma experiência única?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -122,18 +115,19 @@
     <!-- ANIMAÇÕES DE RECEBER -->
     <!-- ANIMAÇÕES DE USAR -->
     <section class="page usar" v-show="scene === 5">
-      <div class="image-background"></div>
+      <div class="image-background step2"></div>
+      <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a <span>experiência do usuário?</span></h1>
-      </div>
-      <div class="script2">
-        <h1>O que a empresa e você podem fazer para melhorar cada vez mais a experiência do usuário?</h1>
+        <h1>É onde o cliente estará em contato com o que <span>imaginou receber.</span></h1>
       </div>
       <div class="video">
-        <video src="/tim/static/video/vdeo3.m4v" autoplay loop></video>
+        <video src="static/video/vdeo3.m4v" autoplay loop></video>
         <h1>
           Imagine você organizando a tão esperada viagem, utilizando um app que te ajuda a identificar os melhores roteiros e passeios</h1>
+      </div>
+      <div class="script2">
+        Aproveitar cada minuto e tornar os <span>momentos marcantes!</span>
       </div>
       <div class="iconButton" @click="startSceneNineTwo">
         <div>
@@ -163,7 +157,7 @@
       </div>
       <div class="iconButton" @click="startSceneTenTwo">
         <div>
-          <span>Qual é a melhor forma de atende-lo quando ele já usa o produto ou serviço?</span>
+          <span>Qual é a melhor forma de atendê-lo quando ele já usa o produto ou serviço?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -180,7 +174,6 @@
       <div class="homem"></div>
       <div class="script2">
         <h1>
-          Recomendar é o resultado de toda boa experiência que o cliente teve ao lono da jornada de contato com o produto ou serviço
           <small>Precisamos tornar o cliente um defensor da marca!</small>
         </h1>
       </div>
@@ -911,19 +904,28 @@
           })
           .add({
             targets: '.usar > .effects',
-            opacity: 0,
+            opacity: 1,
+            height: '100%',
+            top: '0%',
+            translateY: '0%',
+            background: '#ffffff',
             duration: 300,
             easing: 'linear'
           })
           .add({
             targets: '.usar > .video',
-            opacity: 1,
+            opacity: [{value: 1}, {value: 0, delay: 8000}],
             duration: 300,
             easing: 'linear',
             begin: function () {
               var el = document.querySelector('.usar > .video')
               el.style.display = 'block'
-            }
+            },
+            complete: function () {
+              var el = document.querySelector('.usar > .video')
+              el.style.display = 'none'
+            },
+            offset: '+=500'
           })
           .add({
             targets: '.usar > .video h1',
@@ -939,7 +941,26 @@
                 var el = document.querySelector('.usar > .video')
                 vm.addClass(el, 'step3')
               }, 1000)
-            }
+            },
+            offset: '-=8000'
+          })
+          .add({
+            targets: '.usar > .image1',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .effects',
+            opacity: 0,
+            duration: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.usar > .script2',
+            opacity: [0, 1],
+            duration: 300,
+            easing: 'linear'
           })
         this.playAudio('usar2', 'static/subtitles/page15_usar2.json', null, function () {
           this.addListenerSvg(6, this.startSceneTen)
@@ -1222,7 +1243,7 @@
     &.small {
       width: 150px;
       left: 90%;
-      top: 90%;
+      top: 85%;
       .client-image {
         display: none;
       }
@@ -1599,6 +1620,10 @@
     .image-background {
       background: url("../assets/backgrounds/page20/09.jpg") no-repeat;
       background-size: cover;
+      &.step2 {
+        background: url("../assets/backgrounds/page20/ref-656349286.jpg") no-repeat;
+        background-size: cover;
+      }
     }
     .effects {
       width: 35%;
@@ -1676,15 +1701,15 @@
     .script2 {
       top: 50%;
       left: 50%;
-      max-width: 70%;
-      transform: translate(-50%, -50%);
+      max-width: 500px;
+      transform: translate(0, -50%);
       color: #fff;
-      @include font-size(2);
+      @include font-size(3);
       text-align: center;
       opacity: 0;
-      &.show {
-        opacity: 1;
-      }
+      background: $brand-details;
+      padding: 10px;
+      border-radius: 5px;
     }
   }
   
@@ -1797,9 +1822,9 @@
       }
     }
     .script2 {
-      max-width: 500px;
+      max-width: 300px;
       color: #fff;
-      @include font-size(2);
+      @include font-size(2.5);
       top: 50%;
       left: 10%;
       transform: translateY(-50%);
