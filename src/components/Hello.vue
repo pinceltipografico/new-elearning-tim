@@ -68,7 +68,7 @@
   @import "../scss/mixins";
   
   section.page {
-    background: url("../assets/backgrounds/home/home.jpg") no-repeat;
+    background: url("../assets/backgrounds/home/shutterstock_367752371.jpg") no-repeat;
     background-size: cover;
   }
   

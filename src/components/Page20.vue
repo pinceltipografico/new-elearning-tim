@@ -39,8 +39,8 @@
         </h1>
       </div>
       <div class="script3">
-        <h1>Imagine um aplicativo de festas e poder criar um ambiente de interação com seus <span>convidados tão especiais</span>
-        </h1>
+        <h1>Comparar as principais características dos produtos como, <span>cores, tamanho, funcionalidade,</span>
+          atribuição de serviços e valores, utilizando site de pesquisas e ou aplicativos, simuladores de consumo.</h1>
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
@@ -56,7 +56,8 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às <span>necessidades exclusivas dele?</span>
+        <h1>
+          Quais são os critérios de escolha? O que será que o fez decidir? O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às necessidades <span>exclusivas dele?</span>
         </h1>
       </div>
       <div class="script2">
@@ -144,7 +145,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>Manter o cliente encantado com a marca, mesmo quando ele encontra contratempos ou quando <span>ele precisa de algum suporte</span>
+        <h1>Manter o cliente encantado com a marca, mesmo quando ele se depara com contratempos ou quando <span>ele precisa de algum suporte</span>
         </h1>
       </div>
       <div class="script2">
@@ -152,7 +153,7 @@
       </div>
       <div class="script3">
         <h1>
-          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independente do canal, <span>sua necessidade será atendida.</span>
+          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independentemente do canal, <span>sua necessidade será atendida.</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneTenTwo">
@@ -311,6 +312,9 @@
        | ----------------------------------------------
        **/
       hideEles (keepIndex, callback) {
+        if (!keepIndex) {
+          return
+        }
         var vm = this
         if (callback === void 0) { callback = null }
         var root = document.querySelector('.svg-container')
@@ -455,7 +459,7 @@
             targets: '.precisar > .script3',
             opacity: 1,
             duration: 300,
-            offset: '+=3000'
+            offset: '+=13000'
           })
         this.playAudio('precisar2', 'static/subtitles/page15_precisar2.json', null, function () {
           this.addListenerSvg(1, this.startSceneThree)
@@ -582,12 +586,13 @@
           .add({
             targets: '.escolher > .script1',
             left: ['-100%', '0%'],
-            width: [{value: '500px'}, {value: '1280px', delay: 13000}],
-            height: [{value: '150px'}, {value: '300px', delay: 13000}],
+            width: [{value: '550px'}, {value: '1280px', delay: 13000}],
+            height: [{value: '230px'}, {value: '300px', delay: 13000}],
             opacity: [{value: 1}, {value: 0.4, delay: 13000}],
             backgroundColor: '#fff',
             duration: 300,
-            easing: 'linear'
+            easing: 'linear',
+            offset: '+=5000'
           })
           .add({
             targets: '.escolher > .script1 h1',
@@ -1018,7 +1023,7 @@
             translateY: '-50%',
             duration: 300,
             easing: 'linear',
-            offset: '+=500'
+            offset: '+=6000'
           })
           .add({
             targets: '.manter > .effects',
@@ -1168,9 +1173,13 @@
             duration: 300,
             easing: 'linear'
           })
-        this.playAudio('recomendar2', 'static/subtitles/page15_recomendar2.json', null, function () {
-          this.$store.commit('setCanAdvance', true)
-        }.bind(this))
+        this.playAudio('recomendar2', 'static/subtitles/page15_recomendar2.json', function (pos) {
+          if (pos === 11) {
+            this.$store.commit('setCanAdvance', true)
+            var currentId = this.getCurrentAudioId()
+            this.$store.state.audio.pause(currentId)
+          }
+        }.bind(this), null)
       }
     }
   }
@@ -1393,11 +1402,11 @@
   .precisar {
     .image-background {
       &.step1 {
-        background: url("../assets/backgrounds/page20/ref-526149550.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_526149550.jpg") no-repeat;
         background-size: cover;
       }
       &.step2 {
-        background: url("../assets/backgrounds/page20/ref-393506530.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_393506530.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1467,10 +1476,10 @@
   // pesquisar
   .pesquisar {
     .image-background {
-      background: url("../assets/backgrounds/page20/03.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_392372638.jpg") no-repeat;
       background-size: cover;
       &.step2 {
-        background: url("../assets/backgrounds/page20/ref-565003417.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_505539793.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1495,7 +1504,7 @@
       left: -100%;
       background: #fff;
       transform: translateY(-50%);
-      @include font-size(2);
+      @include font-size(1.5);
       padding: 0 10px 0 70px;
       color: #666;
       &.step1 {
@@ -1508,10 +1517,10 @@
   // ESCOHER
   .escolher {
     .image-background {
-      background: url("../assets/backgrounds/page20/05.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_567726835.jpg") no-repeat;
       background-size: cover;
       &.step2 {
-        background: url("../assets/backgrounds/page20/ref-326967050.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_326967050.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1520,7 +1529,7 @@
       left: -100%;
       background: #fff;
       padding: 0 20px 0 50px;
-      @include font-size(1.6);
+      @include font-size(1.5);
       transform: translateY(-50%);
       color: #666;
       &.show {
@@ -1544,10 +1553,10 @@
   // COMPRAR
   .comprar {
     .image-background {
-      background: url("../assets/backgrounds/page20/ref-359139920.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_359139920.jpg") no-repeat;
       background-size: cover;
       &.step2 {
-        background: url('../assets/backgrounds/page20/07.jpg') no-repeat;
+        background: url('../assets/backgrounds/page15/shutterstock_163505738.jpg') no-repeat;
         background-size: cover;
       }
     }
@@ -1590,10 +1599,10 @@
   // RECEBER
   .receber {
     .image-background {
-      background: url("../assets/backgrounds/page20/08.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_361009364.jpg") no-repeat;
       background-size: cover;
       &.step1 {
-        background: url("../assets/backgrounds/page20/ref-513792328.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_513792328.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1622,10 +1631,10 @@
   // USAR
   .usar {
     .image-background {
-      background: url("../assets/backgrounds/page20/09.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_599683739.jpg") no-repeat;
       background-size: cover;
       &.step2 {
-        background: url("../assets/backgrounds/page20/ref-656349286.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_656349286.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1721,14 +1730,14 @@
   // MANTER
   .manter {
     .image-background {
-      background: url("../assets/backgrounds/page20/10.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_505576180.jpg") no-repeat;
       background-size: cover;
       &.step2 {
-        background: url("../assets/backgrounds/page20/11.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_393304039.jpg") no-repeat;
         background-size: cover;
       }
       &.step3 {
-        background: url("../assets/backgrounds/page20/ref-580048861.jpg") no-repeat;
+        background: url("../assets/backgrounds/page15/shutterstock_580048861.jpg") no-repeat;
         background-size: cover;
       }
     }
@@ -1755,6 +1764,9 @@
       @include font-size(1.5);
       color: #666;
       opacity: 0;
+      h1 {
+        margin: 0;
+      }
     }
     .script2 {
       max-width: 500px;
@@ -1788,7 +1800,7 @@
   // RECOMENDAR
   .recomendar {
     .image-background {
-      background: url("../assets/backgrounds/page20/12.jpg") no-repeat;
+      background: url("../assets/backgrounds/page15/shutterstock_521627071.jpg") no-repeat;
       background-size: cover;
       &.hide {
         display: none;
@@ -1797,7 +1809,7 @@
     .homem {
       width: 538px;
       height: 709px;
-      background: url("../assets/backgrounds/page20/13.png") no-repeat;
+      background: url("../assets/backgrounds/page15/13.png") no-repeat;
       bottom: -100px;
       right: -100%;
       opacity: 0;

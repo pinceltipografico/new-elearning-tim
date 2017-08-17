@@ -12,7 +12,7 @@
         <div>Sermos surpreendidos onde estivermos</div>
       </h1>
       <h1 v-on:click="newHtml($event,'3')" data-index="3">
-        <div>previsão de nossos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
+        <div>Previsão de nossos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
       </h1>
     </div>
     <div class="script2" v-if="!showEnd">
@@ -165,7 +165,7 @@
       return {
         texts: {
           '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico',
-          '2': 'Hoje temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar',
+          '2': 'Hoje, temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar',
           '3': 'Além do serviço tradicional, pensar novos modelos, formatos e surpreender'
         },
         viewed: [],
@@ -194,7 +194,7 @@
   @import "~susy/sass/susy";
   
   section.page {
-    background: url('../assets/backgrounds/page9/01.jpg') no-repeat;
+    background: url('../assets/backgrounds/page6/shutterstock_397015894.jpg') no-repeat;
     background-size: cover;
   }
   
@@ -314,13 +314,13 @@
     }
     div.close {
       position: absolute;
-      top: -15px;
-      right: -15px;
-      width: 30px;
-      height: 30px;
+      top: -20px;
+      right: -20px;
+      width: 40px;
+      height: 40px;
       display: block;
       cursor: pointer;
-      animation: closeButton 2s infinite ease-in-out alternate;
+      animation: closeButton 0.350s infinite ease-in-out alternate;
       text-align: center;
       background: $brand-details;
       border: 1px solid #fff;
@@ -328,7 +328,7 @@
       i {
         @include font-size(2);
         color: #fff;
-        line-height: 30px;
+        line-height: 40px;
       }
     }
     p {
@@ -345,15 +345,15 @@
       z-index: 1;
       opacity: 0.6;
       &.style1 {
-        background: url("../assets/backgrounds/page9/04.jpg") no-repeat;
+        background: url("../assets/backgrounds/page6/shutterstock_87209047.jpg") no-repeat;
         background-size: cover;
       }
       &.style2 {
-        background: url("../assets/backgrounds/page9/03.jpg") no-repeat;
+        background: url("../assets/backgrounds/page6/shutterstock_315826034.jpg") no-repeat;
         background-size: cover;
       }
       &.style3 {
-        background: url("../assets/backgrounds/page9/02.jpg") no-repeat;
+        background: url("../assets/backgrounds/page6/shutterstock_379865653.jpg") no-repeat;
         background-size: cover;
       }
     }

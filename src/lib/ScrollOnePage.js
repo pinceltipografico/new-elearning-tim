@@ -242,6 +242,7 @@ export default function OnPageScroll () {
       this.scrollIndicatorContainer.appendChild(el)
     }
     var self = this
+    /*
     this.scrollIndicatorContainer.addEventListener('click', function (event) {
       var currentEvent = event || window.event
       if (currentEvent.target.tagName === 'LI') {
@@ -249,6 +250,7 @@ export default function OnPageScroll () {
         self.gotoSection(index)
       }
     })
+    */
   }
   
   /**

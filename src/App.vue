@@ -253,6 +253,13 @@
       isExplainScreen () {
         return this.$route.name === 'explain'
       }
+    },
+    
+    watch: {
+      '$route': function () {
+        this.$store.commit('setCanAdvance', false)
+        window.history.forward(1)
+      }
     }
   }
 </script>
@@ -266,7 +273,7 @@
   
   body:after {
     display: none;
-    content: url('assets/backgrounds/home/home.jpg') url("assets/backgrounds/page1/01.jpg") url("assets/backgrounds/page1/02.jpg") url("assets/backgrounds/page1/03.png") url("assets/backgrounds/page1/04.jpg") url("assets/backgrounds/page1/05.png") url("assets/backgrounds/page1/06.jpg") url("assets/backgrounds/page1/07.png") url("assets/backgrounds/page1/08.png") url("assets/backgrounds/page2/01.jpg") url("assets/backgrounds/page2/02.jpg") url("assets/backgrounds/page2/03.png") url("assets/backgrounds/page2/04.jpg") url("assets/backgrounds/page2/06.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page4/01.png") url("assets/backgrounds/page5/01.jpg") url("assets/backgrounds/page5/02.jpg") url("assets/backgrounds/page5/03.jpg") url("assets/backgrounds/page5/04.png") url("assets/backgrounds/page5/05.jpg") url("assets/backgrounds/page5/ref-485074453.jpg") url("assets/backgrounds/page5/07.jpg") url("assets/backgrounds/page7/01.jpg") url("assets/backgrounds/page8/01.jpg") url("assets/backgrounds/page8/02.jpg") url("assets/backgrounds/page9/01.jpg") url("assets/backgrounds/page9/02.jpg") url("assets/backgrounds/page9/03.jpg") url("assets/backgrounds/page9/04.jpg") url("assets/backgrounds/page11/01.png") url("assets/backgrounds/page12/01.png") url("assets/backgrounds/page12/02.jpg") url("assets/backgrounds/page12/03.png") url("assets/backgrounds/page12/04.png") url("assets/backgrounds/page13/01.jpg") url("assets/backgrounds/page15/01.jpg") url("assets/backgrounds/page15/02.jpg") url("assets/backgrounds/page16/01.png") url("assets/backgrounds/page17/01.jpg") url("assets/backgrounds/page17/02.jpg") url("assets/backgrounds/page17/ref-613155317.jpg") url("assets/backgrounds/page18/01.jpg") url("assets/backgrounds/page18/ref-525655138.jpg") url("assets/backgrounds/page18/ref-565936849.jpg") url("assets/backgrounds/page18/02.jpg") url("assets/backgrounds/page18/03.jpg") url("assets/backgrounds/page19/01.png") url("assets/backgrounds/page20/01.jpg") url("assets/backgrounds/page20/ref-326967050.jpg") url("assets/backgrounds/page20/02.jpg") url("assets/backgrounds/page20/03.jpg") url("assets/backgrounds/page20/04.jpg") url("assets/backgrounds/page20/05.jpg") url("assets/backgrounds/page20/ref-393506530.jpg") url("assets/backgrounds/page20/ref-580048861.jpg") url("assets/backgrounds/page20/ref-526149550.jpg") url("assets/backgrounds/page20/ref-565003417.jpg") url("assets/backgrounds/page20/06.jpg") url("assets/backgrounds/page20/07.jpg") url("assets/backgrounds/page20/08.jpg") url("assets/backgrounds/page20/09.jpg") url("assets/backgrounds/page20/10.jpg") url("assets/backgrounds/page20/11.jpg") url("assets/backgrounds/page20/12.jpg") url("assets/backgrounds/page31/01.jpg") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page10/graph4.png") url("assets/backgrounds/page10/graph3.png") url("assets/backgrounds/page10/graph2.png") url("assets/backgrounds/page10/graph1.png") url("assets/backgrounds/page31/02.png") url("assets/backgrounds/page33/01.jpg") url("assets/backgrounds/page33/02.jpg") url("assets/backgrounds/page33/ref-326696885.jpg") url("assets/backgrounds/page20/ref-513792328.jpg") url("assets/backgrounds/page20/ref-359139920.jpg") url("assets/backgrounds/page33/ref-201601247.jpg") url("assets/backgrounds/page33/ref-509785477.jpg") url("assets/backgrounds/page33/ref-662955334.jpg") url("assets/backgrounds/page33/ref-127829156.jpg") url("assets/backgrounds/page33/ref-536781589.jpg") url("assets/backgrounds/page33/ref-551829490.jpg") url("assets/backgrounds/page33/ref-265400186.jpg") url("assets/backgrounds/page33/ref-210974194.jpg") url("assets/backgrounds/page33/ref-454777204.jpg") url("assets/backgrounds/page33/ref-354939284.jpg") url("assets/backgrounds/page33/ref-428959477.jpg") url("assets/backgrounds/page33/ref-399241594.jpg") url("assets/backgrounds/page33/ref-572233399.jpg") url("assets/backgrounds/page33/ref-577848541.jpg") url("assets/backgrounds/page33/circlel.png") url("assets/backgrounds/page33/circle2.png") url("assets/backgrounds/page40/touch.png") url("assets/backgrounds/page40/dna.png") url("assets/backgrounds/page41/tile-6.jpg") url("assets/backgrounds/page41/tile-5.jpg") url("assets/backgrounds/page41/tile-4.jpg") url("assets/backgrounds/page41/tile-3.jpg") url("assets/backgrounds/page41/tile-2.jpg") url("assets/backgrounds/page41/tiles-1.jpg") url("assets/backgrounds/page41/tile-8.jpg") url("assets/backgrounds/page42/ref-287713304.jpg") url("assets/backgrounds/page39/ref-390285811.jpg") url("assets/backgrounds/page20/ref-526149550.jpg") url("assets/backgrounds/page20/ref-580048861.jpg") url("assets/backgrounds/page20/ref-656349286.jpg");
+    content: url("assets/backgrounds/home/shutterstock_367752371.jpg") url("assets/backgrounds/page1/shutterstock_516175918.jpg") url("assets/backgrounds/page1/shutterstock_379691755.jpg") url("assets/backgrounds/page1/shutterstock_450689707.jpg") url("assets/backgrounds/page2/shutterstock_316452626.jpg") url("assets/backgrounds/page2/shutterstock_371017109.jpg") url('assets/backgrounds/page2/shutterstock_524512507.jpg') url("assets/backgrounds/page3/shutterstock_485074453.jpg") url("assets/backgrounds/page3/shutterstock_495493495.jpg") url("assets/backgrounds/page3/03.jpg") url("assets/backgrounds/page3/05.jpg") url('assets/backgrounds/page4/shutterstock_342602372.jpg') url("assets/backgrounds/page4/bag.png") url("assets/backgrounds/page5/shutterstock_552386662.jpg") url("assets/backgrounds/page5/shutterstock_525052798.jpg") url("assets/backgrounds/page6/shutterstock_379865653.jpg") url("assets/backgrounds/page6/shutterstock_397015894.jpg") url("assets/backgrounds/page6/shutterstock_87209047.jpg") url("assets/backgrounds/page6/shutterstock_315826034.jpg") url("assets/backgrounds/page8/01.png") url("assets/backgrounds/page9/03.png") url("assets/backgrounds/page9/04.png") url("assets/backgrounds/page10/shutterstock_337783478.jpg") url("assets/backgrounds/page10/shutterstock_613155317.jpg") url("assets/backgrounds/page11/shutterstock_448523395.jpg") url("assets/backgrounds/page13/shutterstock_565936849.jpg") url("assets/backgrounds/page13/shutterstock_525655138.jpg") url("assets/backgrounds/page13/shutterstock_521540137.jpg") url("assets/backgrounds/page13/shutterstock_450852736.jpg") url("assets/backgrounds/page14/01.png") url("assets/backgrounds/page15/shutterstock_526149550.jpg") url("assets/backgrounds/page15/shutterstock_392372638.jpg") url("assets/backgrounds/page15/shutterstock_393506530.jpg") url("assets/backgrounds/page15/shutterstock_565003417.jpg") url("assets/backgrounds/page15/shutterstock_567726835.jpg") url("assets/backgrounds/page15/shutterstock_326967050.jpg") url("assets/backgrounds/page15/shutterstock_163505738.jpg") url("assets/backgrounds/page15/shutterstock_359139920.jpg") url("assets/backgrounds/page15/shutterstock_361009364.jpg") url("assets/backgrounds/page15/shutterstock_513792328.jpg") url("assets/backgrounds/page15/shutterstock_656349286.jpg") url("assets/backgrounds/page15/shutterstock_599683739.jpg") url("assets/backgrounds/page15/shutterstock_580048861.jpg") url("assets/backgrounds/page15/shutterstock_505576180.jpg") url("assets/backgrounds/page15/shutterstock_393304039.jpg") url("assets/backgrounds/page15/shutterstock_521627071.jpg") url("assets/backgrounds/page15/shutterstock_505539793.jpg") url("assets/backgrounds/page15/13.png") url("assets/backgrounds/page16/02.png") url("assets/backgrounds/page17/shutterstock_520928407.jpg") url("assets/backgrounds/page39/ref-390285811.jpg") url("assets/backgrounds/page40/dna.png") url("assets/backgrounds/page40/touch.png") url("assets/backgrounds/page41/tile-1.jpg") url("assets/backgrounds/page41/tile-2.jpg") url("assets/backgrounds/page41/tile-3.jpg") url("assets/backgrounds/page41/tile-4.jpg") url("assets/backgrounds/page41/tile-5.jpg") url("assets/backgrounds/page41/tile-6.jpg") url("assets/backgrounds/page41/tile-7.jpg") url("assets/backgrounds/page41/tile-8.jpg") url("assets/backgrounds/page41/tile-9.jpg") url("assets/backgrounds/page41/tile-10.jpg") url("assets/backgrounds/page41/tile-11.jpg") url("assets/backgrounds/page41/tile-12.jpg") url("assets/backgrounds/page41/tile-13.jpg") url("assets/backgrounds/page41/tile-14.jpg") url("assets/backgrounds/page41/tile-15.jpg") url("assets/backgrounds/page41/tile-16.jpg") url("assets/backgrounds/page41/tile-17.jpg") url("assets/backgrounds/page41/tile-18.jpg") url("assets/backgrounds/page41/tile-19.jpg") url("assets/backgrounds/page41/tile-20.jpg") url("assets/backgrounds/page41/tile-21.jpg") url("assets/backgrounds/page42/ref-287713304.jpg");
   }
   
   main {
@@ -331,7 +338,8 @@
       
       section.page8,
       section.page3,
-      section.page15 {
+      section.page15,
+      section.usar {
         video {
           height: 125% !important;
         }
@@ -349,6 +357,12 @@
         }
       }
       
+      section.page9 {
+        .script3 {
+          bottom: -60px;
+        }
+      }
+      
       section.page-menu {
         h1 {
           top: 10% !important;
@@ -361,6 +375,21 @@
           top: 90%;
           left: 94%;
         }
+      }
+      
+      section.menu-page .menu {
+        animation: slideImageSmall 10s infinite ease-in-out;
+        bottom: -40px;
+        right: -40px;
+      }
+      
+      section.page.monitoring {
+        .engajamento {
+        }
+        transform: scale(0.85);
+        overflow: visible;
+        border: none;
+        animation: none;
       }
     }
   }
@@ -792,6 +821,7 @@
     background: rgba(#000, 0.3);
     top: 0;
     left: 0;
+    
     .inner {
       position: absolute;
       top: 50%;
@@ -804,6 +834,38 @@
       background: darken($brand-details, 20%);
       border: 10px solid #fff;
       transition: transform $animationTime;
+      
+      .ribbon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: $brand-secondary;
+        color: #fff;
+        left: -10px;
+        @include font-size(1.5);
+        padding: 4px 10px;
+        &:after,
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+        }
+        &:before {
+          width: 30px;
+          height: 100%;
+          background: $brand-secondary;
+          left: -30px;
+          top: 0;
+        }
+        &:after {
+          height: 100%;
+          top: 100%;
+          left: -30px;
+          border-top: 20px solid darken($brand-secondary, 15%);
+          border-left: 30px solid transparent;
+        }
+      }
+      
       .close {
         position: absolute;
         background: $brand-secondary;
@@ -1099,6 +1161,18 @@
   @keyframes clockRotation {
     to {
       transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes slideImageSmall {
+    0% {
+      transform: translateX(0) scale(0.9);
+    }
+    50% {
+      transform: translateX(2%) scale(0.9);
+    }
+    100% {
+      transform: translateX(0%) scale(0.9);
     }
   }
 </style>

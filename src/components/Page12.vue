@@ -3,8 +3,8 @@
     <div class="image-background"></div>
     <div class="white"></div>
     <div class="image">
-      <img src="../assets/backgrounds/page12/04.png" alt="">
-      <img src="../assets/backgrounds/page12/03.png"/>
+      <img src="../assets/backgrounds/page9/04.png" alt="">
+      <img src="../assets/backgrounds/page9/03.png"/>
     </div>
     <div class="icon-1"><img src="../assets/sprites/celphone-page12.jpg" alt=""></div>
     <div class="icon-2"><img src="../assets/sprites/note-page12.png" alt=""></div>
@@ -13,7 +13,7 @@
     <div class="icon-5"><img src="../assets/sprites/computer-page12.jpg" alt=""></div>
     <div class="icon-6"><img src="../assets/sprites/message-page12.png" alt=""></div>
     <div class="script1">
-      <h1>esta interação pode se dar de vários <span>níveis e formas</span></h1>
+      <h1>Esta interação pode se dar de vários <span>níveis e formas</span></h1>
     </div>
     <div class="script2">
       <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>
@@ -257,7 +257,7 @@
       max-width: none;
       width: 100%;
       left: 50%;
-      bottom: 50px;
+      bottom: 0;
       padding: 0 40px;
       opacity: 0;
       h1 {

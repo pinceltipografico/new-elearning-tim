@@ -37,112 +37,7 @@
       }
     },
     mounted: function () {
-      var vm = this
       this.$store.commit('setCanAdvance', false)
-      this.playAudio('scene23', 'static/subtitles/page23.json', null, function () {
-        var tim = vm.$el.querySelector('.script')
-        tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
-        vm.playAudio('scene23_1', 'static/subtitles/page23_1.json', null, function () {
-          vm.$store.commit('setCanAdvance', true)
-        })
-      })
-      var beforeAnim = {count: 0}
-      var anim1 = vm.$el.querySelector('.animation1')
-      var anim2 = vm.$el.querySelector('.animation2')
-      this.TimelineCtrl = anime.timeline()
-      this.TimelineCtrl
-        .add({
-          targets: beforeAnim,
-          duration: '3000',
-          easing: 'linear',
-          count: 100,
-          begin: function () {
-            anim1.className = 'animation1'
-            anim2.className = 'animation2'
-          },
-          update: function (ani) {
-            var c = Math.floor(beforeAnim.count)
-            if (c === 10) {
-              vm.addClass(anim1, 'step1')
-            } else if (c === 20) {
-              vm.addClass(anim1, 'step2')
-            } else if (c === 30) {
-              vm.addClass(anim2, 'step1')
-            } else if (c === 40) {
-              vm.addClass(anim2, 'step2')
-            }
-          }
-        })
-        .add({
-          targets: '.colaboradores',
-          duration: '500',
-          easing: 'linear',
-          translateY: ['0%', '-100%'],
-          offset: '+=5000'
-        })
-        .add({
-          targets: '.clientes',
-          duration: '500',
-          easing: 'linear',
-          translateY: ['0%', '100%']
-        })
-        .add({
-          targets: '.script',
-          opacity: [0, 1],
-          duration: '500',
-          easing: 'linear'
-        })
-        .add({
-          targets: ['.animation1', '.animation2'],
-          width: ['670px', '480px'],
-          duration: '300',
-          easing: 'linear'
-        })
-        .add({
-          targets: '.animation1',
-          top: ['40%', '43%'],
-          duration: '300',
-          easing: 'linear',
-          offset: '-=300'
-        })
-        .add({
-          targets: '.animation2',
-          top: ['60%', '57%'],
-          duration: '300',
-          easing: 'linear',
-          offset: '-=300'
-        })
-        .add({
-          targets: '.palavras-colaborador',
-          duration: '300',
-          easing: 'linear',
-          opacity: 1,
-          begin: function () {
-            var el = document.querySelector('.palavras-colaborador')
-            vm.removeClass(el, 'show')
-          },
-          complete: function () {
-            var el = document.querySelector('.palavras-colaborador')
-            vm.addClass(el, 'show')
-          },
-          offset: '+=4000'
-        })
-        .add({
-          targets: '.palavras-clientes',
-          duration: '300',
-          easing: 'linear',
-          opacity: 1,
-          begin: function () {
-            var el = document.querySelector('.palavras-clientes')
-            vm.removeClass(el, 'show')
-          },
-          complete: function () {
-            var el = document.querySelector('.palavras-clientes')
-            vm.addClass(el, 'show')
-          },
-          offset: '+=9000'
-        })
-      
       EventBus.$on('pause', function (paused) {
         if (this.TimelineCtrl) {
           (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
@@ -152,7 +47,124 @@
         if (this.TimelineCtrl) {
           this.TimelineCtrl.restart()
         }
+        var el = document.querySelector('.palavras-colaborador')
+        var el2 = document.querySelector('.palavras-clientes')
+        this.removeClass(el, 'show')
+        this.removeClass(el2, 'show')
+        this.doAnimation()
       }.bind(this))
+      this.doAnimation()
+    },
+    methods: {
+      doAnimation () {
+        var vm = this
+        this.playAudio('scene23', 'static/subtitles/page23.json', null, function () {
+          var tim = vm.$el.querySelector('.script')
+          tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
+          vm.playAudio('scene23_1', 'static/subtitles/page23_1.json', null, function () {
+            vm.$store.commit('setCanAdvance', true)
+          })
+        })
+        var beforeAnim = {count: 0}
+        var anim1 = vm.$el.querySelector('.animation1')
+        var anim2 = vm.$el.querySelector('.animation2')
+        if (this.TimelineCtrl) {
+          return
+        }
+        this.TimelineCtrl = anime.timeline()
+        this.TimelineCtrl
+          .add({
+            targets: beforeAnim,
+            duration: '3000',
+            easing: 'linear',
+            count: 100,
+            begin: function () {
+              anim1.className = 'animation1'
+              anim2.className = 'animation2'
+            },
+            update: function (ani) {
+              var c = Math.floor(beforeAnim.count)
+              if (c === 10) {
+                vm.addClass(anim1, 'step1')
+              } else if (c === 20) {
+                vm.addClass(anim1, 'step2')
+              } else if (c === 30) {
+                vm.addClass(anim2, 'step1')
+              } else if (c === 40) {
+                vm.addClass(anim2, 'step2')
+              }
+            }
+          })
+          .add({
+            targets: '.colaboradores',
+            duration: '500',
+            easing: 'linear',
+            translateY: ['0%', '-100%'],
+            offset: '+=6000'
+          })
+          .add({
+            targets: '.clientes',
+            duration: '500',
+            easing: 'linear',
+            translateY: ['0%', '100%']
+          })
+          .add({
+            targets: '.script',
+            opacity: [0, 1],
+            duration: '500',
+            easing: 'linear'
+          })
+          .add({
+            targets: ['.animation1', '.animation2'],
+            width: ['670px', '480px'],
+            duration: '300',
+            easing: 'linear'
+          })
+          .add({
+            targets: '.animation1',
+            top: ['40%', '43%'],
+            duration: '300',
+            easing: 'linear',
+            offset: '-=300'
+          })
+          .add({
+            targets: '.animation2',
+            top: ['60%', '57%'],
+            duration: '300',
+            easing: 'linear',
+            offset: '-=300'
+          })
+          .add({
+            targets: '.palavras-colaborador',
+            duration: '300',
+            easing: 'linear',
+            opacity: 1,
+            begin: function () {
+              var el = document.querySelector('.palavras-colaborador')
+              vm.removeClass(el, 'show')
+            },
+            complete: function () {
+              var el = document.querySelector('.palavras-colaborador')
+              vm.addClass(el, 'show')
+            },
+            offset: '+=3000'
+          })
+          .add({
+            targets: '.palavras-clientes',
+            duration: '300',
+            easing: 'linear',
+            opacity: 1,
+            begin: function () {
+              var el = document.querySelector('.palavras-clientes')
+              vm.removeClass(el, 'show')
+            },
+            complete: function () {
+              var el = document.querySelector('.palavras-clientes')
+              vm.addClass(el, 'show')
+            },
+            offset: '+=6000'
+          })
+      }
     },
     destroyed () {
       EventBus.$off('pause')
@@ -293,6 +305,7 @@
       top: 50%;
       width: 300px;
       transform: translateY(-50%);
+      display: none;
       span {
         display: inline-block;
         color: #fff;
@@ -311,6 +324,7 @@
         }
       }
       &.show {
+        display: block;
         span {
           opacity: 1;
         }

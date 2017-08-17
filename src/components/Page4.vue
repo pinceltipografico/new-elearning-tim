@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page menu-page">
     <div class="menu">
       <div class="item-container">
         <div class="item" @click="onItemClick(0)">
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="script1">
-      <h1>vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
+      <h1>Vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
     </div>
     <transition name="enter">
       <div class="popup" v-if="showPopup">
@@ -144,7 +144,7 @@
   .menu {
     width: 845px;
     height: 800px;
-    background: url("../assets/backgrounds/page4/01.png") no-repeat;
+    background: url("../assets/backgrounds/menu/01.png") no-repeat;
     right: 0;
     bottom: 0;
     animation: slideImage 10s infinite ease-in-out;

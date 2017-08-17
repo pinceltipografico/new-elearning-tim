@@ -3,7 +3,7 @@
     <div class="effects"></div>
     <div class="image"></div>
     <div class="script1">
-      <h1>“Temos que evoluir sempre, <span>e para nós</span> EVOLUIR é fazer diferente”</h1>
+      <h1>Temos que evoluir sempre, <span>e para nós</span> EVOLUIR é fazer diferente</h1>
     </div>
   </section>
 </template>
@@ -31,7 +31,7 @@
   .image {
     width: 100%;
     height: 600px;
-    background: url("../assets/backgrounds/page31/02.png") no-repeat;
+    background: url("../assets/backgrounds/page16/02.png") no-repeat;
     bottom: 0;
     left: 5%;
     animation: imageAnimation 10s infinite ease-in-out alternate;

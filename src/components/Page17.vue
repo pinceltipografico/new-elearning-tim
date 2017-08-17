@@ -4,7 +4,7 @@
     <div class="image-background image1"></div>
     <div class="effects"></div>
     <div class="script1">
-      <h1>valorizamos aspectos diferentes</h1>
+      <h1>Valorizamos aspectos diferentes</h1>
     </div>
     <div class="script2 end-tag">
       <h1><span>Surpreender</span></h1>
@@ -116,11 +116,11 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page17/01.jpg") no-repeat;
+    background: url("../assets/backgrounds/page10/shutterstock_337783478.jpg") no-repeat;
     background-size: cover;
     
     &.step1 {
-      background: url("../assets/backgrounds/page17/ref-613155317.jpg") no-repeat;
+      background: url("../assets/backgrounds/page10/shutterstock_613155317.jpg") no-repeat;
       background-size: cover;
     }
   }

@@ -12,7 +12,7 @@
       <div class="effect-timeline"></div>
       <span>DE</span>
       <div class="script2">
-        <h1>abordagem tradicional de mercado
+        <h1>Abordagem tradicional de mercado
         </h1>
       </div>
       <div class="abordages-tradicionais">
@@ -27,7 +27,7 @@
     <div class="scene para">
       <span>PARA</span>
       <div class="script3">
-        <h1>Uma Nova Visão
+        <h1>Uma nova Visão
           <small>
             <hr/>
             <div>Cliente único</div>

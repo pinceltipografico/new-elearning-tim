@@ -239,18 +239,18 @@
   @import "../scss/mixins";
   
   section.page {
-    background: url("../assets/backgrounds/page1/01.jpg") no-repeat;
+    background: url("../assets/backgrounds/page1/shutterstock_516175918.jpg") no-repeat;
     background-size: cover;
   }
   
   .image-full {
     width: 100%;
     height: 100%;
-    background: url("../assets/backgrounds/page1/04.jpg") no-repeat;
+    background: url("../assets/backgrounds/page1/shutterstock_379691755.jpg") no-repeat;
     background-size: cover;
     opacity: 0;
     &.step3 {
-      background: url("../assets/backgrounds/page1/06.jpg") no-repeat;
+      background: url("../assets/backgrounds/page1/shutterstock_450689707.jpg") no-repeat;
       background-size: cover;
       z-index: 5;
     }

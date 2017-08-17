@@ -274,38 +274,11 @@
         }
         
         //
-        // scene 3
-        .scene3 {
-          > * {
-            position: absolute;
-          }
-          .image-market {
-            background: url("../assets/backgrounds/page5/01.jpg") no-repeat;
-            background-size: cover;
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-          }
-          .script3 {
-            top: 50%;
-            left: 50%;
-            background: rgba($brand-secondary, 0.7);
-            @include font-size(2);
-            transform: translate(-50%, -50%) scale(0);
-            padding: 20px;
-            text-align: center;
-            h1 {
-              color: #fff;
-            }
-          }
-        }
-        
-        //
         // scene 4
         .scene4 {
           width: 100%;
           height: 100%;
-          background: #fff url("../assets/backgrounds/page5/03.jpg") no-repeat center left;
+          background: #fff url("../assets/backgrounds/page3/03.jpg") no-repeat center left;
           background-size: 60% auto;
           
           .script4,
@@ -349,7 +322,7 @@
           width: 100%;
           height: 100%;
           overflow: hidden;
-          background: url("../assets/backgrounds/page5/05.jpg") no-repeat;
+          background: url("../assets/backgrounds/page3/05.jpg") no-repeat;
           background-size: cover;
           transform: translateX(100%);
           transition-delay: 0.5s;
@@ -391,7 +364,8 @@
         .scene7 {
           width: 100%;
           height: 100%;
-          background: url("../assets/backgrounds/page5/07.jpg") no-repeat;
+          background: url("../assets/backgrounds/page3/shutterstock_495493495.jpg") no-repeat;
+          background-size: cover;
           div {
             position: absolute;
           }
@@ -416,7 +390,7 @@
         .scene8 {
           width: 100%;
           height: 100%;
-          background: url("../assets/backgrounds/page5/ref-485074453.jpg") no-repeat;
+          background: url("../assets/backgrounds/page3/shutterstock_485074453.jpg") no-repeat;
           background-size: cover;
           
           h1 {

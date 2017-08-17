@@ -2,7 +2,7 @@
   <div class="outer-page diretrizes">
     <!-- SCENE MENU -->
     <section class="page gradient page-menu">
-      <h1>Clique em cada uma das diretrizes pra visualizá-las</h1>
+      <h1 id="cliqueTag" style="display: none;">Clique em cada uma das diretrizes pra visualizá-las</h1>
       <div class="menu">
         <div class="tim-icon">
           <div></div>
@@ -10,24 +10,24 @@
           <div></div>
         </div>
         <div class="items">
-          <router-link to="/page18">
+          <a @click="gotoPage('/page18')">
             <div class="item1">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
-          </router-link>
-          <router-link to="/page19">
+          </a>
+          <a @click="gotoPage('/page19')">
             <div class="item2">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
-          </router-link>
-          <router-link to="/page20">
+          </a>
+          <a @click="gotoPage('/page20')">
             <div class="item3">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
             </div>
-          </router-link>
+          </a>
         </div>
         <div class="shadow"></div>
       </div>
@@ -51,7 +51,8 @@
     data () {
       return {
         scene: -1,
-        TimeLineCtrl: null
+        TimeLineCtrl: null,
+        canClick: false
       }
     },
     /**
@@ -60,7 +61,20 @@
      | ----------------------------------------------
      **/
     mounted () {
-      this.$store.commit('setCanAdvance', true)
+      this.$store.commit('setCanAdvance', false)
+      var hasView = this.$cookie.get('has_viewed')
+      if (hasView) {
+        this.canClick = true
+        anime({
+          targets: ['.item1', '.item2', '.item3'],
+          translateX: ['100%', '0%'],
+          duration: 300,
+          easing: 'linear'
+        })
+        var tag = this.$el.querySelector('#cliqueTag')
+        tag.style.display = 'block'
+        return
+      }
       this.TimelineCtrl = anime.timeline()
       this.TimelineCtrl
         .add({
@@ -84,7 +98,15 @@
           easing: 'linear',
           delay: 500
         })
-      this.playAudio('scene18', 'static/subtitles/page18.json', null, null)
+      this.playAudio('scene18', 'static/subtitles/page18.json', function (pos) {
+        if (pos === 36) {
+          var tag = this.$el.querySelector('#cliqueTag')
+          tag.style.display = 'block'
+        }
+      }.bind(this), function () {
+        this.canClick = true
+        this.$cookie.set('has_viewed', true)
+      }.bind(this))
       
       EventBus.$on('pause', function (paused) {
         if (this.TimelineCtrl) {
@@ -115,6 +137,11 @@
     methods: {
       startSceneOne () {
         this.scene = 0
+      },
+      gotoPage (page) {
+        if (this.canClick) {
+          this.$router.replace(page)
+        }
       }
     }
   }
@@ -320,6 +347,11 @@
       &.monitoramento.step2.step3.step4 {
         .items {
           width: 300px;
+          a {
+            span, i {
+              @include font-size(2.3);
+            }
+          }
         }
       }
     }
@@ -381,6 +413,12 @@
           cursor: pointer;
           text-align: center;
           padding: 0 10px;
+          
+          svg {
+            circle {
+              box-shadow: 10px 10px 10px rgba(#fff, 0.5);
+            }
+          }
           span {
             position: absolute;
             display: inline-block;
@@ -397,6 +435,18 @@
             @include font-size(1.3);
           }
         }
+        
+        @for $i from 1 through 10 {
+          &.active-#{$i} {
+            .icone-#{$i} {
+              svg {
+                circle {
+                  animation: fillAnimation 0.350s infinite ease-in-out alternate;
+                }
+              }
+            }
+          }
+        }
       }
     }
     
@@ -404,6 +454,11 @@
       to {
         background: #fff;
         color: $brand-secondary;
+      }
+    }
+    @keyframes fillAnimation {
+      to {
+        fill: $brand-secondary;
       }
     }
   }

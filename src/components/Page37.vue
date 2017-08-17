@@ -3,15 +3,16 @@
     <transition name="fade">
       <div class="popups" v-if="showPopup">
         <div class="inner" :class="{'active':showInnerPopup}">
+          <div class="ribbon">Monitoramento</div>
           <div class="close" @click="closePopup()" v-if="canClose">
             <i class="material-icons">&#xE5CD;</i>
           </div>
           <div class="image">
-            <img src="../assets/backgrounds/page33/ref-354939284.jpg" v-if="actualPopup === 0"/>
-            <img src="../assets/backgrounds/page33/ref-428959477.jpg" v-if="actualPopup === 1"/>
-            <img src="../assets/backgrounds/page33/ref-399241594.jpg" v-if="actualPopup === 2"/>
-            <img src="../assets/backgrounds/page33/ref-572233399.jpg" v-if="actualPopup === 3"/>
-            <img src="../assets/backgrounds/page33/ref-577848541.jpg" v-if="actualPopup === 4"/>
+            <img src="../assets/backgrounds/page17/ref-354939284.jpg" v-if="actualPopup === 0"/>
+            <img src="../assets/backgrounds/page17/ref-428959477.jpg" v-if="actualPopup === 1"/>
+            <img src="../assets/backgrounds/page17/ref-399241594.jpg" v-if="actualPopup === 2"/>
+            <img src="../assets/backgrounds/page17/ref-572233399.jpg" v-if="actualPopup === 3"/>
+            <img src="../assets/backgrounds/page17/ref-577848541.jpg" v-if="actualPopup === 4"/>
           </div>
           <div class="text">
             <div v-html="popups[actualPopup].html"></div>
@@ -20,7 +21,7 @@
       </div>
     </transition>
     <section class="page page-menu">
-      <div class="menu">
+      <div class="menu" v-show="!showPopup">
         <div class="tim-icon">
           <div></div>
           <div></div>
@@ -50,7 +51,7 @@
       </div>
     </section>
     <!-- scene comunicação -->
-    <section class="page comunicacao" v-if="activeScene">
+    <section class="page comunicacao" v-show="activeScene">
       <router-link to="/page17" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
@@ -59,23 +60,23 @@
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
-        <div class="icone" @click="onShowPopup(0)">
+        <div class="icone icone-1" @click="onShowPopup(0)">
           <avaliar></avaliar>
           <span>Avaliar a satisfação do cliente</span>
         </div>
-        <div class="icone" @click="onShowPopup(1)">
+        <div class="icone icone-2" @click="onShowPopup(1)">
           <informacao></informacao>
           <span>Informação deve ser transformada em ação</span>
         </div>
-        <div class="icone" @click="onShowPopup(2)">
+        <div class="icone icone-3" @click="onShowPopup(2)">
           <analitics></analitics>
           <span>Prever usando analytics</span>
         </div>
-        <div class="icone" @click="onShowPopup(3)">
+        <div class="icone icone-4" @click="onShowPopup(3)">
           <indicadores></indicadores>
           <span>Criar e gerir os indicadores</span>
         </div>
-        <div class="icone" @click="onShowPopup(4)">
+        <div class="icone icone-5" @click="onShowPopup(4)">
           <reter></reter>
           <span>Reter ou conquistar o cliente</span>
         </div>
@@ -111,18 +112,19 @@
         showVoltar: false,
         activeScene: false,
         canClose: false,
+        nextItem: 0,
         canClick: false,
         popups: [
           {
-            html: '<h1>AVALIAR A SATISFAÇÃO DO CLIENTE<small></small></h1><h4>É essencial que as avaliação seja:</h4><span>Simples e rápida</span><span>Em tempo real</span>'
+            html: '<h1>Avaliar a satisfação do cliente<small></small></h1><h4>É essencial que as avaliação seja:</h4><span>Simples e rápida</span><span>em tempo real</span>'
           }, {
-            html: '<h1>INFORMAÇÃO DEVE SER TRANSFORMADA EM AÇÃO<small></small><h4>É importante para:</h4><span>Focado em soluções</span><span>Reverter insatisfações</span><span>Proporcionar emoções</span>'
+            html: '<h1>Informação deve ser transformada em ação<small></small><h4>É importante para:</h4><span>focado em soluções</span><span>reverter insatisfações</span><span>proporcionar emoções</span>'
           }, {
-            html: '<h1>PREVER USANDO ANALYTCS<small></small><h4>Usar os dados disponíveis para:</h4><span>Monitorar a satisfação</span><span>Se antecipar ao cliente</span><span>Propor a melhor oferta ou comunicação para o cliente</span>'
+            html: '<h1>Prever usando analytcs<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
           }, {
-            html: '<h1>CRIAR E GERIR OS INDICADORES<small></small></h1><h4>Para isso é essencial:</h4><span>Estabelecer indicadores relevantes com metas</span><span>Processo recorrente de análise</span><span>Planos de ação de melhorias</span>'
+            html: '<h1>Criar e gerir os indicadores<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>processo recorrente de análise</span><span>planos de ação de melhorias</span>'
           }, {
-            html: '<h1>RETER OU CONQUISTAR O CLIENTE<small></small><h4>Aproveitar as informações para:</h4><span>Entender a necessidade do cliente</span><span>Reconhecê-lo como único</span><span>Surpreendê-lo</span>'
+            html: '<h1>Reter ou conquistar o cliente<small></small><h4>Aproveitar as informações para:</h4><span>entender a necessidade do cliente</span><span>reconhecê-lo como único</span><span>surpreendê-lo</span>'
           }
         ]
       }
@@ -130,17 +132,18 @@
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      console.log('hey')
       var animations = [
         {
           time: 500,
           step: 'step1',
           selector: '.menu'
         }, {
-          time: 500,
+          time: 100,
           step: 'monitoramento',
           selector: '.menu'
         }, {
-          time: 500,
+          time: 100,
           step: 'step2',
           selector: '.menu'
         }, {
@@ -148,25 +151,51 @@
           step: 'step3',
           selector: '.menu'
         }, {
-          time: 500,
+          time: 100,
           step: 'step4',
           selector: '.menu'
         }, {
-          time: 500,
+          time: 100,
           step: 'absolute',
           selector: '.page-menu'
         }
       ]
+      var icones = this.$el.querySelector('.icones')
       Animations.setAnimations(animations)
       Animations.animationTimeline(function () {
         this.activeScene = true
       }.bind(this))
       
-      this.playAudio('monitoramento_2', 'static/subtitles/monitoramento_intro_2.json', null, function () {
+      this.playAudio('monitoramento_2', 'static/subtitles/monitoramento_intro_2.json', function (pos) {
+        if (pos === 7) {
+          icones.className = 'icones'
+          this.addClass(icones, 'active-1')
+        }
+        if (pos === 9) {
+          icones.className = 'icones'
+          this.addClass(icones, 'active-2')
+        }
+        if (pos === 11) {
+          icones.className = 'icones'
+          this.addClass(icones, 'active-3')
+        }
+        if (pos === 13) {
+          icones.className = 'icones'
+          this.addClass(icones, 'active-4')
+        }
+        if (pos === 15) {
+          icones.className = 'icones'
+          this.addClass(icones, 'active-5')
+        }
+      }.bind(this), function () {
+        icones.className = 'icones'
+        this.addClass(icones, 'active-1')
         this.canClick = true
       }.bind(this))
     },
     destroyed () {
+      this.stopAudio()
+      Animations.destroyAnimations()
     },
     methods: {
       onShowPopup (popup) {
@@ -182,6 +211,8 @@
         setTimeout(function () {
           this.showInnerPopup = true
         }.bind(this), 500)
+        
+        this.nextItem = popup + 2
         
         switch (popup) {
           case 0:
@@ -212,6 +243,9 @@
         }
       },
       closePopup () {
+        var icones = this.$el.querySelector('.icones')
+        icones.className = 'icones'
+        this.addClass(icones, 'active-' + this.nextItem)
         this.showPopup = this.showInnerPopup = false
         this.stopAudio()
         if (this.itemsComunicacao.length === 5) {

@@ -26,7 +26,7 @@
   @import "../scss/mixins";
   
   section.page {
-    background: url("../assets/backgrounds/page2/06.jpg") no-repeat;
+    background: url("../assets/backgrounds/page2/shutterstock_371017109.jpg") no-repeat;
     background-size: cover;
     
     .script1 {

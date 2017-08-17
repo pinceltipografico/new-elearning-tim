@@ -67,7 +67,7 @@
       </div>
       <div class="engajamento">
         <h2>engajamento multidisciplinar</h2>
-        <img src="../assets/backgrounds/page33/circlel.png"/>
+        <img src="../assets/backgrounds/page17/circlel.png"/>
       </div>
       <div class="customer_centric">
         <h2>customer centric</h2>
@@ -75,7 +75,7 @@
       </div>
       <div class="customer_experience">
         <h2>Customer Experience</h2>
-        <img src="../assets/backgrounds/page33/circle2.png"/>
+        <img src="../assets/backgrounds/page17/circle2.png"/>
       </div>
     </section>
   </div>

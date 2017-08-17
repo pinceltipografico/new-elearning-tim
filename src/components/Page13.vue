@@ -486,7 +486,7 @@
     }
     
     &.step1 {
-      background: url("../assets/backgrounds/page13/01.jpg") no-repeat;
+      background: url("../assets/backgrounds/page11/shutterstock_448523395.jpg") no-repeat;
       background-size: cover;
     }
     &.todo {

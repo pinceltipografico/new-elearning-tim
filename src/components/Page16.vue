@@ -1,10 +1,10 @@
 <template>
   <section class="page">
     <div class="script1">
-      <h1>você também faz parte desta <span>mudança!</span></h1>
+      <h1>Você também faz parte desta <span>mudança!</span></h1>
     </div>
     <div class="image">
-      <img src="../assets/backgrounds/page16/01.png" alt="Person">
+      <img src="../assets/backgrounds/page14/01.png" alt="Person">
     </div>
   </section>
 </template>

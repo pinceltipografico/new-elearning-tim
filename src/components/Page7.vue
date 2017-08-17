@@ -12,28 +12,28 @@
     </div>
     <div class="script1">
       <h1>
-        <span>admire</span>
+        <span>admira</span>
       </h1>
     </div>
     <div class="script2">
       <h1>
-        <span>imagine</span>
+        <span>imagina</span>
       </h1>
     </div>
     <div class="script3">
       <h1>
-        <span>Sinta</span>
+        <span>sinta</span>
       </h1>
     </div>
     <div class="script4">
       <h1>
-        <span>influencie</span>
+        <span>influencia</span>
       </h1>
     </div>
     <div class="script5">
       <h1>
-        escolha <span>três palavras</span>
-        que representem o que você mais valoriza na hora da compra e leve-as até a sacola
+        Escolha <span>três palavras</span>
+        que representem o que você mais valoriza na hora da compra e leve-as até a sacola:
       </h1>
     </div>
     <div class="script6">
@@ -221,7 +221,7 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page7/01.jpg") no-repeat;
+    background: url("../assets/backgrounds/page4/shutterstock_342602372.jpg") no-repeat;
     background-size: cover;
   }
   
@@ -336,7 +336,7 @@
   
   .script5 {
     width: 100%;
-    @include font-size(1.7);
+    @include font-size(1.5);
     color: #fff;
     top: -100px;
     padding-left: 100px;
@@ -359,7 +359,7 @@
     opacity: 0;
     
     .bag {
-      background: url("../assets/sprites/bag.png") no-repeat;
+      background: url("../assets/backgrounds/page4/bag.png") no-repeat;
       width: 372px;
       height: 500px;
       position: absolute;
@@ -406,7 +406,7 @@
     .drag {
       position: absolute;
       left: 10%;
-      top: 50%;
+      top: 60%;
       transform: translateY(-50%);
       max-width: 550px;
       .elements {

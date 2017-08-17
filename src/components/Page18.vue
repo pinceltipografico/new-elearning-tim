@@ -12,7 +12,7 @@
       <h1>compreender o outro<br/>cada vez melhor</h1>
     </div>
     <div class="script2">
-      <h1>simplificando e potencializando esta experiência</h1>
+      <h1>Simplificando e potencializando esta experiência</h1>
     </div>
     <div class="script3 end-tag">
       <h1>todos os colaboradores da <span class="red">TIM</span> <br/>vivendo a <span>experiência CX</span></h1>
@@ -200,18 +200,18 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page18/ref-525655138.jpg") no-repeat;
+    background: url("../assets/backgrounds/page13/shutterstock_525655138.jpg") no-repeat;
     background-size: cover;
     &.step1 {
-      background: url("../assets/backgrounds/page18/02.jpg") no-repeat;
+      background: url("../assets/backgrounds/page13/shutterstock_450852736.jpg") no-repeat;
       background-size: cover;
     }
     &.step2 {
-      background: url("../assets/backgrounds/page18/01.jpg") no-repeat;
+      background: url("../assets/backgrounds/page13/shutterstock_521540137.jpg") no-repeat;
       background-size: cover;
     }
     &.step3 {
-      background: url("../assets/backgrounds/page18/ref-565936849.jpg") no-repeat;
+      background: url("../assets/backgrounds/page13/shutterstock_565936849.jpg") no-repeat;
       background-size: cover;
     }
   }

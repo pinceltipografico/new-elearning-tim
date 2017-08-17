@@ -6,6 +6,7 @@
       <div></div>
       <div></div>
       <div></div>
+      <div></div>
     </div>
     <div class="script1">
       <h1>
@@ -66,6 +67,9 @@
           opacity: 1,
           duration: 300,
           delay: function (el, i) {
+            if (i === 5) {
+              return 0
+            }
             return 1000 * i
           },
           offset: '+=11500'
@@ -126,40 +130,50 @@
       position: absolute;
       opacity: 0;
       transition: all $animationTime;
+  
+      &:nth-of-type(1) {
+        background: url("../assets/backgrounds/page7/accontability.png") no-repeat;
+        width: 450px;
+        height: 70px;
+        z-index: 5;
+        bottom: -70px;
+        left: 50%;
+        margin-left: -225px;
+      }
       
-      &:nth-of-type(1),
-      &:nth-of-type(2) {
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
         top: 0;
       }
-      &:nth-of-type(1) {
+      &:nth-of-type(2) {
         width: #{(421/2)+'px'};
         height: #{(364/2)+'px'};
-        background: url("../assets/backgrounds/page10/graph4.png") no-repeat;
+        background: url("../assets/backgrounds/page7/graph4.png") no-repeat;
         background-size: 100% auto;
         left: 0;
       }
-      &:nth-of-type(2) {
+      &:nth-of-type(3) {
         width: #{(395/2)+'px'};
         height: #{(417/2)+'px'};
-        background: url("../assets/backgrounds/page10/graph3.png") no-repeat;
+        background: url("../assets/backgrounds/page7/graph3.png") no-repeat;
         background-size: 100% auto;
         right: 0;
       }
-      &:nth-of-type(3),
-      &:nth-of-type(4) {
+      &:nth-of-type(4),
+      &:nth-of-type(5) {
         bottom: 0;
       }
-      &:nth-of-type(3) {
+      &:nth-of-type(4) {
         width: #{(397/2)+'px'};
         height: #{(420/2)+'px'};
-        background: url("../assets/backgrounds/page10/graph1.png") no-repeat;
+        background: url("../assets/backgrounds/page7/graph1.png") no-repeat;
         background-size: 100% auto;
         left: 0;
       }
-      &:nth-of-type(4) {
+      &:nth-of-type(5) {
         width: #{(425/2)+'px'};
         height: #{(442/2)+'px'};
-        background: url("../assets/backgrounds/page10/graph2.png") no-repeat;
+        background: url("../assets/backgrounds/page7/graph2.png") no-repeat;
         background-size: 100% auto;
         right: 0;
       }

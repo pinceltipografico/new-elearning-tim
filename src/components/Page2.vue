@@ -229,14 +229,14 @@
   @import "../scss/mixins";
   
   .image-background {
-    background: url("../assets/backgrounds/page2/01.jpg") no-repeat;
+    background: url("../assets/backgrounds/page2/shutterstock_316452626.jpg") no-repeat;
     background-size: cover;
     &.step1 {
       background: url("../assets/backgrounds/page2/02.jpg") no-repeat;
       background-size: cover;
     }
     &.step2 {
-      background: url("../assets/backgrounds/page2/03.png") no-repeat;
+      background: url("../assets/backgrounds/page2/shutterstock_524512507.jpg") no-repeat;
       background-size: cover;
     }
     &.step3 {
@@ -245,7 +245,7 @@
       background-blend-mode: multiply;
     }
     &.step4 {
-      background: url("../assets/backgrounds/page2/06.jpg") no-repeat;
+      background: url("../assets/backgrounds/page2/shutterstock_371017109.jpg") no-repeat;
       background-size: cover;
     }
   }

@@ -126,7 +126,7 @@
         }
       }.bind(this))
       
-      this.playAudio('scene5', '/static/subtitles/page5.json', function () {}, function () {
+      this.playAudio('scene5', 'static/subtitles/page5.json', function () {}, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
@@ -152,11 +152,11 @@
     div.image-background {
       background: #000;
       &.step1 {
-        background: url('../assets/backgrounds/page8/ref-525052798.jpg') no-repeat;
+        background: url('../assets/backgrounds/page5/shutterstock_525052798.jpg') no-repeat;
         background-size: cover;
       }
       &.step2 {
-        background: url('../assets/backgrounds/page8/01.jpg') no-repeat;
+        background: url('../assets/backgrounds/page5/shutterstock_552386662.jpg') no-repeat;
         background-size: cover;
       }
     }
