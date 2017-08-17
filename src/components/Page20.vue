@@ -245,7 +245,7 @@
           this.TimelineCtrl.restart()
         }
       }.bind(this))
-
+      
       this.start()
 //      this.started = true
 //      this.scene = 7
@@ -312,7 +312,7 @@
        | ----------------------------------------------
        **/
       hideEles (keepIndex, callback) {
-        if (!keepIndex) {
+        if (keepIndex < 0) {
           return
         }
         var vm = this
@@ -1211,7 +1211,8 @@
     
     .shadow {
       position: absolute;
-      bottom: 20px;
+      /*bottom: 20px;*/
+      top:80%;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
@@ -1242,7 +1243,7 @@
       color: #fff;
       @include font-size(1.5);
       position: absolute;
-      bottom: 40px;
+      top:70%;
       left: 50%;
       transform: translateX(-54%);
       padding: 5px 15px;
