@@ -827,7 +827,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scaleX(0);
-      width: 70%;
+      width: 80%;
       min-height: 300px;
       height: auto;
       padding: 20px;
