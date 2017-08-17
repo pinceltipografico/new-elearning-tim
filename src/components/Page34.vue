@@ -52,7 +52,7 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-if="activeScene">
-      <router-link to="/page18" v-if="showVoltar" class="backButton">
+      <router-link to="/page17" v-if="showVoltar" class="backButton">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
