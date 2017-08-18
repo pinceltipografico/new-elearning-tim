@@ -257,9 +257,7 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return true
-        /*
-        return this.$store.state.canAdvance */
+        return this.$store.state.canAdvance
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
