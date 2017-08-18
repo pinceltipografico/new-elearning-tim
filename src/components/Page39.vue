@@ -47,10 +47,14 @@
         if (this.TimelineCtrl) {
           this.TimelineCtrl.restart()
         }
-        var el = document.querySelector('.palavras-colaborador')
-        var el2 = document.querySelector('.palavras-clientes')
-        this.removeClass(el, 'show')
-        this.removeClass(el2, 'show')
+        var el = document.querySelectorAll('.palavras-colaborador > span')
+        var el2 = document.querySelectorAll('.palavras-clientes span')
+        for (var i = 0; i < el.length; i++) {
+          el[i].style.opacity = 0
+        }
+        for (var j = 0; j < el2.length; j++) {
+          el2[j].style.opacity = 0
+        }
         this.doAnimation()
       }.bind(this))
       this.doAnimation()
@@ -58,7 +62,56 @@
     methods: {
       doAnimation () {
         var vm = this
-        this.playAudio('scene23', 'static/subtitles/page23.json', null, function () {
+        var el = document.querySelectorAll('.palavras-colaborador > span')
+        var el2 = document.querySelectorAll('.palavras-clientes > span')
+        this.playAudio('scene23', 'static/subtitles/page23.json', function (pos) {
+          console.log(pos)
+          if (pos === 14) {
+            el[0].style.opacity = 1
+          }
+          if (pos === 15) {
+            el[1].style.opacity = 1
+          }
+          if (pos === 16) {
+            el[2].style.opacity = 1
+          }
+          if (pos === 17) {
+            el[3].style.opacity = 1
+          }
+          if (pos === 18) {
+            el[4].style.opacity = 1
+          }
+          if (pos === 19) {
+            el[5].style.opacity = 1
+          }
+          if (pos === 20) {
+            el[6].style.opacity = 1
+          }
+          if (pos === 21) {
+            el[7].style.opacity = 1
+          }
+          if (pos === 24) {
+            el2[0].style.opacity = 1
+          }
+          if (pos === 25) {
+            el2[1].style.opacity = 1
+          }
+          if (pos === 26) {
+            el2[2].style.opacity = 1
+          }
+          if (pos === 27) {
+            el2[3].style.opacity = 1
+          }
+          if (pos === 28) {
+            el2[4].style.opacity = 1
+          }
+          if (pos === 30) {
+            el2[5].style.opacity = 1
+          }
+          if (pos === 32) {
+            el2[6].style.opacity = 1
+          }
+        }, function () {
           var tim = vm.$el.querySelector('.script')
           tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
           vm.playAudio('scene23_1', 'static/subtitles/page23_1.json', null, function () {
@@ -138,15 +191,7 @@
             targets: '.palavras-colaborador',
             duration: '300',
             easing: 'linear',
-            opacity: 1,
-            begin: function () {
-              var el = document.querySelector('.palavras-colaborador')
-              vm.removeClass(el, 'show')
-            },
-            complete: function () {
-              var el = document.querySelector('.palavras-colaborador')
-              vm.addClass(el, 'show')
-            },
+            opacity: [0, 1],
             offset: '+=3000'
           })
           .add({
@@ -154,14 +199,6 @@
             duration: '300',
             easing: 'linear',
             opacity: 1,
-            begin: function () {
-              var el = document.querySelector('.palavras-clientes')
-              vm.removeClass(el, 'show')
-            },
-            complete: function () {
-              var el = document.querySelector('.palavras-clientes')
-              vm.addClass(el, 'show')
-            },
             offset: '+=6000'
           })
       }
@@ -305,7 +342,7 @@
       top: 50%;
       width: 300px;
       transform: translateY(-50%);
-      display: none;
+      display: block;
       span {
         display: inline-block;
         color: #fff;
@@ -316,18 +353,6 @@
         border-radius: 5px;
         opacity: 0;
         transition: all $animationTime;
-        
-        @for $i from 1 through 10 {
-          &:nth-of-type(#{$i}) {
-            transition-delay: #{(0.5 * $i)+'s'};
-          }
-        }
-      }
-      &.show {
-        display: block;
-        span {
-          opacity: 1;
-        }
       }
     }
     .palavras-colaborador {

@@ -57,7 +57,7 @@
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </router-link>
-      <h1>Comportamentos que devemos <span>incorporar, estimular e mobilizar</span><br/>
+      <h1>Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
