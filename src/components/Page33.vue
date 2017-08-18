@@ -1,8 +1,9 @@
 <template>
   <div class="outer-page diretrizes">
     <!-- SCENE MENU -->
-    <section class="page gradient page-menu">
-      <h1 id="cliqueTag" style="display: none;">Clique em cada uma das diretrizes pra visualizá-las</h1>
+    <section class="page gradient page-menu" v-if="!pageACtive">
+      <h1 id="cliqueTag" style="display: none;" :class="{'active':started}">
+        Clique em cada uma das diretrizes pra visualizar</h1>
       <div class="menu">
         <div class="tim-icon">
           <div></div>
@@ -10,20 +11,20 @@
           <div></div>
         </div>
         <div class="items">
-          <a @click="gotoPage('/page18')">
-            <div class="item1">
+          <a @click="gotoPage('page34')">
+            <div class="item1" :class="{'active':started}">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
           </a>
-          <a @click="gotoPage('/page19')">
-            <div class="item2">
+          <a @click="gotoPage('page35')">
+            <div class="item2" :class="{'active':started}">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </a>
-          <a @click="gotoPage('/page20')">
-            <div class="item3">
+          <a @click="gotoPage('page36')">
+            <div class="item3" :class="{'active':started}">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
             </div>
@@ -33,6 +34,15 @@
       </div>
     </section>
     <!-- SCENE MENU -->
+    <!-- comunicação -->
+    <comunicacao v-if="scene == 'page34' && pageACtive" @back="onBack"></comunicacao>
+    <!-- comunicação -->
+    <!-- interação -->
+    <interacao v-if="scene == 'page35' && pageACtive" @back="onBack"></interacao>
+    <!-- interação -->
+    <!-- monitoramento -->
+    <monitoramento v-if="scene == 'page36' && pageACtive" @back="onBack"></monitoramento>
+    <!-- monitoramento -->
   </div>
 </template>
 <script type="text/javascript">
@@ -40,6 +50,9 @@
   /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
   import anime from 'animejs'
+  import Comunicacao from './Page34.vue'
+  import Interacao from './Page35.vue'
+  import Monitoramento from './Page36.vue'
   
   var Animations = require('../lib/ChainAnimation')
   export default {
@@ -50,10 +63,18 @@
      **/
     data () {
       return {
-        scene: -1,
+        scene: 'start',
+        started: false,
         TimeLineCtrl: null,
-        canClick: false
+        canClick: false,
+        pageACtive: false,
+        pages: []
       }
+    },
+    components: {
+      Comunicacao,
+      Interacao,
+      Monitoramento
     },
     /**
      | ----------------------------------------------
@@ -62,52 +83,6 @@
      **/
     mounted () {
       this.$store.commit('setCanAdvance', false)
-      var hasView = this.$cookie.get('has_viewed')
-      if (hasView) {
-        this.canClick = true
-        anime({
-          targets: ['.item1', '.item2', '.item3'],
-          translateX: ['100%', '0%'],
-          duration: 300,
-          easing: 'linear'
-        })
-        var tag = this.$el.querySelector('#cliqueTag')
-        tag.style.display = 'block'
-        return
-      }
-      this.TimelineCtrl = anime.timeline()
-      this.TimelineCtrl
-        .add({
-          targets: '.item1',
-          translateX: ['100%', '0%'],
-          duration: 300,
-          easing: 'linear',
-          delay: 21000
-        })
-        .add({
-          targets: '.item2',
-          translateX: ['100%', '0%'],
-          duration: 300,
-          easing: 'linear',
-          delay: 500
-        })
-        .add({
-          targets: '.item3',
-          translateX: ['100%', '0%'],
-          duration: 300,
-          easing: 'linear',
-          delay: 500
-        })
-      this.playAudio('scene18', 'static/subtitles/page18.json', function (pos) {
-        if (pos === 36) {
-          var tag = this.$el.querySelector('#cliqueTag')
-          tag.style.display = 'block'
-        }
-      }.bind(this), function () {
-        this.canClick = true
-        this.$cookie.set('has_viewed', true)
-      }.bind(this))
-      
       EventBus.$on('pause', function (paused) {
         if (this.TimelineCtrl) {
           (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
@@ -118,6 +93,7 @@
           this.TimelineCtrl.restart()
         }
       }.bind(this))
+      this.startSCene()
     },
     /**
      | ----------------------------------------------
@@ -135,13 +111,61 @@
      | ----------------------------------------------
      **/
     methods: {
-      startSceneOne () {
-        this.scene = 0
+      startSCene () {
+        var vm = this
+        var hasViewd = vm.$cookie.get('has_viewed')
+        if (hasViewd) {
+          vm.started = true
+          return
+        }
+        vm.TimelineCtrl = anime.timeline()
+        vm.TimelineCtrl
+          .add({
+            targets: '.item1',
+            translateX: ['100%', '0%'],
+            duration: 300,
+            easing: 'linear',
+            delay: 21000
+          })
+          .add({
+            targets: '.item2',
+            translateX: ['100%', '0%'],
+            duration: 300,
+            easing: 'linear',
+            delay: 500
+          })
+          .add({
+            targets: '.item3',
+            translateX: ['100%', '0%'],
+            duration: 300,
+            easing: 'linear',
+            delay: 500
+          })
+        vm.playAudio('scene18', 'static/subtitles/page18.json', function (pos) {
+          if (pos === 36) {
+            var tag = vm.$el.querySelector('#cliqueTag')
+            tag.style.display = 'block'
+          }
+        }, function () {
+          vm.canClick = true
+          vm.$cookie.set('has_viewed', true)
+        })
       },
       gotoPage (page) {
-        if (this.canClick) {
-          this.$router.replace(page)
+        this.pageACtive = true
+        this.scene = page
+        this.started = true
+      },
+      onBack (page) {
+        this.pageACtive = false
+        this.scene = 'start'
+        if (this.pages.indexOf(page) === -1) {
+          this.pages.push(page)
         }
+        if (this.pages.length === 3) {
+          this.$store.commit('setCanAdvance', true)
+        }
+        this.startSCene()
       }
     }
   }

@@ -4,12 +4,12 @@
     <div class="image-background step1 image2"></div>
     <div class="image-background image1"></div>
     <div class="script1 video-overlay">
-      <video src="static/video/560156650.m4v" autoplay loop></video>
+      <video src="static/video/560156650.m4v" type="video/mp4" autoplay loop></video>
       <h1>entender o que bate em seu coração</h1>
     </div>
     <div class="effect"></div>
     <div class="script2">
-      <h1>Mas nós todos, <span>como clientes</span>, desejamos mais...</h1>
+      <h1>Mas, nós todos, <span>como clientes</span>, desejamos mais...</h1>
     </div>
     <div class="script3">
       <h1>Muitas empresas olham para seus concorrentes</h1>

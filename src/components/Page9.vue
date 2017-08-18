@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page6">
     <div class="overlay" :class="{'step2':showEnd}"></div>
     <div class="wish">
       <h1 v-if="!showEnd">O que desejamos?</h1>

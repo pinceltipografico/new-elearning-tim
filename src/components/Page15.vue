@@ -1,5 +1,5 @@
 <template>
-  <section class="page gradient">
+  <section class="page gradient page12">
     <div class="button" @click="buttonClick">
       <div>
         <span>Próximo</span>

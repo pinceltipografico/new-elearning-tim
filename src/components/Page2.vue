@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page2">
     <div class="image-background step4 image4"></div>
     <div class="image-background step3 image3"></div>
     <div class="image-background step2 image2"></div>

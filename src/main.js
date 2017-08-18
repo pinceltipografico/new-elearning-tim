@@ -3,6 +3,35 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-new */
 /* eslint-disable no-unused-vars */
+/* eslint-disable func-call-spacing */
+/* eslint-disable no-unexpected-multiline */
+navigator.sayswho = (function () {
+  var ua = navigator.userAgent
+  var tem
+  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
+  if (/trident/i.test(M[1])) {
+    tem = /\brv[ :]+(\d+)/g.exec(ua) || []
+    return 'IE ' + (tem[1] || '')
+  }
+  if (M[1] === 'Chrome') {
+    tem = ua.match(/\b(OPR|Edge)\/(\d+)/)
+    if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera')
+  }
+  M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?']
+  if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1])
+  return M.join(' ')
+})()
+
+// shim layer with setTimeout fallback
+window.requestAnimFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60)
+    }
+})()
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -91,12 +120,18 @@ function removePReloader () {
 }
 
 function configAudio () {
+  var html = document.getElementsByTagName('html')[0]
+  html.className = navigator.sayswho.replace(' ', '')
   var audio = new Howl.Howl({
     src: ['static/audio/tim_cx.mp3'],
     sprite: sprites
   })
   audio.once('load', function () {
     store.commit('setAudio', audio)
+    removePReloader()
+  })
+  audio.once('loaderror', function () {
+    store.commit('setAudio', null)
     removePReloader()
   })
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page7">
     <transition name="enter-nav">
       <a class="nav-button next-page can-advance" v-if="showNext" @click="step2">
         <i class="material-icons">&#xE5CC;</i>
@@ -17,7 +17,7 @@
     </div>
     <div class="script2">
       <h1>
-        <span>imagina</span>
+        <span>imagine</span>
       </h1>
     </div>
     <div class="script3">
@@ -77,9 +77,10 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      
+      var vm = this
       this.TimelineCtrl = anime.timeline({
-        elasticity: 0
+        elasticity: 0,
+        complete: function () {}
       })
       this.TimelineCtrl
         .add({
@@ -163,7 +164,7 @@
     },
     methods: {
       onAdded () {
-        if (this.list2.length === 3) {
+        if (this.list2 && this.list2.length === 3) {
           this.$store.commit('setCanAdvance', true)
         }
       },

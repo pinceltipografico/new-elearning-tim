@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="script3">
-        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet , para pagar contas, pedir taxi, pedir comida em casa..
+        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet , para pagar contas, pedir taxi, pedir comida em casa.
         </h1>
       </div>
     </section>
@@ -62,7 +62,7 @@
       </div>
       <div class="script2">
         <h1>Proporcionar que o cliente experimente o <span>serviço ou produto</span>
-          é uma alternativa para ajudá-lo na tomada de decisão e um oportunidade de avaliar previamente se as necessidades serão atendidas.
+          é uma alternativa para ajudá-lo na tomada de decisão e uma oportunidade de avaliar previamente se as necessidades serão atendidas.
         </h1>
       </div>
       <div class="iconButton" @click="startSceneFiveTwo">
@@ -83,7 +83,7 @@
         </h1>
       </div>
       <div class="script2">
-        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torná-la envolvente e prática</span>
+        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torná-la envolvente e prática.</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneSeven">

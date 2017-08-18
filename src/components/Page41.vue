@@ -13,7 +13,9 @@
       <div class="tile tile9"></div>
       <div class="tile tile10"></div>
       <div class="tile tile11"></div>
-      <div class="tile tim">TIM</div>
+      <div class="tile tim">
+        <logo></logo>
+      </div>
       <div class="tile tile12"></div>
       <div class="tile tile13"></div>
       <div class="tile tile14"></div>
@@ -35,12 +37,16 @@
   import dna from '../assets/svgs/DNA.svg'
   import { EventBus } from '../events/index'
   import anime from 'animejs'
+  import Logo from '../assets/svgs/logo-01.svg'
   
   export default {
     data () {
       return {
         TimelineCtrl: null
       }
+    },
+    components: {
+      Logo
     },
     mounted () {
       this.$store.commit('toggleIterface', true)
@@ -50,6 +56,11 @@
       this.playAudio('scene24', 'static/subtitles/page24.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
+      
+      var logo = document.querySelector('.logo')
+      if (logo) {
+        logo.style.opacity = 0
+      }
       
       this.TimelineCtrl = anime.timeline()
       this.TimelineCtrl
@@ -78,6 +89,10 @@
       this.stopAudio()
       EventBus.$off('pause')
       EventBus.$off('rewind')
+      var logo = document.querySelector('.logo')
+      if (logo) {
+        logo.style.opacity = 1
+      }
     }
   }
 </script>
@@ -110,7 +125,7 @@
           background-size: cover;
         }
       }
-      @for $e from 1 through 30{
+      @for $e from 1 through 30 {
         &:nth-of-type(#{$e}) {
           @if ($cols == $limit) {
             $cols: 0;
@@ -121,20 +136,24 @@
           $cols: $cols + 1;
         }
       }
-      &.customer{
+      &.customer {
         background: $brand-details;
         //line-height: #{$height}px;
-        color:#fff;
+        color: #fff;
         text-align: center;
         @include font-size(3);
         padding-top: 30px;
       }
-      &.tim{
-        background: $brand-secondary;
-        color:#fff;
+      &.tim {
+        color: #fff;
         line-height: #{$height}px;
+        background: $brand-primary;
         text-align: center;
         @include font-size(3);
+        padding-top: 15px;
+        svg {
+          width: 180px;
+        }
       }
     }
     &.active {

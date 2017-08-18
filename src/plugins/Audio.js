@@ -14,6 +14,9 @@ Audio.install = function (Vue, options) {
    | ----------------------------------------------
    **/
   Vue.prototype.playAudio = function (spriteID, subtitles, timeUpdateCb, doneCb) {
+    if (!this.$store.state.audio) {
+      return
+    }
     var subtitlesEl = document.querySelector('#subtitles > p')
     var timer = document.querySelector('#timer')
     var duration
@@ -22,6 +25,7 @@ Audio.install = function (Vue, options) {
     var vm = this
     var subtitlesObj
     var animId
+    var started = false
     
     function startAudio (res) {
       vm.stopAudio()
@@ -42,17 +46,29 @@ Audio.install = function (Vue, options) {
         cancelAnimationFrame(animId)
         EventBus.$emit('audio-end')
         subtitlesEl.innerHTML = ''
+        started = false
       }, currentAudioId)
       
       //
       // quando for pausado
       vm.$store.state.audio.on('pause', function () {
+        started = false
       }, currentAudioId)
       
       // quando der o play
       vm.$store.state.audio.on('play', function () {
-        animId = requestAnimationFrame(increase)
+        if (!started) {
+          animId = requestAnimationFrame(increase)
+          started = true
+        }
       }, currentAudioId)
+      
+      if (navigator.sayswho.indexOf('IE') !== -1) {
+        if (!started) {
+          animId = requestAnimationFrame(increase)
+          started = true
+        }
+      }
       
       EventBus.$emit('audio-started')
     }

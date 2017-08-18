@@ -197,6 +197,9 @@
       onPause () {
         this.isPaused = !this.isPaused
         EventBus.$emit('pause', this.isPaused)
+        if (!this.$store.state.audio) {
+          return
+        }
         var currentId = this.getCurrentAudioId()
         if (currentId) {
           this.isPaused ? this.$store.state.audio.pause(currentId) : this.$store.state.audio.play(currentId)
@@ -213,7 +216,13 @@
        | ----------------------------------------------
        **/
       onRewind () {
+        if (this.$route.name.indexOf('menu') !== -1) {
+          return
+        }
         EventBus.$emit('rewind')
+        if (!this.$store.state.audio) {
+          return
+        }
         var currentId = this.getCurrentAudioId()
         if (currentId) {
           this.$store.state.audio.seek(0, currentId)
@@ -248,7 +257,9 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return this.$store.state.canAdvance
+        return true
+        /*
+        return this.$store.state.canAdvance */
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
@@ -293,7 +304,7 @@
     &.subtitle-active {
       
       .logo {
-        top: 15px;
+        top: 15px !important;
       }
       .user-interface {
         top: 15px;
@@ -390,6 +401,140 @@
         overflow: visible;
         border: none;
         animation: none;
+      }
+    }
+  }
+  
+  .IE11,
+  .MSIE10 {
+    .logo {
+      height: 30px;
+    }
+  }
+  
+  .MSIE10 {
+    font-size: 66.5%;
+    .logo {
+      svg {
+        width: 70px;
+      }
+    }
+    .player-controls {
+      .progress-audio {
+        width: 93%;
+      }
+    }
+    section.page2 {
+      .script1 h1 {
+        @include font-size(3.2);
+      }
+      .script3 {
+        @include font-size(1.5);
+      }
+    }
+    section.page7 {
+      .script1,
+      .script2,
+      .script3,
+      .script4 {
+        @include font-size(1.5);
+      }
+      .icon {
+        bottom: 60px;
+      }
+    }
+    section.page8 {
+      .script3 {
+        max-width: 500px;
+      }
+      .script3 h1 {
+        @include font-size(2.5);
+        text-align: center;
+        padding: 10px 100px 10px 40px;
+      }
+    }
+    section.page6 {
+      .wish {
+        @include font-size(2.5);
+      }
+    }
+    section.page9 {
+      .script1 h1 {
+        @include font-size(2);
+      }
+      .script2 h1 {
+        @include font-size(2);
+      }
+      .script3 h1 {
+        @include font-size(2.7);
+      }
+    }
+    section.page11 {
+      .script2 h1 {
+        @include font-size(2.7);
+      }
+      .text-animation {
+        left: 120px;
+        padding-left: 20px;
+        padding-right: 40px;
+        width: 550px;
+        span {
+          width: 550px;
+        }
+      }
+      
+      .dna {
+        img {
+          height: auto;
+        }
+        .shadow {
+          display: none;
+          position: absolute;
+          left: 50%;
+          bottom: 20px;
+        }
+      }
+      
+      .user-experience {
+        position: absolute;
+        top: 60%;
+      }
+    }
+    
+    section.page12 {
+      .customer_centric {
+        svg {
+          height: 500px;
+        }
+      }
+      .script1 h1{
+        @include font-size(4);
+      }
+      .para {
+        h1 {
+          @include font-size(2.2);
+          small div{
+            @include font-size(1);
+          }
+        }
+      }
+      .de{
+        h1{
+          @include font-size(2.2);
+        }
+      }
+    }
+    
+    div.page15 {
+      .svg-container{
+        svg{
+          height: 800px;
+        }
+      }
+    }
+    section.page16{
+      .script1 h1{
+        @include font-size(3);
       }
     }
   }
@@ -818,7 +963,7 @@
     width: 100%;
     height: 100%;
     z-index: 9;
-    background: rgba(#000, 0.3);
+    background: rgba(#000, 0.6);
     top: 0;
     left: 0;
     

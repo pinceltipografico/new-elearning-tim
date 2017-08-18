@@ -60,20 +60,23 @@ export default function OnPageScroll () {
    **/
   this.setActiveStatus = function () {
     var pages = this.pagesContainer.querySelectorAll('.page-item')
-    pages.forEach(function (item, index) {
+    var vm = this
+    for (var i = 0; i < pages.length; i++) {
+      var item = pages[i]
       item.className = 'page-item'
-      if (index === this.currentSection) {
+      if (i === vm.currentSection) {
         item.className = 'page-item active'
       }
-    }.bind(this))
+    }
     if (this.scrollIndicatorContainer) {
       var lis = this.scrollIndicatorContainer.querySelectorAll('li')
-      lis.forEach(function (item, index) {
-        item.className = ''
-        if (index === this.currentSection) {
-          item.className = 'active'
+      for (var j = 0; j < lis.length; j++) {
+        var itemJ = lis[j]
+        itemJ.className = ''
+        if (j === vm.currentSection) {
+          itemJ.className = 'active'
         }
-      }.bind(this))
+      }
     }
   }
   

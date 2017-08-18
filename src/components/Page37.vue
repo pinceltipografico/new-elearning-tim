@@ -52,11 +52,11 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-show="activeScene">
-      <router-link to="/page17" v-if="showVoltar" class="backButton">
+      <a class="backButton" @click="onBack" v-if="showVoltar">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
-      </router-link>
-      <h1>Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      </a>
+      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -116,13 +116,13 @@
         canClick: false,
         popups: [
           {
-            html: '<h1>Avaliar a satisfação do cliente<small></small></h1><h4>É essencial que as avaliação seja:</h4><span>Simples e rápida</span><span>em tempo real</span>'
+            html: '<h1>Avaliar a satisfação do cliente<small></small></h1><h4>É essencial que a avaliação seja:</h4><span>simples e rápida</span><span>em tempo real</span>'
           }, {
-            html: '<h1>Informação deve ser transformada em ação<small></small><h4>É importante para:</h4><span>focado em soluções</span><span>reverter insatisfações</span><span>proporcionar emoções</span>'
+            html: '<h1>Informação deve ser transformada em ação<small></small><h4>Agir para:</h4><span>focar em soluções</span><span>reverter insatisfações</span><span>proporcionar emoções</span>'
           }, {
             html: '<h1>Prever usando analytcs<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
           }, {
-            html: '<h1>Criar e gerir os indicadores<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>processo recorrente de análise</span><span>planos de ação de melhorias</span>'
+            html: '<h1>Criar e gerir os indicadores<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>um processo recorrente de análise</span><span>planos de ação de melhorias</span>'
           }, {
             html: '<h1>Reter ou conquistar o cliente<small></small><h4>Aproveitar as informações para:</h4><span>entender a necessidade do cliente</span><span>reconhecê-lo como único</span><span>surpreendê-lo</span>'
           }
@@ -132,7 +132,6 @@
     mounted () {
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      console.log('hey')
       var animations = [
         {
           time: 500,
@@ -198,6 +197,9 @@
       Animations.destroyAnimations()
     },
     methods: {
+      onBack () {
+        this.$emit('back')
+      },
       onShowPopup (popup) {
         if (!this.canClick) {
           return

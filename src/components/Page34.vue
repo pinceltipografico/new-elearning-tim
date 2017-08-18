@@ -53,11 +53,11 @@
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-show="activeScene">
-      <router-link to="/page17" v-if="showVoltar" class="backButton">
+      <a class="backButton" @click="onBack" v-if="showVoltar">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
-      </router-link>
-      <h1>Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      </a>
+      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -122,7 +122,7 @@
           }, {
             html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>falar diferente com gente diferente</span><span>considerar a linguagem do cliente</span><span>dispensar o termo técnico</span>'
           }, {
-            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>considerar como essas mudanças afetarão o cliente</span><span>os impactos nos resultados</span>'
+            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>considerar como essas mudanças afetarão o cliente</span><span>saber quais são os impactos nos resultados</span>'
           }, {
             html: '<h1>Encantar o cliente<small></small></h1><h4>Lembrando que:</h4><span>cada pessoa pode escolher o mesmo produto por diferentes razões</span><h4>Adequar a comunicação:</h4><span>ofereça o que realmente é do interesse dele</span>'
           }
@@ -133,6 +133,7 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       var vm = this
+      
       var animations = [
         {
           time: 100,
@@ -197,6 +198,9 @@
       this.stopAudio()
     },
     methods: {
+      onBack () {
+        this.$emit('back', 'page34')
+      },
       onShowPopup (popup) {
         if (!this.canClick) {
           return

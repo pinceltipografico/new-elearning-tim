@@ -30,35 +30,35 @@
           <div></div>
         </div>
         <div class="items">
-          <router-link to="/page34">
+          <a>
             <div class="item1 active">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
-          </router-link>
-          <router-link to="/page35">
+          </a>
+          <a>
             <div class="item2 active">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
-          </router-link>
-          <router-link to="/page36">
+          </a>
+          <a>
             <div class="item3 active">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
             </div>
-          </router-link>
+          </a>
         </div>
         <div class="shadow"></div>
       </div>
     </section>
     <!-- scene comunicação -->
     <section class="page comunicacao" v-show="activeScene">
-      <router-link to="/page17" v-if="showVoltar" class="backButton">
+      <a class="backButton" @click="onBAck" v-if="showVoltar">
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
-      </router-link>
-      <h1>Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      </a>
+      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -136,13 +136,13 @@
           }, {
             html: '<h1>Otimizar o autoatendimento<small></small></h1><h4>A tendência atual: </h4><span>canais digitais de suporte</span><span>maior autonomia</span><span>menor necessidade de contato</span>'
           }, {
-            html: '<h1>Criar uma interface amigável<small></small></h1><h4>A interface passa a ser elemento chave na conquista de uma experiência diferenciada</h4><span>estímulo a solução</span><span>soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada</span></h4>'
+            html: '<h1>Criar uma interface amigável<small></small></h1><h4>A interface passa a ser elemento chave na conquista de uma experiência diferenciada:</h4><span>estímulo a solução</span><span>soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada</span></h4>'
           }, {
             html: '<h1>Canais diversos, experiência única<small></small><h4>buscar a uniformidade da experiência em todos os canais:</h4><span>fluxo contínuo</span><span>experiência única nos diversos canais</span>'
           }, {
-            html: '<h1>Viver a experiência <small></small><h4>A organização deve respirar customer experience</h4><span>personificação</span><span>comportamentos</span><span>atitudes</span><span>cuidado adicional</span><span>atenção</span>'
+            html: '<h1>Viver a experiência <small></small><h4>A organização deve respirar customer experience:</h4><span>personificação</span><span>comportamentos</span><span>atitudes</span><span>cuidado adicional</span><span>atenção</span>'
           }, {
-            html: '<h1>Customizar para satisfazer<small></small><h4>Diferencial na experiência de sua jornada</h4><span>possibilidade de escolha</span><span>combinação de elementos</span><span>flexibilidade</span><span>customização</span>'
+            html: '<h1>Customizar para satisfazer<small></small><h4>Diferencial na experiência de sua jornada:</h4><span>possibilidade de escolha</span><span>combinação de elementos</span><span>flexibilidade</span><span>customização</span>'
           }
         ]
       }
@@ -225,6 +225,9 @@
       Animations.destroyAnimations()
     },
     methods: {
+      onBAck () {
+        this.$emit('back', 'page35')
+      },
       onShowPopup (popup) {
         if (!this.canClick) {
           return

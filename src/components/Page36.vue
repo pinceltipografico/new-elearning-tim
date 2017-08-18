@@ -1,83 +1,86 @@
 <template>
   <div class="outer-page gradient">
-    <transition name="enter-nav">
-      <router-link to="/page22" class="nav-button next-page can-advance" v-if="showNext">
-        <i class="material-icons">&#xE5CC;</i>
-      </router-link>
-    </transition>
-    <section class="page" v-show="scene === 0">
-      <div class="start">
-        <h1>
-          O Monitoramento em uma abordagem de <span>Customer Experience</span>
-          vai muito além de relatórios e Indicadores</h1>
-        <div class="buttons" @click="startAnim" v-if="showStart">
-          <span>Ver como funciona</span>
-          <i class="material-icons">&#xE038;</i>
+    <template v-if="!seeAnim">
+      <transition name="enter-nav">
+        <a class="nav-button next-page can-advance" @click="seeAnim = true" v-if="showNext">
+          <i class="material-icons">&#xE5CC;</i>
+        </a>
+      </transition>
+      <section class="page" v-show="scene === 0">
+        <div class="start">
+          <h1>
+            O Monitoramento em uma abordagem de <span>Customer Experience</span>
+            vai muito além de relatórios e Indicadores</h1>
+          <div class="buttons" @click="startAnim" v-if="showStart">
+            <span>Ver como funciona</span>
+            <i class="material-icons">&#xE038;</i>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="page monitoring" v-show="scene === 1">
-      <div class="people">
-        <people></people>
-        <h1>milhões de<br/>clientes</h1>
-      </div>
-      <div class="informacao">
-        <h2>Informação</h2>
-        <div class="dot"></div>
-        <div class="arrow"></div>
-      </div>
-      <div class="server">
-        <server></server>
-      </div>
-      <div class="big-data">
-        <h2>Big Data</h2>
-        <div class="dot"></div>
-        <div class="arrow"></div>
-      </div>
-      <div class="brain">
-        <h2>algorítimo</h2>
-        <brain></brain>
-      </div>
-      <div class="arrow1">
-        <h2>Visualização</h2>
-        <arrow1></arrow1>
-      </div>
-      <div class="analise">
-        <h2>Análise</h2>
-        <analise></analise>
-      </div>
-      <div class="arrow2">
-        <arrow1></arrow1>
-        <h2>insight</h2>
-      </div>
-      <div class="idea">
-        <h2>aprendizado</h2>
-        <idea></idea>
-      </div>
-      <div class="arrow3">
-        <h2>Aperfeiçoamento</h2>
-        <arrow1></arrow1>
-      </div>
-      <div class="clock">
-        <h4>REAL TIME</h4>
-        <clock></clock>
-      </div>
-      <div class="arrow4">
-        <arrow2></arrow2>
-      </div>
-      <div class="engajamento">
-        <h2>engajamento multidisciplinar</h2>
-        <img src="../assets/backgrounds/page17/circlel.png"/>
-      </div>
-      <div class="customer_centric">
-        <h2>customer centric</h2>
-        <costumer-centric></costumer-centric>
-      </div>
-      <div class="customer_experience">
-        <h2>Customer Experience</h2>
-        <img src="../assets/backgrounds/page17/circle2.png"/>
-      </div>
-    </section>
+      </section>
+      <section class="page monitoring" v-show="scene === 1">
+        <div class="people">
+          <people></people>
+          <h1>milhões de<br/>clientes</h1>
+        </div>
+        <div class="informacao">
+          <h2>Informação</h2>
+          <div class="dot"></div>
+          <div class="arrow"></div>
+        </div>
+        <div class="server">
+          <server></server>
+        </div>
+        <div class="big-data">
+          <h2>Big Data</h2>
+          <div class="dot"></div>
+          <div class="arrow"></div>
+        </div>
+        <div class="brain">
+          <h2>algorítimo</h2>
+          <brain></brain>
+        </div>
+        <div class="arrow1">
+          <h2>Visualização</h2>
+          <arrow1></arrow1>
+        </div>
+        <div class="analise">
+          <h2>Análise</h2>
+          <analise></analise>
+        </div>
+        <div class="arrow2">
+          <arrow1></arrow1>
+          <h2>insight</h2>
+        </div>
+        <div class="idea">
+          <h2>aprendizado</h2>
+          <idea></idea>
+        </div>
+        <div class="arrow3">
+          <h2>Aperfeiçoamento</h2>
+          <arrow1></arrow1>
+        </div>
+        <div class="clock">
+          <h4>REAL TIME</h4>
+          <clock></clock>
+        </div>
+        <div class="arrow4">
+          <arrow2></arrow2>
+        </div>
+        <div class="engajamento">
+          <h2>engajamento multidisciplinar</h2>
+          <img src="../assets/backgrounds/page17/circlel.png"/>
+        </div>
+        <div class="customer_centric">
+          <h2>customer centric</h2>
+          <costumer-centric></costumer-centric>
+        </div>
+        <div class="customer_experience">
+          <h2>Customer Experience</h2>
+          <img src="../assets/backgrounds/page17/circle2.png"/>
+        </div>
+      </section>
+    </template>
+    <monitoramento v-if="seeAnim" @back="onBack"></monitoramento>
   </div>
 </template>
 <script type="text/javascript">
@@ -95,6 +98,7 @@
   import Clock from '../assets/svgs/clock_page36.svg'
   import CostumerCentric from '../assets/svgs/customer_centric.svg'
   import Arrow2 from '../assets/svgs/arrow2_page36.svg'
+  import Monitoramento from './Page37.vue'
   
   export default {
     components: {
@@ -106,10 +110,12 @@
       Idea,
       Clock,
       CostumerCentric,
-      Arrow2
+      Arrow2,
+      Monitoramento
     },
     data () {
       return {
+        seeAnim: false,
         scene: 0,
         showNext: false,
         showStart: false,
@@ -140,6 +146,9 @@
       EventBus.$off('rewind')
     },
     methods: {
+      onBack () {
+        this.$emit('back', 'page36')
+      },
       startAnim () {
         this.scene = 1
         this.TimelineCtrl = anime.timeline()
