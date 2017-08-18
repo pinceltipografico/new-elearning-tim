@@ -19,6 +19,9 @@
         <!--</div>-->
       </div>
     </div>
+    <div class="hand-pointing" :class="'item-'+item" v-if="showHand">
+      <img src="../assets/sprites/hand-pointing.png" alt="pointing">
+    </div>
     <div class="script1">
       <h1>Vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
     </div>
@@ -53,7 +56,13 @@
       this.moduleTitle = this.$route.meta.module
       var itens = this.$el.querySelectorAll('.item-container > div')
       var vm = this
+      
+      for (var i = 0; i < itens.length; i++) {
+        vm.removeClass(itens[i], 'active')
+        vm.addClass(itens[i], 'inactive')
+      }
       if (vm.moduleTitle === 'primeiro') {
+        this.item = 1
         this.playAudio('menuintro', 'static/subtitles/menu_1.json', function (pos) {
           if (pos >= 10 && pos < 14) {
             vm.addClass(itens[0], 'active')
@@ -65,20 +74,25 @@
             vm.addClass(itens[2], 'active')
           }
         }, function () {
-          for (var i = 0; i < itens.length; i++) {
-            vm.removeClass(itens[i], 'active')
-          }
           vm.playAudio('menuItem1', 'static/subtitles/menu_2.json', function () {}, function () {
+            vm.removeClass(itens[0], 'inactive')
             vm.addClass(itens[0], 'active')
+            vm.showHand = true
           })
         })
       } else if (vm.moduleTitle === 'segundo') {
+        this.item = 2
         vm.playAudio('menuItem2', 'static/subtitles/menu_3.json', function () {}, function () {
+          vm.removeClass(itens[1], 'inactive')
           vm.addClass(itens[1], 'active')
+          vm.showHand = true
         })
       } else if (vm.moduleTitle === 'terceiro') {
+        this.item = 3
         vm.playAudio('menuItem3', 'static/subtitles/menu_4.json', function () {}, function () {
+          vm.removeClass(itens[2], 'inactive')
           vm.addClass(itens[2], 'active')
+          vm.showHand = true
         })
       }
     },
@@ -97,7 +111,9 @@
         ],
         showPopup: false,
         allowToSee: false,
-        moduleTitle: ''
+        moduleTitle: '',
+        showHand: false,
+        item: 1
       }
     },
     /**
@@ -211,6 +227,14 @@
             background-size: 85% auto;
           }
         }
+        &.inactive {
+          opacity: 0.3;
+          background: #666;
+          &:nth-of-type(2) {
+            background: #666 url("../assets/sprites/infinite.png") no-repeat center;
+            background-size: 85% auto;
+          }
+        }
       }
     }
   }
@@ -260,6 +284,24 @@
     }
   }
   
+  .hand-pointing {
+    position: absolute;
+    z-index: 3;
+    animation: handSlide 1s infinite ease-in-out alternate;
+    transform: translate(0, -50%);
+    top: 50%;
+    
+    &.item-1 {
+      left: 42%;
+    }
+    &.item-2 {
+      left: 55%;
+    }
+    &.item-3 {
+      left: 67%;
+    }
+  }
+  
   @keyframes slideImage {
     0% {
       transform: translateX(0);
@@ -281,15 +323,21 @@
     }
   }
   
+  @keyframes handSlide {
+    to {
+      transform: translate(10%, -50%);
+    }
+  }
+  
   @keyframes activeItem {
     to {
-      background: lighten($brand-details, 20%);
+      background: $brand-secondary;
     }
   }
   
   @keyframes activeItem2 {
     to {
-      background: lighten($brand-details, 20%) url("../assets/sprites/infinite.png") no-repeat center;
+      background: $brand-secondary url("../assets/sprites/infinite.png") no-repeat center;
       background-size: 85% auto;
     }
   }
