@@ -19,9 +19,9 @@
         <!--</div>-->
       </div>
     </div>
-    <div class="hand-pointing" :class="'item-'+item" v-if="showHand">
-      <img src="../assets/sprites/hand-pointing.png" alt="pointing">
-    </div>
+    <!--<div class="hand-pointing" :class="'item-'+item" v-if="showHand">-->
+      <!--<img src="../assets/sprites/hand-pointing.png" alt="pointing">-->
+    <!--</div>-->
     <div class="script1">
       <h1>Vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
     </div>
