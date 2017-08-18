@@ -410,7 +410,8 @@
     }
   }
   
-  .MSIE10 {
+  .MSIE10,
+  .IE11 {
     font-size: 66.5%;
     .logo {
       svg {
@@ -505,33 +506,33 @@
           height: 500px;
         }
       }
-      .script1 h1{
+      .script1 h1 {
         @include font-size(4);
       }
       .para {
         h1 {
           @include font-size(2.2);
-          small div{
+          small div {
             @include font-size(1);
           }
         }
       }
-      .de{
-        h1{
+      .de {
+        h1 {
           @include font-size(2.2);
         }
       }
     }
     
     div.page15 {
-      .svg-container{
-        svg{
+      .svg-container {
+        svg {
           height: 800px;
         }
       }
     }
-    section.page16{
-      .script1 h1{
+    section.page16 {
+      .script1 h1 {
         @include font-size(3);
       }
     }
