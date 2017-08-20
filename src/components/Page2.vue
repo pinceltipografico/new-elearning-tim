@@ -228,6 +228,10 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
+  section.page{
+    background: #1b4581;
+  }
+  
   .image-background {
     background: url("../assets/backgrounds/page2/shutterstock_316452626.jpg") no-repeat;
     background-size: cover;
@@ -242,7 +246,6 @@
     &.step3 {
       background: $brand-primary url("../assets/backgrounds/page2/04.jpg") no-repeat bottom center;
       background-size: 100% auto;
-      background-blend-mode: multiply;
     }
     &.step4 {
       background: url("../assets/backgrounds/page2/shutterstock_371017109.jpg") no-repeat;
@@ -320,6 +323,10 @@
       }
       strong:nth-of-type(3) {
         font-size: 195%;
+      }
+  
+      @include responsive('laptopS', true){
+        font-size: 94%;
       }
     }
     .effect {

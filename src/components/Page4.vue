@@ -245,6 +245,12 @@
         }
       }
     }
+  
+    @include responsive('laptopS'){
+      transform: scale(0.8);
+      transform-origin: 100% 100%;
+      animation: none;
+    }
   }
   
   .script1 {
@@ -255,6 +261,10 @@
     @include font-size(1.8);
     color: #fff;
     animation: slideText 10s ease-in-out alternate infinite;
+    @include responsive('laptopS') {
+      max-width: 200px;
+      @include font-size(1.5);
+    }
   }
   
   .popup {

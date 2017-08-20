@@ -5,17 +5,6 @@
       <section class="page-item">
         <div class="scene2">
           <div class="script2"><h1>A gente muda, o mundo muda a gente e a gente muda o mundo</h1></div>
-          <!--<div class="explain">
-            <h1>Role a tela para baixo</h1>
-            <div class="icons">
-              <div>
-                <mouse-scroll></mouse-scroll>
-              </div>
-              <div>
-                <arrows></arrows>
-              </div>
-            </div>
-          </div> -->
           <div class="world">
             <world-map></world-map>
           </div>

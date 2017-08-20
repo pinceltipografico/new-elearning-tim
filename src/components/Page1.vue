@@ -282,6 +282,12 @@
     span {
       color: $brand-details;
     }
+    //
+    // tablet
+    @include responsive('laptopS', true){
+      @include font-size(2);
+      max-width: 300px;
+    }
   }
   
   .script2 {
@@ -351,6 +357,12 @@
       color: #666;
       span {
         color: $brand-details;
+      }
+    }
+    @include responsive('laptopS', true){
+      max-width: 300px;
+      h1{
+        @include font-size(2.5);
       }
     }
   }
