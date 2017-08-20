@@ -94,6 +94,7 @@
   import Analitics from '../assets/svgs/icon-analitcs.svg'
   import Indicadores from '../assets/svgs/icon-indicadores.svg'
   import Reter from '../assets/svgs/icon-reter.svg'
+  import anime from 'animejs'
   
   export default {
     components: {
@@ -167,28 +168,58 @@
       
       this.playAudio('monitoramento_2', 'static/subtitles/monitoramento_intro_2.json', function (pos) {
         if (pos === 7) {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-1')
+          anime({
+            targets: '.icone-1 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: 3
+          })
         }
         if (pos === 9) {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-2')
+          anime({
+            targets: '.icone-2 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: 3
+          })
         }
         if (pos === 11) {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-3')
+          anime({
+            targets: '.icone-3 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: 3
+          })
         }
         if (pos === 13) {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-4')
+          anime({
+            targets: '.icone-4 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: 3
+          })
         }
         if (pos === 15) {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-5')
+          anime({
+            targets: '.icone-5 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: 3
+          })
         }
-      }.bind(this), function () {
-        icones.className = 'icones'
-        this.addClass(icones, 'active-1')
+      }, function () {
+        anime({
+          targets: '.icone-1 .circle',
+          fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+          duration: 500,
+          easing: 'linear',
+          loop: 3
+        })
         this.canClick = true
       }.bind(this))
     },
@@ -245,11 +276,19 @@
         }
       },
       closePopup () {
-        var icones = this.$el.querySelector('.icones')
-        icones.className = 'icones'
-        this.addClass(icones, 'active-' + this.nextItem)
         this.showPopup = this.showInnerPopup = false
         this.stopAudio()
+        if (this.animation) {
+          this.animation.seek(0)
+          this.animation.pause()
+        }
+        this.animation = anime({
+          targets: '.icone-' + this.nextItem + ' .circle',
+          fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+          duration: 500,
+          easing: 'linear',
+          loop: true
+        })
         if (this.itemsComunicacao.length === 5) {
           this.showVoltar = true
         }

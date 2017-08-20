@@ -106,6 +106,7 @@
   import Canais from '../assets/svgs/icon-canais.svg'
   import Viver from '../assets/svgs/icon-viver.svg'
   import Customizar from '../assets/svgs/icon-sutomizar.svg'
+  import anime from 'animejs'
   
   export default {
     components: {
@@ -128,6 +129,7 @@
         canClose: false,
         nextItem: 0,
         canClick: false,
+        animation: null,
         popups: [
           {
             html: '<h1>Ouvir o cliente<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>e se o cliente está pedindo a nossa ajuda, pode ser uma oportunidade</span>'
@@ -185,37 +187,77 @@
       }.bind(this))
       setTimeout(function () {
         this.playAudio('interacao_intro', 'static/subtitles/page20.json', function (pos) {
-          if (pos === 1) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-1')
+          if (pos === 0) {
+            anime({
+              targets: '.icone-1 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 2) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-2')
+            anime({
+              targets: '.icone-2 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 4) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-3')
+            anime({
+              targets: '.icone-3 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 6) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-4')
+            anime({
+              targets: '.icone-4 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 8) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-5')
+            anime({
+              targets: '.icone-5 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 10) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-6')
+            anime({
+              targets: '.icone-6 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
           if (pos === 12) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-7')
+            anime({
+              targets: '.icone-7 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-        }.bind(this), function () {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-1')
+        }, function () {
+          this.animation = anime({
+            targets: '.icone-1 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: true
+          })
           this.canClick = true
         }.bind(this))
       }.bind(this), 1000)
@@ -283,11 +325,20 @@
         }
       },
       closePopup () {
-        var icones = this.$el.querySelector('.icones')
         this.showPopup = this.showInnerPopup = false
-        icones.className = 'icones'
-        this.addClass(icones, 'active-' + this.nextItem)
+        if (this.animation) {
+          this.animation.seek(0)
+          this.animation.pause()
+        }
+        this.animation = anime({
+          targets: '.icone-' + this.nextItem + ' .circle',
+          fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+          duration: 500,
+          easing: 'linear',
+          loop: true
+        })
         this.stopAudio()
+        
         if (this.itemsComunicacao.length === 7) {
           this.showVoltar = true
         }
