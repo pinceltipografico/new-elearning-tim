@@ -120,7 +120,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>É onde o cliente estará em contato com o que <span>imaginou receber.</span></h1>
+        <h1>É onde o cliente estará em contato com o que <span>imaginou receber</span></h1>
       </div>
       <div class="video">
         <video src="static/video/vdeo3.m4v" autoplay loop></video>

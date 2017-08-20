@@ -103,6 +103,8 @@
       // start the progress bar
       this.pages = this.$router.options.routes
       
+      this.setVolume()
+      
       //
       // GET THE LAST PAGE
       /* eslint-disable no-unused-vars */
@@ -257,7 +259,8 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return this.$store.state.canAdvance
+        return true
+        /* return this.$store.state.canAdvance */
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
@@ -413,6 +416,9 @@
   .MSIE10,
   .IE11 {
     font-size: 66.5%;
+    .shadow {
+      opacity: 0.3;
+    }
     .logo {
       svg {
         width: 70px;
@@ -498,6 +504,28 @@
         position: absolute;
         top: 60%;
       }
+      
+      .icon-container {
+        .icone {
+          width: 400px;
+          svg {
+            width: 100%;
+            height: 450px;
+          }
+          &.small {
+            .shadow {
+              position: absolute;
+              top: 80%;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+            svg {
+              width: 100%;
+              height: 200px;
+            }
+          }
+        }
+      }
     }
     
     section.page12 {
@@ -521,6 +549,22 @@
         h1 {
           @include font-size(2.2);
         }
+      }
+    }
+    
+    section.page13{
+      .script1_2 h1{
+        @include font-size(3.5);
+      }
+      .script2 h1,
+      .script1 h1{
+        @include font-size(3);
+      }
+    }
+    
+    section.page14{
+      .script1 h1{
+        @include font-size(3);
       }
     }
     

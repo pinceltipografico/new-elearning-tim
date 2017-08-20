@@ -94,6 +94,7 @@
   import FalarLingua from '../assets/svgs/icone-falar-cliente.svg'
   import SeMudar from '../assets/svgs/icone-semudar.svg'
   import Ecantar from '../assets/svgs/icon-encantar.svg'
+  import anime from 'animejs'
   
   export default {
     components: {
@@ -114,6 +115,7 @@
         canClose: false,
         nextItem: 0,
         canClick: false,
+        animation: null,
         popups: [
           {
             html: '<h1>Usar a persona TIM<small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>carismática</span><span>leve</span><span>autêntica</span><span>espontânea</span>'
@@ -166,29 +168,59 @@
       Animations.animationTimeline(function () {
         this.activeScene = true
         this.playAudio('comunicacao_intro', 'static/subtitles/page19.json', function (pos) {
-          if (pos === 1) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-1')
+          if (pos === 0) {
+            anime({
+              targets: '.icone-1 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-          if (pos === 3) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-2')
+          if (pos === 2) {
+            anime({
+              targets: '.icone-2 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-          if (pos === 6) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-3')
+          if (pos === 5) {
+            anime({
+              targets: '.icone-3 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-          if (pos === 8) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-4')
+          if (pos === 7) {
+            anime({
+              targets: '.icone-4 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-          if (pos === 11) {
-            icones.className = 'icones'
-            this.addClass(icones, 'active-5')
+          if (pos === 10) {
+            anime({
+              targets: '.icone-5 .circle',
+              fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+              duration: 500,
+              easing: 'linear',
+              loop: 3
+            })
           }
-        }.bind(this), function () {
-          icones.className = 'icones'
-          this.addClass(icones, 'active-1')
+        }, function () {
+          this.animation = anime({
+            targets: '.icone-1 .circle',
+            fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+            duration: 500,
+            easing: 'linear',
+            loop: true
+          })
           this.canClick = true
         }.bind(this))
       }.bind(this))
@@ -251,8 +283,17 @@
         var icones = this.$el.querySelector('.icones')
         this.showPopup = this.showInnerPopup = false
         this.stopAudio()
-        icones.className = 'icones'
-        this.addClass(icones, 'active-' + this.nextItem)
+        if (this.animation) {
+          this.animation.seek(0)
+          this.animation.pause()
+        }
+        this.animation = anime({
+          targets: '.icone-' + this.nextItem + ' .circle',
+          fill: [{value: '#ffffff'}, {value: '#ff0000'}, {value: '#ffffff'}],
+          duration: 500,
+          easing: 'linear',
+          loop: true
+        })
         if (this.itemsComunicacao.length === 5) {
           this.showVoltar = true
         }

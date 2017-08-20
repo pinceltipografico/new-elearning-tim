@@ -3,7 +3,7 @@
     <div class="effects"></div>
     <div class="image"></div>
     <div class="script1">
-      <h1>Temos que evoluir sempre, <span>e para nós</span> EVOLUIR é fazer diferente</h1>
+      <h1>É possível quando toda empresa está envolvida nesse <span>propósito!</span></h1>
     </div>
   </section>
 </template>

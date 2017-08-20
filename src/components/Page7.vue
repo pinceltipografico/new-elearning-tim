@@ -33,7 +33,7 @@
     <div class="script5">
       <h1>
         Escolha <span>três palavras</span>
-        que representem o que você mais valoriza na hora da compra e leve-as até a sacola:
+        que representam o que você mais valoriza na hora da compra e leve-as até a sacola:
       </h1>
     </div>
     <div class="script6">
@@ -341,12 +341,14 @@
     color: #fff;
     top: -100px;
     padding-left: 100px;
+    opacity: 0;
     h1 {
       display: inline-block;
       max-width: 60%;
     }
     &.step1 {
       top: 100px;
+      opacity: 1;
     }
   }
   

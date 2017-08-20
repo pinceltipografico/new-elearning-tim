@@ -12,7 +12,7 @@
 		</defs>
 		<mask maskUnits="userSpaceOnUse" x="0" y="398.771" width="502.413" height="72.667" id="SVGID_1_">
 			<g style="filter:url(#Adobe_OpacityMaskFilter);">
-				
+
 					<radialGradient id="SVGID_2_" cx="865.3562" cy="982.8785" r="152.0381" gradientTransform="matrix(-1.6526 0.0029 0.0124 -0.2389 1675.6287 667.7808)" gradientUnits="userSpaceOnUse">
 					<stop  offset="0" style="stop-color:#FFFFFF"/>
 					<stop  offset="0.1213" style="stop-color:#D1D1D1"/>
@@ -31,7 +31,7 @@
 		<path style="mask:url(#SVGID_1_);" d="M0.012,435.566c1.184-20.044,114.534-36.54,253.299-36.793
 			c138.699-0.241,250.149,15.838,249.095,35.908c-0.522,20.049-114.047,36.501-252.979,36.754
 			C110.46,471.665-1.31,455.626,0.012,435.566z"/>
-		<circle style="fill:#EAEAEA;" cx="251.206" cy="226.255" r="226.254"/>
+		<circle style="fill:#EAEAEA;" cx="251.206" cy="226.255" r="226.254" class="circle"/>
 		<radialGradient id="SVGID_3_" cx="375.5211" cy="87.0208" r="324.1078" gradientUnits="userSpaceOnUse">
 			<stop  offset="0" style="stop-color:#0085C7"/>
 			<stop  offset="0.6862" style="stop-color:#005A89"/>

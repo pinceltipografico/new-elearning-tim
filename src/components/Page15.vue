@@ -336,7 +336,7 @@
       width: 50%;
       top: 0;
       > span {
-        @include font-size(10);
+        @include font-size(7);
         font-weight: bold;
         text-transform: uppercase;
       }
@@ -363,7 +363,7 @@
       }
       span {
         color: $brand-details;
-        top: 34%;
+        top: 38%;
       }
       .script3 {
         top: 50%;
@@ -414,7 +414,7 @@
       }
       span {
         color: #fff;
-        top: 34%;
+        top: 38%;
         left: 10%;
       }
       .script2 {

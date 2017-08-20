@@ -51,7 +51,7 @@
         <span>Oferecer a melhor experiência para os colaboradores é a chave</span>
       </div>
     </section>
-    <section class="page todo" v-if="scene === 2">
+    <section class="page todo page11" v-if="scene === 2">
       <div class="icon-container">
         <div class="icone one">
           <icon-one></icon-one>
@@ -133,6 +133,7 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       this.startSceneOne()
+//      this.startTodo()
     },
     /**
      | ----------------------------------------------
@@ -517,7 +518,7 @@
     .text-animation {
       top: 50%;
       left: 80px;
-      width: 240px;
+      width: 300px;
       height: 100px;
       overflow: hidden;
       transform: translate(0, -50%);
@@ -525,7 +526,7 @@
       opacity: 0;
       span {
         display: block;
-        width: 240px;
+        width: 100%;
         height: 100px;
         @include font-size(9);
         line-height: 100px;

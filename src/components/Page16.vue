@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page page14">
     <div class="script1">
       <h1>Você também faz parte desta <span>mudança!</span></h1>
     </div>

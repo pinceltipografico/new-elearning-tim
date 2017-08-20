@@ -138,9 +138,9 @@
           }, {
             html: '<h1>Criar uma interface amigável<small></small></h1><h4>A interface passa a ser elemento chave na conquista de uma experiência diferenciada:</h4><span>estímulo a solução</span><span>soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada</span></h4>'
           }, {
-            html: '<h1>Canais diversos, experiência única<small></small><h4>buscar a uniformidade da experiência em todos os canais:</h4><span>fluxo contínuo</span><span>experiência única nos diversos canais</span>'
+            html: '<h1>Experiência única nos diversos canais<small></small><h4>buscar a uniformidade da experiência em todos os canais:</h4><span>fluxo contínuo</span>'
           }, {
-            html: '<h1>Viver a experiência <small></small><h4>A organização deve respirar customer experience:</h4><span>personificação</span><span>comportamentos</span><span>atitudes</span><span>cuidado adicional</span><span>atenção</span>'
+            html: '<h1>Viver a experiência <small></small><h4>A organização deve respirar Customer Experience:</h4><span>personificação</span><span>comportamentos</span><span>atitudes</span><span>cuidado adicional</span><span>atenção</span>'
           }, {
             html: '<h1>Customizar para satisfazer<small></small><h4>Diferencial na experiência de sua jornada:</h4><span>possibilidade de escolha</span><span>combinação de elementos</span><span>flexibilidade</span><span>customização</span>'
           }

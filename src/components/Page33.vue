@@ -152,6 +152,7 @@
         })
       },
       gotoPage (page) {
+        this.stopAudio()
         this.pageACtive = true
         this.scene = page
         this.started = true

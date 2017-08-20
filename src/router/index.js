@@ -137,7 +137,7 @@ const router = new Router({
     }, {
       path: '/page17',
       name: 'page17',
-      meta: {pageTitle: '<span>Diretrizes da Geração do Customer Experience</span>'},
+      meta: {pageTitle: '<span>Diretrizes de Customer Experience</span>'},
       component: Page33
     }, {
       path: '/page18',
@@ -154,6 +154,9 @@ const router = new Router({
       name: 'page20',
       meta: {pageTitle: 'Obrigado!'},
       component: Page42
+    }, {
+      path: '*',
+      redirect: 'Hello'
     }
   ]
 })

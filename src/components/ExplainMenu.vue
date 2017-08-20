@@ -2,7 +2,7 @@
   <section class="page">
     <div class="overlay darken"></div>
     <div class="explain-item legenda">
-      <!-- --> Clique aqui para ativar ou desativar as legendas do curso<!-- -->
+      <!-- --> Clique aqui para ativar ou desativar a legenda do curso<!-- -->
     </div>
     <div class="explain-item volume">
       <!-- --> Clique aqui para ativar ou desativar o áudio do curso<!-- -->

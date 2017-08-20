@@ -2,16 +2,16 @@
   <section class="page menu-page">
     <div class="menu">
       <div class="item-container">
-        <div class="item" @click="onItemClick(0)">
+        <div class="item" @click="onItemClick($event, 0)">
           <i class="material-icons">&#xE88E;</i>
         </div>
         <!--<div class="item" @click="onItemClick(1)">-->
         <!--dna -->
         <!--</div>-->
-        <div class="item" @click="onItemClick(1)">
+        <div class="item" @click="onItemClick($event, 1)">
           <!-- infinite -->
         </div>
-        <div class="item" @click="onItemClick(2)">
+        <div class="item" @click="onItemClick($event, 2)">
           <i class="material-icons">&#xE871;</i>
         </div>
         <!--<div class="item" @click="onItemClick(4)">-->
@@ -20,7 +20,7 @@
       </div>
     </div>
     <!--<div class="hand-pointing" :class="'item-'+item" v-if="showHand">-->
-      <!--<img src="../assets/sprites/hand-pointing.png" alt="pointing">-->
+    <!--<img src="../assets/sprites/hand-pointing.png" alt="pointing">-->
     <!--</div>-->
     <div class="script1">
       <h1>Vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
@@ -57,10 +57,15 @@
       var itens = this.$el.querySelectorAll('.item-container > div')
       var vm = this
       
-      for (var i = 0; i < itens.length; i++) {
-        vm.removeClass(itens[i], 'active')
-        vm.addClass(itens[i], 'inactive')
+      function toggleClass (index) {
+        for (var i = 0; i < itens.length; i++) {
+          vm.removeClass(itens[i], 'active')
+          vm.addClass(itens[i], 'disabled')
+        }
+        vm.removeClass(itens[index], 'disabled')
+        vm.addClass(itens[index], 'active')
       }
+      
       if (vm.moduleTitle === 'primeiro') {
         this.item = 1
         this.playAudio('menuintro', 'static/subtitles/menu_1.json', function (pos) {
@@ -74,24 +79,22 @@
             vm.addClass(itens[2], 'active')
           }
         }, function () {
+          vm.removeClass(itens[2], 'active')
           vm.playAudio('menuItem1', 'static/subtitles/menu_2.json', function () {}, function () {
-            vm.removeClass(itens[0], 'inactive')
-            vm.addClass(itens[0], 'active')
+            toggleClass(0)
             vm.showHand = true
           })
         })
       } else if (vm.moduleTitle === 'segundo') {
         this.item = 2
         vm.playAudio('menuItem2', 'static/subtitles/menu_3.json', function () {}, function () {
-          vm.removeClass(itens[1], 'inactive')
-          vm.addClass(itens[1], 'active')
+          toggleClass(1)
           vm.showHand = true
         })
       } else if (vm.moduleTitle === 'terceiro') {
         this.item = 3
         vm.playAudio('menuItem3', 'static/subtitles/menu_4.json', function () {}, function () {
-          vm.removeClass(itens[2], 'inactive')
-          vm.addClass(itens[2], 'active')
+          toggleClass(2)
           vm.showHand = true
         })
       }
@@ -122,7 +125,12 @@
      | ----------------------------------------------
      **/
     methods: {
-      onItemClick: function (index) {
+      onItemClick: function ($event, index) {
+        var target = $event.target
+        var canClick = (target.nodeName === 'I' && target.parentNode.className.indexOf('active') !== -1) || (target.className.indexOf('active') !== -1)
+        if (!canClick) {
+          return
+        }
         this.allowToSee = true // this.$store.state.modulesAllowed.indexOf(index) !== -1
         this.text = this.texts[index]
         this.showPopup = true
@@ -227,7 +235,7 @@
             background-size: 85% auto;
           }
         }
-        &.inactive {
+        &.disabled {
           opacity: 0.3;
           background: #666;
           &:nth-of-type(2) {
