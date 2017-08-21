@@ -10,7 +10,7 @@
         <div class="start">
           <h1>
             O Monitoramento em uma abordagem de <span>Customer Experience</span>
-            vai muito além de relatórios e Indicadores</h1>
+            vai muito além de relatórios e indicadores</h1>
           <div class="buttons" @click="startAnim" v-if="showStart">
             <span>Ver como funciona</span>
             <i class="material-icons">&#xE038;</i>

@@ -5,6 +5,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-call-spacing */
 /* eslint-disable no-unexpected-multiline */
+
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import Vuex from 'vuex'
+import VueCookie from 'vue-cookie'
+import AddClass from './plugins/addClass'
+import LoadSvg from './plugins/LoadSvg'
+import Audio from './plugins/Audio'
+import axios from 'axios'
+import Scorm from './plugins/Scorm'
+
+/**
+ | ----------------------------------------------
+ * DETECTE NAVIGATION
+ | ----------------------------------------------
+ **/
 navigator.sayswho = (function () {
   var ua = navigator.userAgent
   var tem
@@ -22,7 +39,11 @@ navigator.sayswho = (function () {
   return M.join(' ')
 })()
 
-// shim layer with setTimeout fallback
+/**
+ | ----------------------------------------------
+ * POLIFYLL REQUESTFRAME ANIMATION
+ | ----------------------------------------------
+ **/
 window.requestAnimFrame = (function () {
   return window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -32,15 +53,13 @@ window.requestAnimFrame = (function () {
     }
 })()
 
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import Vuex from 'vuex'
-import VueCookie from 'vue-cookie'
-import AddClass from './plugins/addClass'
-import LoadSvg from './plugins/LoadSvg'
-import Audio from './plugins/Audio'
-import axios from 'axios'
+/**
+ | ----------------------------------------------
+ * VUE GLOBALS
+ | ----------------------------------------------
+ **/
+var audioCoords = require('../static/audio/tim_cx.json')
+const sprites = audioCoords.sprite
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
@@ -49,21 +68,23 @@ Vue.use(VueCookie)
 Vue.use(AddClass)
 Vue.use(LoadSvg)
 Vue.use(Audio)
-
-var audioCoords = require('../static/audio/tim_cx.json')
-const sprites = audioCoords.sprite
+Vue.use(Scorm)
 Vue.prototype.sprites = sprites
 
 /**
- * GUAR VARIAVEIS GLOBAIS
- * @type {Store}
- */
+ | ----------------------------------------------
+ * VUEX VARIAVEIS GLOBAIS
+ | ----------------------------------------------
+ **/
 const store = new Vuex.Store({
   state: {
     showUserInterface: false,
     pageProgress: 10,
     modulesAllowed: [0],
     canAdvance: false,
+    scormConnected: false,
+    lastPageViewed: '',
+    pagesViewed: [],
     audio: null
   },
   mutations: {
@@ -75,9 +96,9 @@ const store = new Vuex.Store({
       'use strict'
       state.pageProgress = progress
     },
-    setModuleAllowed (state, module) {
+    setModuleAllowed (state, modules) {
       'use strict'
-      state.modulesAllowed.push(module)
+      state.modulesAllowed = modules
     },
     setCanAdvance (state, value) {
       'use strict'
@@ -86,6 +107,16 @@ const store = new Vuex.Store({
     setAudio (state, value) {
       'use strict'
       state.audio = value
+    },
+    setScormConnected (state, value) {
+      window.scormConnected = value
+      state.scormConnected = value
+    },
+    setPagesViewed (state, value) {
+      state.pagesViewed = value
+    },
+    setLastPageViewed (state, value) {
+      state.lastPageViewed = value
     }
   }
 })
@@ -100,6 +131,11 @@ if (preloader) {
   preloader.classList.remove('hidePreloader')
 }
 
+/**
+ | ----------------------------------------------
+ * REMOVE O PRELOADER
+ | ----------------------------------------------
+ **/
 function removePReloader () {
   'use strict'
   if (preloader) {
@@ -119,6 +155,11 @@ function removePReloader () {
   }
 }
 
+/**
+ | ----------------------------------------------
+ * CONFIGURA O AUDIO
+ | ----------------------------------------------
+ **/
 function configAudio () {
   var html = document.getElementsByTagName('html')[0]
   html.className = navigator.sayswho.replace(' ', '')
@@ -136,6 +177,11 @@ function configAudio () {
   })
 }
 
+/**
+ | ----------------------------------------------
+ * config load event
+ | ----------------------------------------------
+ **/
 if (window.addEventListener) {
   window.addEventListener('load', configAudio, false)
 } else if (window.attachEvent) {

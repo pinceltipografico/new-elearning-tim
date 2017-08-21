@@ -85,7 +85,7 @@ $laptopXL: 1440px;
 
   // LAPTOP 1024
   @if ($break == laptopS) {
-    @media only screen and (min-width: $tablet+1) and (max-width: $laptopS) {
+    @media only screen and (min-width: 600px) and (max-width: $laptopS) {
       @content;
     }
   }

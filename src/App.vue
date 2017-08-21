@@ -15,7 +15,7 @@
     <transition name="fade">
       <nav class="user-interface" v-if="showInterfaceItems">
         <ul>
-          <li class="last">
+          <li class="last" @click="onClose">
             <i class="material-icons">&#xE5CD;</i>
           </li>
           <li :class="{'active':!isMute, 'inactive':isMute}" @click="setVolume">
@@ -76,7 +76,6 @@
      **/
     data () {
       return {
-        counter: null,
         pageIndex: 2,
         pages: null,
         showSubtitle: false,
@@ -94,6 +93,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      var vm = this
       this.$store.commit('toggleIterface', false)
       console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {
@@ -111,7 +111,6 @@
       } else if (this.$route.name !== 'Hello') {
         var lastPage = this.$route.name
         var lastRouteIndex = this.getRouteByName(lastPage)
-        console.log(lastRouteIndex)
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
       }
@@ -120,11 +119,16 @@
         this.isPaused = false
         this.pageIsDone = false
       }.bind(this))
-      
       EventBus.$on('audio-end', function () {
         this.isPaused = true
         this.pageIsDone = true
       }.bind(this))
+      
+      this.connect(function (err) {
+        if (!err) {
+          vm.gotoLastPageViwed()
+        }
+      })
     },
     /**
      | ----------------------------------------------
@@ -132,6 +136,13 @@
      | ----------------------------------------------
      **/
     methods: {
+      gotoLastPageViwed () {
+        var name = this.$store.state.lastPageViewed
+        var i = this.getRouteByName(name)
+        var page = this.pages[i]
+        this.pageIndex = i
+        this.$router.push({name: page.name})
+      },
       /**
        | ----------------------------------------------
        * GO TO NEXT PAGE OF ELEARNING
@@ -231,6 +242,15 @@
             this.isPaused = false
           }
         }
+      },
+  
+      /**
+      | ----------------------------------------------
+      * CLOSE THE WINDOW
+      | ----------------------------------------------
+      **/
+      onClose () {
+        this.saveStatus()
       }
     },
     
@@ -240,9 +260,6 @@
      | ----------------------------------------------
      **/
     destroyed () {
-      if (this.counter) {
-        clearInterval(this.couter)
-      }
     },
     
     /**
@@ -266,6 +283,7 @@
     
     watch: {
       '$route': function () {
+        this.setLasPageViewed(this.$route.name)
         this.$store.commit('setCanAdvance', false)
         window.history.forward(1)
       }

@@ -387,3 +387,5 @@ var ScormConnection = (function (window) {
   }
   
 })(window)
+
+export default ScormConnection

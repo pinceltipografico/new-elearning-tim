@@ -1,7 +1,8 @@
 <template>
   <section class="page">
     <div class="script1 end-tag show">
-      <logo></logo><h1>somos todos <span>geração cx</span></h1>
+      <logo></logo>
+      <h1>somos todos <span>geração cx</span></h1>
     </div>
   </section>
 </template>
@@ -24,6 +25,7 @@
       if (logo) {
         logo.style.opacity = 0
       }
+      this.setStatus('completed')
     },
     destroyed () {
       this.stopAudio()
@@ -47,12 +49,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      svg{
+      svg {
         width: 200px;
         margin-right: 20px;
         display: inline-block;
       }
-      h1{
+      h1 {
         margin: 0;
       }
     }

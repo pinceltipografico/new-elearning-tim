@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+
+<!-- DEPENDENCIAS E CONFIGURAÇÕES DO MANIFEST -->
+<manifest
+	xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+	xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_rootv1p2"
+	xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	identifier="Nexialistas"
+	version="1.0"
+	xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+						http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+						http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+	<metadata>
+		<schema>ADL SCORM</schema>
+		<schemaversion>1.2</schemaversion>
+		<imsmd:lom>
+			<imsmd:general>
+				<imsmd:title>
+             		<imsmd:langstring xml:lang="pt-BR">TIM Customer Experience</imsmd:langstring>
+		        </imsmd:title>
+			</imsmd:general>
+		</imsmd:lom>
+	</metadata>
+
+	<!-- ORGANIÇÃO DO MANIFEST -->
+
+	<organizations default="EL0051">
+
+		<organization identifier="EL0051">
+
+			<!-- DEFINE-SE QUANTOS ELEMENTOS ESTARÃO NO SEU MENU TREE VIEW-->
+			<title>TIM Customer Experience</title>
+			<item identifier="ITEM-modulo0" identifierref="NEX_Resource_0">
+				<title>TIM Customer Experience</title>
+
+				<!-- parametros inseridos no lms via imanifest -->
+				<adlcp:maxtimeallowed>00:01:00</adlcp:maxtimeallowed>
+				<adlcp:timelimitaction>exit, no message</adlcp:timelimitaction>
+				<adlcp:datafromlms>Elearning HTML5</adlcp:datafromlms>
+				<adlcp:masteryscore>80</adlcp:masteryscore>
+
+			</item>
+
+		</organization>
+
+	</organizations>
+
+
+	<resources>
+		<!-- DEFINE-SE OS CAMINHOS DOS ARQUIVOS QUE SERÃO CHAMADOS PARA INICIAR O CURSO
+			- A CADA RESOURCE UM ITEM AO MENU TREE VIEW DEVE SER ADCIONADO ACIMA -->
+		<resource identifier="NEX_Resource_0" type="webcontent" adlcp:scormtype="sco" href="index.html">
+			<file href="index.html" />
+		</resource>
+
+	</resources>
+
+</manifest>
