@@ -343,6 +343,9 @@
       width: 300px;
       transform: translateY(-50%);
       display: block;
+      @include responsive('laptopS'){
+        width: 200px;
+      }
       span {
         display: inline-block;
         color: #fff;
@@ -353,6 +356,9 @@
         border-radius: 5px;
         opacity: 0;
         transition: all $animationTime;
+        @include responsive('laptopS'){
+          @include font-size(1.2);
+        }
       }
     }
     .palavras-colaborador {

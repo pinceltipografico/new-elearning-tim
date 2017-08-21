@@ -103,8 +103,6 @@
       // start the progress bar
       this.pages = this.$router.options.routes
       
-      this.setVolume()
-      
       //
       // GET THE LAST PAGE
       /* eslint-disable no-unused-vars */
@@ -259,8 +257,7 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return true
-        /* return this.$store.state.canAdvance */
+        return this.$store.state.canAdvance
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
@@ -552,18 +549,18 @@
       }
     }
     
-    section.page13{
-      .script1_2 h1{
+    section.page13 {
+      .script1_2 h1 {
         @include font-size(3.5);
       }
       .script2 h1,
-      .script1 h1{
+      .script1 h1 {
         @include font-size(3);
       }
     }
     
-    section.page14{
-      .script1 h1{
+    section.page14 {
+      .script1 h1 {
         @include font-size(3);
       }
     }
@@ -1022,6 +1019,9 @@
       background: darken($brand-details, 20%);
       border: 10px solid #fff;
       transition: transform $animationTime;
+      @include responsive('laptopS') {
+        width: 85%;
+      }
       
       .ribbon {
         position: absolute;

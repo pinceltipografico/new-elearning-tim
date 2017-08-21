@@ -253,6 +253,10 @@
         padding: 5px;
         @include font-size(1.3);
       }
+  
+      @include responsive('laptopS'){
+        @include font-size(2);
+      }
     }
     
     @for $i from 0 through 2 {

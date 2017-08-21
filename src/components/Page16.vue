@@ -61,13 +61,16 @@
     background-size: cover;
     
     .image {
-      top: 60%;
+      bottom:0;
       left: 50%;
-      transform: translate(-50%, -100%);
+      transform: translateX(-50%);
       animation: imageAnimation 5s infinite ease-in-out alternate;
       opacity: 0;
       &.show {
         opacity: 1;
+      }
+      @include responsive('laptopS'){
+        left: 60%;
       }
     }
     .script1 {
@@ -81,15 +84,20 @@
         max-width: 500px;
         margin-left: 70px;
       }
+      @include responsive('laptopS'){
+        h1{
+          max-width: 400px;
+        }
+      }
     }
   }
   
   @keyframes imageAnimation {
     0% {
-      transform: translate(-10%, -50%);
+      transform: translate(-10%, 0);
     }
     100% {
-      transform: translate(-20%, - 50%);
+      transform: translate(-20%, 0);
     }
   }
 </style>

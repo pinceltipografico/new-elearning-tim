@@ -17,7 +17,7 @@
     <section class="page gradient scene2 page11" style="position: absolute; top:0; left:0;">
       <div class="dna">
         <img src="../assets/backgrounds/page40/dna.png" alt="DNA"/>
-        <div class="shadow"></div>
+        <!--<div class="shadow"></div>-->
       </div>
       <div class="item costumer">
         <div class="icon">
@@ -466,7 +466,7 @@
       }
       &.user-experience {
         left: 50%;
-        top: 48%;
+        top: 50%;
         transform: translate(-50%, 90%);
       }
       &.custumer-monitoring {
@@ -513,6 +513,9 @@
         width: 100%;
         background: darken($brand-details, 30%);
       }
+      @include responsive('laptopS') {
+        width: 40%;
+      }
     }
     
     .text-animation {
@@ -535,13 +538,12 @@
         font-weight: bold;
         color: #fff;
       }
-      &.show {
-        opacity: 1;
-      }
-      &.step1 {
-        transform: translate(-50%, -50%);
-        left: 50%;
-        top: 50%;
+      @include responsive('laptopS') {
+        width: 210px;
+        span {
+          width: 210px;
+          @include font-size(7);
+        }
       }
     }
     .script2 {
@@ -556,11 +558,12 @@
         margin-left: 60%;
         max-width: 450px;
       }
-      &.show {
-        transform: translate(0, -50%);
-      }
-      &.hide {
-        opacity: 0;
+      @include responsive('laptopS'){
+        @include font-size(1.8);
+        h1 {
+          margin-left: 65%;
+          max-width: 400px;
+        }
       }
     }
     .buttons {

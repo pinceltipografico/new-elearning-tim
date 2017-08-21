@@ -143,6 +143,9 @@
         transform: translateX(0%);
         opacity: 1;
       }
+      @include responsive('laptopS'){
+        left: 0px;
+      }
     }
     .script1 {
       top: 140px;
@@ -157,6 +160,9 @@
       &.show {
         transform: rotate(-10deg);
         opacity: 1;
+      }
+      @include responsive('laptopS'){
+        left: 170px;
       }
     }
   }

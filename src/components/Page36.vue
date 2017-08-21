@@ -309,6 +309,15 @@
   .monitoring {
     text-transform: uppercase;
     @include font-size(1);
+    
+    @include responsive('laptopS') {
+      transform: scale(0.8);
+      transform-origin: 10% 50%;
+      border: none;
+      animation: none;
+      overflow: visible;
+    }
+    
     /*zoom: 0.9;*/
     .people {
       width: 500px;

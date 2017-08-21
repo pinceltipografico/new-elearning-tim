@@ -404,6 +404,12 @@
           transition: all $animationTime;
           width: 52%;
         }
+        @include responsive('laptopS'){
+          &:before,
+          &:after{
+            width: 40%;
+          }
+        }
       }
     }
     &.de {

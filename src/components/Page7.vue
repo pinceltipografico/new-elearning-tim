@@ -412,6 +412,10 @@
       top: 60%;
       transform: translateY(-50%);
       max-width: 550px;
+      
+      @include responsive('laptopS'){
+        max-width: 400px;
+      }
       .elements {
         display: inline-block;
         width: auto;
@@ -426,6 +430,11 @@
           display: inline-block;
           font-weight: bold;
           @include font-size(2);
+        }
+        @include responsive('laptopS'){
+          span{
+            @include font-size(1.5);
+          }
         }
       }
     }

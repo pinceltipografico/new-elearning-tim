@@ -12,19 +12,19 @@
         </div>
         <div class="items">
           <a @click="gotoPage('page34')">
-            <div class="item1" :class="{'active':started}">
+            <div class="item1" :class="{'active':started,'destaque':actualPage === 'page34'}">
               <span>COMUNICAÇÃO</span>
               <i class="material-icons">&#xE0BF;</i>
             </div>
           </a>
           <a @click="gotoPage('page35')">
-            <div class="item2" :class="{'active':started}">
+            <div class="item2" :class="{'active':started, 'destaque':actualPage === 'page35'}">
               <span>INTERAÇÃO</span>
               <i class="material-icons">&#xE5D2;</i>
             </div>
           </a>
           <a @click="gotoPage('page36')">
-            <div class="item3" :class="{'active':started}">
+            <div class="item3" :class="{'active':started, 'destaque':actualPage === 'page36'}">
               <span>MONITORAMENTO</span>
               <i class="material-icons">&#xE8B6;</i>
             </div>
@@ -68,6 +68,7 @@
         TimeLineCtrl: null,
         canClick: false,
         pageACtive: false,
+        actualPage: '',
         pages: []
       }
     },
@@ -93,6 +94,11 @@
           this.TimelineCtrl.restart()
         }
       }.bind(this))
+      
+      var hasViewd = this.$cookie.get('has_viewed')
+      if (hasViewd) {
+        this.actualPage = 'page34'
+      }
       this.startSCene()
     },
     /**
@@ -148,10 +154,14 @@
           }
         }, function () {
           vm.canClick = true
+          vm.actualPage = 'page34'
           vm.$cookie.set('has_viewed', true)
         })
       },
       gotoPage (page) {
+        if (this.actualPage !== page) {
+          return
+        }
         this.stopAudio()
         this.pageACtive = true
         this.scene = page
@@ -160,6 +170,11 @@
       onBack (page) {
         this.pageACtive = false
         this.scene = 'start'
+        if (page === 'page34') {
+          this.actualPage = 'page35'
+        } else if (page === 'page35') {
+          this.actualPage = 'page36'
+        }
         if (this.pages.indexOf(page) === -1) {
           this.pages.push(page)
         }
@@ -270,6 +285,10 @@
             transform: translateX(0%);
           }
           
+          &.destaque {
+            animation: animationItem 0.350s infinite ease-in-out alternate;
+          }
+          
           span {
             @include font-size(2.5);
           }
@@ -318,8 +337,6 @@
       &.comunicacao.step2.step3.step4 {
         .item1 {
           width: 300px;
-          /*transform-origin: 0 0;*/
-          /*transform: scale(0.7);*/
         }
       }
       
@@ -408,6 +425,11 @@
           border-top: 1px solid $brand-details;
           padding-top: 5px;
         }
+        @include responsive('laptopS') {
+          max-width: 350px;
+          top: 90px;
+          @include font-size(2);
+        }
       }
       .backButton {
         display: flex;
@@ -432,6 +454,12 @@
         transform: translate(-50%, -30%);
         display: flex;
         align-items: center;
+        
+        @include responsive('laptopS') {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        
         .icone {
           position: relative;
           width: 20%;
@@ -459,6 +487,18 @@
             max-width: 90%;
             @include font-size(1.3);
           }
+          
+          @include responsive('laptopS') {
+            width: 18%;
+            margin-bottom: 10px;
+            span {
+              position: relative;
+              top: auto;
+              left: auto;
+              transform: translate(0, 0);
+              @include font-size(1);
+            }
+          }
         }
         
         @for $i from 1 through 10 {
@@ -484,6 +524,11 @@
     @keyframes fillAnimation {
       to {
         fill: $brand-secondary;
+      }
+    }
+    @keyframes animationItem {
+      to {
+        background: lighten($brand-secondary, 15%);
       }
     }
   }

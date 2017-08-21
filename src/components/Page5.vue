@@ -259,6 +259,9 @@
             left: 100px;
             transform: translateY(-50%) rotateZ(0deg);
             transition: all $animationTime;
+            @include responsive('laptopS', true) {
+              left: 50px;
+            }
           }
         }
         
@@ -269,6 +272,10 @@
           height: 100%;
           background: #fff url("../assets/backgrounds/page3/03.jpg") no-repeat center left;
           background-size: 60% auto;
+          
+          @include responsive('laptopS', true) {
+            background-size: 45% auto;
+          }
           
           .script4,
           .script3,
@@ -284,6 +291,10 @@
             font-weight: bold;
             border-left: 2px solid $brand-primary;
             padding-left: 15px;
+            
+            @include responsive('laptopS', true) {
+              @include font-size(2.8);
+            }
           }
           .script3 {
             top: 180px;
@@ -328,6 +339,9 @@
             padding: 20px 20px 20px 100px;
             border: 2px solid $brand-details;
             border-left: none;
+            @include responsive('laptopS', true) {
+              @include font-size(3);
+            }
           }
         }
         
@@ -345,6 +359,13 @@
             height: 110%;
             top: -10%;
             left: 0;
+          }
+          @include responsive('laptopS', true) {
+            background: #000;
+            video {
+              top: 50%;
+              transform: translateY(-50%);
+            }
           }
         }
         
@@ -370,6 +391,11 @@
               border-top: 2px dotted $brand-details;
               border-bottom: 2px dotted $brand-details;
               padding: 20px 40px;
+            }
+            @include responsive('laptopS', true) {
+              h1 {
+                @include font-size(2);
+              }
             }
           }
         }

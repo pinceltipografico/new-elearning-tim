@@ -169,6 +169,10 @@
       left: 50%;
       transform: translateX(-50%);
       animation: person 10s infinite ease-in-out alternate;
+      
+      @include responsive('laptopS') {
+        animation: personScaleDown 10s infinite ease-in-out alternate;
+      }
       img {
         position: absolute;
       }
@@ -196,6 +200,9 @@
       opacity: 0;
       &.show {
         opacity: 1;
+      }
+      @include responsive('laptopS') {
+        transform: scale(0.8);
       }
     }
     .icon-1 {
@@ -235,6 +242,10 @@
       &.show {
         opacity: 1;
       }
+      @include responsive('laptopS'){
+        max-width: 250px;
+        @include font-size(1.8);
+      }
     }
     .script1 {
       left: 0;
@@ -249,6 +260,10 @@
       right: 0;
       &.show {
         right: 75px;
+      }
+      @include responsive('laptopS'){
+        @include font-size(1.5);
+        top:52%;
       }
     }
     .script3 {
@@ -271,6 +286,14 @@
       }
       100% {
         transform: translateX(-55%);
+      }
+    }
+    @keyframes personScaleDown {
+      0% {
+        transform: translateX(-45%) scale(0.9);
+      }
+      100% {
+        transform: translateX(-55%) scale(0.9);
       }
     }
   }

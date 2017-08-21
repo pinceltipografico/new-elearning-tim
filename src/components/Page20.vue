@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="script3">
-        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet , para pagar contas, pedir taxi, pedir comida em casa.
+        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet , para pagar contas, pedir taxi, pedir comida em casa
         </h1>
       </div>
     </section>
@@ -40,7 +40,7 @@
       </div>
       <div class="script3">
         <h1>Comparar as principais características dos produtos como, <span>cores, tamanho, funcionalidade,</span>
-          atribuição de serviços e valores, utilizando site de pesquisas e ou aplicativos, simuladores de consumo.</h1>
+          atribuição de serviços e valores, utilizando site de pesquisas e ou aplicativos, simuladores de consumo</h1>
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
@@ -62,7 +62,7 @@
       </div>
       <div class="script2">
         <h1>Proporcionar que o cliente experimente o <span>serviço ou produto</span>
-          é uma alternativa para ajudá-lo na tomada de decisão e uma oportunidade de avaliar previamente se as necessidades serão atendidas.
+          é uma alternativa para ajudá-lo na tomada de decisão e uma oportunidade de avaliar previamente se as necessidades serão atendidas
         </h1>
       </div>
       <div class="iconButton" @click="startSceneFiveTwo">
@@ -83,7 +83,7 @@
         </h1>
       </div>
       <div class="script2">
-        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torná-la envolvente e prática.</span>
+        <h1>Cadastros ágeis e inteligentes podem fazer a diferença. Facilitar a aquisição, <span>torná-la envolvente e prática</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneSeven">
@@ -103,7 +103,7 @@
         <h1>Como tornar a entrega do produto ou serviço uma <span>experiência única?</span></h1>
       </div>
       <div class="script2">
-        <h1>O cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja.
+        <h1>O cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja
         </h1>
       </div>
       <div class="iconButton" @click="startSceneEight2">
@@ -153,7 +153,7 @@
       </div>
       <div class="script3">
         <h1>
-          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independentemente do canal, <span>sua necessidade será atendida.</span>
+          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independentemente do canal, <span>sua necessidade será atendida</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneTenTwo">
@@ -248,8 +248,8 @@
       
       this.start()
 //      this.started = true
-//      this.scene = 7
-//      this.startSceneEleven()
+//      this.scene = 1
+//      this.startSceneThree()
     },
     /**
      | ----------------------------------------------
@@ -1208,10 +1208,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transition: all $animationTime;
+    @include responsive('laptopS'){
+      width: 80%;
+    }
     
     .shadow {
       position: absolute;
-      /*bottom: 20px;*/
       top:80%;
       left: 50%;
       transform: translateX(-50%);
@@ -1252,6 +1254,10 @@
       background: $brand-details;
       font-weight: bold;
       border-radius: 10px;
+      @include responsive('laptopS'){
+        @include font-size(1.2);
+        width: 150px;
+      }
     }
     
     &.small {
@@ -1498,6 +1504,11 @@
       color: #666;
       @include font-size(2);
       opacity: 0;
+      @include responsive('laptopS'){
+        right: 12%;
+        @include font-size(1.8);
+        max-width: 350px;
+      }
     }
     .script3 {
       max-width: 550px;
@@ -1777,6 +1788,9 @@
       left: 20%;
       color: #666;
       opacity: 0;
+      @include responsive('laptopS'){
+        max-width: 400px;
+      }
     }
     .script3 {
       top: 20%;
@@ -1793,6 +1807,9 @@
         &.show {
           opacity: 1;
         }
+      }
+      @include responsive('laptopS'){
+        @include font-size(1.2);
       }
     }
   }
@@ -1836,6 +1853,9 @@
         padding: 5px;
         animation: buttonAnimation 0.250s infinite ease-in-out alternate;
         cursor: pointer;
+      }
+      @include responsive('laptopS'){
+        @include font-size(1.5);
       }
     }
     .script2 {

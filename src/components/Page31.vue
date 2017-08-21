@@ -4,6 +4,7 @@
     <div class="image"></div>
     <div class="script1">
       <h1>É possível quando toda empresa está envolvida nesse <span>propósito!</span></h1>
+      <h1>Temos que evoluir sempre, e para nós, <span>evoluir é fazer diferente!</span></h1>
     </div>
   </section>
 </template>
@@ -13,7 +14,13 @@
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      this.playAudio('scene17', 'static/subtitles/page16.json', null, function () {
+      var h1s = this.$el.querySelectorAll('h1')
+      this.playAudio('scene17', 'static/subtitles/page16.json', function (pos) {
+        if (pos === 47) {
+          h1s[0].style.display = 'none'
+          h1s[1].style.display = 'block'
+        }
+      }, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     }
@@ -56,6 +63,13 @@
     opacity: 0;
     animation: enterScript 0.250s forwards;
     animation-delay: 2.5s;
+    @include responsive('laptopS') {
+      @include font-size(1.6);
+      top: 54%;
+    }
+    h1:nth-of-type(2) {
+      display: none;
+    }
   }
   
   @keyframes imageAnimation {

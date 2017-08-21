@@ -154,6 +154,11 @@
         svg {
           width: 180px;
         }
+        @include responsive('laptopS'){
+          svg{
+            width: 150px;
+          }
+        }
       }
     }
     &.active {
