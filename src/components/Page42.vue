@@ -25,7 +25,7 @@
       if (logo) {
         logo.style.opacity = 0
       }
-      this.setStatus('completed')
+      this.setStatus('passed')
     },
     destroyed () {
       this.stopAudio()

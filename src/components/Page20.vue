@@ -153,7 +153,7 @@
       </div>
       <div class="script3">
         <h1>
-          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, que pode acontecer em chat online, por exemplo. Sentir-se acolhido, independentemente do canal, <span>sua necessidade será atendida</span>
+          Todos buscamos uma solução prática e rápida para esclarecer dúvidas, por exemplo, um chat online. Queremos nos sentir acolhidos, <span>seja qual for o canal</span>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneTenTwo">

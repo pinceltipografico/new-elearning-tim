@@ -9,7 +9,13 @@ VueScorm.install = function (Vue, options) {
     if (this.connected) {
       ScormConnect.LMSCommit()
     }
-    window.close()
+    try {
+      window.close()
+      window.top.close()
+      window.parent.close()
+    } catch (e) {
+      console.log(e)
+    }
   }
   /**
    | ----------------------------------------------
@@ -20,6 +26,7 @@ VueScorm.install = function (Vue, options) {
     if (window.connected) {
       console.log('saving status: ' + status)
       ScormConnect.LMSSetValue('cmi.core.lesson_status', status)
+      ScormConnect.LMSSetValue('cmi.core.score.raw', 100)
       ScormConnect.LMSCommit()
     }
   }

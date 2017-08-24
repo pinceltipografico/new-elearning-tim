@@ -122,7 +122,7 @@
           }, {
             html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>claro</span><span>conciso</span><span>concreto</span><span>correto</span><span>coerente</span><span>completo</span><span>cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>perguntar</span><span>repetir</span><span>sumarizar</span><span>exemplificar</span>'
           }, {
-            html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>falar diferente com gente diferente</span><span>considerar a linguagem do cliente</span><span>dispensar o termo técnico</span>'
+            html: '<h1>Falar a língua do cliente<small></small></h1><h4>Criar empatia com o cliente:</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>falar diferente com gente diferente</span><span>considerar a linguagem do cliente</span><span>dispensar o termo técnico</span>'
           }, {
             html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>considerar como essas mudanças afetarão o cliente</span><span>saber quais são os impactos nos resultados</span>'
           }, {

@@ -138,7 +138,7 @@
           }, {
             html: '<h1>Otimizar o autoatendimento<small></small></h1><h4>A tendência atual: </h4><span>canais digitais de suporte</span><span>maior autonomia</span><span>menor necessidade de contato</span>'
           }, {
-            html: '<h1>Criar uma interface amigável<small></small></h1><h4>A interface passa a ser elemento chave na conquista de uma experiência diferenciada:</h4><span>estímulo a solução</span><span>soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada</span></h4>'
+            html: '<h1>Criar uma interface amigável<small></small></h1><h4>A interface passa a ser elemento chave na conquista de uma experiência diferenciada:</h4><span>estímulo à solução</span><span>soluções mais interativas</span><span>disponibilidade imediata</span><span>custo menor</span><span>personalizada</span></h4>'
           }, {
             html: '<h1>Experiência única nos diversos canais<small></small><h4>buscar a uniformidade da experiência em todos os canais:</h4><span>fluxo contínuo</span>'
           }, {

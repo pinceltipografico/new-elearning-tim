@@ -33,9 +33,9 @@
     </div>
     <transition name="fade" v-if="showInterfaceItems">
       <div class="player-controls">
-        <div class="back-button" @click="onRewind">
-          <i class="material-icons">&#xE020;</i>
-        </div>
+        <!--<div class="back-button" @click="onRewind">-->
+          <!--<i class="material-icons">&#xE020;</i>-->
+        <!--</div>-->
         <div class="play-pause-button" @click="onPause" :class="{'active':!isPaused}">
           <i class="material-icons" v-if="isPaused">&#xE038;</i>
           <i class="material-icons" v-if="!isPaused">&#xE035;</i>
@@ -93,6 +93,8 @@
      | ----------------------------------------------
      **/
     mounted () {
+      window.resizeTo(screen.height, screen.width)
+      window.scrollTo(0, 0)
       var vm = this
       this.$store.commit('toggleIterface', false)
       console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
@@ -243,12 +245,12 @@
           }
         }
       },
-  
+      
       /**
-      | ----------------------------------------------
-      * CLOSE THE WINDOW
-      | ----------------------------------------------
-      **/
+       | ----------------------------------------------
+       * CLOSE THE WINDOW
+       | ----------------------------------------------
+       **/
       onClose () {
         this.saveStatus()
       }
