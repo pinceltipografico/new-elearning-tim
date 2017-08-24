@@ -93,8 +93,6 @@
      | ----------------------------------------------
      **/
     mounted () {
-      window.resizeTo(screen.height, screen.width)
-      window.scrollTo(0, 0)
       var vm = this
       this.$store.commit('toggleIterface', false)
       console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
