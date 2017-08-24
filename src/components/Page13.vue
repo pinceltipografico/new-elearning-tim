@@ -3,7 +3,7 @@
     <section class="page step1 page11" :class="{'hide':scene === 1}" v-if="scene < 2">
       <div class="script2">
         <h1>
-          Criamos uma estrutura de <span>customer experience</span>
+          Criamos uma estrutura de <span>cCustomer Experience</span>
         </h1>
       </div>
       <div class="blue"></div>
