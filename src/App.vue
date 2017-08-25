@@ -34,7 +34,7 @@
     <transition name="fade" v-if="showInterfaceItems">
       <div class="player-controls">
         <!--<div class="back-button" @click="onRewind">-->
-          <!--<i class="material-icons">&#xE020;</i>-->
+        <!--<i class="material-icons">&#xE020;</i>-->
         <!--</div>-->
         <div class="play-pause-button" @click="onPause" :class="{'active':!isPaused}">
           <i class="material-icons" v-if="isPaused">&#xE038;</i>
@@ -110,7 +110,7 @@
         this.$router.replace('Hello')
       } else if (this.$route.name !== 'Hello') {
         var lastPage = this.$route.name
-        var lastRouteIndex = this.getRouteByName(lastPage)
+        var lastRouteIndex = this.getRouteByName(lastPage) || 0
         this.pageIndex = lastRouteIndex
         this.$store.commit('toggleIterface', true)
       }
@@ -138,7 +138,7 @@
     methods: {
       gotoLastPageViwed () {
         var name = this.$store.state.lastPageViewed
-        var i = this.getRouteByName(name)
+        var i = this.getRouteByName(name) || 0
         var page = this.pages[i]
         this.pageIndex = i
         this.$router.push({name: page.name})
