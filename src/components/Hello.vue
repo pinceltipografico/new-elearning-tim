@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page hello">
     <div class="overlay"></div>
     <div class="intro-title" v-bind:class="{'animation':animation}">
       <hr>

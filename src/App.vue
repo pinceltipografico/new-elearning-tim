@@ -422,7 +422,8 @@
   }
   
   .IE11,
-  .MSIE10 {
+  .MSIE10,
+  .MSIE9 {
     .logo {
       height: 30px;
     }
@@ -593,6 +594,32 @@
     section.page16 {
       .script1 h1 {
         @include font-size(3);
+      }
+    }
+  }
+  
+  .MSIE9 {
+    main {
+      width: 1280px;
+      margin-left: -640px;
+    }
+    section.page {
+      width: 1280px;
+    }
+    .logo {
+      display: block;
+      height: 60px;
+      span,
+      div {
+        float: left;
+      }
+      span {
+        height: 35px;
+      }
+    }
+    section.hello {
+      .intro-title {
+        margin-left: -25%;
       }
     }
   }
