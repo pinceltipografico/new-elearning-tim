@@ -291,7 +291,9 @@
             offset: '+=11000',
             begin: function () {
               var _el = document.querySelector('.scene2')
-              _el.style.zIndex = 5
+              if (_el) {
+                _el.style.zIndex = 5
+              }
             }
           })
           .add({
@@ -558,7 +560,7 @@
         margin-left: 60%;
         max-width: 450px;
       }
-      @include responsive('laptopS'){
+      @include responsive('laptopS') {
         @include font-size(1.8);
         h1 {
           margin-left: 65%;
