@@ -43,7 +43,7 @@ VueScorm.install = function (Vue, options) {
     this.$store.commit('setLastPageViewed', page)
     if (window.connected) {
       console.log('saving location: ' + page)
-      // ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
+      ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
       ScormConnect.LMSCommit()
     }
   }
@@ -76,7 +76,7 @@ VueScorm.install = function (Vue, options) {
       this.$store.commit('setLastPageViewed', location)
     } else {
       this.$store.commit('setLastPageViewed', 'Hello')
-      ScormConnect.LMSSetValue('cmi.core.lesson_location', 'page19')
+      ScormConnect.LMSSetValue('cmi.core.lesson_location', 'Hello')
     }
     // fill status
     if (status === 'not attempted') {
