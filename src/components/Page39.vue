@@ -65,7 +65,6 @@
         var el = document.querySelectorAll('.palavras-colaborador > span')
         var el2 = document.querySelectorAll('.palavras-clientes > span')
         this.playAudio('scene23', 'static/subtitles/page23.json', function (pos) {
-          console.log(pos)
           if (pos === 14) {
             el[0].style.opacity = 1
           }

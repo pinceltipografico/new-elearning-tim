@@ -117,8 +117,7 @@ Audio.install = function (Vue, options) {
       .then(function (res) {
         startAudio(res.data)
       })
-      .catch(function (err) {
-        console.log(err)
+      .catch(function () {
         console.log('erro ao carregar a legenda')
         startAudio(null)
       })

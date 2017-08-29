@@ -1,10 +1,5 @@
 {
-  "app.css": "static/css/app.5123821afa208fb1936a28eb73b24a80.css",
-  "app.css.map": "static/css/app.5123821afa208fb1936a28eb73b24a80.css.map",
-  "app.js": "static/js/app.87a56ab09435e4b925b8.js",
-  "app.js.map": "static/js/app.87a56ab09435e4b925b8.js.map",
-  "manifest.js": "static/js/manifest.f0fc70e988a7a485b6d0.js",
-  "manifest.js.map": "static/js/manifest.f0fc70e988a7a485b6d0.js.map",
+  "app.js": "app.js",
   "static/fonts/MaterialIcons-Regular.eot": "static/fonts/MaterialIcons-Regular.e79bfd8.eot",
   "static/fonts/MaterialIcons-Regular.ttf": "static/fonts/MaterialIcons-Regular.a37b0c0.ttf",
   "static/fonts/MaterialIcons-Regular.woff": "static/fonts/MaterialIcons-Regular.012cf6a.woff",
@@ -126,7 +121,5 @@
   "static/img/tile-8.jpg": "static/img/tile-8.fc35738.jpg",
   "static/img/tile-9.jpg": "static/img/tile-9.f095eb2.jpg",
   "static/img/touch.png": "static/img/touch.9263a84.png",
-  "static/img/wireless-page12.jpg": "static/img/wireless-page12.088ed67.jpg",
-  "vendor.js": "static/js/vendor.076b288026ee478523ad.js",
-  "vendor.js.map": "static/js/vendor.076b288026ee478523ad.js.map"
+  "static/img/wireless-page12.jpg": "static/img/wireless-page12.088ed67.jpg"
 }

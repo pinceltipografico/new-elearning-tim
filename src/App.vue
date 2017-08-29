@@ -33,9 +33,9 @@
     </div>
     <transition name="fade" v-if="showInterfaceItems">
       <div class="player-controls">
-        <!--<div class="back-button" @click="onRewind">-->
-        <!--<i class="material-icons">&#xE020;</i>-->
-        <!--</div>-->
+        <div class="back-button" @click="onRewind">
+          <i class="material-icons">&#xE020;</i>
+        </div>
         <div class="play-pause-button" @click="onPause" :class="{'active':!isPaused}">
           <i class="material-icons" v-if="isPaused">&#xE038;</i>
           <i class="material-icons" v-if="!isPaused">&#xE035;</i>
@@ -51,11 +51,11 @@
         <i class="material-icons">&#xE5CC;</i>
       </a>
     </transition>
-    <transition name="enter-nav">
-      <a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">
-        <i class="material-icons">&#xE5CB;</i>
-      </a>
-    </transition>
+    <!--<transition name="enter-nav">-->
+      <!--<a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">-->
+        <!--<i class="material-icons">&#xE5CB;</i>-->
+      <!--</a>-->
+    <!--</transition>-->
     <router-view></router-view>
   </main>
 </template>

@@ -16,9 +16,6 @@
     <div class="explain-item next-button">
       <!-- --> Clique aqui para avançar para a próxima página <!-- -->
     </div>
-    <div class="explain-item prev-button">
-      <!-- --> Clique aqui para voltar uma página <!-- -->
-    </div>
     <div class="explain-item play-button">
       <!-- -->Clique aqui para pausar seu curso<!-- -->
     </div>
@@ -87,14 +84,6 @@
           time: 5000,
           step: 'hide',
           selector: '.explain-item.next-button'
-        }, {
-          time: 500,
-          step: 'show',
-          selector: '.explain-item.prev-button'
-        }, {
-          time: 5000,
-          step: 'hide',
-          selector: '.explain-item.prev-button'
         }, {
           time: 500,
           step: 'show',
