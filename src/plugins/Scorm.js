@@ -6,10 +6,9 @@ var VueScorm = {}
 VueScorm.install = function (Vue, options) {
   'use strict'
   Vue.prototype.saveStatus = function () {
-    if (this.connected) {
-      ScormConnect.LMSCommit()
-    }
     try {
+      ScormConnect.LMSCommit()
+      ScormConnect.doQuit()
       window.close()
       window.top.close()
       window.parent.close()
@@ -17,6 +16,15 @@ VueScorm.install = function (Vue, options) {
       console.log(e)
     }
   }
+  
+  /**
+   * CALL DO QUIT METHOD
+   */
+  Vue.prototype.doQuit = function () {
+    alert('sair do curso')
+    ScormConnect.doQuit()
+  }
+  
   /**
    | ----------------------------------------------
    * SET LESSONS STATUS
@@ -35,7 +43,7 @@ VueScorm.install = function (Vue, options) {
     this.$store.commit('setLastPageViewed', page)
     if (window.connected) {
       console.log('saving location: ' + page)
-      ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
+      // ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
       ScormConnect.LMSCommit()
     }
   }
@@ -68,12 +76,14 @@ VueScorm.install = function (Vue, options) {
       this.$store.commit('setLastPageViewed', location)
     } else {
       this.$store.commit('setLastPageViewed', 'Hello')
-      ScormConnect.LMSSetValue('cmi.core.lesson_location', 'Hello')
+      ScormConnect.LMSSetValue('cmi.core.lesson_location', 'page19')
     }
     // fill status
     if (status === 'not attempted') {
       ScormConnect.LMSSetValue('cmi.core.lesson_status', 'incomplete')
       ScormConnect.LMSCommit()
+    } else if (status === 'passed') {
+      this.$store.commit('setCourseComplete', true)
     }
   }
   

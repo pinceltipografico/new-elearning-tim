@@ -52,9 +52,9 @@
       </a>
     </transition>
     <!--<transition name="enter-nav">-->
-      <!--<a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">-->
-        <!--<i class="material-icons">&#xE5CB;</i>-->
-      <!--</a>-->
+    <!--<a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">-->
+    <!--<i class="material-icons">&#xE5CB;</i>-->
+    <!--</a>-->
     <!--</transition>-->
     <router-view></router-view>
   </main>
@@ -95,7 +95,6 @@
     mounted () {
       var vm = this
       this.$store.commit('toggleIterface', false)
-      console.log('|Hello|explain|'.indexOf('|' + this.$route.name))
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {
         this.$store.commit('toggleIterface', true)
       }
@@ -127,6 +126,7 @@
       this.connect(function (err) {
         if (!err) {
           vm.gotoLastPageViwed()
+          window.onunload = vm.doQuit
         }
       })
     },
@@ -156,6 +156,7 @@
         if (this.pageIndex < this.pages.length - 1) {
           this.pageIndex++
           var page = this.pages[this.pageIndex]
+          console.log(page)
           this.$router.push({name: page.name})
         }
       },
@@ -274,7 +275,7 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return this.$store.state.canAdvance
+        return this.$store.state.canAdvance || this.courseCompleted
       },
       isExplainScreen () {
         return this.$route.name === 'explain'
@@ -285,6 +286,8 @@
       '$route': function () {
         this.setLasPageViewed(this.$route.name)
         this.$store.commit('setCanAdvance', false)
+        var lastRouteIndex = this.getRouteByName(this.$route.name)
+        this.pageIndex = lastRouteIndex
         window.history.forward(1)
       }
     }

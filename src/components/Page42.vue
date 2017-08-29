@@ -26,6 +26,7 @@
         logo.style.opacity = 0
       }
       this.setStatus('passed')
+      this.setLasPageViewed('Hello')
     },
     destroyed () {
       this.stopAudio()

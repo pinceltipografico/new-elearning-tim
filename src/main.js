@@ -85,7 +85,8 @@ const store = new Vuex.Store({
     scormConnected: false,
     lastPageViewed: '',
     pagesViewed: [],
-    audio: null
+    audio: null,
+    courseCompleted: false
   },
   mutations: {
     toggleIterface (state, isActive) {
@@ -117,6 +118,9 @@ const store = new Vuex.Store({
     },
     setLastPageViewed (state, value) {
       state.lastPageViewed = value
+    },
+    setCourseComplete (state, value) {
+      state.courseCompleted = value
     }
   }
 })
