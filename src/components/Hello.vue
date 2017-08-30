@@ -35,6 +35,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', false)
       setTimeout(function () {
         this.animation = true
       }.bind(this), 1000)

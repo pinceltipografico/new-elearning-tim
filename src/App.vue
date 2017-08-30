@@ -142,6 +142,7 @@
         var page = this.pages[i]
         this.pageIndex = i
         this.$router.push({name: page.name})
+        this.$store.commit('toggleIterface', true)
       },
       /**
        | ----------------------------------------------
@@ -275,7 +276,7 @@
         return this.$store.state.pageProgress
       },
       canAdvance () {
-        return this.$store.state.canAdvance || this.courseCompleted
+        return this.$store.state.canAdvance
       },
       isExplainScreen () {
         return this.$route.name === 'explain'

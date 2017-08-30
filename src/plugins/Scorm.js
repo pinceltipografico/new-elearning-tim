@@ -42,7 +42,7 @@ VueScorm.install = function (Vue, options) {
   Vue.prototype.setLasPageViewed = function (page) {
     this.$store.commit('setLastPageViewed', page)
     if (window.connected) {
-      console.log('saving location: ' + page)
+      console.log('store last page: ' + page)
       ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
       ScormConnect.LMSCommit()
     }

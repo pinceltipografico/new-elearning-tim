@@ -123,6 +123,7 @@
       }
     },
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       this.playAudio('monitoramento_intro', 'static/subtitles/monitoramento_intro.json', null, function () {

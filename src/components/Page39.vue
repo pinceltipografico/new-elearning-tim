@@ -37,6 +37,7 @@
       }
     },
     mounted: function () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setCanAdvance', false)
       EventBus.$on('pause', function (paused) {
         if (this.TimelineCtrl) {
@@ -114,7 +115,9 @@
           var tim = vm.$el.querySelector('.script')
           tim.innerHTML = '<h1>Uma comunidade <span class="tim">TIM</span></h1>'
           vm.playAudio('scene23_1', 'static/subtitles/page23_1.json', null, function () {
+            console.log('audio done')
             vm.$store.commit('setCanAdvance', true)
+            console.log(vm.$store.state.canAdvance)
           })
         })
         var beforeAnim = {count: 0}
@@ -342,7 +345,7 @@
       width: 300px;
       transform: translateY(-50%);
       display: block;
-      @include responsive('laptopS'){
+      @include responsive('laptopS') {
         width: 200px;
       }
       span {
@@ -355,7 +358,7 @@
         border-radius: 5px;
         opacity: 0;
         transition: all $animationTime;
-        @include responsive('laptopS'){
+        @include responsive('laptopS') {
           @include font-size(1.2);
         }
       }

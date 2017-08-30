@@ -83,6 +83,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      this.$store.commit('toggleIterface', true)
       this.$store.commit('setCanAdvance', false)
       EventBus.$on('pause', function (paused) {
         if (this.TimelineCtrl) {
