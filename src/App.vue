@@ -142,7 +142,10 @@
         var page = this.pages[i]
         this.pageIndex = i
         this.$router.push({name: page.name})
-        this.$store.commit('toggleIterface', true)
+        console.log('page received: ' + page.name)
+        if (page.name !== 'Hello') {
+          this.$store.commit('toggleIterface', true)
+        }
       },
       /**
        | ----------------------------------------------
