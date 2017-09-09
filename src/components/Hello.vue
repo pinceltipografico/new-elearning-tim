@@ -48,17 +48,12 @@
     methods: {
       gotoExplain: function () {
         this.animation = false
-        this.$router.replace('explain')
-  
-        /*
-        setTimeout(function () {
-           if (this.$cookie.get('explain_viewed')) {
-           this.$router.replace('page1')
-           } else {
-           this.$router.replace('explain')
-           }
-        }.bind(this), 1000)
-         */
+        var isViewd = (this.$cookie.get('explain_viewed') === 'true')
+        if (isViewd) {
+          this.$router.replace('page1')
+        } else {
+          this.$router.replace('explain')
+        }
       }
     }
   }
@@ -120,8 +115,8 @@
     }
     h1:nth-of-type(2) {
       margin-top: -15px;
-      span{
-        color:$brand-secondary;
+      span {
+        color: $brand-secondary;
       }
     }
     

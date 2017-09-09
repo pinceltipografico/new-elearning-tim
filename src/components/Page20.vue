@@ -57,7 +57,7 @@
       <div class="effects"></div>
       <div class="script1">
         <h1>
-          Quais são os critérios de escolha? O que será que o fez decidir? O que pode ser oferecido para que ele sinta que o produto ou serviço seja adequado às necessidades <span>exclusivas dele?</span>
+          Quais são os critérios de escolha? O que será que o fez decidir? O que pode ser oferecido para que ele sinta que o produto ou serviço sejam adequados às necessidades <span>exclusivas dele?</span>
         </h1>
       </div>
       <div class="script2">
@@ -120,7 +120,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>É onde o cliente estará em contato com o que <span>imaginou receber</span></h1>
+        <h1>É quando o cliente estará em contato com o que <span>imaginou receber</span></h1>
       </div>
       <div class="video">
         <video src="static/video/vdeo3.m4v" autoplay loop></video>

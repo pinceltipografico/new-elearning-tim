@@ -93,6 +93,7 @@
      | ----------------------------------------------
      **/
     mounted () {
+      console.log('version: 0.0.9')
       var vm = this
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {
@@ -144,6 +145,7 @@
         this.$router.push({name: page.name})
         console.log('page received: ' + page.name)
         if (page.name !== 'Hello') {
+          console.log('set interface to true')
           this.$store.commit('toggleIterface', true)
         }
       },
