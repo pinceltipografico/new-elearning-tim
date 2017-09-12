@@ -12,7 +12,7 @@
         <div>Sermos surpreendidos onde estivermos</div>
       </h1>
       <h1 v-on:click="newHtml($event,'3')" data-index="3">
-        <div>Previsão de nossos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
+        <div>Previsão de novos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
       </h1>
     </div>
     <div class="script2" v-if="!showEnd">

@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="script3">
-        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet , para pagar contas, pedir taxi, pedir comida em casa
+        <h1>Preciso de um <span>bom celular</span>, pois utilizo vários aplicativos e um plano que tenha mais internet, para pagar contas, pedir taxi, pedir comida em casa
         </h1>
       </div>
     </section>
