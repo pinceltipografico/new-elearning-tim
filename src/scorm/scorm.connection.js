@@ -350,7 +350,6 @@ var ScormConnection = (function (window) {
     if (win.API !== null && win.API !== undefined) {
       return win.API
     }
-    
     for (var i = 0; i < win.length; i++) {
       findAPI(win.frames[i])
     }

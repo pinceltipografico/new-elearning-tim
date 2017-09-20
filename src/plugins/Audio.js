@@ -63,12 +63,14 @@ Audio.install = function (Vue, options) {
         }
       }, currentAudioId)
       
+      /*
       if (navigator.sayswho.indexOf('IE') !== -1) {
         if (!started) {
           animId = requestAnimationFrame(increase)
           started = true
         }
       }
+      */
       
       EventBus.$emit('audio-started')
     }

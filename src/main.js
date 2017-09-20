@@ -21,7 +21,7 @@ import Scorm from './plugins/Scorm'
  | ----------------------------------------------
  * DETECTE NAVIGATION
  | ----------------------------------------------
- **/
+ */
 navigator.sayswho = (function () {
   var ua = navigator.userAgent
   var tem
@@ -37,20 +37,6 @@ navigator.sayswho = (function () {
   M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?']
   if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1])
   return M.join(' ')
-})()
-
-/**
- | ----------------------------------------------
- * POLIFYLL REQUESTFRAME ANIMATION
- | ----------------------------------------------
- **/
-window.requestAnimFrame = (function () {
-  return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 60)
-    }
 })()
 
 /**

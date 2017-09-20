@@ -93,7 +93,7 @@
      | ----------------------------------------------
      **/
     mounted () {
-      console.log('version: 0.0.10')
+      console.log('version: 0.0.12')
       var vm = this
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {
@@ -126,8 +126,12 @@
       
       this.connect(function (err) {
         if (!err) {
+          console.log('scorm connected')
           vm.gotoLastPageViwed()
           window.onunload = vm.doQuit
+        } else {
+          console.log(err)
+          return false
         }
       })
     },
@@ -162,7 +166,6 @@
         if (this.pageIndex < this.pages.length - 1) {
           this.pageIndex++
           var page = this.pages[this.pageIndex]
-          console.log(page)
           this.$router.push({name: page.name})
         }
       },

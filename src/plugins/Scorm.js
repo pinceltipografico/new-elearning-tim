@@ -3,12 +3,34 @@ import ScormConnect from '../scorm/scorm.connection'
 
 window.connected = false
 var VueScorm = {}
+var connecteTries = 0
+var connectCallback
 VueScorm.install = function (Vue, options) {
   'use strict'
+  
+  function tryConnect (vm) {
+    ScormConnect.Init(function () {
+      vm.$store.commit('setScormConnected', true)
+      vm.fillDefaults()
+      window.connected = true
+      if (connectCallback) {
+        connectCallback(null)
+      }
+    }, function () {
+      vm.$store.commit('setScormConnected', false)
+      if (++connecteTries < 5) {
+        console.log('trying to connect with scorm again')
+        tryConnect(vm)
+      } else {
+        if (connectCallback) {
+          connectCallback('There \'s an error on connect with scorm')
+        }
+      }
+    })
+  }
+  
   Vue.prototype.saveStatus = function () {
     try {
-      ScormConnect.LMSCommit()
-      ScormConnect.doQuit()
       window.close()
       window.top.close()
       window.parent.close()
@@ -93,22 +115,8 @@ VueScorm.install = function (Vue, options) {
    | ----------------------------------------------
    **/
   Vue.prototype.connect = function (callback) {
-    var vm = this
-    ScormConnect.Init(function () {
-      console.log('scorm connected')
-      vm.$store.commit('setScormConnected', true)
-      vm.fillDefaults()
-      window.connected = true
-      if (callback) {
-        callback(null)
-      }
-    }, function () {
-      console.log('scorm not connected')
-      vm.$store.commit('setScormConnected', false)
-      if (callback) {
-        callback('Houve um erro ao se conectar')
-      }
-    })
+    connectCallback = callback
+    tryConnect(this)
   }
 }
 export default VueScorm
