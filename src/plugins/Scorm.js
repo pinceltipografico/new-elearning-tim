@@ -1,33 +1,10 @@
 /* eslint-disable no-trailing-spaces */
-import ScormConnect from '../scorm/scorm.connection'
+/* eslint-disable no-undef */
 
 window.connected = false
 var VueScorm = {}
-var connecteTries = 0
-var connectCallback
 VueScorm.install = function (Vue, options) {
   'use strict'
-  
-  function tryConnect (vm) {
-    ScormConnect.Init(function () {
-      vm.$store.commit('setScormConnected', true)
-      vm.fillDefaults()
-      window.connected = true
-      if (connectCallback) {
-        connectCallback(null)
-      }
-    }, function () {
-      vm.$store.commit('setScormConnected', false)
-      if (++connecteTries < 5) {
-        console.log('trying to connect with scorm again')
-        tryConnect(vm)
-      } else {
-        if (connectCallback) {
-          connectCallback('There \'s an error on connect with scorm')
-        }
-      }
-    })
-  }
   
   Vue.prototype.saveStatus = function () {
     try {
@@ -40,14 +17,6 @@ VueScorm.install = function (Vue, options) {
   }
   
   /**
-   * CALL DO QUIT METHOD
-   */
-  Vue.prototype.doQuit = function () {
-    alert('sair do curso')
-    ScormConnect.doQuit()
-  }
-  
-  /**
    | ----------------------------------------------
    * SET LESSONS STATUS
    | ----------------------------------------------
@@ -55,19 +24,22 @@ VueScorm.install = function (Vue, options) {
   Vue.prototype.setStatus = function (status) {
     if (window.connected) {
       console.log('saving status: ' + status)
-      ScormConnect.LMSSetValue('cmi.core.lesson_status', status)
-      ScormConnect.LMSSetValue('cmi.core.score.raw', 100)
-      ScormConnect.LMSCommit()
+      doLMSSetValue('cmi.core.lesson_status', status)
+      doLMSSetValue('cmi.core.score.raw', 100)
+      doLMSCommit()
     }
   }
   
+  /**
+   | ----------------------------------------------
+   * SET LAST PAGE VIEW
+   | ----------------------------------------------
+   **/
   Vue.prototype.setLasPageViewed = function (page) {
     this.$store.commit('setLastPageViewed', page)
-    if (window.connected) {
-      console.log('store last page: ' + page)
-      ScormConnect.LMSSetValue('cmi.core.lesson_location', page)
-      ScormConnect.LMSCommit()
-    }
+    console.log('store last page: ' + page)
+    doLMSSetValue('cmi.core.lesson_location', page)
+    doLMSCommit()
   }
   
   /**
@@ -76,9 +48,9 @@ VueScorm.install = function (Vue, options) {
    | ----------------------------------------------
    **/
   Vue.prototype.fillDefaults = function () {
-    var suspendData = ScormConnect.LMSGetValue('cmi.suspend_data')
-    var status = ScormConnect.LMSGetValue('cmi.core.lesson_status')
-    var location = ScormConnect.LMSGetValue('cmi.core.lesson_location')
+    var suspendData = doLMSGetValue('cmi.suspend_data')
+    var status = doLMSGetValue('cmi.core.lesson_status')
+    var location = doLMSGetValue('cmi.core.lesson_location')
     //
     // fill suspend data
     if (suspendData) {
@@ -89,8 +61,8 @@ VueScorm.install = function (Vue, options) {
       this.$store.commit('setPagesViewed', pages)
       this.$store.commit('setModuleAllowed', modules)
     } else {
-      ScormConnect.LMSSetValue('cmi.suspend_data', 'pages:Hello;|modules:0;')
-      ScormConnect.LMSCommit()
+      doLMSSetValue('cmi.suspend_data', 'pages:Hello;|modules:0;')
+      doLMSCommit()
     }
     //
     // fill location
@@ -98,12 +70,12 @@ VueScorm.install = function (Vue, options) {
       this.$store.commit('setLastPageViewed', location)
     } else {
       this.$store.commit('setLastPageViewed', 'Hello')
-      ScormConnect.LMSSetValue('cmi.core.lesson_location', 'Hello')
+      doLMSSetValue('cmi.core.lesson_location', 'Hello')
     }
     // fill status
     if (status === 'not attempted') {
-      ScormConnect.LMSSetValue('cmi.core.lesson_status', 'incomplete')
-      ScormConnect.LMSCommit()
+      doLMSSetValue('cmi.core.lesson_status', 'incomplete')
+      doLMSCommit()
     } else if (status === 'passed') {
       this.$store.commit('setCourseComplete', true)
     }
@@ -114,9 +86,13 @@ VueScorm.install = function (Vue, options) {
    * CONECTA O SCORM
    | ----------------------------------------------
    **/
-  Vue.prototype.connect = function (callback) {
-    connectCallback = callback
-    tryConnect(this)
+  Vue.prototype.checkConnection = function (callback) {
+    var vm = this
+    vm.$store.commit('setScormConnected', true)
+    vm.fillDefaults()
+    if (callback) {
+      callback(null)
+    }
   }
 }
 export default VueScorm

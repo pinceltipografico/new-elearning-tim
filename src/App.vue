@@ -124,11 +124,10 @@
         this.pageIsDone = true
       }.bind(this))
       
-      this.connect(function (err) {
+      this.checkConnection(function (err) {
         if (!err) {
           console.log('scorm connected')
           vm.gotoLastPageViwed()
-          window.onunload = vm.doQuit
         } else {
           console.log(err)
           return false

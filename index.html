@@ -8,6 +8,10 @@
   <link rel="icon" href="static/favicon.ico">
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
   <script src="static/polyfills/typedArray.js"></script>
+  <!-- SCORM SCRIPTS -->
+  <script src="static/scorm/APIWrapper.js"></script>
+  <script src="static/scorm/SCOFunctions.js"></script>
+  <!-- SCORM SCRIPTS -->
   <script>
     window.resizeTo(screen.width, screen.height)
     window.scrollTo(0, 0)
@@ -82,7 +86,7 @@
     }
   </style>
 </head>
-<body>
+<body onload="loadPage()" onunload="unloadPage()" onbeforeunload="unloadPage()">
 <div class="preloader" id="preloader">
   <div class="inner">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
