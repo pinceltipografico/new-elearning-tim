@@ -149,11 +149,19 @@
         ]
       }
     },
+    props: {
+      lastPages: {
+        type: Array,
+        default: () => {
+          return []
+        }
+      }
+    },
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      
+      this.setSuspendData('menu:' + this.lastPages.toString() + '|scene17:page35')
       var animations = [
         {
           time: 500,

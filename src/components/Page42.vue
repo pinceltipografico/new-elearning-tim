@@ -25,7 +25,7 @@
       if (logo) {
         logo.style.opacity = 0
       }
-      this.setStatus('passed')
+      this.setStatus('completed')
       this.setLasPageViewed('Hello')
     },
     destroyed () {

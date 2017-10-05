@@ -122,10 +122,19 @@
         TimeLineCtrl: null
       }
     },
+    props: {
+      lastPages: {
+        type: Array,
+        default: () => {
+          return []
+        }
+      }
+    },
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      this.setSuspendData('menu:' + this.lastPages.toString() + '|scene17:page36')
       this.playAudio('monitoramento_intro', 'static/subtitles/monitoramento_intro.json', null, function () {
         this.showStart = true
       }.bind(this))

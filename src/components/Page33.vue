@@ -35,13 +35,13 @@
     </section>
     <!-- SCENE MENU -->
     <!-- comunicação -->
-    <comunicacao v-if="scene == 'page34' && pageACtive" @back="onBack"></comunicacao>
+    <comunicacao v-if="scene == 'page34' && pageACtive" @back="onBack" :lastPages="this.pages"></comunicacao>
     <!-- comunicação -->
     <!-- interação -->
-    <interacao v-if="scene == 'page35' && pageACtive" @back="onBack"></interacao>
+    <interacao v-if="scene == 'page35' && pageACtive" @back="onBack" :lastPages="this.pages"></interacao>
     <!-- interação -->
     <!-- monitoramento -->
-    <monitoramento v-if="scene == 'page36' && pageACtive" @back="onBack"></monitoramento>
+    <monitoramento v-if="scene == 'page36' && pageACtive" @back="onBack" :lastPages="this.pages"></monitoramento>
     <!-- monitoramento -->
   </div>
 </template>
@@ -100,7 +100,39 @@
       if (hasViewd) {
         this.actualPage = 'page34'
       }
-      this.startSCene()
+      
+      var _suspendData = this.getSuspendData()
+      if (!_suspendData) {
+        this.actualPage = 'page34'
+        this.pages.push('page34')
+        console.log(this.pages)
+        this.startSCene()
+        return
+      }
+      
+      var _scene = _suspendData.split('|')[1]
+      if (_scene) {
+        var lastPage = _scene.split(':')[1]
+        if (lastPage) {
+          this.stopAudio()
+          this.pageACtive = true
+          this.scene = lastPage
+          this.started = true
+        }
+      } else {
+        var _lastMenu = _suspendData.split(':')[1]
+        if (_lastMenu) {
+          _lastMenu = _lastMenu.split(',')
+          this.actualPage = _lastMenu[_lastMenu.length - 1]
+          this.pages = _lastMenu
+          this.startSCene()
+        } else {
+          this.actualPage = 'page34'
+          this.pages.push('page34')
+          this.setSuspendData('menu:' + this.pages.toString())
+          this.startSCene()
+        }
+      }
     },
     /**
      | ----------------------------------------------
@@ -156,11 +188,13 @@
         }, function () {
           vm.canClick = true
           vm.actualPage = 'page34'
+          vm.pages.push('page34')
+          vm.setSuspendData('menu:' + vm.pages.toString())
           vm.$cookie.set('has_viewed', true)
         })
       },
       gotoPage (page) {
-        if (this.actualPage !== page) {
+        if (this.pages.indexOf(page) === -1) {
           return
         }
         this.stopAudio()
@@ -168,20 +202,29 @@
         this.scene = page
         this.started = true
       },
+      addPageIndex (page) {
+        if (this.pages.indexOf(page === -1)) {
+          this.pages.push(page)
+        }
+      },
       onBack (page) {
         this.pageACtive = false
         this.scene = 'start'
         if (page === 'page34') {
           this.actualPage = 'page35'
+          this.addPageIndex('page35')
         } else if (page === 'page35') {
           this.actualPage = 'page36'
+          this.addPageIndex('page36')
+        } else if (page === 'page36') {
+          this.actualPage = 'page36'
+          this.addPageIndex('end')
         }
-        if (this.pages.indexOf(page) === -1) {
-          this.pages.push(page)
-        }
-        if (this.pages.length === 3) {
+        if (this.pages.length === 4) {
           this.$store.commit('setCanAdvance', true)
         }
+        console.log(this.pages)
+        this.setSuspendData('menu:' + this.pages.toString())
         this.startSCene()
       }
     }

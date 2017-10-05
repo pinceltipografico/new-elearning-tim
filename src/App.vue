@@ -93,7 +93,7 @@
      | ----------------------------------------------
      **/
     mounted () {
-      console.log('version: 0.0.12')
+      console.log('version: 0.0.14')
       var vm = this
       this.$store.commit('toggleIterface', false)
       if (this.$cookie.get('explain_viewed') && '|Hello|explain|'.indexOf('|' + this.$route.name) === -1) {

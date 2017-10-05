@@ -22,12 +22,9 @@ VueScorm.install = function (Vue, options) {
    | ----------------------------------------------
    **/
   Vue.prototype.setStatus = function (status) {
-    if (window.connected) {
-      console.log('saving status: ' + status)
-      doLMSSetValue('cmi.core.lesson_status', status)
-      doLMSSetValue('cmi.core.score.raw', 100)
-      doLMSCommit()
-    }
+    doLMSSetValue('cmi.core.lesson_status', status)
+    doLMSSetValue('cmi.core.score.raw', 100)
+    doLMSCommit()
   }
   
   /**
@@ -38,8 +35,26 @@ VueScorm.install = function (Vue, options) {
   Vue.prototype.setLasPageViewed = function (page) {
     this.$store.commit('setLastPageViewed', page)
     console.log('store last page: ' + page)
-    doLMSSetValue('cmi.core.lesson_location', page)
+    doLMSSetValue('cmi.core.lesson_location', 'page17')
     doLMSCommit()
+  }
+  
+  /**
+   | ----------------------------------------------
+   * SET SUSPEND DATA
+   | ----------------------------------------------
+   **/
+  Vue.prototype.setSuspendData = function (data) {
+    doLMSSetValue('cmi.suspend_data', data)
+  }
+  
+  /**
+   | ----------------------------------------------
+   * GET SUSPEND DATA
+   | ----------------------------------------------
+   **/
+  Vue.prototype.getSuspendData = function () {
+    return doLMSGetValue('cmi.suspend_data')
   }
   
   /**
@@ -48,11 +63,12 @@ VueScorm.install = function (Vue, options) {
    | ----------------------------------------------
    **/
   Vue.prototype.fillDefaults = function () {
-    var suspendData = doLMSGetValue('cmi.suspend_data')
+    // var suspendData = doLMSGetValue('cmi.suspend_data')
     var status = doLMSGetValue('cmi.core.lesson_status')
     var location = doLMSGetValue('cmi.core.lesson_location')
+    
     //
-    // fill suspend data
+    /*
     if (suspendData) {
       var pages = suspendData.split('|')[0].split(':')[1].split(';')
       pages = pages.slice(0, pages.length - 1)
@@ -61,22 +77,25 @@ VueScorm.install = function (Vue, options) {
       this.$store.commit('setPagesViewed', pages)
       this.$store.commit('setModuleAllowed', modules)
     } else {
-      doLMSSetValue('cmi.suspend_data', 'pages:Hello;|modules:0;')
+      doLMSSetValue('cmi.suspend_data', '')
       doLMSCommit()
     }
+    */
+    
     //
     // fill location
     if (location) {
       this.$store.commit('setLastPageViewed', location)
     } else {
-      this.$store.commit('setLastPageViewed', 'Hello')
-      doLMSSetValue('cmi.core.lesson_location', 'Hello')
+      this.$store.commit('setLastPageViewed', 'page17')
+      doLMSSetValue('cmi.core.lesson_location', 'page17')
+      doLMSCommit()
     }
     // fill status
     if (status === 'not attempted') {
       doLMSSetValue('cmi.core.lesson_status', 'incomplete')
       doLMSCommit()
-    } else if (status === 'passed') {
+    } else if (status === 'completed') {
       this.$store.commit('setCourseComplete', true)
     }
   }
