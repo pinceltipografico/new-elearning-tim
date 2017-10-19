@@ -243,7 +243,7 @@
     },
     methods: {
       onBack () {
-        this.$emit('back', 'page34')
+        this.$emit('back', 'page34', this.lastPages)
       },
       onShowPopup (popup) {
         if (!this.canClick) {

@@ -80,6 +80,7 @@
         .add({
           targets: '.effects',
           opacity: 1,
+          width: 1280,
           easing: 'linear',
           duration: 300,
           offset: '+=500'

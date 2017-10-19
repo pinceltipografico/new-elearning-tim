@@ -135,6 +135,9 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       this.setSuspendData('menu:' + this.lastPages.toString() + '|scene17:page36')
+      
+      console.log(this.lastPages)
+      
       this.playAudio('monitoramento_intro', 'static/subtitles/monitoramento_intro.json', null, function () {
         this.showStart = true
       }.bind(this))
@@ -157,7 +160,7 @@
     },
     methods: {
       onBack () {
-        this.$emit('back', 'page36')
+        this.$emit('back', 'page36', this.lastPages)
       },
       startAnim () {
         this.scene = 1

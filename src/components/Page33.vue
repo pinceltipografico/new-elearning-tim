@@ -104,13 +104,32 @@
       var _suspendData = this.getSuspendData()
       if (!_suspendData) {
         this.actualPage = 'page34'
-        this.pages.push('page34')
+        this.addPageIndex('page34')
         console.log(this.pages)
         this.startSCene()
         return
       }
       
+      //
+      // GET MENU
       var _scene = _suspendData.split('|')[1]
+      var _lastMenu = _suspendData.split('|')[0]
+      
+      if (_lastMenu) {
+        console.log('has menu')
+        _lastMenu = _lastMenu.split(':')[1].split(',')
+        this.actualPage = _lastMenu[_lastMenu.length - 1] || 'page34'
+        this.pages = _lastMenu || ['page34']
+        console.log(this.actualPage)
+        console.log(this.pages)
+      } else {
+        console.log('has no menu')
+        this.actualPage = 'page34'
+        this.pages = ['page34']
+        console.log(this.actualPage)
+        console.log(this.pages)
+      }
+      
       if (_scene) {
         var lastPage = _scene.split(':')[1]
         if (lastPage) {
@@ -120,18 +139,7 @@
           this.started = true
         }
       } else {
-        var _lastMenu = _suspendData.split(':')[1]
-        if (_lastMenu) {
-          _lastMenu = _lastMenu.split(',')
-          this.actualPage = _lastMenu[_lastMenu.length - 1]
-          this.pages = _lastMenu
-          this.startSCene()
-        } else {
-          this.actualPage = 'page34'
-          this.pages.push('page34')
-          this.setSuspendData('menu:' + this.pages.toString())
-          this.startSCene()
-        }
+        this.startSCene()
       }
     },
     /**
@@ -188,7 +196,7 @@
         }, function () {
           vm.canClick = true
           vm.actualPage = 'page34'
-          vm.pages.push('page34')
+          vm.addPageIndex('page34')
           vm.setSuspendData('menu:' + vm.pages.toString())
           vm.$cookie.set('has_viewed', true)
         })
@@ -203,27 +211,29 @@
         this.started = true
       },
       addPageIndex (page) {
-        if (this.pages.indexOf(page === -1)) {
+        if (this.pages.indexOf(page) === -1) {
           this.pages.push(page)
         }
       },
-      onBack (page) {
+      onBack (page, pages) {
         this.pageACtive = false
         this.scene = 'start'
+        this.pages = pages
+        
         if (page === 'page34') {
-          this.actualPage = 'page35'
           this.addPageIndex('page35')
         } else if (page === 'page35') {
-          this.actualPage = 'page36'
           this.addPageIndex('page36')
         } else if (page === 'page36') {
-          this.actualPage = 'page36'
           this.addPageIndex('end')
         }
+        
         if (this.pages.length === 4) {
           this.$store.commit('setCanAdvance', true)
         }
-        console.log(this.pages)
+        
+        this.actualPage = this.pages[this.pages.length - 1]
+        
         this.setSuspendData('menu:' + this.pages.toString())
         this.startSCene()
       }

@@ -162,6 +162,9 @@
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
       this.setSuspendData('menu:' + this.lastPages.toString() + '|scene17:page35')
+      
+      console.log(this.lastPages)
+      
       var animations = [
         {
           time: 500,
@@ -277,7 +280,7 @@
     },
     methods: {
       onBAck () {
-        this.$emit('back', 'page35')
+        this.$emit('back', 'page35', this.lastPages)
       },
       onShowPopup (popup) {
         if (!this.canClick) {

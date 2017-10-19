@@ -35,7 +35,7 @@ VueScorm.install = function (Vue, options) {
   Vue.prototype.setLasPageViewed = function (page) {
     this.$store.commit('setLastPageViewed', page)
     console.log('store last page: ' + page)
-    doLMSSetValue('cmi.core.lesson_location', 'page17')
+    doLMSSetValue('cmi.core.lesson_location', page)
     doLMSCommit()
   }
   
@@ -87,8 +87,8 @@ VueScorm.install = function (Vue, options) {
     if (location) {
       this.$store.commit('setLastPageViewed', location)
     } else {
-      this.$store.commit('setLastPageViewed', 'page17')
-      doLMSSetValue('cmi.core.lesson_location', 'page17')
+      this.$store.commit('setLastPageViewed', 'Hello')
+      doLMSSetValue('cmi.core.lesson_location', 'Hello')
       doLMSCommit()
     }
     // fill status
