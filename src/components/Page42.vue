@@ -25,8 +25,8 @@
       if (logo) {
         logo.style.opacity = 0
       }
-      this.setStatus('completed')
-      this.setLasPageViewed('Hello')
+//      this.setStatus('completed')
+//      this.setLasPageViewed('Hello')
     },
     destroyed () {
       this.stopAudio()

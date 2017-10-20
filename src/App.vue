@@ -124,6 +124,7 @@
         this.pageIsDone = true
       }.bind(this))
       
+      /*
       this.checkConnection(function (err) {
         if (!err) {
           console.log('scorm connected')
@@ -133,6 +134,7 @@
           return false
         }
       })
+      */
     },
     /**
      | ----------------------------------------------
@@ -292,7 +294,9 @@
     
     watch: {
       '$route': function () {
+        /*
         this.setLasPageViewed(this.$route.name)
+        */
         this.$store.commit('setCanAdvance', false)
         var lastRouteIndex = this.getRouteByName(this.$route.name)
         this.pageIndex = lastRouteIndex
