@@ -39,6 +39,7 @@
       setTimeout(function () {
         this.animation = true
       }.bind(this), 1000)
+      console.log('heu')
     },
     /**
      | ----------------------------------------------
