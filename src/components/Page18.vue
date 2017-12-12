@@ -21,7 +21,7 @@
       <h1>é o que chamamos de Crew Experience</h1>
     </div>
     <div class="script5">
-      <h1>colaborador, parceiro e cliente na mesma sintonia</h1>
+      <h1>colaborador, parceiro Cliente na mesma sintonia</h1>
     </div>
   </section>
 </template>

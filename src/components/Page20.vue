@@ -19,7 +19,7 @@
       </div>
       <div class="iconButton" @click="startSceneTwo">
         <div>
-          <span>Quais as reais necessidades de compra dos clientes da TIM?</span>
+          <span>Quais as reais necessidades de compra dos Clientes da TIM?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>É o momento em que o cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
+        <h1>É o momento em que Cliente vai perguntar para os amigos, <span>pesquisar na internet, visitar lojas</span>
         </h1>
       </div>
       <div class="script3">
@@ -44,7 +44,7 @@
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
-          <span>Como promover uma experiência de pesquisa que seduza o cliente?</span>
+          <span>Como promover uma experiência de pesquisa que seduz Cliente?</span>
           <span>Clique aqui e veja um exemplo</span>
         </div>
       </div>
@@ -61,7 +61,7 @@
         </h1>
       </div>
       <div class="script2">
-        <h1>Proporcionar que o cliente experimente o <span>serviço ou produto</span>
+        <h1>Proporcionar que Cliente experimente o <span>serviço ou produto</span>
           é uma alternativa para ajudá-lo na tomada de decisão e uma oportunidade de avaliar previamente se as necessidades serão atendidas
         </h1>
       </div>
@@ -79,7 +79,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>Fazer com que o cliente sinta que acertou na escolha</span>
+        <h1>Fazer com que Cliente sinta que acertou na escolha</span>
         </h1>
       </div>
       <div class="script2">
@@ -103,8 +103,7 @@
         <h1>Como tornar a entrega do produto ou serviço uma <span>experiência única?</span></h1>
       </div>
       <div class="script2">
-        <h1>O cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja
-        </h1>
+        <h1>Cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja</h1>
       </div>
       <div class="iconButton" @click="startSceneEight2">
         <div>
@@ -120,7 +119,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>É quando o cliente estará em contato com o que <span>imaginou receber</span></h1>
+        <h1>É quando Cliente estará em contato com o que <span>imaginou receber</span></h1>
       </div>
       <div class="video">
         <video src="static/video/vdeo3.m4v" autoplay loop></video>
@@ -145,7 +144,7 @@
       <div class="image-background image1"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1>Manter o cliente encantado com a marca, mesmo quando ele se depara com contratempos ou quando <span>ele precisa de algum suporte</span>
+        <h1>Manter Cliente encantado com a marca, mesmo quando ele se depara com contratempos ou quando <span>ele precisa de algum suporte</span>
         </h1>
       </div>
       <div class="script2">
@@ -169,7 +168,7 @@
       <div class="image-background"></div>
       <div class="effects"></div>
       <div class="script1">
-        <h1> Recomendar é o resultado de toda experiência que o cliente teve ao <span>longo da jornada de contato com o produto ou serviço</span>
+        <h1> Recomendar é o resultado de toda experiência que Cliente teve ao <span>longo da jornada de contato com o produto ou serviço</span>
         </h1>
       </div>
       <div class="homem"></div>

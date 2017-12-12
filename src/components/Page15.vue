@@ -16,7 +16,7 @@
         </h1>
       </div>
       <div class="abordages-tradicionais">
-        <div>Sem diferenciação por cliente</div>
+        <div>Sem diferenciação por Cliente</div>
         <div>Sem integração</div>
         <div>Mal suportada pelas novas tecnologias</div>
         <div>Básica</div>

@@ -19,7 +19,7 @@
       <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>
     </div>
     <div class="script3">
-      <h1>O cliente no centro em <span>todos os movimentos de uma organização</span></h1>
+      <h1>Cliente no centro em <span>todos os movimentos de uma organização</span></h1>
     </div>
   </section>
 </template>

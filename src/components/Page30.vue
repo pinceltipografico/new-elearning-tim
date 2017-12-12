@@ -1,7 +1,7 @@
 <template>
   <section class="page gradient">
     <h1 class="title">
-      Arraste exemplos de perguntas e necessidades que o cliente tem ao longo do ciclo de vida do cliente</h1>
+      Arraste exemplos de perguntas e necessidades que Cliente tem ao longo do ciclo de vida do Cliente</h1>
     <div class="script1">
       <div class="svg-container">
         <div class="client-image">

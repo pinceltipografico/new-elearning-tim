@@ -9,7 +9,7 @@
     </div>
     <div class="effect"></div>
     <div class="script2">
-      <h1>Mas, nós todos, <span>como clientes</span>, desejamos mais...</h1>
+      <h1>Mas, nós todos, <span>como Clientes</span>, desejamos mais...</h1>
     </div>
     <div class="script3">
       <h1>Muitas empresas olham para seus concorrentes</h1>

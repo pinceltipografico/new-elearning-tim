@@ -64,11 +64,11 @@
       <div class="icones">
         <div class="icone icone-1" @click="onShowPopup(0)">
           <ouvir></ouvir>
-          <span>Ouvir o cliente</span>
+          <span>Ouvir Cliente</span>
         </div>
         <div class="icone icone-2" @click="onShowPopup(1)">
           <conhecer></conhecer>
-          <span>Conhecer o cliente</span>
+          <span>ConhecerCliente</span>
         </div>
         <div class="icone icone-3" @click="onShowPopup(2)">
           <otimizar></otimizar>
@@ -132,9 +132,9 @@
         animation: null,
         popups: [
           {
-            html: '<h1>Ouvir o cliente<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>e se o cliente está pedindo ajuda, pode ser uma oportunidade</span>'
+            html: '<h1>OuvirCliente<small></small></h1><h4>Mesmo quandoCliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>e seCliente está pedindo ajuda, pode ser uma oportunidade</span>'
           }, {
-            html: '<h1>Conhecer o cliente <small></small></h1><h4>Ele espera encontrar:</h4><span>seu perfil de consumo</span><span>suas transações</span><span>reclamações ou solicitações recentes</span>'
+            html: '<h1>ConhecerCliente <small></small></h1><h4>Ele espera encontrar:</h4><span>seu perfil de consumo</span><span>suas transações</span><span>reclamações ou solicitações recentes</span>'
           }, {
             html: '<h1>Otimizar o autoatendimento<small></small></h1><h4>A tendência atual: </h4><span>canais digitais de suporte</span><span>maior autonomia</span><span>menor necessidade de contato</span>'
           }, {

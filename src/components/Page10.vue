@@ -10,7 +10,7 @@
     </div>
     <div class="script1">
       <h1>
-        É necessário olhar o cliente <span>mais de perto</span>
+        É necessário olhar Cliente <span>mais de perto</span>
       </h1>
     </div>
     <div class="script2">
