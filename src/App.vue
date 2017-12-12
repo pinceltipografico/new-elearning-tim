@@ -7,7 +7,7 @@
     <div class="logo">
       <span style="width: 80px;"><logo></logo></span>
       <div class="title">
-        <h2 style="padding-top: 7px;">Somos a geração <span>CX</span>
+        <h2 style="padding-top: 7px;">Esta é a geração <span>CX</span>
           <small id="pageTitle" style="display: none;"></small>
         </h2>
       </div>
@@ -908,7 +908,6 @@
   **/
   .subtitles {
     position: absolute;
-    z-index: 99;
     height: 55px;
     bottom: 45px;
     right: 15px;
@@ -1086,7 +1085,6 @@
       .ribbon {
         position: absolute;
         top: 10px;
-        left: 10px;
         background: $brand-secondary;
         color: #fff;
         left: -10px;

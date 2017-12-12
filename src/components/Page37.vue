@@ -56,7 +56,7 @@
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </a>
-      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      <h1 v-show="!showPopup">Comportamentos que devem ser <span>Incorporados, Estimulados e Mobilizados.</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -70,7 +70,7 @@
         </div>
         <div class="icone icone-3" @click="onShowPopup(2)">
           <analitics></analitics>
-          <span>Prever usando analytics</span>
+          <span>Prever usando técnicas de análise</span>
         </div>
         <div class="icone icone-4" @click="onShowPopup(3)">
           <indicadores></indicadores>
@@ -121,7 +121,7 @@
           }, {
             html: '<h1>Informação deve ser transformada em ação<small></small><h4>Agir para:</h4><span>focar em soluções</span><span>reverter insatisfações</span><span>proporcionar emoções</span>'
           }, {
-            html: '<h1>Prever usando analytcs<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
+            html: '<h1>Prever usando técnicas de análise<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar ao cliente</span><span>propor a melhor oferta ou comunicação para o cliente</span>'
           }, {
             html: '<h1>Criar e gerir os indicadores<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>um processo recorrente de análise</span><span>planos de ação de melhorias</span>'
           }, {

@@ -57,7 +57,7 @@
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </a>
-      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      <h1 v-show="!showPopup">Comportamentos que devem ser <span>Incorporados, Estimulados e Mobilizados.</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">

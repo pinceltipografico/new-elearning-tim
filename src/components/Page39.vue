@@ -2,7 +2,7 @@
   <section class="page">
     <div class="colaboradores">
       <div>
-        <span>Colaboradores</span>
+        <span>Colaboradores e Parceiros</span>
       </div>
     </div>
     <div class="clientes">

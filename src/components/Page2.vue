@@ -14,7 +14,7 @@
     </div>
     <div class="script3">
       <h1>
-        <strong>Empresa</strong><br/><strong>Colaboradores</strong><br/><strong>Clientes</strong>
+        <strong>Empresa</strong><br/><strong>Parceiros</strong><br/><strong>Clientes</strong>
         <br/>
         <span>Uma única perspectiva</span></h1>
       <div class="effect"></div>
@@ -26,7 +26,7 @@
       <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo</h1>
     </div>
     <div class="script5 end-tag">
-      <h1>Somos a <span>Geração CX TIM</span></h1>
+      <h1>Esta é a <span>Geração CX TIM</span></h1>
     </div>
   </section>
 </template>

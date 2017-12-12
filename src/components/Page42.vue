@@ -2,7 +2,7 @@
   <section class="page">
     <div class="script1 end-tag show">
       <logo></logo>
-      <h1>somos todos <span>geração cx</span></h1>
+      <h1>Esta é a <span>Geração CX TIM!</span></h1>
     </div>
   </section>
 </template>

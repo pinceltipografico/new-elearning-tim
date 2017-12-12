@@ -19,7 +19,7 @@
       </div>
       <div class="iconButton" @click="startSceneTwo">
         <div>
-          <span>Quais as reais necessidades de compra dos nossos clientes?</span>
+          <span>Quais as reais necessidades de compra dos clientes da TIM?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -88,7 +88,7 @@
       </div>
       <div class="iconButton" @click="startSceneSeven">
         <div>
-          <span>Como podemos facilitar e melhorar a experiência de compra?</span>
+          <span>Como a TIM pode facilitar e melhorar a experiência de compra?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>
@@ -175,12 +175,12 @@
       <div class="homem"></div>
       <div class="script2">
         <h1>
-          <small>Precisamos tornar o cliente um defensor da marca!</small>
+          <small>O Cliente precisa ser um defensor da marca!</small>
         </h1>
       </div>
       <div class="iconButton" @click="startSceneElevenTwo">
         <div>
-          <span>O que mais podemos fazer para nos diferenciar?</span>
+          <span>O que mais a TIM pode fazer para se diferenciar?</span>
           <span>Clique e veja um exemplo</span>
         </div>
       </div>

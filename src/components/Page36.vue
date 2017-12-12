@@ -49,7 +49,7 @@
         </div>
         <div class="arrow2">
           <arrow1></arrow1>
-          <h2>insight</h2>
+          <h2>descobertas</h2>
         </div>
         <div class="idea">
           <h2>aprendizado</h2>
@@ -71,7 +71,7 @@
           <img src="../assets/backgrounds/page17/circlel.png"/>
         </div>
         <div class="customer_centric">
-          <h2>customer centric</h2>
+          <h2>Centrado no cliente</h2>
           <costumer-centric></costumer-centric>
         </div>
         <div class="customer_experience">

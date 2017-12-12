@@ -1,10 +1,5 @@
 {
-  "app.css": "static/css/app.0e635ab6773b3be6c5159d925c9745b4.css",
-  "app.css.map": "static/css/app.0e635ab6773b3be6c5159d925c9745b4.css.map",
-  "app.js": "static/js/app.4ca7b97f131ce06ed4c9.js",
-  "app.js.map": "static/js/app.4ca7b97f131ce06ed4c9.js.map",
-  "manifest.js": "static/js/manifest.970f7d1987855c081894.js",
-  "manifest.js.map": "static/js/manifest.970f7d1987855c081894.js.map",
+  "app.js": "app.js",
   "static/fonts/MaterialIcons-Regular.eot": "static/fonts/MaterialIcons-Regular.e79bfd8.eot",
   "static/fonts/MaterialIcons-Regular.ttf": "static/fonts/MaterialIcons-Regular.a37b0c0.ttf",
   "static/fonts/MaterialIcons-Regular.woff": "static/fonts/MaterialIcons-Regular.012cf6a.woff",
@@ -26,7 +21,7 @@
   "static/img/07.png": "static/img/07.30436d0.png",
   "static/img/08.png": "static/img/08.190d552.png",
   "static/img/13.png": "static/img/13.4075fa9.png",
-  "static/img/accontability.png": "static/img/accontability.326c1aa.png",
+  "static/img/accontability.png": "static/img/accontability.08497d2.png",
   "static/img/bag.png": "static/img/bag.023df86.png",
   "static/img/celphone-page12.jpg": "static/img/celphone-page12.991e108.jpg",
   "static/img/circle2.png": "static/img/circle2.19f64cc.png",
@@ -126,7 +121,5 @@
   "static/img/tile-8.jpg": "static/img/tile-8.fc35738.jpg",
   "static/img/tile-9.jpg": "static/img/tile-9.f095eb2.jpg",
   "static/img/touch.png": "static/img/touch.9263a84.png",
-  "static/img/wireless-page12.jpg": "static/img/wireless-page12.088ed67.jpg",
-  "vendor.js": "static/js/vendor.09a48ea532e6d17308de.js",
-  "vendor.js.map": "static/js/vendor.09a48ea532e6d17308de.js.map"
+  "static/img/wireless-page12.jpg": "static/img/wireless-page12.088ed67.jpg"
 }

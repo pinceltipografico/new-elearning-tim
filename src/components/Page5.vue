@@ -49,8 +49,8 @@
         <div class="scene7">
           <div class="background"></div>
           <div class="script7">
-            <h1>E neste desafio, <span>todas as pessoas da organização</span>
-              se tornam responsáveis pelo objetivo de <span>conquistar o cliente e mantê-lo</span>
+            <h1>E neste desafio, <span>todas as pessoas da organização, e os prestadores de serviço,</span>
+              tornam-se responsáveis pelo objetivo de <span>conquistar o cliente e mantê-lo</span>
             </h1></div>
         </div>
       </section>

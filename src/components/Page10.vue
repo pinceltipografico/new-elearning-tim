@@ -14,7 +14,7 @@
       </h1>
     </div>
     <div class="script2">
-      <h1>Na <span class="tim">TIM</span> estamos passando por este <span>movimento!</span></h1>
+      <h1>Na <span class="tim">TIM</span> está passando por este <span>movimento!</span></h1>
     </div>
   </section>
 </template>

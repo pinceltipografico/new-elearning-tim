@@ -15,13 +15,13 @@
       <h1>Simplificando e potencializando esta experiência</h1>
     </div>
     <div class="script3 end-tag">
-      <h1>todos os colaboradores da <span class="red">TIM</span> <br/>vivendo a <span>experiência CX</span></h1>
+      <h1>todos os colaboradores e prestadores de serviço da tim <span class="red">TIM</span> <br/>vivendo a <span>experiência CX</span></h1>
     </div>
     <div class="script4">
       <h1>é o que chamamos de Crew Experience</h1>
     </div>
     <div class="script5">
-      <h1>colaborador e cliente na mesma sintonia</h1>
+      <h1>colaborador, parceiro e cliente na mesma sintonia</h1>
     </div>
   </section>
 </template>

@@ -3,7 +3,7 @@
     <div class="effects"></div>
     <div class="image"></div>
     <div class="script1">
-      <h1>É possível quando toda empresa está envolvida nesse <span>propósito!</span></h1>
+      <h1>Isso é possível quando toda a empresa e parceiros estão envolvidos nesse <span>propósito!</span></h1>
       <h1>Temos que evoluir sempre, e para nós, <span>evoluir é fazer diferente!</span></h1>
     </div>
   </section>

@@ -3,7 +3,7 @@
     <section class="page step1 page11" :class="{'hide':scene === 1}" v-if="scene < 2">
       <div class="script2">
         <h1>
-          Criamos uma estrutura de <span>Customer Experience</span>
+          Foi criada uma estrutura de <span>Customer Experience</span>
         </h1>
       </div>
       <div class="blue"></div>
@@ -25,6 +25,7 @@
         </div>
         <span><strong>Customer Centric</strong></span>
         <span>Entender as necessidades</span>
+        <span class="tooltip">Centrado nos Clientes</span>
       </div>
       <div class="item user-experience">
         <div class="icon">
@@ -33,6 +34,7 @@
         <span><strong>User Experience</strong></span>
         <span>Emoções Preferências</span>
         <span>Comportamentos e Realizações</span>
+        <span class="tooltip">Experiência do Usuário</span>
       </div>
       <div class="item custumer-monitoring">
         <div class="icon">
@@ -42,6 +44,7 @@
         <span>O que são?</span>
         <span>O que querem?</span>
         <span>Quando e como querem?</span>
+        <span class="tooltip">Análise e Monitoramento</span>
       </div>
       <div class="item crew-experience">
         <div class="icon">
@@ -49,6 +52,7 @@
         </div>
         <span><strong>Crew Experience</strong></span>
         <span>Oferecer a melhor experiência para os colaboradores é a chave</span>
+        <span class="tooltip right">Experiência da Equipe</span>
       </div>
     </section>
     <section class="page todo page11" v-if="scene === 2">
@@ -461,6 +465,47 @@
         display: block;
         @include font-size(1.4);
       }
+  
+      span.tooltip{
+        display: block;
+        width: 170px;
+        padding: 10px;
+        position: absolute;
+        top:50%;
+        left:80%;
+        transform: translateY(-50%);
+        background: $brand-details;
+        border-radius:5px;
+        opacity: 0;
+        transition: opacity $animationTime;
+        &:before{
+          position: absolute;
+          content: '';
+          display: block;
+          left: -8px;
+          top:50%;
+          margin-top: -8px;
+          border-bottom: 8px solid transparent;
+          border-top: 8px solid transparent;
+          border-right: 8px solid $brand-details;
+        }
+        &.right{
+          left: auto;
+          right: 80%;
+        }
+        &.right:before{
+          left:auto;
+          right:-8px;
+          border-right: none;
+          border-left: 8px solid $brand-details;
+        }
+      }
+      &:hover{
+        span.tooltip{
+          opacity: 1;
+        }
+      }
+      
       &.costumer {
         left: 50%;
         top: 50%;

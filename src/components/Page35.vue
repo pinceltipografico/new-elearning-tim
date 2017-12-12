@@ -58,7 +58,7 @@
         <i class="material-icons">&#xE314;</i>
         <span>Voltar</span>
       </a>
-      <h1 v-show="!showPopup">Comportamentos que devemos <span>Incorporar, Estimular e Mobilizar</span><br/>
+      <h1 v-show="!showPopup">Comportamentos que devem ser <span>Incorporados, Estimulados e Mobilizados.</span><br/>
         <small>Clique em cada um deles para visualizar</small>
       </h1>
       <div class="icones">
@@ -132,7 +132,7 @@
         animation: null,
         popups: [
           {
-            html: '<h1>Ouvir o cliente<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>e se o cliente está pedindo a nossa ajuda, pode ser uma oportunidade</span>'
+            html: '<h1>Ouvir o cliente<small></small></h1><h4>Mesmo quando o cliente não tem razão:</h4><span>a percepção dele em relação ao problema é real e deve ser considerada </span><span>e se o cliente está pedindo ajuda, pode ser uma oportunidade</span>'
           }, {
             html: '<h1>Conhecer o cliente <small></small></h1><h4>Ele espera encontrar:</h4><span>seu perfil de consumo</span><span>suas transações</span><span>reclamações ou solicitações recentes</span>'
           }, {
