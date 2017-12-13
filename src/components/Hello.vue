@@ -39,7 +39,7 @@
       setTimeout(function () {
         this.animation = true
       }.bind(this), 1000)
-      console.log('dunha')
+//      console.log('dunha')
     },
     /**
      | ----------------------------------------------
