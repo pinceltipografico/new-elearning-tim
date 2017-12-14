@@ -227,7 +227,6 @@
 <style scoped lang="scss">
   @import "../scss/variables";
   @import "../scss/mixins";
-  
   section.page{
     background: #1b4581;
   }

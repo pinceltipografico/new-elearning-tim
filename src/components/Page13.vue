@@ -339,7 +339,7 @@
             opacity: 0,
             easing: 'linear',
             duration: 1000,
-            offset: '+=13000',
+            offset: '+=18000',
             complete: function () {
               var _el = document.querySelector('.scene2')
               _el.style.zIndex = -1

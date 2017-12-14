@@ -44,7 +44,7 @@ navigator.sayswho = (function () {
  * VUE GLOBALS
  | ----------------------------------------------
  **/
-var audioCoords = require('../static/audio/tim_cx.json')
+const audioCoords = require('../static/audio/tim_cx.json')
 const sprites = audioCoords.sprite
 
 Vue.config.productionTip = false
