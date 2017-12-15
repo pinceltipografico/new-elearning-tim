@@ -109,9 +109,8 @@
       if (this.$route.name === null) {
         this.$router.replace('Hello')
       } else if (this.$route.name !== 'Hello') {
-        var lastPage = this.$route.name
-        var lastRouteIndex = this.getRouteByName(lastPage) || 0
-        this.pageIndex = lastRouteIndex
+        let lastPage = this.$route.name
+        this.pageIndex = this.getRouteByName(lastPage) || 0
         this.$store.commit('toggleIterface', true)
       }
       
@@ -143,9 +142,9 @@
      **/
     methods: {
       gotoLastPageViwed () {
-        var name = this.$store.state.lastPageViewed
-        var i = this.getRouteByName(name) || 0
-        var page = this.pages[i]
+        let name = this.$store.state.lastPageViewed
+        let i = this.getRouteByName(name) || 0
+        let page = this.pages[i]
         this.pageIndex = i
         this.$router.push({name: page.name})
         console.log('page received: ' + page.name)

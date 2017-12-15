@@ -1,26 +1,55 @@
 <template>
-  <section class="page page9">
-    <div class="image-background"></div>
-    <div class="white"></div>
-    <div class="image">
-      <img src="../assets/backgrounds/page9/04.png" alt="">
-      <img src="../assets/backgrounds/page9/03.png"/>
+  <section class="page gradient page12">
+    <div class="button" @click="buttonClick">
+      <div>
+        <span>Próximo</span>
+        <i class="material-icons">&#xE038;</i>
+      </div>
     </div>
-    <div class="icon-1"><img src="../assets/sprites/celphone-page12.jpg" alt=""></div>
-    <div class="icon-2"><img src="../assets/sprites/note-page12.png" alt=""></div>
-    <div class="icon-3"><img src="../assets/sprites/wireless-page12.jpg" alt=""></div>
-    <div class="icon-4"><img src="../assets/sprites/cloud-page12.jpg" alt=""></div>
-    <div class="icon-5"><img src="../assets/sprites/computer-page12.jpg" alt=""></div>
-    <div class="icon-6"><img src="../assets/sprites/message-page12.png" alt=""></div>
-    <div class="script1">
-      <h1>Esta interação pode se dar de vários <span>níveis e formas</span></h1>
+    <!-- scene DE -->
+    <div class="scene de">
+      <div class="effect-timeline"></div>
+      <div class="effect-timeline"></div>
+      <span>DE</span>
+      <div class="script2">
+        <h1>Abordagem tradicional de mercado
+        </h1>
+      </div>
+      <div class="abordages-tradicionais">
+        <div>Sem diferenciação por Cliente</div>
+        <div>Sem integração</div>
+        <div>Mal suportada pelas novas tecnologias</div>
+        <div>Básica</div>
+      </div>
     </div>
-    <div class="script2">
-      <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>
+    <!-- scene DE-->
+    <!-- scene PARA-->
+    <div class="scene para">
+      <span>PARA</span>
+      <div class="script3">
+        <h1>Uma nova Visão
+          <small>
+            <hr/>
+            <div>Cliente único</div>
+            <div>Experiência única</div>
+            <div>Soluções inovadoras</div>
+            <div>Rentável</div>
+          </small>
+        </h1>
+      </div>
+      <div class="customer_centric">
+        <infographic></infographic>
+      </div>
     </div>
-    <div class="script3">
-      <h1>Cliente no centro em <span>todos os movimentos de uma organização</span></h1>
+    <!-- scene PARA-->
+    <!-- INTRODUÇÃO -->
+    <div class="scene intro gradient">
+      <div class="script1">
+        <h1>Uma mudança de <span>perspectiva</span></h1>
+        <i class="material-icons">&#xE8D4;</i>
+      </div>
     </div>
+    <!-- INTRODUÇÃO -->
   </section>
 </template>
 <script type="text/javascript">
@@ -29,87 +58,181 @@
   import { EventBus } from '../events/index'
   import anime from 'animejs'
   
+  var Animations = require('../lib/ChainAnimation')
+  var infographic = require('../assets/svgs/customer_centric.svg')
   export default {
-    // component name
-    name: 'Page12',
     data () {
       return {
+        step: 0,
         TimeLineCtrl: null
       }
     },
+    components: {
+      infographic
+    },
     /**
      | ----------------------------------------------
-     * WHEN COMPONENT IS READY
+     * WHEN COMPONENT WAS READY
      | ----------------------------------------------
      **/
     mounted () {
-      // set progress of current page
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
+      var elsTrad = this.$el.querySelectorAll('.abordages-tradicionais > div')
+      var elsPara = this.$el.querySelectorAll('.script3 > h1 div')
+      var svgItems = this.$el.querySelectorAll('.item-icon')
+      var vm = this
       
       this.TimelineCtrl = anime.timeline({
-        loop: false
+        loop: false,
+        elasticity: 100,
+        easing: [0.91, -0.54, 0.29, 1.56],
+        update: function (anim) {
+          vm.step = Math.floor(anim.progress)
+        }
       })
+      
       this.TimelineCtrl
         .add({
-          targets: '.white',
-          width: [0, 1280],
-          duration: 200,
-          easing: 'linear'
-        })
-        .add({
           targets: '.script1',
+          translateY: ['-1000%', '-50%'],
+          translateX: ['-50%', '-50%'],
           opacity: 1,
-          left: 75,
           easing: 'linear',
-          duration: 200
+          duration: 300
         })
         .add({
-          targets: '.script2',
-          opacity: 1,
-          right: 75,
-          duration: 200,
+          targets: '.intro',
+          translateX: '-100%',
           easing: 'linear',
-          offset: '+=9000'
-        })
-        .add({
-          targets: '.script2',
+          duration: 300,
           opacity: 0,
+          offset: '+=3500'
+        })
+        .add({
+          targets: '.de',
+          left: 0,
           easing: 'linear',
-          duration: 200,
+          duration: 300,
+          begin: function () {
+            var el = document.querySelector('.de')
+            vm.removeClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: elsTrad,
+          translateX: ['100%', 0],
+          opacity: 1,
+          easing: 'linear',
+          duration: 300,
+          delay: function (el, i) {
+            if (i === 0) {
+              return 1000
+            } else if (i === 1) {
+              return 5000
+            } else if (i === 2) {
+              return 8000
+            } else {
+              return 14000
+            }
+          }
+        })
+        .add({
+          targets: '.button',
+          left: ['40%', '50%'],
+          easing: 'linear',
+          opacity: 0,
+          begin: function () {
+            var el = document.querySelector('.button')
+            el.style.display = 'block'
+          },
+          complete: function () {
+//            vm.TimelineCtrl.pause()
+//            var CurrentAudio = vm.getCurrentAudioId()
+//            vm.$store.state.audio.pause(CurrentAudio)
+          },
+          duration: 300,
           offset: '+=6000'
         })
         .add({
-          targets: '.script1',
+          targets: '.button',
           opacity: 0,
+          duration: 300,
           easing: 'linear',
-          duration: 200
+          complete: function () {
+            var el = document.querySelector('.button')
+            el.style.display = 'block'
+          }
         })
         .add({
-          targets: '.white',
-          backgroundColor: '#fff',
-          easing: 'linear',
-          duration: 1000
+          targets: '.de',
+          width: ['100%', '50%'],
+          left: 0,
+          duration: 300,
+          easing: 'linear'
         })
         .add({
-          targets: ['.icon-1', '.icon-2', '.icon-3', '.icon-4', '.icon-5', '.icon-6'],
+          targets: '.para',
+          right: 0,
+          duration: 300,
+          easing: 'linear',
+          begin: function () {
+            var el = document.querySelector('.para')
+            vm.removeClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: elsPara,
+          translateX: ['100%', 0],
           opacity: 1,
           duration: 300,
           easing: 'linear',
           delay: function (el, i) {
-            return 1000 * i
-          },
-          offset: '+=400'
+            if (i === 0) {
+              return 4000
+            } else if (i === 1) {
+              return 10000
+            } else if (i === 2) {
+              return 14000
+            } else {
+              return 20000
+            }
+          }
         })
         .add({
-          targets: '.script3',
-          opacity: 1,
-          translateX: ['-50%', '-50%'],
-          translateY: ['0%', '-50%'],
+          targets: '.para',
+          width: ['50%', '90%'],
           easing: 'linear',
-          duration: 300,
-          offset: '+=200'
+          duration: 500,
+          complete: function () {
+            var el = document.querySelector('.para')
+            vm.addClass(el, 'step2')
+          },
+          offset: '+=4000'
+        })
+        .add({
+          targets: '.de',
+          width: ['50%', '10%'],
+          easing: 'linear',
+          duration: 500,
+          offset: '-=300',
+          begin: function () {
+            var el = document.querySelector('.de')
+            vm.addClass(el, 'step2')
+          }
+        })
+        .add({
+          targets: '.customer_centric',
+          opacity: 1,
+          easing: 'linear',
+          duration: 300
+        })
+        .add({
+          targets: svgItems,
+          opacity: 1,
+          easing: 'linear',
+          duration: 100
         })
       
       EventBus.$on('pause', function (paused) {
@@ -123,13 +246,20 @@
         }
       }.bind(this))
       
-      this.playAudio('scene9', 'static/subtitles/page9.json', null, function () {
-        this.$store.commit('setCanAdvance', true)
-      }.bind(this))
+      this.playAudio('scene12', 'static/subtitles/page12.json', null, function () {
+        vm.$store.commit('setCanAdvance', true)
+      })
+    },
+    methods: {
+      buttonClick () {
+        var currentAudio = this.getCurrentAudioId()
+        this.$store.state.audio.play(currentAudio)
+        this.TimelineCtrl.play()
+      }
     },
     /**
      | ----------------------------------------------
-     * DESTROYED
+     * WHEN THE COMPONENT WAS DESTROYED
      | ----------------------------------------------
      **/
     destroyed () {
@@ -143,158 +273,202 @@
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  section.page {
-    background: #1883b0;
-    transition: background $animationTime;
-    &.step2 {
-      /*background: darken(#1883b0,20%);*/
+  .button {
+    display: none;
+    width: 120px;
+    height: 120px;
+    background: $brand-details;
+    top: 50%;
+    margin-top: -60px;
+    z-index: 4;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    animation: buttonAnimation 2.5s infinite ease-in-out alternate;
+    cursor: pointer;
+    opacity: 0;
+    
+    div {
+      display: table-cell;
+      height: 120px;
+      width: 120px;
+      vertical-align: middle;
+      span {
+        font-weight: bold;
+        display: block;
+        @include font-size(1.4);
+      }
     }
-    .white {
-      width: 0;
-      height: 50%;
-      top: 50%;
-      transform: translateY(-40%);
-      background: darken($brand-details, 30%);
-      &.show {
-        width: 100%;
-      }
-      &.step1 {
-        background: #fff;
-      }
+    i {
+      line-height: normal;
     }
-    .image {
-      width: 401px;
-      height: 639px;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: person 10s infinite ease-in-out alternate;
-      
-      @include responsive('laptopS') {
-        animation: personScaleDown 10s infinite ease-in-out alternate;
-      }
-      img {
+  }
+  
+  .scene {
+    width: 100%;
+    height: 100%;
+    
+    &.intro {
+      > * {
         position: absolute;
-      }
-      img:nth-of-type(2) {
-        z-index: 2;
-      }
-      img:nth-of-type(1) {
-        top: -15px;
-        left: -15px;
-        opacity: 0;
         transition: all $animationTime;
-        &.show {
-          opacity: 1;
+      }
+      .script1 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-align: center;
+        max-width: 400px;
+        @include font-size(3);
+        opacity: 0;
+        h1 {
+          margin: 0;
+        }
+        i {
+          @include font-size(10);
         }
       }
     }
-    .icon-1,
-    .icon-2,
-    .icon-3,
-    .icon-4,
-    .icon-5,
-    .icon-6 {
-      width: 100px;
-      height: 100px;
-      opacity: 0;
-      &.show {
-        opacity: 1;
+    
+    &.para,
+    &.de {
+      width: 50%;
+      top: 0;
+      > span {
+        @include font-size(7);
+        font-weight: bold;
+        text-transform: uppercase;
       }
-      @include responsive('laptopS') {
-        transform: scale(0.8);
+      > * {
+        position: absolute;
+        transition: all $animationTime;
       }
-    }
-    .icon-1 {
-      top: 50%;
-      left: 10%;
-    }
-    .icon-2 {
-      top: 60%;
-      left: 20%;
-    }
-    .icon-3 {
-      top: 40%;
-      left: 20%;
-    }
-    .icon-4 {
-      right: 7%;
-      top: 50%;
-    }
-    .icon-5,
-    .icon-6 {
-      right: 20%;
-    }
-    .icon-5 {
-      top: 55%;
-    }
-    .icon-6 {
-      top: 40%;
+      &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 0;
+      }
+      &:before {
+        top: 50%;
+      }
     }
     
-    .script1,
-    .script2,
-    .script3 {
-      color: #fff;
-      max-width: 300px;
-      @include font-size(2);
-      opacity: 0;
-      &.show {
-        opacity: 1;
+    &.para {
+      right: -100%;
+      &:before {
+        border-top: 10px double $brand-details;
       }
-      @include responsive('laptopS'){
-        max-width: 250px;
-        @include font-size(1.8);
+      span {
+        color: $brand-details;
+        top: 38%;
       }
-    }
-    .script1 {
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      &.show {
-        left: 75px;
-      }
-    }
-    .script2 {
-      top: 40%;
-      right: 0;
-      &.show {
-        right: 75px;
-      }
-      @include responsive('laptopS'){
+      .script3 {
+        top: 50%;
+        color: #fff;
         @include font-size(1.5);
-        top:52%;
+        small {
+          display: block;
+          color: $brand-details;
+          hr {
+            opacity: 0;
+          }
+          div {
+            color: #fff;
+            @include font-size(1.8);
+            border-left: 5px double $brand-details;
+            padding: 0 5px 0 15px;
+            margin-bottom: 5px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all $animationTime;
+            &.show {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .customer_centric {
+        width: 550px;
+        right: 2%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+      }
+      &.step2 {
+        &:before,
+        &:after {
+          transition: all $animationTime;
+          width: 52%;
+        }
+        @include responsive('laptopS'){
+          &:before,
+          &:after{
+            width: 40%;
+          }
+        }
       }
     }
-    .script3 {
-      background: rgba(#000, 0.6);
-      opacity: 1;
-      max-width: none;
+    &.de {
+      left: 100%;
       width: 100%;
-      left: 50%;
-      bottom: 0;
-      padding: 0 40px;
-      opacity: 0;
-      h1 {
-        max-width: 600px;
+      &:before {
+        border-top: 10px double #fff;
+      }
+      span {
+        color: #fff;
+        top: 38%;
+        left: 10%;
+      }
+      .script2 {
+        left: 10%;
+        top: 50%;
+        color: #fff;
+        @include font-size(1.5);
+        small {
+          display: block;
+          color: $brand-details;
+        }
+      }
+      .abordages-tradicionais {
+        top: 60%;
+        left: 15%;
+        div {
+          color: #fff;
+          @include font-size(1.8);
+          border-left: 5px double $brand-details;
+          padding: 0 5px 0 15px;
+          margin-bottom: 5px;
+          transform: translateX(100%);
+          opacity: 0;
+          transition: all $animationTime;
+          &.show {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      }
+      &.step2 {
+        .script2,
+        .abordages-tradicionais {
+          display: none;
+        }
+        span {
+          @include font-size(5);
+          top: 42%;
+        }
       }
     }
-    
-    @keyframes person {
-      0% {
-        transform: translateX(-45%);
-      }
-      100% {
-        transform: translateX(-55%);
-      }
-    }
-    @keyframes personScaleDown {
-      0% {
-        transform: translateX(-45%) scale(0.9);
-      }
-      100% {
-        transform: translateX(-55%) scale(0.9);
-      }
+  }
+  
+  @keyframes buttonAnimation {
+    to {
+      background: #fff;
+      color: $brand-details;
     }
   }
 </style>

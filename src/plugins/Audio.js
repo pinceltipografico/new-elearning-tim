@@ -17,6 +17,7 @@ Audio.install = function (Vue, options) {
     if (!this.$store.state.audio) {
       return
     }
+    
     var subtitlesEl = document.querySelector('#subtitles > p')
     var timer = document.querySelector('#timer')
     var duration
@@ -42,11 +43,11 @@ Audio.install = function (Vue, options) {
         if (actualCallback) {
           actualCallback()
         }
-        console.log('audio end')
         cancelAnimationFrame(animId)
         EventBus.$emit('audio-end')
         subtitlesEl.innerHTML = ''
         started = false
+        vm.$store.commit('setPageProgress', 100)
       }, currentAudioId)
       
       //
@@ -57,6 +58,7 @@ Audio.install = function (Vue, options) {
       
       // quando der o play
       vm.$store.state.audio.on('play', function () {
+        console.log('play')
         if (!started) {
           animId = requestAnimationFrame(increase)
           started = true
@@ -95,12 +97,18 @@ Audio.install = function (Vue, options) {
       var progress = Math.ceil((pct * pos))
       var currentSubTitle = subtitlesObj[subtitleTime]
       timer.innerHTML = subtitleTime
+      // console.log(subtitleTime)
       
       // set page progress
       vm.$store.commit('setPageProgress', progress)
       
       if (currentSubTitle && subtitlesEl) {
         subtitlesEl.innerHTML = currentSubTitle
+        if (currentSubTitle.length > 300) {
+          subtitlesEl.style.fontSize = '12px'
+        } else {
+          subtitlesEl.style.fontSize = '14px'
+        }
       }
       if (vm.$store.state.audio.playing(currentAudioId) && progress <= 100) {
         if (timeUpdateCb) {
@@ -118,7 +126,6 @@ Audio.install = function (Vue, options) {
         startAudio(res.data)
       })
       .catch(function () {
-        console.log('erro ao carregar a legenda')
         startAudio(null)
       })
   }

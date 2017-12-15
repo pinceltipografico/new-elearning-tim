@@ -79,7 +79,7 @@
         </div>
         <div class="icone icone-5" @click="onShowPopup(4)">
           <ecantar></ecantar>
-          <span>Encantar Cliente</span>
+          <span>Encantar o Cliente</span>
         </div>
       </div>
     </section>
@@ -118,15 +118,15 @@
         animation: null,
         popups: [
           {
-            html: '<h1>Usar a persona TIM<small>Uma espécie de identidade padrão</small></h1><h4>A comunicação comCliente deve sempre ser:</h4><span>coesa e padronizada</span><span>cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>carismática</span><span>leve</span><span>autêntica</span><span>espontânea</span>'
+            html: '<h1>Usar a persona TIM<small>Uma espécie de identidade padrão</small></h1><h4>A comunicação com o Cliente deve sempre ser:</h4><span>coesa e padronizada</span><span>cada produto pode ter uma linguagem diferente</span><h4>PERSONA TIM é:</h4><span>carismática</span><span>leve</span><span>autêntica</span><span>espontânea</span>'
           }, {
             html: '<h1>Comunicar de forma clara e transparente<small></small></h1><h4>Usar os 7 Cs da Comunicação:</h4><span>claro</span><span>conciso</span><span>concreto</span><span>correto</span><span>coerente</span><span>completo</span><span>cortês</span><h4>Para esclarecer, usar técnicas como:</h4><span>perguntar</span><span>repetir</span><span>sumarizar</span><span>exemplificar</span>'
           }, {
-            html: '<h1>Falar a língua doCliente<small></small></h1><h4>Criar empatia comCliente:</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>falar diferente com gente diferente</span><span>considerar a linguagem doCliente</span><span>dispensar o termo técnico</span>'
+            html: '<h1>Falar a língua do Cliente<small></small></h1><h4>Criar empatia com o Cliente:</h4><span>crie conexão</span><span>seja objetivo</span><h4>Sempre lembrar:</h4><span>falar diferente com gente diferente</span><span>considerar a linguagem do Cliente</span><span>dispensar o termo técnico</span>'
           }, {
-            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>considerar como essas mudanças afetarãoCliente</span><span>saber quais são os impactos nos resultados</span>'
+            html: '<h1>Se mudar, tem que comunicar<small></small></h1><h4>Ao comunicar uma mudança é importante:</h4><span>pensar além do cumprimento de regras</span><span>considerar como essas mudanças afetarão o Cliente</span><span>saber quais são os impactos nos resultados</span>'
           }, {
-            html: '<h1>EncantarCliente<small></small></h1><h4>Lembrando que:</h4><span>cada pessoa pode escolher o mesmo produto por diferentes razões</span><h4>Adequar a comunicação:</h4><span>ofereça o que realmente é do interesse dele</span>'
+            html: '<h1>Encantar o Cliente<small></small></h1><h4>Lembrando que:</h4><span>cada pessoa pode escolher o mesmo produto por diferentes razões</span><h4>Adequar a comunicação:</h4><span>ofereça o que realmente é do interesse dele</span>'
           }
         ]
       }

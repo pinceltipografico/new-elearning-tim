@@ -4,8 +4,11 @@ import Hello from '@/components/Hello'
 import ExplainMenu from '@/components/ExplainMenu'
 import Page1 from '@/components/Page1'
 import Page2 from '@/components/Page2'
+import Menu from '@/components/Menu'
+import Page3 from '@/components/Page3'
 import Page4 from '@/components/Page4'
 import Page5 from '@/components/Page5'
+import Page6 from '@/components/Page6'
 import Page7 from '@/components/Page7'
 import Page8 from '@/components/Page8'
 import Page9 from '@/components/Page9'
@@ -13,13 +16,10 @@ import Page10 from '@/components/Page10'
 import Page11 from '@/components/Page11'
 import Page12 from '@/components/Page12'
 import Page13 from '@/components/Page13'
+import Page14 from '@/components/Page14'
 import Page15 from '@/components/Page15'
 import Page16 from '@/components/Page16'
 import Page17 from '@/components/Page17'
-import Page18 from '@/components/Page18'
-import Page20 from '@/components/Page20'
-import Page31 from '@/components/Page31'
-import Page33 from '@/components/Page33'
 import Page39 from '@/components/Page39'
 import Page41 from '@/components/Page41'
 import Page42 from '@/components/Page42'
@@ -53,92 +53,92 @@ const router = new Router({
       path: '/menu',
       name: 'menu',
       meta: {pageTitle: 'Menu', module: 'primeiro'},
-      component: Page4
+      component: Menu
     }, {
       path: '/page3',
       name: 'page3',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page5
+      component: Page3
     }, {
       path: '/page4',
       name: 'page4',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page7
+      component: Page4
     }, {
       path: '/page5',
       name: 'page5',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page8
+      component: Page5
     }, {
       path: '/page6',
       name: 'page6',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page9
+      component: Page6
     }, {
       path: '/page7',
       name: 'page7',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page10
+      component: Page7
     }, {
       path: '/page8',
       name: 'page8',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page11
+      component: Page8
     }, {
       path: '/page9',
       name: 'page9',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page12
+      component: Page9
     }, {
       path: '/page10',
       name: 'page10',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page17
+      component: Page10
     }, {
       path: '/page11',
       name: 'page11',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page13
+      component: Page11
     }, {
       path: '/page12',
       name: 'page12',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page15
+      component: Page12
     }, {
       path: '/page13',
       name: 'page13',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page18
+      component: Page13
     }, {
       path: '/page14',
       name: 'page14',
       meta: {pageTitle: '<span>O porquê das mudanças e conceito de CX</span>'},
-      component: Page16
+      component: Page14
     }, {
       path: '/menu/2',
       name: 'menu/2',
       meta: {pageTitle: '<span>Menu</span>', module: 'segundo'},
-      component: Page4
+      component: Menu
     }, {
       path: '/page15',
       name: 'page15',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
-      component: Page20
+      component: Page15
     }, {
       path: '/page16',
       name: 'page16',
       meta: {pageTitle: '<span>Ciclo de vida do Cliente</span>'},
-      component: Page31
+      component: Page16
     }, {
       path: '/menu/3',
       name: 'menu/3',
       meta: {pageTitle: '<span>Menu</span>', module: 'terceiro'},
-      component: Page4
+      component: Menu
     }, {
       path: '/page17',
       name: 'page17',
       meta: {pageTitle: '<span>Diretrizes de Customer Experience</span>'},
-      component: Page33
+      component: Page17
     }, {
       path: '/page18',
       name: 'page18',

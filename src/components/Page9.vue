@@ -1,80 +1,115 @@
 <template>
-  <section class="page page6">
-    <div class="overlay" :class="{'step2':showEnd}"></div>
-    <div class="wish">
-      <h1 v-if="!showEnd">O que desejamos?</h1>
+  <section class="page page9">
+    <div class="image-background"></div>
+    <div class="white"></div>
+    <div class="image">
+      <img src="../assets/backgrounds/page9/04.png" alt="">
+      <img src="../assets/backgrounds/page9/03.png"/>
     </div>
-    <div class="script1" v-if="!showEnd">
-      <h1 v-on:click="newHtml($event,'1')" data-index="1">
-        <div>Nova abordagem de relacionamento</div>
-      </h1>
-      <h1 v-on:click="newHtml($event,'2')" data-index="2">
-        <div>Sermos surpreendidos onde estivermos</div>
-      </h1>
-      <h1 v-on:click="newHtml($event,'3')" data-index="3">
-        <div>Previsão de novos comportamentos e fluxo contínuo, sem quebra na jornada de relacionamento</div>
-      </h1>
+    <div class="icon-1"><img src="../assets/sprites/celphone-page12.jpg" alt=""></div>
+    <div class="icon-2"><img src="../assets/sprites/note-page12.png" alt=""></div>
+    <div class="icon-3"><img src="../assets/sprites/wireless-page12.jpg" alt=""></div>
+    <div class="icon-4"><img src="../assets/sprites/cloud-page12.jpg" alt=""></div>
+    <div class="icon-5"><img src="../assets/sprites/computer-page12.jpg" alt=""></div>
+    <div class="icon-6"><img src="../assets/sprites/message-page12.png" alt=""></div>
+    <div class="script1">
+      <h1>Esta interação pode se dar de vários <span>níveis e formas</span></h1>
     </div>
-    <div class="script2" v-if="!showEnd">
-      <div class="image"></div>
-      <div class="content">
-        <div class="close" @click="closeItem" v-if="canClose"><i class="material-icons">&#xE5CD;</i></div>
-        <p></p>
-      </div>
+    <div class="script2">
+      <h1>Abordagem multicanal contínua e proporcionando uma <span>experiência única</span></h1>
     </div>
-    <div class="script3 end-tag" :class="{'show':showEnd}">
-      <h1>Estes são apenas alguns exemplos que já incorporamos na <span>nossa maneira de pensar a compra</span></h1>
+    <div class="script3">
+      <h1>Cliente no centro em <span>todos os movimentos de uma organização</span></h1>
     </div>
   </section>
 </template>
 <script type="text/javascript">
-  /* eslint-disable semi */
-  /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
   import { EventBus } from '../events/index'
   import anime from 'animejs'
   
   export default {
+    // component name
+    name: 'Page12',
+    data () {
+      return {
+        TimeLineCtrl: null
+      }
+    },
     /**
      | ----------------------------------------------
-     * WHEN COMPONENT WAS READY
+     * WHEN COMPONENT IS READY
      | ----------------------------------------------
      **/
     mounted () {
+      // set progress of current page
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var vm = this
-      var els = this.$el.querySelectorAll('.script1 > h1')
       
       this.TimelineCtrl = anime.timeline({
         loop: false
       })
-      
       this.TimelineCtrl
         .add({
-          targets: '.wish',
-          translateX: ['-100%', '-50%'],
-          translateY: ['-50%', '-50%'],
-          easing: 'linear',
-          opacity: 1,
-          duration: 300,
-          offset: '+=300'
+          targets: '.white',
+          width: [0, 1280],
+          duration: 200,
+          easing: 'linear'
         })
         .add({
-          targets: els,
-          translateY: ['-100%', 0],
+          targets: '.script1',
+          opacity: 1,
+          left: 75,
+          easing: 'linear',
+          duration: 200
+        })
+        .add({
+          targets: '.script2',
+          opacity: 1,
+          right: 75,
           duration: 200,
           easing: 'linear',
+          offset: '+=9000'
+        })
+        .add({
+          targets: '.script2',
+          opacity: 0,
+          easing: 'linear',
+          duration: 200,
+          offset: '+=6000'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 0,
+          easing: 'linear',
+          duration: 200
+        })
+        .add({
+          targets: '.white',
+          backgroundColor: '#fff',
+          easing: 'linear',
+          duration: 1000
+        })
+        .add({
+          targets: ['.icon-1', '.icon-2', '.icon-3', '.icon-4', '.icon-5', '.icon-6'],
+          opacity: 1,
+          duration: 300,
+          easing: 'linear',
           delay: function (el, i) {
-            if (i === 0) {
-              return 1500
-            } else if (i === 1) {
-              return 3000
-            } else if (i === 2) {
-              return 6000
-            }
-          }
+            return 1000 * i
+          },
+          offset: '+=400'
+        })
+        .add({
+          targets: '.script3',
+          opacity: 1,
+          translateX: ['-50%', '-50%'],
+          translateY: ['0%', '-50%'],
+          easing: 'linear',
+          duration: 300,
+          offset: '+=200'
         })
       
       EventBus.$on('pause', function (paused) {
@@ -86,311 +121,180 @@
         if (this.TimelineCtrl) {
           this.TimelineCtrl.restart()
         }
-        this.canClick = false
       }.bind(this))
       
-      this.playAudio('scene6', 'static/subtitles/page6.json', function (pos) {}, function () {
-        console.log('done')
-        this.canClick = true
+      this.playAudio('scene9', 'static/subtitles/page9.json', null, function () {
+        this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
-    /**
-     | ----------------------------------------------
-     * RETURN THE COMPONENT METHODS
-     | ----------------------------------------------
-     **/
-    methods: {
-      newHtml ($event, value) {
-        if (!this.canClick) {
-          return
-        }
-        EventBus.$off('pause')
-        EventBus.$off('rewind')
-        this.canClose = false
-        var vm = this
-        var parent = this.$el.querySelector('.script1')
-        var h1s = parent.querySelectorAll('h1')
-        for (var i = 0; i < h1s.length; i++) {
-          var h1 = h1s[i]
-          vm.removeClass(h1, 'active')
-          vm.removeClass(h1, 'to-left')
-          if (h1.getAttribute('data-index') !== value) {
-            vm.addClass(h1, 'to-left')
-          } else {
-            vm.addClass(h1, 'active')
-          }
-        }
-        
-        this.addClass(this.$el.querySelector('.script2'), 'show')
-        this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
-        this.addClass(this.$el.querySelector('.script2 div.image'), 'style' + value)
-        
-        var sprite = 'scene6Item' + value
-        var subtitle = 'static/subtitles/page6_' + value + '.json'
-        this.playAudio(sprite, subtitle, null, function () {
-          this.canClose = true
-        }.bind(this))
-        
-        if (this.viewed.indexOf(value) === -1) {
-          this.viewed.push(value)
-        }
-      },
-      closeItem: function () {
-        var vm = this
-        this.removeClass(this.$el.querySelector('.script2'), 'show')
-        setTimeout(function () {
-          var h1s = vm.$el.querySelectorAll('.script1 h1')
-          for (var i = 0; i < h1s.length; i++) {
-            var h1 = h1s[i]
-            vm.removeClass(h1, 'active')
-            vm.removeClass(h1, 'to-left')
-            setTimeout(function () {
-              if (vm.viewed.length === 3) {
-                vm.showEnd = true
-                vm.playAudio('scene6_2', 'static/subtitles/page6_4.json', null, function () {
-                  vm.$store.commit('setCanAdvance', true)
-                })
-              }
-            }, 1000)
-          }
-        }, 500)
-      }
-    },
-    /**
-     | ----------------------------------------------
-     * RETURN COMPONENT DATA
-     | ----------------------------------------------
-     **/
-    data: function () {
-      return {
-        texts: {
-          '1': 'Bancos que proporcionam o aluguel de bicicletas por meio eletrônico',
-          '2': 'Hoje, temos cafeterias que oferecem mais do que café, tornam-se escritórios e sala de estar',
-          '3': 'Além do serviço tradicional, pensar novos modelos, formatos e surpreender'
-        },
-        viewed: [],
-        showEnd: false,
-        canClose: false,
-        canClick: false,
-        TimeLineCtrl: null
-      }
-    },
-    
     /**
      | ----------------------------------------------
      * DESTROYED
      | ----------------------------------------------
      **/
     destroyed () {
-      this.stopAudio()
       EventBus.$off('pause')
       EventBus.$off('rewind')
+      this.stopAudio()
     }
   }
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
   @import "../scss/variables";
   @import "../scss/mixins";
-  @import "~susy/sass/susy";
   
   section.page {
-    background: url('../assets/backgrounds/page6/shutterstock_397015894.jpg') no-repeat;
-    background-size: cover;
-  }
-  
-  .overlay.step2 {
-    animation: overlay 1.5s forwards;
-  }
-  
-  .wish {
-    top: 50%;
-    left: 50%;
-    @include font-size(3);
-    color: #fff;
-    opacity: 0;
-    h1 {
-      padding: 20px 40px;
-      border-top: 2px dotted $brand-details;
-      border-bottom: 2px dotted $brand-details;
+    background: #1883b0;
+    transition: background $animationTime;
+    &.step2 {
+      /*background: darken(#1883b0,20%);*/
     }
-  }
-  
-  .script1 {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .script1 h1 {
-    position: absolute;
-    top: 0;
-    width: calc(100% / 3);
-    height: 100%;
-    transform: translateY(-110%);
-    opacity: 0.9;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    padding: 20px;
-    transition: all $animationTime;
-    
-    div {
-      width: 80%;
-      display: block;
-      color: #fff;
-      @include font-size(2.5);
-      &:after {
-        content: 'clique aqui';
-        display: block;
-        border: 1px solid $brand-primary;
+    .white {
+      width: 0;
+      height: 50%;
+      top: 50%;
+      transform: translateY(-40%);
+      background: darken($brand-details, 30%);
+      &.show {
+        width: 100%;
+      }
+      &.step1 {
         background: #fff;
-        margin: 10px auto;
-        color: #666;
-        max-width: 50%;
-        border-radius: 5px;
-        padding: 5px;
-        @include font-size(1.3);
       }
-  
+    }
+    .image {
+      width: 401px;
+      height: 639px;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: person 10s infinite ease-in-out alternate;
+      
+      @include responsive('laptopS') {
+        animation: personScaleDown 10s infinite ease-in-out alternate;
+      }
+      img {
+        position: absolute;
+      }
+      img:nth-of-type(2) {
+        z-index: 2;
+      }
+      img:nth-of-type(1) {
+        top: -15px;
+        left: -15px;
+        opacity: 0;
+        transition: all $animationTime;
+        &.show {
+          opacity: 1;
+        }
+      }
+    }
+    .icon-1,
+    .icon-2,
+    .icon-3,
+    .icon-4,
+    .icon-5,
+    .icon-6 {
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+      &.show {
+        opacity: 1;
+      }
+      @include responsive('laptopS') {
+        transform: scale(0.8);
+      }
+    }
+    .icon-1 {
+      top: 50%;
+      left: 10%;
+    }
+    .icon-2 {
+      top: 60%;
+      left: 20%;
+    }
+    .icon-3 {
+      top: 40%;
+      left: 20%;
+    }
+    .icon-4 {
+      right: 7%;
+      top: 50%;
+    }
+    .icon-5,
+    .icon-6 {
+      right: 20%;
+    }
+    .icon-5 {
+      top: 55%;
+    }
+    .icon-6 {
+      top: 40%;
+    }
+    
+    .script1,
+    .script2,
+    .script3 {
+      color: #fff;
+      max-width: 300px;
+      @include font-size(2);
+      opacity: 0;
+      &.show {
+        opacity: 1;
+      }
       @include responsive('laptopS'){
-        @include font-size(2);
+        max-width: 250px;
+        @include font-size(1.8);
       }
     }
-    
-    @for $i from 0 through 2 {
-      &:nth-of-type(#{($i + 1)}) {
-        $pct: ($i * 10) * 1%;
-        background: darken($brand-details, $pct);
-        $left: percentage(1/3);
-        left: $left * $i;
-      }
-    }
-    
-    &:hover {
-      background: $brand-details;
-      opacity: 1;
-    }
-    &.show {
-      transform: translateY(0);
-    }
-    
-    &.active,
-    &.to-left {
+    .script1 {
       left: 0;
-      width: 20%;
-      div:after {
-        display: none !important;
+      top: 50%;
+      transform: translateY(-50%);
+      &.show {
+        left: 75px;
       }
     }
-    &.active {
-      z-index: 4;
-      background: $brand-details;
+    .script2 {
+      top: 40%;
+      right: 0;
+      &.show {
+        right: 75px;
+      }
+      @include responsive('laptopS'){
+        @include font-size(1.5);
+        top:52%;
+      }
+    }
+    .script3 {
+      background: rgba(#000, 0.6);
       opacity: 1;
-      div {
-        font-size: 130%;
-      }
-    }
-    &.to-left {
-      z-index: 2;
-    }
-  }
-  
-  .script2 {
-    width: 80%;
-    height: 100%;
-    z-index: 4;
-    right: 0;
-    position: absolute;
-    color: #fff;
-    font-size: 20px;
-    padding: 20px 50px;
-    background: $brand-primary;
-    transform: translateX(100%);
-    div.content {
-      margin: 20% 0 0 5px;
-      position: relative;
-      z-index: 2;
-      background: $brand-details;
-      padding: 5px 20px;
-      font-weight: bold;
-    }
-    div.close {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 40px;
-      height: 40px;
-      display: block;
-      cursor: pointer;
-      animation: closeButton 0.350s infinite ease-in-out alternate;
-      text-align: center;
-      background: $brand-details;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      i {
-        @include font-size(2);
-        color: #fff;
-        line-height: 40px;
-      }
-    }
-    p {
-      @include font-size(3);
-      text-transform: none;
-    }
-    div.image {
+      max-width: none;
       width: 100%;
-      height: 100%;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      opacity: 0.6;
-      &.style1 {
-        background: url("../assets/backgrounds/page6/shutterstock_87209047.jpg") no-repeat;
-        background-size: cover;
-      }
-      &.style2 {
-        background: url("../assets/backgrounds/page6/shutterstock_315826034.jpg") no-repeat;
-        background-size: cover;
-      }
-      &.style3 {
-        background: url("../assets/backgrounds/page6/shutterstock_379865653.jpg") no-repeat;
-        background-size: cover;
-      }
-    }
-    &.show {
-      transform: translateX(0%);
-    }
-  }
-  
-  .script3 {
-    transition-delay: 1s;
-  }
-  
-  @keyframes overlay {
-    0% {
-      z-index: 4;
-      background: #fff;
+      left: 50%;
+      bottom: 0;
+      padding: 0 40px;
       opacity: 0;
+      h1 {
+        max-width: 600px;
+      }
     }
-    50% {
-      z-index: 4;
-      background: #fff;
-      opacity: 1;
+    
+    @keyframes person {
+      0% {
+        transform: translateX(-45%);
+      }
+      100% {
+        transform: translateX(-55%);
+      }
     }
-    100% {
-      z-index: 4;
-      background: #fff;
-      opacity: 0;
-    }
-  }
-  
-  @keyframes closeButton {
-    to {
-      background: darken($brand-secondary, 20%);
+    @keyframes personScaleDown {
+      0% {
+        transform: translateX(-45%) scale(0.9);
+      }
+      100% {
+        transform: translateX(-55%) scale(0.9);
+      }
     }
   }
 </style>

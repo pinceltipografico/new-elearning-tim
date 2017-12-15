@@ -227,7 +227,8 @@
 <style scoped lang="scss">
   @import "../scss/variables";
   @import "../scss/mixins";
-  section.page{
+  
+  section.page {
     background: #1b4581;
   }
   
@@ -317,14 +318,18 @@
         font-size: 190%;
       }
       strong:nth-of-type(2) {
+        display: inline-block;
         border-top: 1px solid #fff;
         border-bottom: 1px solid #fff;
+        font-size: 150%;
+        margin: 7px 0 0 0;
       }
       strong:nth-of-type(3) {
         font-size: 195%;
+        margin-top: 10px;
       }
-  
-      @include responsive('laptopS', true){
+      
+      @include responsive('laptopS', true) {
         font-size: 94%;
       }
     }

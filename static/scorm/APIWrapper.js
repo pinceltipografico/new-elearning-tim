@@ -45,7 +45,7 @@
 **
 **    javascript:
 **          var result = doLMSInitialize();
-**          if (result != true) 
+**          if (result != true)
 **          {
 **             // handle error
 **          }
@@ -96,7 +96,7 @@ function doLMSInitialize()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSInitialize was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSInitialize was not successful.");
       return "false";
    }
 
@@ -127,7 +127,7 @@ function doLMSFinish()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSFinish was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSFinish was not successful.");
       return "false";
    }
    else
@@ -163,7 +163,7 @@ function doLMSGetValue(name)
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSGetValue was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSGetValue was not successful.");
       return "";
    }
    else
@@ -174,7 +174,7 @@ function doLMSGetValue(name)
       {
          // an error was encountered so display the error description
          var errDescription = api.LMSGetErrorString(errCode);
-         alert("LMSGetValue("+name+") failed. \n"+ errDescription);
+         console.log("LMSGetValue("+name+") failed. \n"+ errDescription);
          return "";
       }
       else
@@ -202,7 +202,7 @@ function doLMSSetValue(name, value)
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSSetValue was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSSetValue was not successful.");
       return;
    }
    else
@@ -224,7 +224,7 @@ function doLMSSetValue(name, value)
 ** Return:  None
 **
 ** Description:
-** Call the LMSCommit function 
+** Call the LMSCommit function
 **
 *******************************************************************************/
 function doLMSCommit()
@@ -232,7 +232,7 @@ function doLMSCommit()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSCommit was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSCommit was not successful.");
       return "false";
    }
    else
@@ -254,7 +254,7 @@ function doLMSCommit()
 ** Return:  The error code that was set by the last LMS function call
 **
 ** Description:
-** Call the LMSGetLastError function 
+** Call the LMSGetLastError function
 **
 *******************************************************************************/
 function doLMSGetLastError()
@@ -262,7 +262,7 @@ function doLMSGetLastError()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSGetLastError was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSGetLastError was not successful.");
       //since we can't get the error code from the LMS, return a general error
       return _GeneralError;
    }
@@ -277,7 +277,7 @@ function doLMSGetLastError()
 ** Return:  The textual description that corresponds to the input error code
 **
 ** Description:
-** Call the LMSGetErrorString function 
+** Call the LMSGetErrorString function
 **
 ********************************************************************************/
 function doLMSGetErrorString(errorCode)
@@ -285,7 +285,7 @@ function doLMSGetErrorString(errorCode)
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSGetErrorString was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSGetErrorString was not successful.");
    }
 
    return api.LMSGetErrorString(errorCode).toString();
@@ -295,7 +295,7 @@ function doLMSGetErrorString(errorCode)
 **
 ** Function doLMSGetDiagnostic(errorCode)
 ** Inputs:  errorCode - Error Code(integer format), or null
-** Return:  The vendor specific textual description that corresponds to the 
+** Return:  The vendor specific textual description that corresponds to the
 **          input error code
 **
 ** Description:
@@ -307,7 +307,7 @@ function doLMSGetDiagnostic(errorCode)
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSGetDiagnostic was not successful.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSGetDiagnostic was not successful.");
    }
 
    return api.LMSGetDiagnostic(errorCode).toString();
@@ -332,7 +332,7 @@ function LMSIsInitialized()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nLMSIsInitialized() failed.");
+      console.log("Unable to locate the LMS's API Implementation.\nLMSIsInitialized() failed.");
       return false;
    }
    else
@@ -367,7 +367,7 @@ function ErrorHandler()
    var api = getAPIHandle();
    if (api == null)
    {
-      alert("Unable to locate the LMS's API Implementation.\nCannot determine LMS error code.");
+      console.log("Unable to locate the LMS's API Implementation.\nCannot determine LMS error code.");
       return;
    }
 
@@ -386,7 +386,7 @@ function ErrorHandler()
          // on the previous error.
       }
 
-      alert(errDescription);
+      console.log(errDescription);
    }
 
    return errCode;
@@ -430,9 +430,9 @@ function findAPI(win)
    {
       findAPITries++;
       // Note: 7 is an arbitrary number, but should be more than sufficient
-      if (findAPITries > 7) 
+      if (findAPITries > 7)
       {
-         alert("Error finding API -- too deeply nested.");
+         console.log("Error finding API -- too deeply nested.");
          return null;
       }
       
@@ -451,7 +451,7 @@ function findAPI(win)
 ** Return:  If an API object is found, it's returned, otherwise null is returned
 **
 ** Description:
-** This function looks for an object named API, first in the current window's 
+** This function looks for an object named API, first in the current window's
 ** frame hierarchy and then, if necessary, in the current window's opener window
 ** hierarchy (if there is an opener window).
 **
@@ -465,7 +465,7 @@ function getAPI()
    }
    if (theAPI == null)
    {
-      alert("Unable to find an API adapter");
+      console.log("Unable to find an API adapter");
    }
    return theAPI
 }

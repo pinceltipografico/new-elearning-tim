@@ -62,7 +62,7 @@
       <div class="icones">
         <div class="icone icone-1" @click="onShowPopup(0)">
           <avaliar></avaliar>
-          <span>Avaliar a satisfação doCliente</span>
+          <span>Avaliar a satisfação do Cliente</span>
         </div>
         <div class="icone icone-2" @click="onShowPopup(1)">
           <informacao></informacao>
@@ -78,7 +78,7 @@
         </div>
         <div class="icone icone-5" @click="onShowPopup(4)">
           <reter></reter>
-          <span>Reter ou conquistarCliente</span>
+          <span>Reter ou conquistar Cliente</span>
         </div>
       </div>
     </section>
@@ -117,15 +117,15 @@
         canClick: false,
         popups: [
           {
-            html: '<h1>Avaliar a satisfação doCliente<small></small></h1><h4>É essencial que a avaliação seja:</h4><span>simples e rápida</span><span>em tempo real</span>'
+            html: '<h1>Avaliar a satisfação do Cliente<small></small></h1><h4>É essencial que a avaliação seja:</h4><span>simples e rápida</span><span>em tempo real</span>'
           }, {
             html: '<h1>Informação deve ser transformada em ação<small></small><h4>Agir para:</h4><span>focar em soluções</span><span>reverter insatisfações</span><span>proporcionar emoções</span>'
           }, {
-            html: '<h1>Prever usando técnicas de análise<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar aoCliente</span><span>propor a melhor oferta ou comunicação paraCliente</span>'
+            html: '<h1>Prever usando técnicas de análise<small></small><h4>Usar os dados disponíveis para:</h4><span>monitorar a satisfação</span><span>se antecipar ao Cliente</span><span>propor a melhor oferta ou comunicação para Cliente</span>'
           }, {
             html: '<h1>Criar e gerir os indicadores<small></small></h1><h4>Para isso é essencial:</h4><span>estabelecer indicadores relevantes com metas</span><span>um processo recorrente de análise</span><span>planos de ação de melhorias</span>'
           }, {
-            html: '<h1>Reter ou conquistarCliente<small></small><h4>Aproveitar as informações para:</h4><span>entender a necessidade doCliente</span><span>reconhecê-lo como único</span><span>surpreendê-lo</span>'
+            html: '<h1>Reter ou conquistar Cliente<small></small><h4>Aproveitar as informações para:</h4><span>entender a necessidade do Cliente</span><span>reconhecê-lo como único</span><span>surpreendê-lo</span>'
           }
         ]
       }

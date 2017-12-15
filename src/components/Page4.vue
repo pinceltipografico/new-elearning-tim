@@ -1,104 +1,138 @@
 <template>
-  <section class="page menu-page">
-    <div class="menu">
-      <div class="item-container">
-        <div class="item" @click="onItemClick($event, 0)">
-          <i class="material-icons">&#xE88E;</i>
-        </div>
-        <!--<div class="item" @click="onItemClick(1)">-->
-        <!--dna -->
-        <!--</div>-->
-        <div class="item" @click="onItemClick($event, 1)">
-          <!-- infinite -->
-        </div>
-        <div class="item" @click="onItemClick($event, 2)">
-          <i class="material-icons">&#xE871;</i>
-        </div>
-        <!--<div class="item" @click="onItemClick(4)">-->
-        <!--<i class="material-icons">&#xE8DC;</i>-->
-        <!--</div>-->
-      </div>
-    </div>
-    <!--<div class="hand-pointing" :class="'item-'+item" v-if="showHand">-->
-    <!--<img src="../assets/sprites/hand-pointing.png" alt="pointing">-->
-    <!--</div>-->
-    <div class="script1">
-      <h1>Vamos para o nosso <span>{{moduleTitle}} módulo</span></span></h1>
-    </div>
-    <transition name="enter">
-      <div class="popup" v-if="showPopup">
-        <div class="inner">
-          <div class="close" @click="closePopup"><i class="material-icons">&#xE5CD;</i></div>
-          <h1>{{text}}</h1>
-          <div class="buttons" v-if="allowToSee" @click="gotoModule(text)">
-            <!-- -->Ver Módulo<!-- -->
-          </div>
-          <div v-if="!allowToSee">
-            <span>Você ainda não pode visualizar este conteúdo. Faça o módulo anterior e tente novamente!</span>
-            <div class="buttons" @click="closePopup">Voltar</div>
-          </div>
-        </div>
-      </div>
+  <section class="page page7">
+    <transition name="enter-nav">
+      <a class="nav-button next-page can-advance" v-if="showNext" @click="step2">
+        <i class="material-icons">&#xE5CC;</i>
+      </a>
     </transition>
+    <div class="image-background"></div>
+    <div class="white"></div>
+    <div class="icon">
+      <i class="material-icons">&#xE55A;</i>
+    </div>
+    <div class="script1">
+      <h1>
+        <span>admira</span>
+      </h1>
+    </div>
+    <div class="script2">
+      <h1>
+        <span>imagine</span>
+      </h1>
+    </div>
+    <div class="script3">
+      <h1>
+        <span>sinta</span>
+      </h1>
+    </div>
+    <div class="script4">
+      <h1>
+        <span>influencia</span>
+      </h1>
+    </div>
+    <div class="script5">
+      <h1>
+        Escolha <span>três palavras</span>
+        que representam o que você mais valoriza na hora da compra e leve-as até a sacola:
+      </h1>
+    </div>
+    <div class="script6">
+      <div class="drag" style="margin-bottom: 50px;">
+        <draggable v-model="list" :options="{group:'people'}">
+          <transition-group>
+            <div class="elements" v-for="(element, index) in list" :key="element.name">
+              <span>{{element.name}}</span>
+            </div>
+          </transition-group>
+        </draggable>
+      </div>
+      <div class="bag">
+        <draggable v-model="list2" :options="{group:'people'}" @add="onAdded()">
+          <transition-group>
+            <div class="elements" v-for="(element, index) in list2" :key="element.name">
+              <span>{{element.name}}</span>
+            </div>
+          </transition-group>
+        </draggable>
+      </div>
+    </div>
   </section>
 </template>
 <script type="text/javascript">
+  /* eslint-disable semi */
   /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
+  var Animations = require('../lib/ChainAnimation')
+  import { EventBus } from '../events/index'
+  import draggable from 'vuedraggable'
+  import anime from 'animejs'
+  
   export default {
-    //
-    // APP NAME
-    name: 'Menu',
+    /**
+     | ----------------------------------------------
+     * WHEN component was ready
+     | ----------------------------------------------
+     **/
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      this.moduleTitle = this.$route.meta.module
-      var itens = this.$el.querySelectorAll('.item-container > div')
       var vm = this
-      
-      function toggleClass (index) {
-        for (var i = 0; i < itens.length; i++) {
-          vm.removeClass(itens[i], 'active')
-          vm.addClass(itens[i], 'disabled')
-        }
-        vm.removeClass(itens[index], 'disabled')
-        vm.addClass(itens[index], 'active')
-      }
-      
-      if (vm.moduleTitle === 'primeiro') {
-        this.item = 1
-        this.playAudio('menuintro', 'static/subtitles/menu_1.json', function (pos) {
-          if (pos >= 10 && pos < 14) {
-            vm.addClass(itens[0], 'active')
-          } else if (pos >= 14 && pos < 16) {
-            vm.removeClass(itens[0], 'active')
-            vm.addClass(itens[1], 'active')
-          } else if (pos >= 16) {
-            vm.removeClass(itens[1], 'active')
-            vm.addClass(itens[2], 'active')
+      this.TimelineCtrl = anime.timeline({
+        elasticity: 0,
+        complete: function () {}
+      })
+      this.TimelineCtrl
+        .add({
+          targets: '.white',
+          right: ['100%', '0%'],
+          easing: 'linear',
+          height: [{value: 0}, {value: 200, delay: 300}],
+          bottom: 50,
+          duration: 500,
+          offset: '+=300'
+        })
+        .add({
+          targets: '.icon',
+          opacity: 1,
+          offset: '+=300'
+        })
+        .add({
+          targets: ['.script1', '.script2', '.script3', '.script4'],
+          opacity: 1,
+          easing: 'linear',
+          translateX: ['100%', 0],
+          duration: 200,
+          delay: function (el, i, l) {
+            if (i === 0) {
+              return 0
+            } else if (i === 1) {
+              return 2000
+            } else if (i === 2) {
+              return 4500
+            } else {
+              return 7500
+            }
           }
-        }, function () {
-          vm.removeClass(itens[2], 'active')
-          vm.playAudio('menuItem1', 'static/subtitles/menu_2.json', function () {}, function () {
-            toggleClass(0)
-            vm.showHand = true
-          })
         })
-      } else if (vm.moduleTitle === 'segundo') {
-        this.item = 2
-        vm.playAudio('menuItem2', 'static/subtitles/menu_3.json', function () {}, function () {
-          toggleClass(1)
-          vm.showHand = true
-        })
-      } else if (vm.moduleTitle === 'terceiro') {
-        this.item = 3
-        vm.playAudio('menuItem3', 'static/subtitles/menu_4.json', function () {}, function () {
-          toggleClass(2)
-          vm.showHand = true
-        })
-      }
+      
+      EventBus.$on('pause', function (paused) {
+        if (this.TimelineCtrl) {
+          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
+        }
+      }.bind(this))
+      EventBus.$on('rewind', function () {
+        if (this.TimelineCtrl) {
+          this.TimelineCtrl.restart()
+        }
+      }.bind(this))
+      
+      this.playAudio('scene4', 'static/subtitles/page4.json', function (pos) {
+      }, function () {
+        this.showNext = true
+      }.bind(this))
     },
+    
     /**
      | ----------------------------------------------
      * RETURN DATA OF THE COMPONENT
@@ -106,257 +140,324 @@
      **/
     data () {
       return {
-        text: '',
-        texts: [
-          'O Porquê das mudanças e conceito de CX',
-          'Ciclo do Cliente',
-          'Diretrizes de Customer Experience'
+        list: [
+          {name: 'Segurança', order: 1},
+          {name: 'Design', order: 2},
+          {name: 'Status', order: 3},
+          {name: 'Preço', order: 4},
+          {name: 'Funcionalidade', order: 5},
+          {name: 'Qualidade', order: 6}
         ],
-        showPopup: false,
-        allowToSee: false,
-        moduleTitle: '',
-        showHand: false,
-        item: 1
+        list2: [],
+        currentScene: 1,
+        showNext: false,
+        TimeLineCtrl: null
       }
     },
     /**
      | ----------------------------------------------
-     * RETURN THE METHODS OF COMPONENT
+     * COMPONENTS USE IN THIS COMPONENT
      | ----------------------------------------------
      **/
+    components: {
+      draggable
+    },
     methods: {
-      onItemClick: function ($event, index) {
-        var target = $event.target
-        var canClick = (target.nodeName === 'I' && target.parentNode.className.indexOf('active') !== -1) || (target.className.indexOf('active') !== -1)
-        if (!canClick) {
-          return
+      onAdded () {
+        if (this.list2 && this.list2.length === 3) {
+          this.$store.commit('setCanAdvance', true)
         }
-        this.allowToSee = true // this.$store.state.modulesAllowed.indexOf(index) !== -1
-        this.text = this.texts[index]
-        this.showPopup = true
       },
-      closePopup: function () {
-        this.showPopup = false
-      },
-      gotoModule (t) {
-        if (t === this.texts[0]) {
-          this.$router.replace('page3')
-        }
-        if (t === this.texts[1]) {
-          this.$router.replace('/page15')
-        }
-        if (t === this.texts[2]) {
-          this.$router.replace('/page17')
-        }
+      step2 () {
+        this.showNext = false
+        var animations = [
+          {
+            time: 50,
+            step: 'step3',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step4',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step5',
+            selector: '.white'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.script5'
+          }, {
+            time: 500,
+            step: 'step1',
+            selector: '.script6'
+          }, {
+            time: 500,
+            step: 'show',
+            selector: '.script6'
+          }
+        ]
+        Animations.setAnimations(animations)
+        Animations.animationTimeline(function () {
+          this.playAudio('scene4DragAndDrop', 'static/subtitles/page4_2.json')
+        }.bind(this))
       }
     },
     
+    /**
+     | ----------------------------------------------
+     * WHEN DESTROYED
+     | ----------------------------------------------
+     **/
     destroyed () {
+      EventBus.$off('pause')
+      EventBus.$off('rewind')
+      Animations.destroyAnimations()
       this.stopAudio()
     }
   }
 </script>
-<style lang="scss" scoped>
-  @import "../scss/mixins";
-  @import "~susy/sass/susy";
+<style scoped lang="scss">
   @import "../scss/variables";
+  @import "../scss/mixins";
   
-  section.page {
-    @extend %gradient;
+  .image-background {
+    background: url("../assets/backgrounds/page4/shutterstock_342602372.jpg") no-repeat;
+    background-size: cover;
   }
   
-  .menu {
-    width: 845px;
-    height: 800px;
-    background: url("../assets/backgrounds/menu/01.png") no-repeat;
-    right: 0;
-    bottom: 0;
-    animation: slideImage 10s infinite ease-in-out;
-    .item-container {
-      position: absolute;
-      background: #fff;
-      top: 315px;
-      bottom: 170px;
-      left: 245px;
-      right: 145px;
-      
-      div.item {
-        position: absolute;
-        display: table-cell;
-        width: span(3.8 of 12);
-        height: 46%;
-        background: $brand-details;
-        cursor: pointer;
-        text-align: center;
-        color: #fff;
-        vertical-align: middle;
-        transition: background $animationTime;
-        
-        i {
-          display: inline-block;
-          @include font-size(7);
-          line-height: 300px;
-        }
-        
-        &:nth-of-type(1),
-        &:nth-of-type(3) {
-          &.active {
-            animation: activeItem 0.300s infinite ease-in-out alternate;
-          }
-        }
-        
-        &:nth-of-type(1) {
-          left: 10px;
-        }
-        &:nth-of-type(3) {
-          right: 10px;
-        }
-        &:nth-of-type(1),
-        &:nth-of-type(2),
-        &:nth-of-type(3) {
-          top: 10px;
-          height: 94%;
-        }
-        &:nth-of-type(2) {
-          left: 50%;
-          transform: translatex(-50%);
-          line-height: 340px;
-          background: darken($brand-details, 40%) url("../assets/sprites/infinite.png") no-repeat center;
-          background-size: 85% auto;
-          &.active {
-            animation: activeItem2 0.300s infinite ease-in-out alternate;
-          }
-        }
-        
-        &:hover {
-          background: $brand-primary;
-          &:nth-of-type(2) {
-            background: $brand-primary url("../assets/sprites/infinite.png") no-repeat center;
-            background-size: 85% auto;
-          }
-        }
-        &.disabled {
-          opacity: 0.3;
-          background: #666;
-          &:nth-of-type(2) {
-            background: #666 url("../assets/sprites/infinite.png") no-repeat center;
-            background-size: 85% auto;
-          }
-        }
-      }
-    }
+  * {
+    transition: all $animationTime;
+  }
   
-    @include responsive('laptopS'){
-      transform: scale(0.8);
-      transform-origin: 100% 100%;
-      animation: none;
+  .script1,
+  .script2,
+  .script3,
+  .script4,
+  .script5,
+  .script6,
+  .white,
+  .icon {
+    z-index: 4;
+    position: absolute;
+  }
+  
+  .white {
+    background: #fff;
+    width: 100%;
+    height: 0%;
+    right: 100%;
+    
+    &.step3 {
+      bottom: 0 !important;
+    }
+    &.step4 {
+      height: 100% !important;
+      z-index: 5;
+    }
+    &.step5 {
+      @extend %gradient;
+    }
+  }
+  
+  .icon {
+    left: 50%;
+    bottom: 120px;
+    transform: translateX(-50%);
+    color: #666;
+    opacity: 0;
+    i {
+      @include font-size(12);
+    }
+    &.step1 {
+      opacity: 1;
+    }
+    span {
+      display: block;
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      bottom: -25px;
+      transform: translateX(-50%);
+      color: #fff;
+      @include font-size(2);
+      cursor: pointer;
+      background: $brand-details;
+      border-radius: 10px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      animation: proximoAnim 1s infinite ease-in-out alternate;
+    }
+  }
+  
+  .script1,
+  .script2,
+  .script3,
+  .script4 {
+    bottom: 60px;
+    max-width: 700px;
+    @include font-size(2.5);
+    color: #fff;
+    transform: translate(100%, -50%) scale(1) rotate(0deg);
+    opacity: 0;
+    
+    span {
+      color: $brand-details;
+    }
+    
+    &.show {
+      transform: translate(0%, -50%) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    &.hide {
+      transform: translate(0, -50%) scale(0) rotate(0deg);
     }
   }
   
   .script1 {
-    top: 40%;
-    left: 100px;
-    transform: translateY(-50%);
-    max-width: 300px;
-    @include font-size(1.8);
+    left: 10%;
+  }
+  
+  .script2 {
+    left: 25%;
+  }
+  
+  .script3 {
+    left: 62%;
+  }
+  
+  .script4 {
+    left: 75%;
+  }
+  
+  .script5,
+  .script6 {
+    z-index: 6;
+  }
+  
+  .script5 {
+    width: 100%;
+    @include font-size(1.5);
     color: #fff;
-    animation: slideText 10s ease-in-out alternate infinite;
-    @include responsive('laptopS') {
-      max-width: 200px;
-      @include font-size(1.5);
+    top: -100px;
+    padding-left: 100px;
+    opacity: 0;
+    h1 {
+      display: inline-block;
+      max-width: 60%;
+    }
+    &.step1 {
+      top: 100px;
+      opacity: 1;
     }
   }
   
-  .popup {
+  .script6 {
+    display: none;
     width: 100%;
     height: 100%;
-    background: rgba(#000, 0.4);
-    .inner {
-      position: absolute;
-      text-align: center;
-      padding: 20px;
-      width: 450px;
-      height: auto;
-      background: darken($brand-details, 10%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      h1 {
-        color: #fff;
-        @include font-size(2.3);
-      }
-      > div {
-        @include font-size(1.5);
-      }
-      .close {
-        position: absolute;
-        color: $brand-details;
-        right: -13px;
-        top: -13px;
-        background: #fff;
-        @include font-size(3);
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-      }
-    }
-  }
-  
-  .hand-pointing {
-    position: absolute;
-    z-index: 3;
-    animation: handSlide 1s infinite ease-in-out alternate;
-    transform: translate(0, -50%);
-    top: 50%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    opacity: 0;
     
-    &.item-1 {
-      left: 42%;
+    .bag {
+      background: url("../assets/backgrounds/page4/bag.png") no-repeat;
+      width: 372px;
+      height: 500px;
+      position: absolute;
+      right: 5%;
+      top: 45%;
+      transform: translateY(-50%) rotate(0deg);
+      transform-origin: 50% 0;
+      animation: rotate 5s infinite ease-in-out alternate;
+      
+      > div {
+        position: absolute;
+        height: 270px;
+        top: 40%;
+        bottom: 0;
+        left: 20px;
+        right: 40px;
+        
+        > span {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding: 20px;
+          
+          div {
+            float: left;
+            background: $brand-details;
+            color: #fff;
+            @include font-size(2);
+            margin: 0 10px 10px 0;
+            border-radius: 5px;
+            padding: 10px;
+          }
+        }
+      }
     }
-    &.item-2 {
-      left: 55%;
+    
+    &.step1 {
+      display: block;
     }
-    &.item-3 {
-      left: 67%;
+    &.show {
+      opacity: 1;
+    }
+    .drag {
+      position: absolute;
+      left: 10%;
+      top: 60%;
+      transform: translateY(-50%);
+      max-width: 550px;
+      
+      @include responsive('laptopS'){
+        max-width: 400px;
+      }
+      .elements {
+        display: inline-block;
+        width: auto;
+        background: $brand-details;
+        float: left;
+        margin: 0 0 10px 10px;
+        color: #fff;
+        padding: 20px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        span {
+          display: inline-block;
+          font-weight: bold;
+          @include font-size(2);
+        }
+        @include responsive('laptopS'){
+          span{
+            @include font-size(1.5);
+          }
+        }
+      }
+    }
+    .buttons {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
   
-  @keyframes slideImage {
+  @keyframes rotate {
     0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(2%);
+      transform: translateY(-50%) rotate(-2deg);
     }
     100% {
-      transform: translateX(0%);
+      transform: translateY(-50%) rotate(2deg);
     }
   }
   
-  @keyframes slideText {
-    0% {
-      transform: translateX(-10%);
-    }
-    100% {
-      transform: translateX(10%);
-    }
-  }
-  
-  @keyframes handSlide {
+  @keyframes proximoAnim {
     to {
-      transform: translate(10%, -50%);
-    }
-  }
-  
-  @keyframes activeItem {
-    to {
-      background: $brand-secondary;
-    }
-  }
-  
-  @keyframes activeItem2 {
-    to {
-      background: $brand-secondary url("../assets/sprites/infinite.png") no-repeat center;
-      background-size: 85% auto;
+      background: darken($brand-details, 20%);
     }
   }
 </style>

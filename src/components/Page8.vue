@@ -1,204 +1,169 @@
 <template>
   <section class="page page8">
-    <div class="image-background step2"></div>
-    <div class="image-background step1 image2"></div>
-    <div class="image-background image1"></div>
-    <div class="script1 video-overlay">
-      <video src="static/video/560156650.m4v" type="video/mp4" autoplay loop></video>
-      <h1>entender o que bate em seu coração</h1>
+    <canvas id="customer_experience" width="600" height="600"></canvas>
+    <div class="script1">
+      <h1>Mas o que é?</h1>
     </div>
-    <div class="effect"></div>
-    <div class="script2">
-      <h1>Mas, nós todos, <span>como Clientes</span>, desejamos mais...</h1>
-    </div>
-    <div class="script3">
-      <h1>Muitas empresas olham para seus concorrentes</h1>
+    <div class="image">
+      <img src="../assets/backgrounds/page8/01.png" alt="O que é Customer Experiencie">
     </div>
   </section>
 </template>
 <script type="text/javascript">
-  /* eslint-disable no-trailing-spaces */
   /* eslint-disable no-unused-vars */
+  /* eslint-disable no-trailing-spaces */
+  var WorldCluod = require('wordcloud')
+  var Animations = require('../lib/ChainAnimation')
   import { EventBus } from '../events/index'
-  import anime from 'animejs'
   
   export default {
-    data () {
-      return {
-        TimeLineCtrl: null
-      }
-    },
     /**
      | ----------------------------------------------
-     * WHEN COMPOENNT IS READY
+     * WHEN COMPONENT IS READY
      | ----------------------------------------------
      **/
     mounted () {
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var vm = this
-      
-      this.TimelineCtrl = anime.timeline({
-        loop: false
-      })
-      this.TimelineCtrl
-        .add({
-          targets: '.script1',
-          opacity: 1,
-          duration: 100,
-          begin: function () {
-            var el = document.querySelector('.script1')
-            vm.removeClass(el, 'step1')
-            vm.removeClass(el, 'step2')
-            vm.addClass(el, 'show')
+      var animations = [
+        {
+          time: 500,
+          step: 'show',
+          selector: '.image'
+        }, {
+          time: 500,
+          step: 'show',
+          selector: '.script1'
+        }
+      ]
+      var self = this
+      Animations.setAnimations(animations)
+      Animations.animationTimeline(function () {
+        WorldCluod(document.querySelector('#customer_experience'), {
+          list: [
+            ['CUSTOMER EXPERIENCE', 36],
+            ['Sonhos', 10],
+            ['Experience', 10],
+            ['Status', 14],
+            ['Organizações', 10],
+            ['Identidade', 12],
+            ['Cliente', 18],
+            ['Business', 8],
+            ['Quality', 15],
+            ['Business', 8],
+            ['Qualidade', 20],
+            ['Resultados', 20],
+            ['Cliente', 10],
+            ['Care', 20],
+            ['Customer', 10],
+            ['Serviços', 15],
+            ['Experiencia', 10],
+            ['Sucesso', 12],
+            ['Pessoas', 20],
+            ['Cuidado', 15],
+            ['Vontade', 25],
+            ['Pertencer', 15],
+            ['Identidade', 10],
+            ['Sonhos', 10],
+            ['Experience', 10],
+            ['Status', 14],
+            ['Organizações', 10],
+            ['Identidade', 12],
+            ['Cliente', 18],
+            ['Business', 8],
+            ['Quality', 15],
+            ['Business', 8],
+            ['Qualidade', 20],
+            ['Resultados', 20],
+            ['Cliente', 10],
+            ['Care', 20],
+            ['Customer', 10],
+            ['Serviços', 15],
+            ['Experiencia', 10],
+            ['Sucesso', 12],
+            ['Pessoas', 20],
+            ['Cuidado', 15],
+            ['Vontade', 25],
+            ['Pertencer', 15],
+            ['Identidade', 10]
+          ],
+          wait: 300,
+          maxRotation: 0,
+          clearCanvas: true,
+          backgroundColor: 'transparent',
+          rotateRatio: 0,
+          gridSize: 8,
+          weightFactor: 1.2,
+          color: function (word, weight, fontSize, distance, theta) {
+            return (word === 'CUSTOMER EXPERIENCE') ? '#2eb1e8' : '#bbbaba'
           },
-          complete: function () {
-            var el = document.querySelector('.script1')
-            vm.addClass(el, 'step1')
-            setTimeout(function () {
-              vm.addClass(el, 'step2')
-            }, 1000)
-          }
+          drawOutOfBound: true
         })
-        .add({
-          targets: '.effect',
-          width: [0, 1280],
-          easing: 'linear',
-          duration: 200,
-          offset: '+=14000'
-        })
-        .add({
-          targets: '.script1',
-          opacity: 0
-        })
-        .add({
-          targets: '.image1',
-          opacity: 0,
-          duration: 100
-        })
-        .add({
-          targets: '.effect',
-          easing: 'linear',
-          opacity: 0,
-          duration: 100
-        })
-        .add({
-          targets: '.script3',
-          opacity: [{value: 0}, {value: 1}, {value: 0, delay: 7000}],
-          easing: 'linear',
-          duration: 300
-        })
-        .add({
-          targets: '.effect',
-          easing: 'linear',
-          opacity: [{value: 0}, {value: 1}, {value: 1, delay: 1000}],
-          duration: 300
-        })
-        .add({
-          targets: '.image2',
-          opacity: 0,
-          duration: 100,
-          offset: '-=500'
-        })
-        .add({
-          targets: '.script2',
-          opacity: 1,
-          easing: 'linear',
-          duration: 500
-        })
-        .add({
-          targets: '.effect',
-          width: 550,
-          left: '50%',
-          easing: 'linear',
-          duration: 100
-        })
-      
-      EventBus.$on('pause', function (paused) {
-        if (this.TimelineCtrl) {
-          (paused ? this.TimelineCtrl.pause : this.TimelineCtrl.play)()
-        }
-      }.bind(this))
-      EventBus.$on('rewind', function () {
-        if (this.TimelineCtrl) {
-          this.TimelineCtrl.restart()
-        }
-      }.bind(this))
-      
-      this.playAudio('scene5', 'static/subtitles/page5.json', function () {}, function () {
+      })
+      this.playAudio('scene8', 'static/subtitles/page8.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
     
     /**
      | ----------------------------------------------
-     * DESTROYED
+     * destroyed
      | ----------------------------------------------
      **/
     destroyed () {
-      this.stopAudio()
-      EventBus.$off('pause')
-      EventBus.$off('rewind')
+      Animations.destroyAnimations()
+      this.$store.state.audio.stop()
     }
   }
 </script>
 <style lang="scss" scoped>
-  @import "../scss/variables";
   @import "../scss/mixins";
-  @import "~susy/sass/susy";
+  @import "../scss/variables";
   
   section.page {
-    div.image-background {
-      background: #000;
-      &.step1 {
-        background: url('../assets/backgrounds/page5/shutterstock_525052798.jpg') no-repeat;
-        background-size: cover;
-      }
-      &.step2 {
-        background: url('../assets/backgrounds/page5/shutterstock_552386662.jpg') no-repeat;
-        background-size: cover;
-      }
+    @extend %gradient;
+    
+    > * {
+      position: absolute;
+      transition: all $animationTime;
     }
     
+    canvas {
+      top: 50%;
+      left: 50%;
+      transform: translate(-20%, -50%);
+    }
+    .image {
+      bottom: 0;
+      left: 100px;
+      transform: translateX(-100%);
+      opacity: 0;
+      &.show {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+      @include responsive('laptopS'){
+        left: 0px;
+      }
+    }
     .script1 {
-      width: 100%;
-      height: 100%;
-      video {
-        margin-top: -20px;
-        width: 100%;
-        height: 110%;
-      }
-    }
-    
-    .effect {
-      width: 0;
-      height: 100%;
-      background: #fff;
-      left: 0;
-      top: 0;
-    }
-    .script2 {
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      @include font-size(2);
-      max-width: 37%;
-      opacity: 0;
-      h1 {
-        color: #666;
-      }
-    }
-    .script3 {
-      @include font-size(2);
-      max-width: 400px;
-      text-align: center;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
+      top: 140px;
+      left: 300px;
       color: #666;
+      @include font-size(1.8);
       background: #fff;
+      padding: 0 20px 0 100px;
+      transform-origin: 0 0;
+      transform: rotate(0deg);
       opacity: 0;
+      &.show {
+        transform: rotate(-10deg);
+        opacity: 1;
+      }
+      @include responsive('laptopS'){
+        left: 170px;
+      }
     }
   }
 </style>

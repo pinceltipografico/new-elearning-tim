@@ -71,7 +71,7 @@
           <img src="../assets/backgrounds/page17/circlel.png"/>
         </div>
         <div class="customer_centric">
-          <h2>Centrado noCliente</h2>
+          <h2>Costumer Centric<br/>(Centrado no Cliente)</h2>
           <costumer-centric></costumer-centric>
         </div>
         <div class="customer_experience">

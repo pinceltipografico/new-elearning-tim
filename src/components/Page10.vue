@@ -1,27 +1,19 @@
 <template>
   <section class="page">
-    <div class="overlay"></div>
-    <div class="infographic">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <div class="image-background step1"></div>
+    <div class="image-background image1"></div>
+    <div class="effects"></div>
     <div class="script1">
-      <h1>
-        É necessário olhar Cliente <span>mais de perto</span>
-      </h1>
+      <h1>Valorizamos aspectos diferentes</h1>
     </div>
-    <div class="script2">
-      <h1>Na <span class="tim">TIM</span> está passando por este <span>movimento!</span></h1>
+    <div class="script2 end-tag">
+      <h1><span>Surpreender</span></h1>
     </div>
   </section>
 </template>
 <script type="text/javascript">
-  /* eslint-disable semi */
-  /* eslint-disable no-unused-vars */
   /* eslint-disable no-trailing-spaces */
+  /* eslint-disable no-unused-vars */
   import { EventBus } from '../events/index'
   import anime from 'animejs'
   
@@ -37,42 +29,59 @@
      | ----------------------------------------------
      **/
     mounted () {
+      //
+      // set global vars
       this.$store.commit('toggleIterface', true)
       this.$store.commit('setPageProgress', 0)
       this.$store.commit('setCanAdvance', false)
-      var els = this.$el.querySelectorAll('.infographic > div')
       
       this.TimelineCtrl = anime.timeline({
         loop: false
       })
       this.TimelineCtrl
         .add({
-          targets: '.script2',
-          translateY: ['100%', '0'],
-          easing: 'linear',
-          opacity: 1,
-          duration: 500
+          targets: '.effects',
+          height: [0, '100%'],
+          duration: 300,
+          easing: 'linear'
         })
         .add({
-          targets: '.script1 h1:first-of-type',
-          translateX: ['100%', '0'],
-          translateY: ['-50%', '-50%'],
-          opacity: 1,
-          easing: 'linear',
-          duration: 500,
-          offset: '+=9000'
-        })
-        .add({
-          targets: els,
+          targets: '.script1',
           opacity: 1,
           duration: 300,
-          delay: function (el, i) {
-            if (i === 5) {
-              return 0
-            }
-            return 1000 * i
-          },
-          offset: '+=11500'
+          easing: 'linear'
+        })
+        .add({
+          targets: '.effects',
+          left: 0,
+          width: [{value: 1280, delay: 300}],
+          duration: 200,
+          offset: '+=7000',
+          easing: 'linear'
+        })
+        .add({
+          targets: '.script1',
+          opacity: 0,
+          duration: 200
+        })
+        .add({
+          targets: '.image1',
+          opacity: 0,
+          duration: 100
+        })
+        .add({
+          targets: '.effects',
+          opacity: 0,
+          duration: 200,
+          easing: 'linear',
+          offset: '+=400'
+        })
+        .add({
+          targets: '.script2',
+          opacity: 1,
+          easing: 'linear',
+          translateY: ['100%', '-50%'],
+          duration: 200
         })
       
       EventBus.$on('pause', function (paused) {
@@ -86,132 +95,53 @@
         }
       }.bind(this))
       
-      this.playAudio('scene7', 'static/subtitles/page7.json', null, function () {
+      this.playAudio('scene10', 'static/subtitles/page10.json', null, function () {
         this.$store.commit('setCanAdvance', true)
       }.bind(this))
     },
-    
     /**
      | ----------------------------------------------
-     * WHEN DESTROYED
+     * DESTROYED
      | ----------------------------------------------
      **/
     destroyed () {
-      this.$store.state.audio.stop()
+      this.stopAudio()
       EventBus.$off('pause')
       EventBus.$off('rewind')
     }
   }
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
   @import "../scss/variables";
   @import "../scss/mixins";
   
-  section.page {
-    @extend %gradient;
-  }
-  
-  .script1,
-  .script2,
-  .infographic {
-    z-index: 4;
-    position: absolute;
-  }
-  
-  .infographic {
-    width: 370px;
-    height: 365px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    background-size: 100% auto;
+  .image-background {
+    background: url("../assets/backgrounds/page10/shutterstock_337783478.jpg") no-repeat;
+    background-size: cover;
     
-    div {
-      position: absolute;
-      opacity: 0;
-      transition: all $animationTime;
-  
-      &:nth-of-type(1) {
-        background: url("../assets/backgrounds/page7/accontability.png") no-repeat;
-        width: 450px;
-        height: 70px;
-        z-index: 5;
-        bottom: -70px;
-        left: 50%;
-        margin-left: -225px;
-      }
-      
-      &:nth-of-type(2),
-      &:nth-of-type(3) {
-        top: 0;
-      }
-      &:nth-of-type(2) {
-        width: #{(421/2)+'px'};
-        height: #{(364/2)+'px'};
-        background: url("../assets/backgrounds/page7/graph4.png") no-repeat;
-        background-size: 100% auto;
-        left: 0;
-      }
-      &:nth-of-type(3) {
-        width: #{(395/2)+'px'};
-        height: #{(417/2)+'px'};
-        background: url("../assets/backgrounds/page7/graph3.png") no-repeat;
-        background-size: 100% auto;
-        right: 0;
-      }
-      &:nth-of-type(4),
-      &:nth-of-type(5) {
-        bottom: 0;
-      }
-      &:nth-of-type(4) {
-        width: #{(397/2)+'px'};
-        height: #{(420/2)+'px'};
-        background: url("../assets/backgrounds/page7/graph1.png") no-repeat;
-        background-size: 100% auto;
-        left: 0;
-      }
-      &:nth-of-type(5) {
-        width: #{(425/2)+'px'};
-        height: #{(442/2)+'px'};
-        background: url("../assets/backgrounds/page7/graph2.png") no-repeat;
-        background-size: 100% auto;
-        right: 0;
-      }
+    &.step1 {
+      background: url("../assets/backgrounds/page10/shutterstock_613155317.jpg") no-repeat;
+      background-size: cover;
     }
   }
   
-  .script1,
-  .script2 {
-    @include font-size(2.5);
-    color: #fff;
+  .effects {
+    width: 38%;
+    height: 0;
+    background: darken($brand-details, 20%);
+    left: 10%;
   }
   
   .script1 {
-    top: 30%;
-    max-width: 25%;
-    left: 5%;
-  }
-  
-  .script1 h1 {
-    padding: 10px;
-    @include font-size(2.5);
+    max-width: 38%;
     color: #fff;
-    transform: translate(100%, -50%) scale(1) rotate(0deg);
-    opacity: 0;
-  }
-  
-  .script2 {
-    max-width: 25%;
-    color: #fff;
-    bottom: 100px;
-    right: 5%;
-    text-align: right;
-    transform: translateY(100%);
+    @include font-size(2);
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
     opacity: 0;
     h1 {
-      @include font-size(2.5);
-      padding: 10px 0;
-      display: inline-block;
+      padding: 20px;
     }
   }
 </style>
