@@ -44,7 +44,7 @@
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
-          <span>Como promover uma experiência de pesquisa que seduz o Cliente?</span>
+          <span>Como promover uma experiência de pesquisa que seduza-o?</span>
           <span>Clique aqui e veja um exemplo</span>
         </div>
       </div>
@@ -103,7 +103,7 @@
         <h1>Como tornar a entrega do produto ou serviço uma <span>experiência única?</span></h1>
       </div>
       <div class="script2">
-        <h1>Cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja
+        <h1>O Cliente pode preferir receber seu produto em <span>qualquer lugar</span>, em casa, trabalho ou na própria loja
         </h1>
       </div>
       <div class="iconButton" @click="startSceneEight2">
@@ -245,7 +245,7 @@
           this.TimelineCtrl.restart()
         }
       }.bind(this))
-
+      
       this.start()
 //      this.started = true
 //      this.scene = 7
