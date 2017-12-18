@@ -26,7 +26,7 @@
       <h1>Compartilhando,<br/><span>Construindo,</span><br/>Evoluindo</h1>
     </div>
     <div class="script5 end-tag">
-      <h1>Esta é a <span>Geração CX TIM</span></h1>
+      <h1>Esta é a <span>Geração CX.</span></h1>
     </div>
   </section>
 </template>

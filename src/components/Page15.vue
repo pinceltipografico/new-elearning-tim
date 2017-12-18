@@ -44,7 +44,7 @@
       </div>
       <div class="iconButton" @click="startSceneFour">
         <div>
-          <span>Como promover uma experiência de pesquisa que seduza-o?</span>
+          <span>Como promover uma experiência de pesquisa que seduza o?</span>
           <span>Clique aqui e veja um exemplo</span>
         </div>
       </div>
