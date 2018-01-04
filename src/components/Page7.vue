@@ -60,7 +60,7 @@
           opacity: 1,
           easing: 'linear',
           duration: 500,
-          offset: '+=9000'
+          offset: '+=15000'
         })
         .add({
           targets: els,
@@ -72,7 +72,7 @@
             }
             return 1000 * i
           },
-          offset: '+=11500'
+          offset: '+=4000'
         })
       
       EventBus.$on('pause', function (paused) {

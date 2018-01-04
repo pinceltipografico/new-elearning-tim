@@ -60,7 +60,7 @@
           <arrow1></arrow1>
         </div>
         <div class="clock">
-          <h4>REAL TIME</h4>
+          <h4>TEMPO REAL</h4>
           <clock></clock>
         </div>
         <div class="arrow4">
