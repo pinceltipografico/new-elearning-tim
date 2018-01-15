@@ -66,49 +66,49 @@
         var el = document.querySelectorAll('.palavras-colaborador > span')
         var el2 = document.querySelectorAll('.palavras-clientes > span')
         this.playAudio('scene23', 'static/subtitles/page23.json', function (pos) {
-          if (pos === 14) {
+          if (pos === 18) {
             el[0].style.opacity = 1
           }
-          if (pos === 15) {
+          if (pos === 19) {
             el[1].style.opacity = 1
           }
-          if (pos === 16) {
+          if (pos === 20) {
             el[2].style.opacity = 1
           }
-          if (pos === 17) {
+          if (pos === 21) {
             el[3].style.opacity = 1
           }
-          if (pos === 18) {
+          if (pos === 22) {
             el[4].style.opacity = 1
           }
-          if (pos === 19) {
+          if (pos === 23) {
             el[5].style.opacity = 1
           }
-          if (pos === 20) {
+          if (pos === 24) {
             el[6].style.opacity = 1
           }
-          if (pos === 21) {
+          if (pos === 25) {
             el[7].style.opacity = 1
           }
-          if (pos === 24) {
+          if (pos === 28) {
             el2[0].style.opacity = 1
           }
-          if (pos === 25) {
+          if (pos === 29) {
             el2[1].style.opacity = 1
           }
-          if (pos === 26) {
+          if (pos === 30) {
             el2[2].style.opacity = 1
           }
-          if (pos === 27) {
+          if (pos === 31) {
             el2[3].style.opacity = 1
           }
-          if (pos === 28) {
+          if (pos === 32) {
             el2[4].style.opacity = 1
           }
-          if (pos === 30) {
+          if (pos === 33) {
             el2[5].style.opacity = 1
           }
-          if (pos === 32) {
+          if (pos === 35) {
             el2[6].style.opacity = 1
           }
         }, function () {

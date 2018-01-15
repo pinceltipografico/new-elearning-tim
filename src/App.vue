@@ -325,14 +325,16 @@
     background: #fff;
     max-width: 1280px;
     width: 100%;
-    height: 680px;
-    min-height: 680px;
+    height: 627px;
+    min-height: 627px;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
     
     &.subtitle-active {
-      
+      .svg-container.small{
+        top:80% !important;
+      }
       .logo {
         top: 15px !important;
       }
@@ -895,7 +897,7 @@
         width: 50%;
         height: 7px;
         background: $brand-details;
-        transition: width $animationTime;
+        //transition: width 0.1s;
       }
     }
   }
