@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page colaborador-cliente">
     <div class="colaboradores">
       <div>
         <span>Colaboradores e Parceiros</span>

@@ -51,11 +51,11 @@
         <i class="material-icons">&#xE5CC;</i>
       </a>
     </transition>
-    <!--<transition name="enter-nav">-->
-    <!--<a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">-->
-    <!--<i class="material-icons">&#xE5CB;</i>-->
-    <!--</a>-->
-    <!--</transition>-->
+    <transition name="enter-nav">
+      <a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">
+        <i class="material-icons">&#xE5CB;</i>
+      </a>
+    </transition>
     <router-view></router-view>
   </main>
 </template>
@@ -330,10 +330,17 @@
     left: 50%;
     top: 0;
     transform: translateX(-50%);
+  
+    .outer-page {
+      height: 627px !important;
+    }
     
     &.subtitle-active {
-      .svg-container.small{
-        top:80% !important;
+      .colaborador-cliente{
+        background-position-y: -80px;
+      }
+      .svg-container.small {
+        top: 80% !important;
       }
       .logo {
         top: 15px !important;
@@ -347,7 +354,7 @@
       
       section.page,
       .outer-page {
-        height: 600px;
+        height: 627px;
       }
       .player-controls {
         bottom: 15px;
@@ -374,8 +381,11 @@
       }
       
       section.page11 {
-        &.scene2 {
-          //transform: translate(-50%, -40%) scale(0.8);
+        &.scene2 > div.dna{
+          transform: scale(0.8) translate(-62%, -65%);
+        }
+        &.scene2 > div.user-experience{
+          transform: translate(-50%, 60%) scale(0.9);
         }
       }
       
@@ -429,10 +439,16 @@
       section.page.monitoring {
         .engajamento {
         }
-        transform: scale(0.85);
+        transform: scale(0.80) translateY(-10%);
         overflow: visible;
         border: none;
         animation: none;
+        div.clock{
+          .clock_minutes,
+          .clock_hours{
+            animation: none;
+          }
+        }
       }
     }
   }
@@ -897,7 +913,7 @@
         width: 50%;
         height: 7px;
         background: $brand-details;
-        //transition: width 0.1s;
+        transition: width 0.1s;
       }
     }
   }
