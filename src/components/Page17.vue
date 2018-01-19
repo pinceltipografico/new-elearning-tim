@@ -2,7 +2,7 @@
   <div class="outer-page diretrizes">
     <!-- SCENE MENU -->
     <section class="page gradient page-menu" v-if="!pageACtive">
-      <h1 id="cliqueTag" style="display: none;" :class="{'active':started}">
+      <h1 id="cliqueTag" :class="{'active':started}">
         Clique em cada uma das diretrizes para visualizar</h1>
       <div class="menu">
         <div class="tim-icon">

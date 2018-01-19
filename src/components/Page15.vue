@@ -1743,6 +1743,7 @@
       &.step2 {
         background: url("../assets/backgrounds/page15/shutterstock_393304039.jpg") no-repeat;
         background-size: cover;
+        background-position: 0 -50px;
       }
       &.step3 {
         background: url("../assets/backgrounds/page15/shutterstock_580048861.jpg") no-repeat;

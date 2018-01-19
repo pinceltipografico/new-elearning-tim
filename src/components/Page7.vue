@@ -123,7 +123,7 @@
     height: 365px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -65%) scale(1);
     background-size: 100% auto;
     
     div {

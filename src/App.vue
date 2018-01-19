@@ -51,11 +51,11 @@
         <i class="material-icons">&#xE5CC;</i>
       </a>
     </transition>
-    <transition name="enter-nav">
-      <a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">
-        <i class="material-icons">&#xE5CB;</i>
-      </a>
-    </transition>
+    <!--<transition name="enter-nav">-->
+      <!--<a class="nav-button prev-page" v-if="showInterfaceItems && canAdvance || isExplainScreen" @click="prevPage">-->
+        <!--<i class="material-icons">&#xE5CB;</i>-->
+      <!--</a>-->
+    <!--</transition>-->
     <router-view></router-view>
   </main>
 </template>
@@ -336,8 +336,19 @@
     }
     
     &.subtitle-active {
+      .popups > .inner{
+        &.active {
+          transform: translate(-50%, -50%) scale(0.9);
+        }
+      }
+      .diretrizes a.backButton{
+        bottom: 100px !important;
+      }
+      .diretrizes div.icones{
+        transform: translate(-50%, -40%) scale(0.8) !important;
+      }
       .colaborador-cliente{
-        background-position-y: -80px;
+        background-position-y: -120px !important;
       }
       .svg-container.small {
         top: 80% !important;
@@ -412,7 +423,7 @@
       
       section.page9 {
         .script3 {
-          bottom: -60px;
+          bottom: 10px;
         }
       }
       
