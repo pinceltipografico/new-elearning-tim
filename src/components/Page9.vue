@@ -123,6 +123,13 @@
         
         this.addClass(this.$el.querySelector('.script2'), 'show')
         this.$el.querySelector('.script2 p').innerHTML = this.texts[value]
+
+        // remove all image class
+        this.removeClass(this.$el.querySelector('.script2 div.image'),'style1')
+        this.removeClass(this.$el.querySelector('.script2 div.image'),'style2')
+        this.removeClass(this.$el.querySelector('.script2 div.image'),'style3')
+
+        // set actual image
         this.addClass(this.$el.querySelector('.script2 div.image'), 'style' + value)
         
         var sprite = 'scene6Item' + value
