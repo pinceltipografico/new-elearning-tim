@@ -67,7 +67,6 @@ VueScorm.install = function (Vue, options) {
     var status = doLMSGetValue('cmi.core.lesson_status')
     var location = doLMSGetValue('cmi.core.lesson_location')
     
-    //
     /*
     if (suspendData) {
       var pages = suspendData.split('|')[0].split(':')[1].split(';')
@@ -79,8 +78,7 @@ VueScorm.install = function (Vue, options) {
     } else {
       doLMSSetValue('cmi.suspend_data', '')
       doLMSCommit()
-    }
-    */
+    } */
     
     //
     // fill location
